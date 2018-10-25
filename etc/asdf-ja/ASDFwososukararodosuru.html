@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ASDFをソースからロードする (ASDF マニュアル)</title>
+
+<meta name="description" content="ASDFをソースからロードする (ASDF マニュアル)">
+<meta name="keywords" content="ASDFをソースからロードする (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFworodosuru.html#ASDF_3092_30ed_30fc_30c9_3059_308b" rel="up" title="ASDFをロードする">
+<link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="next" title="ASDFを設定する">
+<link href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b" rel="prev" title="処理系付属のASDFを置き換える">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="ASDF_3092_30bd_30fc_30b9_304b_3089_30ed_30fc_30c9_3059_308b"></a>
+<div class="header">
+<p>
+Previous: <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b" accesskey="p" rel="prev">処理系付属のASDFを置き換える</a>, Up: <a href="ASDFworodosuru.html#ASDF_3092_30ed_30fc_30c9_3059_308b" accesskey="u" rel="up">ASDFをロードする</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="ASDFwososukararodosuru"></a>
+<h3 class="section">3.5 ASDFをソースからロードする</h3>
+
+<p>もしもあなたがポータブルなビルドスクリプトを書きたいのであれば――つまり最新のASDFを備えているとは限らないような古いマシンと処理系でも動くスクリプトを書きたい場合には――<samp>asdf.lisp</samp>をどこかに置いた上で、
+</p>
+<div class="lisp">
+<pre class="lisp">(load &quot;/path/to/your/installed/asdf.lisp&quot;)
+</pre></div>
+
+<p>でロードしなければならないかもしれません。
+</p>
+
+<p>通常、ASDFを使うために必要なのは<samp>asdf.lisp</samp>だけです。このファイルを<a href="https://common-lisp.net/project/asdf/">ASDF ウェブサイト</a>上の最新リリースのtarボールから得ると良いでしょう。
+</p>
+<p>バグを報告する場合には、gitリポジトリから最新版を得ることができます。<a href="Zui-Xin-Ban-woShou-niRu-reru.html#g_t_6700_65b0_7248_3092_624b_306b_5165_308c_308b">最新版を手に入れる</a>を参照してください。
+</p>
+<p>スクリプトの冒頭に<code>require</code>を置いてASDFを使おうとしたが、それがうまくいかないので難しいやり方でロードを試みる、というような場合には、ソースリポジトリにある<samp>tools/load-asdf.lisp</samp>を参考にするか、<a href="https://cliki.net/cl-launch">cl-launch</a>のコードを見るとよいでしょう。
+</p>
+
+
+
+
+</body>
+</html>

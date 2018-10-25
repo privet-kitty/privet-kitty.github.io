@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>After upgrading ASDF (ASDF マニュアル)</title>
+
+<meta name="description" content="After upgrading ASDF (ASDF マニュアル)">
+<meta name="keywords" content="After upgrading ASDF (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF" rel="up" title="Issues with installing the proper version of ASDF">
+<link href="Issues-with-configuring-ASDF.html#Issues-with-configuring-ASDF" rel="next" title="Issues with configuring ASDF">
+<link href="I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f.html#I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f" rel="prev" title="I'm a Common Lisp implementation vendor. When and how should I upgrade ASDF?">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="After-upgrading-ASDF"></a>
+<div class="header">
+<p>
+Previous: <a href="I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f.html#I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f" accesskey="p" rel="prev">I'm a Common Lisp implementation vendor. When and how should I upgrade ASDF?</a>, Up: <a href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF" accesskey="u" rel="up">Issues with installing the proper version of ASDF</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="After-upgrading-ASDF_002c-ASDF-_0028and-Quicklisp_0029-can_0027t-find-my-systems"></a>
+<h4 class="subsection">13.4.3 After upgrading ASDF, ASDF (and Quicklisp) can&rsquo;t find my systems</h4>
+<a name="index-_002acentral_002dregistry_002a"></a>
+<a name="index-Quicklisp"></a>
+
+<p>When you upgrade the ASDF running in your Lisp image
+from an ancient ASDF 2 or older to ASDF 3 or newer,
+then you may have to re-configure ASDF.
+If your configuration only consists in
+using the source-registry and output-translations (as it should),
+and if you are not explicitly calling <code>asdf:initialize-source-registry</code>
+or <code>asdf:initialize-output-translations</code> with a non-nil argument,
+then ASDF will reconfigure itself.
+Otherwise, you will have to configure ASDF 2 (or older) to find ASDF 3,
+then configure ASDF 3.
+Notably, <var>*central-registry*</var> is not maintained across upgrades from ASDF 2.
+See <a href="Pitfalls-of-the-upgrade-to-ASDF-3.html#reinitializeASDFAfterUpgrade">note about ASDF reconfiguration after upgrade</a>.
+</p>
+<p>Problems like this may be experienced if one loads Quicklisp
+(which as of this writing bundles an obsolete ASDF version 2.26),
+upgrades ASDF, and then tries to load new systems.
+The correct solution is to load the most up-to-date ASDF you can,
+<em>then</em> configure it, <em>then</em> load Quicklisp and any other extension.
+Do <em>not</em> try to upgrade from ASDF 2 <em>after</em> loading Quicklisp,
+for it will leave both ASDF and Quicklisp badly misconfigured.
+For details see the discussion at the above cross-reference.
+</p>
+<p>Also, if you are experiencing such failures due to Quicklisp shipping an ancient ASDF,
+please complain to Zach Beane about it.
+</p>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ASDFがオブジェクトファイルを保持する場所を設定する (ASDF マニュアル)</title>
+
+<meta name="description" content="ASDFがオブジェクトファイルを保持する場所を設定する (ASDF マニュアル)">
+<meta name="keywords" content="ASDFがオブジェクトファイルを保持する場所を設定する (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFを設定する">
+<link href="ASDFnoShe-Ding-worisetutosuru.html#ASDF_306e_8a2d_5b9a_3092_30ea_30bb_30c3_30c8_3059_308b" rel="next" title="ASDFの設定をリセットする">
+<link href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" rel="prev" title="ASDFがシステムを見つけられるように設定する（従来のスタイル）">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b"></a>
+<div class="header">
+<p>
+Next: <a href="ASDFnoShe-Ding-worisetutosuru.html#ASDF_306e_8a2d_5b9a_3092_30ea_30bb_30c3_30c8_3059_308b" accesskey="n" rel="next">ASDFの設定をリセットする</a>, Previous: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" accesskey="p" rel="prev">ASDFがシステムを見つけられるように設定する（従来のスタイル）</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru"></a>
+<h3 class="section">4.3 ASDFがオブジェクトファイルを保持する場所を設定する</h3>
+<a name="index-clear_002doutput_002dtranslations"></a>
+
+<p>ASDFがオブジェクトファイルを保存する場所は、あなた自身が設定することもできますが、デフォルトの設定は適切に考えられたものになっているので、通常のケースではこの領域を気にするべきではありません。
+</p>
+<p>デフォルトの仕組みによって、複数のLisp処理系の複数のバージョン間で同じソースコードリポジトリを共有することができますし、さらには複数のユーザー（ソースディレクトリへの書き込み権限のないユーザーを含む）、複数のコンパイルオプションなども区別可能です。また、ソースコードのディレクトリがオブジェクトファイル（faslファイル）で散らかることもありません。
+</p>
+<p>ASDF 2以降には<code>asdf-output-translations</code>機能が備わっていて、オブジェクトファイルが保存される場所をコントロールすることができます。この機能については<a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">Controlling where ASDF saves compiled files</a>で網羅的に解説します。
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p>ASDF 2以前では、同様の機能はASDF-Binary-Locations、cl-launch、common-lisp-controllerなどといった、それぞれ微妙に異なる非互換な方式で提供されていました。ASDF-Binary-Locationsはもはや不要な拡張なので使うべきではありませんし、cl-launch 3.000とcommon-lisp-controller 7.2はオブジェクトファイルの配置をASDFに委ねています。
+</p>
+
+
+
+</body>
+</html>

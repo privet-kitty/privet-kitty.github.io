@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The here directive (ASDF マニュアル)</title>
+
+<meta name="description" content="The here directive (ASDF マニュアル)">
+<meta name="keywords" content="The here directive (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Configuration-Directories.html#Configuration-Directories" rel="up" title="Configuration Directories">
+<link href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration" rel="next" title="Shell-friendly syntax for configuration">
+<link href="Configuration-Directories.html#Configuration-Directories" rel="prev" title="Configuration Directories">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="The-here-directive"></a>
+<div class="header">
+<p>
+Previous: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="p" rel="prev">Configuration Directories</a>, Up: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="u" rel="up">Configuration Directories</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="The-_003ahere-directive"></a>
+<h4 class="subsection">8.6.1 The :here directive</h4>
+
+<p>The <code>:here</code> directive is an absolute pathname designator that
+refers to the directory containing the configuration file currently
+being processed.
+</p>
+<p>The <code>:here</code> directive is intended to simplify the delivery of
+complex CL systems, and for easy configuration of projects shared through
+revision control systems, in accordance with our design principle that
+each participant should be able to provide all and only the information
+available to him or her.
+</p>
+<p>Consider a person X who has set up the source code repository for a
+complex project with a master directory <samp>dir/</samp>.  Ordinarily, one
+might simply have the user add a directive that would look something
+like this:
+</p><div class="example">
+<pre class="example">   (:tree &quot;path/to/dir&quot;)
+</pre></div>
+<p>But what if X knows that there are very large subtrees
+under dir that are filled with, e.g., Java source code, image files for
+icons, etc.?  All of the asdf system definitions are contained in the
+subdirectories <samp>dir/src/lisp/</samp> and <samp>dir/extlib/lisp/</samp>, and
+these are the only directories that should be searched.
+</p>
+<p>In this case, X can put into <samp>dir/</samp> a file <samp>asdf.conf</samp> that
+contains the following:
+</p><div class="example">
+<pre class="example">(:source-registry
+   (:tree (:here &quot;src/lisp/&quot;))
+   (:tree (:here &quot;extlib/lisp&quot;))
+   (:directory (:here &quot;outlier/&quot;)))
+</pre></div>
+
+<p>Then when someone else (call her Y) checks out a copy of this
+repository, she need only add
+</p><div class="example">
+<pre class="example">(:include &quot;/path/to/my/checkout/directory/asdf.conf&quot;)
+</pre></div>
+<p>to one of her previously-existing asdf source location configuration
+files, or invoke <code>initialize-source-registry</code> with a configuration
+form containing that s-expression.  ASDF will find the .conf file that X
+has provided, and then set up source locations within the working
+directory according to X&rsquo;s (relative) instructions.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="p" rel="prev">Configuration Directories</a>, Up: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="u" rel="up">Configuration Directories</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

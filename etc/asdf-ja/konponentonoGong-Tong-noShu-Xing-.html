@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>コンポーネントの共通の属性 (ASDF マニュアル)</title>
+
+<meta name="description" content="コンポーネントの共通の属性 (ASDF マニュアル)">
+<meta name="keywords" content="コンポーネントの共通の属性 (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" rel="up" title="コンポーネント">
+<link href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9" rel="next" title="コンポーネントの組み込みのサブクラス">
+<link href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" rel="prev" title="コンポーネント">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027"></a>
+<div class="header">
+<p>
+Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9" accesskey="n" rel="next">コンポーネントの組み込みのサブクラス</a>, Previous: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="p" rel="prev">コンポーネント</a>, Up: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="u" rel="up">コンポーネント</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="konponentonoGong-Tong-noShu-Xing-"></a>
+<h4 class="subsection">7.2.1 コンポーネントの共通の属性</h4>
+
+<p>すべてのコンポーネントはその型にかかわらず、次の属性(attribute)を持っています。コンポーネント名以外の属性は任意です。
+</p>
+<a name="konponentoMing--1"></a>
+<h4 class="subsubsection">7.2.1.1 コンポーネント名</h4>
+<a name="index-coerce_002dname-2"></a>
+<p>コンポーネント名(component name)は文字列またはシンボルであり、シンボルは<code>asdf:coerce-name</code>によって、小文字の文字列に変換されます。コンポーネント名には総称関数<code>component-name</code>でアクセスできます。
+</p>
+<p><code>:pathname</code>属性を上書きしない限り、コンポーネント名はUNIXスタイルの相対パスとしてそのままパス名指定子に使われるでしょう。（→ <a href="defsystemnoWenFa-.html#g_t_30d1_30b9_540d_6307_5b9a_5b50">パス名指定子</a>）
+</p>
+<a name="baziyonShi-Bie-Zi-_0028_003aversion_0029"></a>
+<h4 class="subsubsection">7.2.1.2 バージョン識別子（<code>:version</code>）</h4>
+<a name="index-version_002dsatisfies"></a>
+<a name="index-_003aversion-2"></a>
+
+<p>この属性は任意であり、コンポーネントのバージョンを指定します。バージョンは、一般的にはドットで区切られた整数の文字列で、例えば&lsquo;<samp>1.0.11</samp>&rsquo;などです。（→ <a href="defsystemnoWenFa-.html#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>） コンポーネントのバージョンには総称関数<code>component-version</code>でアクセスできます。
+</p>
+
+<p>ASDFが、<code>:depends-on</code>で指定された依存コンポーネントの<code>:version</code>オプションについて調べる時に、コンポーネントのバージョンを<code>version-satisfies</code>で問い合わせるかもしれません。例えばシステム定義に<code>:depends-on (((:version &quot;mydepname&quot; &quot;1.0.11&quot;))</code>という記述がある時は、<code>mydepname</code>コンポーネントのバージョンが<code>1.0.11</code>以上であるかどうか確認されることになります。<code>:version</code>オプションについては<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>を、<code>version-satisfies</code>関数については<a href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570">関連する関数</a>を参照してください。
+</p>
+<p>一般的には、バージョン番号が問題になるのは<code>system</code>型のコンポーネントだけであることに注意してください。ライブラリの作者が、システムに含まれる様々なファイルにバージョン番号を付けて自ら同期させるというような使い方は、おそらくまったく有用ではないでしょう。
+</p>
+<a name="Bi-Yao-nahuitiya_0028_003aif_002dfeature_0029"></a>
+<h4 class="subsubsection">7.2.1.3 必要なフィーチャー（<code>:if-feature</code>）</h4>
+<a name="g_t_5fc5_8981_306a_30d5_30a3_30fc_30c1_30e3_30fc"></a>
+<p><code>defsystem</code>内で処理系に応じてファイルを含めたり除外したりする時は、伝統的にはリーダーマクロ<code>#+</code>が使われていました。例えばポータブルなCのFFIであるCFFIには、システム定義に次のような一行があります:
+</p><div class="lisp">
+<pre class="lisp">     #+sbcl       (:file &quot;cffi-sbcl&quot;)
+</pre></div>
+<p>しかしこの方法には、どの処理系もシステム全体を読み込むことができないという欠点があります。例えば、新しく<code>archive-op</code>という操作を作り、システムのすべてのソースファイルをまとめたアーカイブを作ろうとしたとしましょう。この時、上の例の<code>cffi-sbcl.lisp</code>はSBCL以外の処理系では不可視であり、<code>archive-op</code>を実行してもアーカイブに収集されないという問題が起きます。
+</p>
+<p>この問題を解決するため、ASDF 3からコンポーネントに<code>:if-feature</code>オプションが導入されました。このオプションの値はフィーチャー表現であり、つまり、<code>#+</code>と同じ文法を使います。フィーチャー表現が満たされないとき、そのコンポーネントはコンパイル、ロード、リンクの際に無視されます。なお、「同じ文法」と述べましたが、このフィーチャー表現は標準のリーダーで読まれるので、シンボルを使う際には<code>:</code>を前置して明示的にキーワードにしなくてはなりません。<code>#+</code>に続くフィーチャー表現は暗黙にキーワードパッケージを使いますから、その点は異なることになります。
+</p>
+<p>例えば<code>(:file &quot;foo-sbcl&quot; :if-feature (:and :x86 (:or :sbcl :cmu :scl)))</code>という記述は、x86マシン上のSBCL、CMUCL、Scieneer CLにおいてのみ、<samp>foo-sbcl.lisp</samp>のコンパイル、ロードがなされるという意味です。先に述べた通り、<code>(:file &quot;foo-sbcl&quot; :if-feature (and x86 (or sbcl cmu scl)))</code>と書くことはできません。
+</p>
+<p>→ <a href="defsystemnoWenFa-.html#if_002dfeature_30aa_30d7_30b7_30e7_30f3">if-featureオプション</a>
+</p>
+<a name="akusiyonnoYi-Cun-Guan-Xi-_0028_003ain_002dorder_002dto_0029"></a>
+<h4 class="subsubsection">7.2.1.4 アクションの依存関係（<code>:in-order-to</code>）</h4>
+<a name="g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2"></a>
+<p>この属性は、当該コンポーネントに関するアクションが別のアクションに依存していることを記述します。任意の属性ですが、しばしば必要になります。
+</p>
+
+
+<p>依存関係は操作とコンポーネントのペアについて指定します。例えば次のように記述したとしましょう:
+</p>
+<div class="lisp">
+<pre class="lisp">:in-order-to ((compile-op (load-op &quot;a&quot; &quot;b&quot;) (compile-op &quot;c&quot;))
+              (load-op (load-op &quot;foo&quot;)))
+</pre></div>
+
+<p>このとき、このコンポーネントに対して<code>compile-op</code>を実行する前に、<code>a</code>と<code>b</code>に対して<code>load-op</code>を実行し、<code>c</code>に対して<code>compile-op</code>を実行しなければなりません。また、<code>load-op</code>を実行する前に、<code>foo</code>がロードされていなければなりません。
+</p>
+<p>文法はおおむね次のようになります。
+</p>
+<pre class="verbatim">(this-op @{(other-op required-components)@}+)
+
+simple-component-name := string
+                      |  symbol
+
+required-components := simple-component-name
+                     | (required-components required-components)
+
+component-name := simple-component-name
+                | (:version simple-component-name minimum-version-object)
+</pre>
+<p>[付記]
+</p>
+<p>これはACLのdefsystemと同等の機能です。mk-defsystemはやや一般性に欠けていて、次のような暗黙の依存関係
+</p>
+<pre class="verbatim">  すべてのソースファイルxについて、(load x)は(compile x)に依存する
+</pre>
+<p>を導入していました。<code>:depends-on</code>引数で<var>b</var>が<var>a</var>に依存すると指定したとき、それが<em>実際</em>に意味しているのは
+</p>
+<pre class="verbatim">  (compile b)は(load a)に依存する
+</pre>
+<p>ことだったのです。しかし、これは不十分な機能でした。McCLIMのように、何らかのファイルがコンパイルされる前に、まずはすべてロードされなければならないようなシステムを記述できなかったのです。
+</p>
+<p>[付記終わり]
+</p>
+<p>ASDFでは、与えられたアクションがどのアクションに依存しているかを<code>(component-depends-on operation component)</code>で問い合わせることができます。このフォームが返すリストは
+</p>
+<div class="lisp">
+<pre class="lisp">((load-op &quot;a&quot; &quot;b&quot;) (compile-op &quot;c&quot;) (load-op &quot;d&quot;) ...)
+</pre></div>
+
+<p>のような形式です。
+<code>component-depends-on</code>メソッドは、特定のコンポーネント・操作のクラスについて定義することも可能です。その際、（デフォルトの依存関係を完全に上書きしたいのでなければ）自分のメソッドの結果と<code>(call-next-method)</code>の返り値を<code>append</code>して返す必要があります。
+</p>
+<p>この結合は、CLISPのことを考えなければ、メソッドコンビネーションの<code>list</code>を使って透過的に実現できるでしょうが、我々はCLISPもサポートする必要があるので、この仕様を使っていません。あなたにCLISPをハックする時間があれば、この部分の修正はきっと歓迎されることでしょう。
+</p>
+<p>コンポーネント（通常はシステム）に特定のバージョン以降を要求したい場合は、ここでも<code>:version</code>オプションが使えます。この場合、<code>:in-order-to ((load-op (load-op &quot;other-system'')))</code>の代わりに<code>:in-order-to ((load-op (load-op (:version &quot;other-system&quot; &quot;1.2.3&quot;))))</code>などと記述することになるでしょう。
+</p>
+
+
+<a name="pasuMing-_0028_003apathname_0029"></a>
+<h4 class="subsubsection">7.2.1.5 パス名（<code>:pathname</code>）</h4>
+
+<p>この属性の指定は任意であり、たいていは省略されるでしょう。その場合、コンポーネント名が（相対パスとして）使われます。
+</p>
+<p>パス名がどのように解釈されるかについては、<a href="defsystemnoWenFa-.html#g_t_30d1_30b9_540d_6307_5b9a_5b50">パス名指定子</a>を参照してください。
+</p>
+<p>また、「トップレベル」のシステムを定義する<code>defsystem</code>マクロは、システム直下のコンポーネントがファイルシステム上のどこにあるか決めるために、追加の処理をします。詳しくは<a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>を参照してください。
+</p>
+
+<dl>
+<dt><a name="index-component_002dpathname"></a>総称関数: <strong>component-pathname</strong> <em>component</em></dt>
+<dd><p><var>component</var>に対応するパス名を返します。ソースファイルのようなコンポーネントに対しては、ファイルのパス名を返すでしょう。以下に例を挙げます:
+</p>
+<div class="lisp">
+<pre class="lisp">CL-USER&gt; (asdf:component-pathname (asdf:find-system &quot;xmls&quot;))
+#P&quot;/Users/rpg/lisp/xmls/&quot;
+</pre></div>
+
+
+<div class="lisp">
+<pre class="lisp">CL-USER&gt; (asdf:component-pathname
+           (asdf:find-component
+              (asdf:find-system &quot;xmls&quot;) &quot;xmls&quot;))
+#P&quot;/Users/rpg/lisp/xmls/xmls.lisp&quot;
+</pre></div>
+</dd></dl>
+
+
+
+<a name="puropatei_0028_003aproperties_0029"></a>
+<h4 class="subsubsection">7.2.1.6 プロパティ（<code>:properties</code>）</h4>
+
+<p>この属性は任意です。
+</p>
+<p>[訳者補足]
+</p>
+<p>この属性は廃止予定であり、ASDF 2との後方互換性のためだけに存在します。また、その名に反して、<code>:properties</code>オプションにはプロパティリストではなく連想リストを指定します。次のパラグラフは直訳ですので、読む価値があるかどうかは疑わしいです。
+</p>
+<p>[訳者補足終わり]
+</p>
+
+<p>システムをパッケージングするにあたって、ASDFの組み込みの属性に指定した情報に加えて、ファイルやシステムについての他の情報が必要になることはしばしばあります。ASDFシステムからベンダーのパッケージを作るプログラムは、これらのシステムを満たすために「プレースホルダ―」情報を作る必要があります。ASDFシステムを作る方は、その付加的な情報を直接読み書きすることがあるでしょう。
+</p>
+<p><code>(component-property component property-name)</code>は<code>setf</code>のプレースとしても使用可能で、この情報を読み書きすることができます。<var>property-name</var>の同一性は<code>eql</code>で判定されるので、シンボルやキーワード等を使いましょう。
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9" accesskey="1">コンポーネントの組み込みのサブクラス</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3_30f3_30dd_30fc_30cd_30f3_30c8_578b_3092_5b9a_7fa9_3059_308b" accesskey="2">新しいコンポーネント型を定義する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9" accesskey="n" rel="next">コンポーネントの組み込みのサブクラス</a>, Previous: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="p" rel="prev">コンポーネント</a>, Up: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="u" rel="up">コンポーネント</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

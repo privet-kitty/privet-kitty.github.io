@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>操作 (ASDF マニュアル)</title>
+
+<meta name="description" content="操作 (ASDF マニュアル)">
+<meta name="keywords" content="操作 (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" rel="up" title="ASDFのオブジェクトモデル">
+<link href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c" rel="next" title="組み込みの操作">
+<link href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" rel="prev" title="ASDFのオブジェクトモデル">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_64cd_4f5c"></a>
+<div class="header">
+<p>
+Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="n" rel="next">コンポーネント</a>, Previous: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="p" rel="prev">ASDFのオブジェクトモデル</a>, Up: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="u" rel="up">ASDFのオブジェクトモデル</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Cao-Zuo-"></a>
+<h3 class="section">7.1 操作</h3>
+<a name="index-operation"></a>
+<a name="index-sousa_0028Cao-Zuo-_0029"></a>
+
+<p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>操作(operation)</em><a name="DOCF25" href="#FOOT25"><sup>25</sup></a>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
+</p>
+<ul>
+<li> システムのすべてのファイルをコンパイルする
+</li><li> 実行中のLisp環境にコンパイルされたファイルをロードする
+</li><li> ソースファイルを別の場所にコピーする
+</li></ul>
+
+<p>操作は単に直接呼び出すこともできますし、実行せずにその結果がどうなるか確認することもできます。そこで実際の細々とした仕事をするのは、操作とコンポーネント型によって特定化されたメソッド（のまとまり）です。操作は、システムとともに引数として<code>operate</code>に与えることで、呼び出すことができます。（→ <a href="#operate">operate</a>）
+</p>
+<p>頻出の作業については<code>operation</code>の組み込みサブクラスがありますし、あまり使われない作業についても既にあることが多いでしょう。これに加えてASDFは、プログラマがASDF拡張を定義するためのビルドブロックとして使える「抽象的な」<code>operation</code>クラスも備えています。これについては以下に順を追って解説します。
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c" accesskey="1">組み込みの操作</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b" accesskey="2">新しい操作を定義する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p>操作は、<code>operate</code>によってシステムに対して呼び出されます。
+</p>
+<a name="operate"></a><dl>
+<dt><a name="index-operate-1"></a>総称関数: <strong>operate</strong> <em>operation component &amp;rest initargs &amp;key force force-not verbose &amp;allow-other-keys</em></dt>
+<dt><a name="index-oos-1"></a>総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
+<dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
+</p>
+<p><var>operation</var>は操作指示子です。操作指示子は<code>operation</code>オブジェクトそのものでも良いですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
+<var>component</var>はコンポーネント指示子です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF26" href="#FOOT26"><sup>26</sup></a>も使えます。
+</p>
+<p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳細は<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
+</p>
+<p><var>force</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムが、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が<code>t</code>の場合、ロードされるシステムに限り、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから未変更でも再コンパイルされます。<var>force-not</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムは、前回のコンパイルから変更されていても再コンパイルされません。<var>force-not</var>が<code>t</code>の場合、ロードされるシステム<em>以外</em>のシステムは、前回のコンパイルから変更されていても再コンパイルされません。（この仕様はASDF 3.1.2で変更されました。）<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから変更されていてもコンパイルされません。
+</p>
+<a name="index-register_002dimmutable_002dsystem"></a>
+<a name="index-immutable-systems"></a>
+<p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先しますが、この仕様は残念ながらASDF 3.1.2以降にしかありません。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="Miscellaneous-Functions.html#Miscellaneous-Functions">Miscellaneous Functions</a>）
+</p>
+<a name="index-traverse"></a>
+<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>
+</p><div class="lisp">
+<pre class="lisp">(asdf:traverse operation-class system-name)
+</pre></div>
+</dd></dl>
+
+<dl>
+<dt><a name="index-make_002doperation"></a>Function: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
+<dd><a name="make_002doperation"></a>
+<p><var>initargs</var>は、操作オブジェクトを作る際に<code>make-instance</code>に渡されます。
+</p>
+<p><strong>注意:</strong> <code>operation</code>の<var>initargs</var>は廃止予定であり、近い将来ASDFから削除されるでしょう。
+</p>
+<p><strong>注意:</strong> <code>operation</code>のインスタンスは、直接<code>make-instance</code>で<strong>作ってはいけません</strong>。必ず<code>make-operation</code>を使ってください。<code>operation</code>インスタンスを直接作ろうとすると、ランタイムエラーを起こすでしょう。
+</p></dd></dl>
+
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<p>[訳注] operationはこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
+<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
+<p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; ... :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
+<p>[訳注] <code>traverse</code>は操作指示子とコンポーネント指示子を引数に取り、実行されるアクション（操作とコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
+</div>
+
+
+
+</body>
+</html>

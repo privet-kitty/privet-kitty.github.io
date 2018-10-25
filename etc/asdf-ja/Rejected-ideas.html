@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Rejected ideas (ASDF マニュアル)</title>
+
+<meta name="description" content="Rejected ideas (ASDF マニュアル)">
+<meta name="keywords" content="Rejected ideas (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
+<link href="TODO.html#TODO" rel="next" title="TODO">
+<link href="Status.html#Status" rel="prev" title="Status">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="Rejected-ideas"></a>
+<div class="header">
+<p>
+Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a href="Status.html#Status" accesskey="p" rel="prev">Status</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Rejected-ideas-1"></a>
+<h3 class="section">8.13 Rejected ideas</h3>
+
+<p>Alternatives I (FRR) considered and rejected while developing ASDF 2 included:
+</p>
+<ol>
+<li> Keep <code>asdf:*central-registry*</code> as the master with its current semantics,
+   and somehow the configuration parser expands the new configuration
+   language into a expanded series of directories of subdirectories to
+   lookup, pre-recursing through specified hierarchies. This is kludgy,
+   and leaves little space of future cleanups and extensions.
+
+</li><li> Keep <code>asdf:*central-registry*</code> as the master but extend its semantics
+   in completely new ways, so that new kinds of entries may be implemented
+   as a recursive search, etc. This seems somewhat backwards.
+
+</li><li> Completely remove <code>asdf:*central-registry*</code>
+   and break backwards compatibility.
+   Hopefully this will happen in a few years after everyone migrate to
+   a better ASDF and/or to XCVB, but it would be very bad to do it now.
+
+</li><li> Replace <code>asdf:*central-registry*</code> by a symbol-macro with appropriate magic
+   when you dereference it or setf it. Only the new variable with new
+   semantics is handled by the new search procedure.
+   Complex and still introduces subtle semantic issues.
+</li></ol>
+
+
+<p>I&rsquo;ve been suggested the below features, but have rejected them,
+for the sake of keeping ASDF no more complex than strictly necessary.
+</p>
+<ul>
+<li> More syntactic sugar: synonyms for the configuration directives, such as
+  <code>(:add-directory X)</code> for <code>(:directory X)</code>, or <code>(:add-directory-hierarchy X)</code>
+  or <code>(:add-directory X :recurse t)</code> for <code>(:tree X)</code>.
+
+</li><li> The possibility to register individual files instead of directories.
+
+</li><li> Integrate Xach Beane&rsquo;s tilde expander into the parser,
+  or something similar that is shell-friendly or shell-compatible.
+  I&rsquo;d rather keep ASDF minimal. But maybe this precisely keeps it
+  minimal by removing the need for evaluated entries that ASDF has?
+  i.e. uses of <code>USER-HOMEDIR-PATHNAME</code> and <code>$SBCL_HOME</code>
+  Hopefully, these are already superseded by the <code>:default-registry</code>
+
+</li><li> Using the shell-unfriendly syntax <code>/**</code> instead of TEXINPUTS-like <code>//</code> to specify recursion
+  down a filesystem tree in the environment variable.
+  It isn&rsquo;t that Lisp friendly either.
+</li></ul>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a href="Status.html#Status" accesskey="p" rel="prev">Status</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

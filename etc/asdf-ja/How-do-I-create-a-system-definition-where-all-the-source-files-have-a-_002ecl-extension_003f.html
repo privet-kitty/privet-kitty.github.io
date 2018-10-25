@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>How do I create a system definition where all the source files have a .cl extension? (ASDF マニュアル)</title>
+
+<meta name="description" content="How do I create a system definition where all the source files have a .cl extension? (ASDF マニュアル)">
+<meta name="keywords" content="How do I create a system definition where all the source files have a .cl extension? (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Issues-with-using-and-extending-ASDF-to-define-systems.html#Issues-with-using-and-extending-ASDF-to-define-systems" rel="up" title="Issues with using and extending ASDF to define systems">
+<link href="How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f.html#How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f" rel="next" title="How do I mark a source file to be loaded only and not compiled?">
+<link href="I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f.html#I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f" rel="prev" title="I want to put my module's files at the top level.  How do I do this?">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f"></a>
+<div class="header">
+<p>
+Next: <a href="How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f.html#How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f" accesskey="n" rel="next">How do I mark a source file to be loaded only and not compiled?</a>, Previous: <a href="I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f.html#I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f" accesskey="p" rel="prev">I want to put my module's files at the top level.  How do I do this?</a>, Up: <a href="Issues-with-using-and-extending-ASDF-to-define-systems.html#Issues-with-using-and-extending-ASDF-to-define-systems" accesskey="u" rel="up">Issues with using and extending ASDF to define systems</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f-1"></a>
+<h4 class="subsection">13.6.5 How do I create a system definition where all the source files have a .cl extension?</h4>
+
+<p>Starting with ASDF 2.014.14, you may just pass
+the builtin class <code>cl-source-file.cl</code> as
+the <code>:default-component-class</code> argument to <code>defsystem</code>:
+</p>
+<div class="lisp">
+<pre class="lisp">(defsystem my-cl-system
+  :default-component-class cl-source-file.cl
+  ...)
+</pre></div>
+
+<p>Another builtin class <code>cl-source-file.lsp</code> is offered
+for files ending in <samp>.lsp</samp>.
+</p>
+<p>If you want to use a different extension
+for which ASDF doesn&rsquo;t provide builtin support,
+or want to support versions of ASDF
+earlier than 2.014.14 (but later than 2.000),
+you can define a class as follows:
+</p>
+<div class="lisp">
+<pre class="lisp">;; Prologue: make sure we're using a sane package.
+(defpackage :my-asdf-extension
+   (:use :asdf :common-lisp)
+   (:export #:cl-source-file.lis))
+(in-package :my-asdf-extension)
+
+(defclass cl-source-file.lis (cl-source-file)
+  ((type :initform &quot;lis&quot;)))
+</pre></div>
+
+<p>Then you can use it as follows:
+</p><div class="lisp">
+<pre class="lisp">(defsystem my-cl-system
+  :default-component-class my-asdf-extension:cl-source-file.lis
+  ...)
+</pre></div>
+
+<p>Of course, if you&rsquo;re in the same package, e.g. in the same file,
+you won&rsquo;t need to use the package qualifier before <code>cl-source-file.lis</code>.
+Actually, if all you&rsquo;re doing is defining this class
+and using it in the same file without other fancy definitions,
+you might skip package complications:
+</p>
+<div class="lisp">
+<pre class="lisp">(in-package :asdf)
+(defclass cl-source-file.lis (cl-source-file)
+   ((type :initform &quot;lis&quot;)))
+(defsystem my-cl-system
+  :default-component-class cl-source-file.lis
+  ...)
+</pre></div>
+
+
+
+
+</body>
+</html>

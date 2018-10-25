@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>How do I run the tests interactively in a REPL? (ASDF マニュアル)</title>
+
+<meta name="description" content="How do I run the tests interactively in a REPL? (ASDF マニュアル)">
+<meta name="keywords" content="How do I run the tests interactively in a REPL? (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDF-development-FAQs.html#ASDF-development-FAQs" rel="up" title="ASDF development FAQs">
+<link href="ASDFpuroziekutodeJin-Xing-ZhongnoZuo-Ye-.html#ASDF_30d7_30ed_30b8_30a7_30af_30c8_3067_9032_884c_4e2d_306e_4f5c_696d" rel="next" title="ASDFプロジェクトで進行中の作業">
+<link href="ASDF-development-FAQs.html#ASDF-development-FAQs" rel="prev" title="ASDF development FAQs">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="How-do-I-run-the-tests-interactively-in-a-REPL_003f"></a>
+<div class="header">
+<p>
+Previous: <a href="ASDF-development-FAQs.html#ASDF-development-FAQs" accesskey="p" rel="prev">ASDF development FAQs</a>, Up: <a href="ASDF-development-FAQs.html#ASDF-development-FAQs" accesskey="u" rel="up">ASDF development FAQs</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="How-do-I-run-the-tests-interactively-in-a-REPL_003f-1"></a>
+<h4 class="subsection">13.7.1 How do I run the tests interactively in a REPL?</h4>
+
+<p>This not-so-frequently asked question is primarily for ASDF developers,
+but those who encounter an unexpected error in some test may be
+interested, too.
+</p>
+<p>Here&rsquo;s the procedure for experimenting with tests in a REPL:
+</p><div class="example">
+<pre class="example">;; BEWARE! Some tests expect you to be in the .../asdf/test directory
+;; If your REPL is not there yet, change your current directory:
+;; under SLIME, you may: ,change-directory ~/common-lisp/asdf/test/
+;; otherwise you may evaluate something like:
+(require &quot;asdf&quot;) (asdf:upgrade-asdf) ;load UIOP &amp; update asdf.lisp
+(uiop:chdir (asdf:system-relative-pathname :asdf &quot;test/&quot;))
+(setf *default-pathname-defaults* (uiop:getcwd))
+
+;; Load the test script support.
+(load &quot;script-support.lisp&quot;)
+
+;; Initialize the script support for interaction.
+;; This will also change your *package* to asdf-test
+;; after frobbing the asdf-test package to make it usable.
+;; NB: this function is also available from package cl-user,
+;; and also available with the shorter name da in both packages.
+(asdf-test:debug-asdf)
+
+;; Now, you may experiment with test code from a .script file.
+;; See the instructions given at the end of your failing test
+;; to identify which form is needed, e.g.
+(run-test-script &quot;test-utilities.script&quot;)
+</pre></div>
+
+
+
+
+
+
+</body>
+</html>

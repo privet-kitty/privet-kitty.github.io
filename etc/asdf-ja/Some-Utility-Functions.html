@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Some Utility Functions (ASDF マニュアル)</title>
+
+<meta name="description" content="Some Utility Functions (ASDF マニュアル)">
+<meta name="keywords" content="Some Utility Functions (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" rel="up" title="Miscellaneous additional functionality">
+<link href="Zui-Xin-Ban-woShou-niRu-reru.html#g_t_6700_65b0_7248_3092_624b_306b_5165_308c_308b" rel="next" title="最新版を手に入れる">
+<link href="Miscellaneous-Functions.html#Miscellaneous-Functions" rel="prev" title="Miscellaneous Functions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="Some-Utility-Functions"></a>
+<div class="header">
+<p>
+Previous: <a href="Miscellaneous-Functions.html#Miscellaneous-Functions" accesskey="p" rel="prev">Miscellaneous Functions</a>, Up: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="u" rel="up">Miscellaneous additional functionality</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Some-Utility-Functions-1"></a>
+<h3 class="section">11.4 Some Utility Functions</h3>
+
+<p>The below functions are not exported by ASDF itself, but by UIOP, available since ASDF 3.
+Some of them have precursors in ASDF 2, but we recommend that for active developments,
+you should rely on the package UIOP as included in ASDF 3.
+UIOP provides many, many more utility functions, and we recommend
+you read its <samp>README.md</samp> and sources for more information.
+</p>
+
+<dl>
+<dt><a name="index-parse_002dunix_002dnamestring"></a>Function: <strong>parse-unix-namestring</strong> <em>name &amp;key type defaults dot-dot ensure-directory &amp;allow-other-keys</em></dt>
+<dd><p>Coerce <var>name</var> into a <var>pathname</var> using standard Unix syntax.
+</p>
+<p>Unix syntax is used whether or not the underlying system is Unix;
+on non-Unix systems it is only usable for relative pathnames.
+In order to manipulate relative pathnames portably, it is crucial
+to possess a portable pathname syntax independent of the underlying OS.
+This is what <code>parse-unix-namestring</code> provides, and why we use it in ASDF.
+</p>
+<p>When given a <code>pathname</code> object, just return it untouched.
+When given <code>nil</code>, just return <code>nil</code>.
+When given a non-null <code>symbol</code>, first downcase its name and treat it as a string.
+When given a <code>string</code>, portably decompose it into a pathname as below.
+</p>
+<p><code>#\/</code> separates directory components.
+</p>
+<p>The last <code>#\/</code>-separated substring is interpreted as follows:
+1- If <var>type</var> is <code>:directory</code> or <var>ensure-directory</var> is true,
+ the string is made the last directory component, and its <code>name</code> and <code>type</code> are <code>nil</code>.
+ if the string is empty, it&rsquo;s the empty pathname with all slots <code>nil</code>.
+2- If <var>type</var> is <code>nil</code>, the substring is a file-namestring,
+ and its <code>name</code> and <code>type</code> are separated by <code>split-name-type</code>.
+3- If <var>type</var> is a string, it is the given <code>type</code>, and the whole string is the <code>name</code>.
+</p>
+<p>Directory components with an empty name the name <code>.</code> are removed.
+Any directory named <code>..</code> is read as <var>dot-dot</var>,
+which must be one of <code>:back</code> or <code>:up</code> and defaults to <code>:back</code>.
+</p>
+<a name="index-_002anil_002dpathname_002a"></a>
+<p><code>host</code>, <code>device</code> and <code>version</code> components are taken from <var>defaults</var>,
+which itself defaults to <code>*nil-pathname*</code>.
+<code>*nil-pathname*</code> is also used if <var>defaults</var> is <code>nil</code>.
+No host or device can be specified in the string itself,
+which makes it unsuitable for absolute pathnames outside Unix.
+</p>
+<p>For relative pathnames, these components (and hence the defaults) won&rsquo;t matter
+if you use <code>merge-pathnames*</code> but will matter if you use <code>merge-pathnames</code>,
+which is an important reason to always use <code>merge-pathnames*</code>.
+</p>
+<p>Arbitrary keys are accepted, and the parse result is passed to <code>ensure-pathname</code>
+with those keys, removing <var>type</var>, <var>defaults</var> and <var>dot-dot</var>.
+When you&rsquo;re manipulating pathnames that are supposed to make sense portably
+even though the OS may not be Unixish, we recommend you use <code>:want-relative t</code>
+so that <code>parse-unix-namestring</code> will throw an error if the pathname is absolute.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-merge_002dpathnames_002a"></a>Function: <strong>merge-pathnames*</strong> <em>specified &amp;optional defaults</em></dt>
+<dd>
+<p>This function is a replacement for <code>merge-pathnames</code> that uses the host and device
+from the <var>defaults</var> rather than the <var>specified</var> pathname when the latter
+is a relative pathname. This allows ASDF and its users to create and use relative pathnames
+without having to know beforehand what are the host and device
+of the absolute pathnames they are relative to.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-subpathname"></a>Function: <strong>subpathname</strong> <em>pathname subpath &amp;key type</em></dt>
+<dd>
+<p>This function takes a <var>pathname</var> and a <var>subpath</var> and a <var>type</var>.
+If <var>subpath</var> is already a <code>pathname</code> object (not namestring),
+and is an absolute pathname at that, it is returned unchanged;
+otherwise, <var>subpath</var> is turned into a relative pathname with given <var>type</var>
+as per <code>parse-unix-namestring</code> with <code>:want-relative t :type </code><var>type</var>,
+then it is merged with the <code>pathname-directory-pathname</code> of <var>pathname</var>,
+as per <code>merge-pathnames*</code>.
+</p>
+<p>We strongly encourage the use of this function
+for portably resolving relative pathnames in your code base.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-subpathname_002a"></a>Function: <strong>subpathname*</strong> <em>pathname subpath &amp;key type</em></dt>
+<dd>
+<p>This function returns <code>nil</code> if the base <var>pathname</var> is <code>nil</code>,
+otherwise acts like <code>subpathname</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-run_002dprogram"></a>Function: <strong>run-program</strong> <em>command &amp;key ignore-error-status force-shell input output error-output if-input-does-not-exist if-output-exists if-error-output-exists element-type external-format &amp;allow-other-keys</em></dt>
+<dd>
+<p><code>run-program</code> takes a <var>command</var> argument that is either
+a list of a program name or path and its arguments,
+or a string to be executed by a shell.
+It spawns the command, waits for it to return,
+verifies that it exited cleanly (unless told not too below),
+and optionally captures and processes its output.
+It accepts many keyword arguments to configure its behaviour.
+</p>
+<p><code>run-program</code> returns three values: the first for the output,
+the second for the error-output, and the third for the return value.
+(Beware that before ASDF 3.0.2.11, it didn&rsquo;t handle input or error-output,
+and returned only one value,
+the one for the output if any handler was specified, or else the exit code;
+please upgrade ASDF, or at least UIOP, to rely on the new enhanced behaviour.)
+</p>
+<p><var>output</var> is its most important argument;
+it specifies how the output is captured and processed.
+If it is <code>nil</code>, then the output is redirected to the null device,
+that will discard it.
+If it is <code>:interactive</code>, then it is inherited from the current process
+(beware: this may be different from your <var>*standard-output*</var>,
+and under SLIME will be on your <code>*inferior-lisp*</code> buffer).
+If it is <code>t</code>, output goes to your current <var>*standard-output*</var> stream.
+Otherwise, <var>output</var> should be a value that is a suitable first argument to
+<code>slurp-input-stream</code> (see below), or
+a list of such a value and keyword arguments.
+In this case, <code>run-program</code> will
+create a temporary stream for the program output;
+the program output, in that stream,
+will be processed by a call to <code>slurp-input-stream</code>,
+using <var>output</var> as the first argument
+(or if it&rsquo;s a list the first element of <var>output</var> and the rest as keywords).
+The primary value resulting from that call
+(or <code>nil</code> if no call was needed)
+will be the first value returned by <code>run-program</code>.
+E.g., using <code>:output :string</code>
+will have it return the entire output stream as a string.
+And using <code>:output '(:string :stripped t)</code>
+will have it return the same string stripped of any ending newline.
+</p>
+<p><var>error-output</var> is similar to <var>output</var>, except that
+the resulting value is returned as the second value of <code>run-program</code>.
+<code>t</code> designates the <var>*error-output*</var>.
+Also <code>:output</code> means redirecting the error output to the output stream,
+in which case <code>nil</code> is returned.
+</p>
+<p><var>input</var> is similar to <var>output</var>, except that
+<code>vomit-output-stream</code> is used, no value is returned,
+and <code>t</code> designates the <var>*standard-input*</var>.
+</p>
+<p><code>element-type</code> and <code>external-format</code> are passed on
+to your Lisp implementation, when applicable, for creation of the output stream.
+</p>
+<p>One and only one of the stream slurping or vomiting may or may not happen
+in parallel in parallel with the subprocess,
+depending on options and implementation,
+and with priority being given to output processing.
+Other streams are completely produced or consumed
+before or after the subprocess is spawned, using temporary files.
+</p>
+<p><code>force-shell</code> forces evaluation of the command through a shell,
+even if it was passed as a list rather than a string.
+If a shell is used, it is <samp>/bin/sh</samp> on Unix or <samp>CMD.EXE</samp> on Windows,
+except on implementations that (erroneously, IMNSHO)
+insist on consulting <code>$SHELL</code> like clisp.
+</p>
+<p><code>ignore-error-status</code> causes <code>run-program</code>
+to not raise an error if the spawned program exits in error.
+Following POSIX convention, an error is anything but
+a normal exit with status code zero.
+By default, an error of type <code>subprocess-error</code> is raised in this case.
+</p>
+<p><code>run-program</code> works on all platforms supported by ASDF, except Genera.
+See the source code for more documentation.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-slurp_002dinput_002dstream"></a>Function: <strong>slurp-input-stream</strong> <em>processor input-stream &amp;key</em></dt>
+<dd>
+<p><code>slurp-input-stream</code> is a generic function of two arguments, a target object and an input stream,
+and accepting keyword arguments.
+Predefined methods based on the target object are as follows:
+</p>
+<ul>
+<li> If the object is a function, the function is called with the stream as argument.
+
+</li><li> If the object is a cons, its first element is applied to its rest appended by
+a list of the input stream.
+
+</li><li> If the object is an output stream, the contents of the input stream are copied to it.
+If the <var>linewise</var> keyword argument is provided, copying happens line by line,
+and an optional <var>prefix</var> is printed before each line.
+Otherwise, copying happen based on a buffer of size <var>buffer-size</var>,
+using the specified <var>element-type</var>.
+
+</li><li> If the object is <code>'string</code> or <code>:string</code>, the content is captured into a string.
+Accepted keywords include the <var>element-type</var> and a flag <var>stripped</var>,
+which when true causes any single line ending to be removed as per <code>uiop:stripln</code>.
+
+</li><li> If the object is <code>:lines</code>, the content is captured as a list of strings,
+one per line, without line ending. If the <var>count</var> keyword argument is provided,
+it is a maximum count of lines to be read.
+
+</li><li> If the object is <code>:line</code>, the content is captured as with <code>:lines</code> above,
+and then its sub-object is extracted with the <var>at</var> argument,
+which defaults to <code>0</code>, extracting the first line.
+A number will extract the corresponding line.
+See the documentation for <code>uiop:access-at</code>.
+
+</li><li> If the object is <code>:forms</code>, the content is captured as a list of s-expressions,
+as read by the Lisp reader.
+If the <var>count</var> argument is provided,
+it is a maximum count of lines to be read.
+We recommend you control the syntax with such macro as
+<code>uiop:with-safe-io-syntax</code>.
+
+</li><li> If the object is <code>:form</code>, the content is captured as with <code>:forms</code> above,
+and then its sub-object is extracted with the <var>at</var> argument,
+which defaults to <code>0</code>, extracting the first form.
+A number will extract the corresponding form.
+See the documentation for <code>uiop:access-at</code>.
+We recommend you control the syntax with such macro as
+<code>uiop:with-safe-io-syntax</code>.
+</li></ul>
+</dd></dl>
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Miscellaneous-Functions.html#Miscellaneous-Functions" accesskey="p" rel="prev">Miscellaneous Functions</a>, Up: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="u" rel="up">Miscellaneous additional functionality</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

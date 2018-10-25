@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ASDFがシステムを見つけられるように設定する（従来のスタイル） (ASDF マニュアル)</title>
+
+<meta name="description" content="ASDFがシステムを見つけられるように設定する（従来のスタイル） (ASDF マニュアル)">
+<meta name="keywords" content="ASDFがシステムを見つけられるように設定する（従来のスタイル） (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFを設定する">
+<link href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="next" title="ASDFがオブジェクトファイルを保持する場所を設定する">
+<link href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b" rel="prev" title="ASDFがシステムを見つけられるように設定する">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09"></a>
+<div class="header">
+<p>
+Next: <a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="n" rel="next">ASDFがオブジェクトファイルを保持する場所を設定する</a>, Previous: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFがシステムを見つけられるように設定する</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029"></a>
+<h3 class="section">4.2 ASDFがシステムを見つけられるように設定する（従来のスタイル）</h3>
+
+
+
+<p>初心者はこのセクションを飛ばしてかまいません。初心者は<code>asdf:*central-registry*</code>を<em>使わないでください</em>。また、初心者に<code>asdf:*central-registry*</code>を使うよう<em>教えないでください</em>。
+</p>
+
+<p>古いASDFでは、システムを探す場所を設定するのに、<code>asdf:*central-registry*</code>にディレクトリのパス名を<code>push</code>する、という方法が使われていました。
+</p>
+<p>この変数を設定するのは、ASDF 3以降をロードした<em>後</em>、ASDFの機能を使う<em>前</em>でなければなりません。このロードと設定は、初期設定スクリプトの一部として実行されなければなりません。典型的には、自分のプロジェクトをビルドするスクリプトか、処理系の初期設定スクリプト（例: SBCLの<samp>~/.sbclrc</samp>）がこれにあたります。
+</p>
+<p>また、あなたがASDF 2以前を使っていて、ASDF 3以降を後からロードするという場合、ASDF 1または2がロードされた後にASDF 3の場所を<code>asdf:*central-registry*</code>で設定し、その上でASDF 3を<code>(asdf:operate 'asdf:load-op &quot;asdf&quot;)</code>などでロードし、ロード後に再び<code>asdf:*central-registry*</code>を設定する、という流れになります。というのも、ASDF 2からASDF 3へアップグレードする時に<code>asdf:*central-registry*</code>は保持されないからです。もっとも、前セクションの方法で設定されたソースレジストリはアップグレードの影響を受けないので、おそらくそちらを使ったほうが良いでしょう。（ただし、<code>asdf:initialize-source-registry</code>を引数付きで実行した場合は別で、この場合は再び設定し直す必要があります。）しかし我々は、あなたがASDF 2以前を使っているのであれば、処理系をアップグレードするなり、ASDFを最近のバージョンに置き換えるなりすることを<em>強く</em>推奨します。（→ <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
+</p>
+<p><code>asdf:*central-registry*</code>は、ASDF 2または3ではデフォルトで空であり、ASDF 1との互換性のために残されています。この変数を使った設定は、上記のソースレジストリの設定に優先します。<a name="DOCF7" href="#FOOT7"><sup>7</sup></a>
+</p>
+<p>例として、<samp>/home/me/src/foo/foo.asd</samp>がASDFに見つかるようにしてみます。お使いの処理系の初期化スクリプトに、次のような処理を加える方法があるでしょう。
+</p>
+<div class="lisp">
+<pre class="lisp">(require &quot;asdf&quot;)
+(push &quot;/home/me/src/foo/&quot; asdf:*central-registry*)
+</pre></div>
+
+
+<p>末尾のスラッシュが必要なことに注意してください。システムを探すとき、ASDFは<code>asdf:*central-registry*</code>のそれぞれの要素をパス名に変換します。正確に言うと、それぞれの要素は<code>eval</code>されます。<a name="DOCF8" href="#FOOT8"><sup>8</sup></a> つまり、S式を<code>asdf:*central-registry*</code>に<code>push</code>することも可能です。文字列やパス名は自己評価オブジェクトなので<code>eval</code>は何もしませんが、S式を使うと、シェル変数やユーザーに応じた値を返すなど、コンテキストに依存した設定をすることができます。
+</p>
+
+<p>このように、<code>asdf:*central-registry*</code>は「システムディレクトリ指示子」のリストであると言えます。<em>システムディレクトリ指示子(system directory desinator)</em>はシステムを探すときに実行されるフォームであり、ディレクトリ（あるいは<code>nil</code>）を返さなくてはなりません。ここでいう「ディレクトリ」とは「空でないディレクトリコンポーネントを持つパス名に対する指示子」<a name="DOCF9" href="#FOOT9"><sup>9</sup></a>のことです。
+</p>
+<p>パス名の末尾のスラッシュは、ファイルではなくディレクトリを指していることを示すのに必要です。このスラッシュがないと、（古い）ASDFは<code>/home/me/src/foo/</code>ではなく<code>/home/me/src/</code>を探してしまうおそれがあります。現在のバージョンでは、単にエラーを通知し、<code>asdf:*central-registry*</code>からこの要素を取り除くリスタートが提供されるでしょう。
+</p>
+
+<p>多くの場合、<samp>.asd</samp>ファイルは大量にありますから、それらの存在するディレクトリを１つ１つ<code>asdf:*central-registry*</code>に<code>push</code>するよりは、各<samp>.asd</samp>ファイルの<em>シンボリックリンク</em>を１つの共通ディレクトリに置き、そのディレクトリだけを<code>push</code>するという方法が使われていました。ASDFはシステムへの<em>シンボリックリンク</em>を適切に解釈することができます。<a name="DOCF10" href="#FOOT10"><sup>10</sup></a>
+</p>
+<p>例えば<code>#p&quot;/home/me/cl/systems/&quot;</code>が<code>*central-registry*</code>に含まれているとき、次のようにセットアップすれば<var>foo</var>システムを使えるようになります。
+</p>
+<div class="example">
+<pre class="example">$ cd /home/me/cl/systems/
+$ ln -s ~/src/foo/foo.asd .
+</pre></div>
+
+<p>なお、このセクションの設定方法は古いやり方であり、新しいユーザーには推奨されません。古くからのユーザーや、ASDFのパスをプログラムによって簡単にコントロールしたいユーザーのために残されています。
+</p>
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT7" href="#DOCF7">(7)</a></h3>
+<p><samp>.asd</samp>ファイルの探索をさらにカスタマイズすることも可能です。これは発展的な使い方になるので、後に扱います。<code>*system-definition-search-functions*</code>で検索してください。（→ <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>）</p>
+<h3><a name="FOOT8" href="#DOCF8">(8)</a></h3>
+<p><code>nil</code>に評価された場合、その要素はスキップされます。</p>
+<h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
+<p>[訳注] 実装を見る限りでは、<code>eval</code>の返す値が<code>uiop:directory-pathname-p</code>を満たせば良いようです（満たさない場合はエラーが通知される）。</p>
+<h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
+<p>WindowsではPOSIXのシンボリックリンクの代わりにショートカットを使うことができます。MacOSのエイリアスについては、うまく動くかどうかの情報を求めています。</p>
+</div>
+
+
+
+</body>
+</html>

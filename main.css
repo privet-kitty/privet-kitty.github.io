@@ -1,0 +1,35 @@
+body {
+    max-width: 980px;
+    margin: auto;
+    padding: 0.5em 0em 3em 0em;
+    background: #ffffff;
+    color: #111111;
+    font-family: メイリオ, Meiryo;
+}
+h1#webtitle {font-size: 222%; font-family:"Times New Roman";}
+h2 {font-size: 137%; font-weight: bold; margin-top: 1.5em;}
+h3 {font-size: 114%; margin-top: 1.5em}
+em {font-weight: normal; font-style: italic;}
+em.eigen:before {font-style: normal; content: "\00ab"}
+em.eigen:after {font-style: normal; content: "\00bb"}
+p, div { text-indent: 1em; line-height: 1.25em;}
+
+.clear {clear: both;}
+
+
+span.dash {letter-spacing: -3px;}
+a:link { text-decoration: none; color: #0084B4}
+a:visited { text-decoration: none; color: #0084B4}
+a:hover { text-decoration: underline; color: #0084B4}
+ol#index { margin: 1em 0 1em 0; list-style-type: decimal-leading-zero; }
+ol#index li { padding: 0.3em 0 0.3em 0; font-size: 10pt; }
+sup { height: 0; line-height: 1; vertical-align: baseline; position: relative; bottom: 0.9ex; }
+th { text-align: left; font-weight: normal; background: #d8d8d8}
+td, th {vertical-align: top;}
+table caption { font-size: 114%; font-weight: bold; text-align: left }
+table.catalog { font-size: 10pt; margin: 1em 0 1em 0 }
+table.cds { width: 100% }
+dt { display: list-item; list-style: disc; margin-top: 1em; }
+dd { margin-bottom: 1em; }
+li { display: list-item; list-style-type: disc; margin: 0.2em 0.2em 0 0}
+ul ul li { color: grey; list-style-type: circle;}

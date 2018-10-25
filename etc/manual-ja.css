@@ -1,0 +1,54 @@
+body {
+    max-width: 980px;
+    margin: auto;
+}
+
+div.lisp pre.lisp {
+    padding: 16px;
+    overflow: auto;
+    font-size: 95%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    word-break: normal;
+    word-wrap: normal;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
+samp, code {
+    font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 95%;
+    background-color: #f3f4f4;
+    border-radius: 3px;
+}
+
+hr {
+    color: #eaecef;
+}
+
+em {
+    font-style: normal;
+    text-decoration: underline;
+}
+
+dt em {
+    all: initial;
+    font-style: italic;
+}
+
+a:link { color: #0076AD }
+a:visited { color: #6D38A0 }
+/* a:hover { */
+/*     background: #f3f4f4; */
+/*     text-decoration:none; */
+/*     color: #0076AD */
+/* } */
+

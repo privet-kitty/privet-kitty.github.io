@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Output Configuration DSL (ASDF マニュアル)</title>
+
+<meta name="description" content="Output Configuration DSL (ASDF マニュアル)">
+<meta name="keywords" content="Output Configuration DSL (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" rel="up" title="Controlling where ASDF saves compiled files">
+<link href="Output-Configuration-Directories.html#Output-Configuration-Directories" rel="next" title="Output Configuration Directories">
+<link href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" rel="prev" title="Output Backward Compatibility">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="Output-Configuration-DSL"></a>
+<div class="header">
+<p>
+Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" accesskey="p" rel="prev">Output Backward Compatibility</a>, Up: <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" accesskey="u" rel="up">Controlling where ASDF saves compiled files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Configuration-DSL-2"></a>
+<h3 class="section">9.3 Configuration DSL</h3>
+
+<p>Here is the grammar of the SEXP DSL
+for <code>asdf-output-translations</code> configuration:
+</p>
+<pre class="verbatim">;; A configuration is single SEXP starting with keyword :source-registry
+;; followed by a list of directives.
+CONFIGURATION := (:output-translations DIRECTIVE ...)
+
+;; A directive is one of the following:
+DIRECTIVE :=
+    ;; INHERITANCE DIRECTIVE:
+    ;; Your configuration expression MUST contain
+    ;; exactly one of either of these:
+    :inherit-configuration |
+      ;; splices inherited configuration (often specified last)
+    :ignore-inherited-configuration |
+      ;; drop inherited configuration (specified anywhere)
+
+    ;; forward compatibility directive (since ASDF 2.011.4), useful when
+    ;; you want to use new configuration features but have to bootstrap a
+    ;; the newer required ASDF from an older release that doesn't have
+    ;; said features:
+    :ignore-invalid-entries |
+
+    ;; include a configuration file or directory
+    (:include PATHNAME-DESIGNATOR) |
+
+    ;; enable global cache in ~/.common-lisp/cache/sbcl-1.0.45-linux-amd64/
+    ;; or something.
+    :enable-user-cache |
+    ;; Disable global cache. Map / to /
+    :disable-cache |
+
+    ;; add a single directory to be scanned (no recursion)
+    (DIRECTORY-DESIGNATOR DIRECTORY-DESIGNATOR)
+
+    ;; use a function to return the translation of a directory designator
+    (DIRECTORY-DESIGNATOR (:function TRANSLATION-FUNCTION))
+
+DIRECTORY-DESIGNATOR :=
+    NIL | ; As source: skip this entry. As destination: same as source
+    T | ; as source matches anything, as destination
+        ; maps pathname to itself.
+    ABSOLUTE-COMPONENT-DESIGNATOR ; same as in the source-registry language
+
+TRANSLATION-FUNCTION :=
+    SYMBOL | ;; symbol naming a function that takes two arguments:
+             ;; the pathname to be translated and the matching
+             ;; DIRECTORY-DESIGNATOR
+    LAMBDA   ;; A form which evaluates to a function taking two arguments:
+             ;; the pathname to be translated and the matching
+             ;; DIRECTORY-DESIGNATOR
+
+</pre>
+<p>Relative components better be either relative
+or subdirectories of the path before them, or bust.
+</p>
+<p>The last component, if not a pathname, is notionally completed by <samp>/**/*.*</samp>.
+You can specify more fine-grained patterns
+by using a pathname object as the last component
+e.g. <samp>#p&quot;some/path/**/foo*/bar-*.fasl&quot;</samp>
+</p>
+<p>You may use <code>#+features</code> to customize the configuration file.
+</p>
+<p>The second designator of a mapping may be <code>nil</code>, indicating that files are not mapped
+to anything but themselves (same as if the second designator was the same as the first).
+</p>
+<p>When the first designator is <code>t</code>,
+the mapping always matches.
+When the first designator starts with <code>:root</code>,
+the mapping matches any host and device.
+In either of these cases, if the second designator
+isn&rsquo;t <code>t</code> and doesn&rsquo;t start with <code>:root</code>,
+then strings indicating the host and pathname are somehow copied
+in the beginning of the directory component of the source pathname
+before it is translated.
+</p>
+<p>When the second designator is <code>t</code>, the mapping is the identity.
+When the second designator starts with <code>:root</code>,
+the mapping preserves the host and device of the original pathname.
+Notably, this allows you to map files
+to a subdirectory of the whichever directory the file is in.
+Though the syntax is not quite as easy to use as we&rsquo;d like,
+you can have an (source destination) mapping entry such as follows
+in your configuration file,
+or you may use <code>enable-asdf-binary-locations-compatibility</code>
+with <code>:centralize-lisp-binaries nil</code>
+which will do the same thing internally for you:
+</p><div class="lisp">
+<pre class="lisp">#.(let ((wild-subdir
+          (make-pathname :directory '(:relative :wild-inferiors)))
+        (wild-file
+          (make-pathname :name :wild :version :wild :type :wild)))
+   `((:root ,wild-subdir ,wild-file)
+     (:root ,wild-subdir :implementation ,wild-file)))
+</pre></div>
+<p>Starting with ASDF 2.011.4, you can use the simpler:
+	<code>`(:root (:root :**/ :implementation :*.*.*))</code>
+</p>
+
+
+<p><code>:include</code> statements cause the search to recurse with the path specifications
+from the file specified.
+</p>
+<p>If the <code>translate-pathname</code> mechanism cannot achieve a desired
+translation, the user may provide a function which provides the
+required algorithm.  Such a translation function is specified by
+supplying a list as the second <code>directory-designator</code>
+the first element of which is the keyword <code>:function</code>,
+and the second element of which is
+either a symbol which designates a function or a lambda expression.
+The function designated by the second argument must take two arguments,
+the first being the pathname of the source file,
+the second being the wildcard that was matched.
+When invoked, the function should return the translated pathname.
+</p>
+<p>An <code>:inherit-configuration</code> statement causes the search to recurse with the path
+specifications from the next configuration in the bulleted list.
+See <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">Configurations</a>, above.
+</p>
+<a name="index-asdf_003a_003a_002auser_002dcache_002a"></a>
+<ul>
+<li> <code>:enable-user-cache</code> is the same as <code>(t :user-cache)</code>.
+</li><li> <code>:disable-cache</code> is the same as <code>(t t)</code>.
+</li><li> <code>:user-cache</code> uses the contents of variable <code>asdf::*user-cache*</code>
+which by default is the same as using
+<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>.
+</li></ul>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" accesskey="p" rel="prev">Output Backward Compatibility</a>, Up: <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" accesskey="u" rel="up">Controlling where ASDF saves compiled files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

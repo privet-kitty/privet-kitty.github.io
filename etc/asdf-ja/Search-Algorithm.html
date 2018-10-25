@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Search Algorithm (ASDF マニュアル)</title>
+
+<meta name="description" content="Search Algorithm (ASDF マニュアル)">
+<meta name="keywords" content="Search Algorithm (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
+<link href="Caching-Results.html#Caching-Results" rel="next" title="Caching Results">
+<link href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration" rel="prev" title="Shell-friendly syntax for configuration">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="Search-Algorithm"></a>
+<div class="header">
+<p>
+Next: <a href="Caching-Results.html#Caching-Results" accesskey="n" rel="next">Caching Results</a>, Previous: <a href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration" accesskey="p" rel="prev">Shell-friendly syntax for configuration</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Search-Algorithm-1"></a>
+<h3 class="section">8.8 Search Algorithm</h3>
+<a name="index-_002adefault_002dsource_002dregistry_002dexclusions_002a"></a>
+
+<p>In case that isn&rsquo;t clear, the semantics of the configuration is that
+when searching for a system of a given name,
+directives are processed in order.
+</p>
+<p>When looking in a directory, if the system is found, the search succeeds,
+otherwise it continues.
+</p>
+<p>When looking in a tree, if one system is found, the search succeeds.
+If multiple systems are found, the consequences are unspecified:
+the search may succeed with any of the found systems,
+or an error may be raised.
+ASDF 3.2.1 or later returns the pathname whose normalized directory component
+has the shortest length (as a list), and breaks ties by choosing the system
+with the smallest <code>unix-namestring</code> when compared with <code>string&lt;</code>.
+Earlier versions of ASDF return ASDF return the first system found,
+which is implementation-dependent, and may or may not be the pathname
+with the smallest <code>unix-namestring</code> when compared with <code>string&lt;</code>.
+XCVB raises an error.
+If none is found, the search continues.
+</p>
+<p>Exclude statements specify patterns of subdirectories
+the systems from which to ignore.
+Typically you don&rsquo;t want to use copies of files kept by such
+version control systems as Darcs.
+Exclude statements are not propagated to further included or inherited
+configuration files or expressions;
+instead the defaults are reset around every configuration statement
+to the default defaults from <code>asdf::*default-source-registry-exclusions*</code>.
+</p>
+<p>Include statements cause the search to recurse with the path specifications
+from the file specified.
+</p>
+<p>An inherit-configuration statement cause the search to recurse with the path
+specifications from the next configuration
+(see <a href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea">ソースレジストリ</a> above).
+</p>
+
+
+
+
+
+</body>
+</html>

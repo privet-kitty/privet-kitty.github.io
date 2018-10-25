@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ASDFがシステムを見つけられるように設定する (ASDF マニュアル)</title>
+
+<meta name="description" content="ASDFがシステムを見つけられるように設定する (ASDF マニュアル)">
+<meta name="keywords" content="ASDFがシステムを見つけられるように設定する (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFを設定する">
+<link href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" rel="next" title="ASDFがシステムを見つけられるように設定する（従来のスタイル）">
+<link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="prev" title="ASDFを設定する">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b"></a>
+<div class="header">
+<p>
+Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" accesskey="n" rel="next">ASDFがシステムを見つけられるように設定する（従来のスタイル）</a>, Previous: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFを設定する</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru"></a>
+<h3 class="section">4.1 ASDFがシステムを見つけられるように設定する</h3>
+
+
+<p>システムをコンパイル、ロードするためには、システム定義の書かれた<samp>.asd</samp>ファイルをASDFが見つけられるように設定しなければなりません。これには簡単なものから複雑なものまで、多数のやり方があります:
+</p>
+<ul>
+<li> 標準のディレクトリを使い、すべてのシステムをそのサブディレクトリに置きます。標準のディレクトリとは、
+<ul>
+<li> <samp>~/common-lisp/</samp> または
+</li><li> <samp>~/.local/share/common-lisp/source/</samp>
+</li></ul>
+<p>のことです。これらの場所にソフトウェアをインストールするなら特に追加設定は必要ないので<a name="DOCF4" href="#FOOT4"><sup>4</sup></a>
+  、次のセクションに進んでかまいません。（→ <a href="sisutemuworodosuru.html#g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b">システムをロードする</a>）
+</p>
+</li><li> Quicklispのようなパッケージインストーラを使っている場合、既にそれらがASDFの設定を済ませているでしょう。
+
+</li><li> より具体的にソフトウェアをインストールする場所を指定したいのであれば、<code>source-registry</code>機能を使って、ASDFがシステムを探すパスを設定するのがもっともよい方法です。この機能は１つの章を充てて（<a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a>）網羅的に解説しますので、ここでは簡単な使い方を説明するにとどめます。
+
+
+<p>まず初めに<samp>~/.config/common-lisp/source-registry.conf.d/</samp>ディレクトリ
+<a name="DOCF5" href="#FOOT5"><sup>5</sup></a>
+を作り、このディレクトリに拡張子が<samp>.conf</samp>
+<a name="DOCF6" href="#FOOT6"><sup>6</sup></a>
+のファイルを作ります。例えば<samp>50-luser-lisp.conf</samp>という名前のファイルを作ったとしましょう。このファイルに
+<code>(:tree &quot;/home/luser/lisp/&quot;)</code>
+という記述を加えると、ASDFは<samp>/home/luser/lisp/</samp>以下のディレクトリを再帰的にスキャンして、すべての<samp>.asd</samp>ファイルを見つけるようになります。
+</p>
+<p>これで完了です。<samp>/home/luser/lisp/</samp>はソースコードをインストールしたい場所に自由に置き換えてください。ASDF 3.1.2以降で<samp>~/common-lisp/</samp>を使う限り、このような設定は必要ありませんが、それ以前のASDF 3を使っている場合、最近のASDFを<samp>~/common-lisp/asdf/</samp>に置いた上で、ブートストラップのために<samp>.conf</samp>ファイルに<code>(:tree (:home &quot;common-lisp/&quot;))</code>を加える、というようなテクニックが有効かもしれません、
+</p>
+<p>別の方式として、１つのディレクトリに<samp>.asd</samp>ファイルへのリンクを集めるやり方もあります。この方法は上記の再帰的なスキャンに比べると速いですが、管理は大変になります。リンクを集めるディレクトリを<samp>/home/luser/.asd-link-farm/</samp>としましょう。この場合は、ソースレジストリディレクトリに例えば<samp>42-asd-link-farm.conf</samp>ファイルを作り、<code>(:directory &quot;/home/luser/.asd-link-farm/&quot;)</code>という行を加えれば有効になります。
+</p>
+
+
+<p>ASDFは、初めてシステムを探すときに自動的に<samp>.conf</samp>ファイルを読み込みますが、必要であれば、
+</p>
+<div class="lisp">
+<pre class="lisp">(asdf:clear-source-registry)
+</pre></div>
+
+<p>でソースレジストリの設定をリセットすることができます。（→ <a href="Configuration-API.html#Configuration-API">Configuration API</a>）
+</p>
+</li><li> ASDFの古いバージョンでは、システムのソースレジストリはグローバル変数<code>asdf:*central-registry*</code>を使って設定されていました。詳細については次のセクション（<a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（従来のスタイル）</a>）を参照してください。これについて知る必要がなければ、飛ばして<a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a>に進みましょう。
+
+</li></ul>
+
+<p>なお、あなたのOSディストリビューションやシステム管理者が、既にシステム全体でライブラリ管理の設定をしているというケースもあることに注意してください。
+</p>
+
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT4" href="#DOCF4">(4)</a></h3>
+<p><samp>~/common-lisp/</samp>がデフォルトのパスに含まれるのはASDF 3.1.2以降です。それ以前のASDFを使っている場合は、後述のように、このパスを使うことを明示的に設定する必要があるかもしれません。</p>
+<h3><a name="FOOT5" href="#DOCF5">(5)</a></h3>
+<p>Windowsの場合、ASDF 3.1.5以降では、<samp>%LOCALAPPDATA%</samp>以下に<samp>config/common-lisp/source-registry.conf.d/</samp>ディレクトリを作りましょう。<samp>%LOCALAPPDATA%</samp>は通常なら<samp>~/AppData/Local/</samp>を指していますが、実際の値は<code>CMD.EXE</code>上で<code>echo %LOCALAPPDATA%</code>を実行することで確かめることができます。</p>
+<h3><a name="FOOT6" href="#DOCF6">(6)</a></h3>
+<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定のファイルを無効にすることができます。例えば、エディタのバックアップ等のファイルは同じディレクトリにあっても読み込まれないでしょう。
+</p>
+<p>また、ASDFは<samp>.</samp>で始まるファイル名も無視します。
+</p>
+<p>慣習では、これらのファイル名は２つの１０進数字から始まります。こうすることでソースレジストリディレクトリ内の<samp>.conf</samp>ファイルの並びが決まるので、スキャンの順序をコントロールすることができます。</p>
+</div>
+
+
+
+</body>
+</html>

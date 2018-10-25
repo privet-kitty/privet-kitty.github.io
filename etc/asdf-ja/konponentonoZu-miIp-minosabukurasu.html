@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>コンポーネントの組み込みのサブクラス (ASDF マニュアル)</title>
+
+<meta name="description" content="コンポーネントの組み込みのサブクラス (ASDF マニュアル)">
+<meta name="keywords" content="コンポーネントの組み込みのサブクラス (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" rel="up" title="コンポーネント">
+<link href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3_30f3_30dd_30fc_30cd_30f3_30c8_578b_3092_5b9a_7fa9_3059_308b" rel="next" title="新しいコンポーネント型を定義する">
+<link href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027" rel="prev" title="コンポーネントの共通の属性">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9"></a>
+<div class="header">
+<p>
+Next: <a href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3_30f3_30dd_30fc_30cd_30f3_30c8_578b_3092_5b9a_7fa9_3059_308b" accesskey="n" rel="next">新しいコンポーネント型を定義する</a>, Previous: <a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027" accesskey="p" rel="prev">コンポーネントの共通の属性</a>, Up: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="u" rel="up">コンポーネント</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="konponentonoZu-miIp-minosabukurasu"></a>
+<h4 class="subsection">7.2.2 コンポーネントの組み込みのサブクラス</h4>
+
+<dl>
+<dt><a name="index-source_002dfile"></a>コンポーネント: <strong>source-file</strong></dt>
+<dd>
+<p>ソースファイルとは、システムの他のコンポーネントから生成する方法を（システムに）知られていないファイルを指します。
+</p>
+<p>これは一般的な意味でのソースファイル、つまり「コンパイラに渡すデータを含んだファイル」と必ずしも同じでないことに注意してください。何らかのプリプロッセンシグを経て生成されたファイル（例えば<samp>.h.in</samp>からautoconfによって生成された<samp>.h</samp>ファイルなど）は、定義上、ソースファイルとは呼ばれないことになります。逆に、自動生成されない画像ファイルだとか、バイナリとして受け取るプロプライエタリな共有ライブラリなどは、我々の目的においてはソースファイルとみなすことになります。
+</p>
+<p>様々な言語に対して<code>source-file</code>のサブクラスが存在します。
+</p>
+<p>[訳者補足]
+</p>
+<dl>
+<dt><a name="index-cl_002dsource_002dfile"></a>コンポーネント: <strong>cl-source-file</strong></dt>
+<dt><a name="index-c_002dsource_002dfile"></a>コンポーネント: <strong>c-source-file</strong></dt>
+<dt><a name="index-java_002dsource_002dfile"></a>コンポーネント: <strong>java-source-file</strong></dt>
+<dt><a name="index-static_002dfile"></a>コンポーネント: <strong>static-file</strong></dt>
+<dt><a name="index-doc_002dfile"></a>コンポーネント: <strong>doc-file</strong></dt>
+<dt><a name="index-html_002dfile"></a>コンポーネント: <strong>html-file</strong></dt>
+<dd><p><code>cl-source-file</code>、<code>c-source-file</code>、<code>java-source-file</code>はそれぞれCL、C、Javaのソースファイルに対応し、ファイル形式は<samp>lisp</samp>、<samp>c</samp>、<samp>java</samp>です。<code>static-file</code>はビルドの際にそのまま出力されることを意図したファイルを表し、ファイル形式は不定です。<code>doc-file</code>は<code>static-file</code>のサブクラス、<code>html-file</code>は<code>doc-file</code>のサブクラスであり、<code>html-file</code>のファイル形式は<samp>html</samp>です。
+</p>
+<p><code>defsystem</code>フォームの<code>:components</code>オプションにコンポーネントを記述するとき、<code>:file</code>は既定では<code>cl-source-file</code>を意味しますが、このクラスは親コンポーネントの<code>:default-component-class</code>オプションで書き換えることができます。
+</p></dd></dl>
+
+
+<p>[訳者補足終わり]
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-module"></a>コンポーネント: <strong>module</strong></dt>
+<dd>
+<p>モジュールはサブコンポーネントのまとまりです。
+</p>
+<p>モジュールコンポーネントには次の追加の属性が指定できます。
+</p>
+<ul>
+<li> <code>:components</code> このモジュールに含まれるコンポーネント群です。
+
+</li><li> <code>:default-component-class</code>
+クラスが明示されていない子コンポーネントはこのクラスであるとみなされます。
+
+</li><li> <code>:if-component-dep-fails</code>
+この属性はASDF 3で削除されたので、使わないでください。代わりに<code>:if-feature</code>を使いましょう。（→ <a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_5fc5_8981_306a_30d5_30a3_30fc_30c1_30e3_30fc">必要なフィーチャー</a> あるいは → <a href="defsystemnoWenFa-.html#if_002dfeature_30aa_30d7_30b7_30e7_30f3">if-featureオプション</a>）
+
+</li><li> <code>:serial</code>
+この属性が真の場合、（<code>:components</code>に指定された）それぞれの子コンポーネントは、それ以前のすべての子コンポーネントに依存しているとみなされます。
+
+</li></ul>
+
+<p>デフォルトの操作はモジュールをどのように走査すれば良いか知っているため、ほとんどの操作にはモジュールに特定化されたメソッドを定義する必要はないでしょう。
+</p>
+<p>他の言語のライブラリ群やアーカイブファイルを表すのに、<code>module</code>のサブクラスを定義することもできるでしょう。
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-system-1"></a>コンポーネント: <strong>system</strong></dt>
+<dd>
+<p>システムはモジュールのサブクラスです。
+</p>
+<p>システムは、主にドキュメントを付けるためにいくつかの属性を追加されたモジュールです。詳細は<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>を参照してください。
+</p>
+<p>ユーザーは自分のシステムのために自ら新しいクラスを定義することもできます。定義したクラスは<code>defsystem</code>マクロの<code>:class</code>オプションに指定することで使えます。
+</p></dd></dl>
+
+
+
+
+</body>
+</html>

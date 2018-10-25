@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>I'm a Common Lisp implementation vendor. When and how should I upgrade ASDF? (ASDF マニュアル)</title>
+
+<meta name="description" content="I'm a Common Lisp implementation vendor. When and how should I upgrade ASDF? (ASDF マニュアル)">
+<meta name="keywords" content="I'm a Common Lisp implementation vendor. When and how should I upgrade ASDF? (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF" rel="up" title="Issues with installing the proper version of ASDF">
+<link href="After-upgrading-ASDF.html#After-upgrading-ASDF" rel="next" title="After upgrading ASDF">
+<link href="My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f.html#My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f" rel="prev" title="My Common Lisp implementation comes with an outdated version of ASDF. What to do?">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f"></a>
+<div class="header">
+<p>
+Next: <a href="After-upgrading-ASDF.html#After-upgrading-ASDF" accesskey="n" rel="next">After upgrading ASDF</a>, Previous: <a href="My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f.html#My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f" accesskey="p" rel="prev">My Common Lisp implementation comes with an outdated version of ASDF. What to do?</a>, Up: <a href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF" accesskey="u" rel="up">Issues with installing the proper version of ASDF</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="g_t_0060_0060I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f_0027_0027"></a>
+<h4 class="subsection">13.4.2 &ldquo;I&rsquo;m a Common Lisp implementation vendor. When and how should I upgrade ASDF?&rdquo;</h4>
+
+<p>Since ASDF 2,
+it should always be a good time to upgrade to a recent version of ASDF.
+You may consult with the maintainer for which specific version they recommend,
+but the latest <code>release</code> should be correct.
+Though we do try to test ASDF releases against all implementations that we can,
+we may not be testing against all variants of your implementation,
+and we may not be running enough tests;
+we trust you to thoroughly test it with your own implementation
+before you release it.
+If there are any issues with the current release,
+it&rsquo;s a bug that you should report upstream and that we will fix ASAP.
+</p>
+<p>As to how to include ASDF, we recommend the following:
+</p>
+<ul>
+<li> If ASDF isn&rsquo;t loaded yet, then <code>(require &quot;asdf&quot;)</code>
+should load the version of ASDF that is bundled with your system.
+If possible so should <code>(require &quot;ASDF&quot;)</code>.
+You may have it load some other version configured by the user,
+if you allow such configuration.
+
+</li><li> If your system provides a mechanism to hook into <code>cl:require</code>,
+then it would be nice to add ASDF to this hook the same way that
+ABCL, CCL, CLISP, CMUCL, ECL, SBCL and SCL do it.
+Please send us appropriate code to this end.
+
+</li><li> You may, like SBCL since 1.1.13 or MKCL since 1.1.9,
+have ASDF create bundle FASLs
+that are provided as modules by your Lisp distribution.
+You may also, but we don&rsquo;t recommend that anymore,
+as in SBCL up until 1.1.12, have ASDF be implicitly used
+to <code>cl:require</code> these modules that are provided by your Lisp distribution;
+if you do, you should add these modules in the beginning of both
+<code>wrapping-source-registry</code> and <code>wrapping-output-translations</code>.
+
+</li><li> If you have magic systems as above, like SBCL used to do,
+then we explicitly ask you to <em>NOT</em> distribute
+<samp>asdf.asd</samp> as part of those magic systems.
+You should still include the file <samp>asdf.lisp</samp> in your source distribution
+and precompile it in your binary distribution,
+but <samp>asdf.asd</samp> if included at all,
+should be secluded from the magic systems,
+in a separate file hierarchy.
+Alternatively, you may provide the system
+after renaming it and its <samp>.asd</samp> file to e.g.
+<code>asdf-ecl</code> and <samp>asdf-ecl.asd</samp>, or
+<code>sb-asdf</code> and <samp>sb-asdf.asd</samp>.
+Indeed, if you made <samp>asdf.asd</samp> a magic system,
+then users would no longer be able to upgrade ASDF using ASDF itself
+to some version of their preference that
+they maintain independently from your Lisp distribution.
+
+</li><li> If you do not have any such magic systems, or have other non-magic systems
+that you want to bundle with your implementation,
+then you may add them to the <code>wrapping-source-registry</code>,
+and you are welcome to include <samp>asdf.asd</samp> amongst them.
+Non-magic systems should be at the back of the <code>wrapping-source-registry</code>
+while magic systems are at the front.
+If they are precompiled,
+they should also be in the <code>wrapping-output-translations</code>.
+
+</li><li> Since ASDF 3, the library UIOP comes transcluded in ASDF.
+But if you want to be nice to users who care for UIOP but not for ASDF,
+you may package UIOP separately,
+so that one may <code>(require &quot;uiop&quot;)</code> and not load ASDF,
+or one may <code>(require &quot;asdf&quot;)</code>
+which would implicitly require and load the former.
+
+</li><li> Please send us upstream any patches you make to ASDF itself,
+so we can merge them back in for the benefit of your users
+when they upgrade to the upstream version.
+
+</li></ul>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="After-upgrading-ASDF.html#After-upgrading-ASDF" accesskey="n" rel="next">After upgrading ASDF</a>, Previous: <a href="My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f.html#My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f" accesskey="p" rel="prev">My Common Lisp implementation comes with an outdated version of ASDF. What to do?</a>, Up: <a href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF" accesskey="u" rel="up">Issues with installing the proper version of ASDF</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

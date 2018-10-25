@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Controlling source file character encoding (ASDF マニュアル)</title>
+
+<meta name="description" content="Controlling source file character encoding (ASDF マニュアル)">
+<meta name="keywords" content="Controlling source file character encoding (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" rel="up" title="Miscellaneous additional functionality">
+<link href="Miscellaneous-Functions.html#Miscellaneous-Functions" rel="next" title="Miscellaneous Functions">
+<link href="Controlling-file-compilation.html#Controlling-file-compilation" rel="prev" title="Controlling file compilation">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="Controlling-source-file-character-encoding"></a>
+<div class="header">
+<p>
+Next: <a href="Miscellaneous-Functions.html#Miscellaneous-Functions" accesskey="n" rel="next">Miscellaneous Functions</a>, Previous: <a href="Controlling-file-compilation.html#Controlling-file-compilation" accesskey="p" rel="prev">Controlling file compilation</a>, Up: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="u" rel="up">Miscellaneous additional functionality</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Controlling-source-file-character-encoding-1"></a>
+<h3 class="section">11.2 Controlling source file character encoding</h3>
+
+<p>Starting with ASDF 2.21, components accept a <code>:encoding</code> option
+so authors may specify which character encoding should be used
+to read and evaluate their source code.
+When left unspecified, the encoding is inherited
+from the parent module or system;
+if no encoding is specified at any point,
+or if <code>nil</code> is explicitly specified,
+an extensible protocol described below is followed,
+that ultimately defaults to <code>:utf-8</code> since ASDF 3.
+</p>
+<p>The protocol to determine the encoding is
+to call the function <code>detect-encoding</code>,
+which itself, if provided a valid file,
+calls the function specified by <var>*encoding-detection-hook*</var>,
+or else defaults to the <var>*default-encoding*</var>.
+The <var>*encoding-detection-hook*</var> is by default bound
+to function <code>always-default-encoding</code>,
+that always returns the contents of <var>*default-encoding*</var>.
+<var>*default-encoding*</var> is bound to <code>:utf-8</code> by default
+(before ASDF 3, the default was <code>:default</code>).
+</p>
+<p>Whichever encoding is returned must be a portable keyword,
+that will be translated to an implementation-specific external-format designator
+by function <code>encoding-external-format</code>,
+which itself simply calls the function specified <var>*encoding-external-format-hook*</var>;
+that function by default is <code>default-encoding-external-format</code>,
+that only recognizes <code>:utf-8</code> and <code>:default</code>,
+and translates the former to the implementation-dependent <var>*utf-8-external-format*</var>,
+and the latter to itself (that itself is portable but has an implementation-dependent meaning).
+</p>
+<p>In other words, there now are plenty of extension hooks, but
+by default ASDF enforces the previous <em>de facto</em> standard behaviour
+of using <code>:utf-8</code>, independently from
+whatever configuration the user may be using.
+Thus, system authors can now rely on <code>:utf-8</code>
+being used while compiling their files,
+even if the user is currently using <code>:koi8-r</code> or <code>:euc-jp</code>
+as their interactive encoding.
+(Before ASDF 3, there was no such guarantee, <code>:default</code> was used,
+and only plain ASCII was safe to include in source code.)
+</p>
+<p>Some legacy implementations only support 8-bit characters,
+and some implementations provide 8-bit only variants.
+On these implementations, the <var>*utf-8-external-format*</var>
+gracefully falls back to <code>:default</code>,
+and Unicode characters will be read as multi-character mojibake.
+To detect such situations, UIOP will push the <code>:asdf-unicode</code> feature
+on implementations that support Unicode, and you can use reader-conditionalization
+to protect any <code>:encoding <em>encoding</em></code> statement, as in
+<code>#+asdf-unicode :encoding #+asdf-unicode :utf-8</code>.
+We recommend that you avoid using unprotected <code>:encoding</code> specifications
+until after ASDF 2.21 or later becomes widespread.
+As of May 2016, all maintained implementations provide ASDF 3.1,
+so you may prudently start using this and other features without such protection.
+</p>
+<p>While it offers plenty of hooks for extension,
+and one such extension is available (see <code>asdf-encodings</code> below),
+ASDF itself only recognizes one encoding beside <code>:default</code>,
+and that is <code>:utf-8</code>, which is the <em>de facto</em> standard,
+already used by the vast majority of libraries that use more than ASCII.
+On implementations that do not support unicode,
+the feature <code>:asdf-unicode</code> is absent, and
+the <code>:default</code> external-format is used
+to read even source files declared as <code>:utf-8</code>.
+On these implementations, non-ASCII characters
+intended to be read as one CL character
+may thus end up being read as multiple CL characters.
+In most cases, this shouldn&rsquo;t affect the software&rsquo;s semantics:
+comments will be skipped just the same, strings with be read and printed
+with slightly different lengths, symbol names will be accordingly longer,
+but none of it should matter.
+But a few systems that actually depend on unicode characters
+may fail to work properly, or may work in a subtly different way.
+See for instance <code>lambda-reader</code>.
+</p>
+<p>We invite you to embrace UTF-8
+as the encoding for non-ASCII characters starting today,
+even without any explicit specification in your <samp>.asd</samp> files.
+Indeed, on some implementations and configurations,
+UTF-8 is already the <code>:default</code>,
+and loading your code may cause errors if it is encoded in anything but UTF-8.
+Therefore, even with the legacy behaviour,
+non-UTF-8 is guaranteed to break for some users,
+whereas UTF-8 is pretty much guaranteed not to break anywhere
+(provided you do <em>not</em> use a BOM),
+although it might be read incorrectly on some implementations.
+<code>:utf-8</code> has been the default value of <code>*default-encoding*</code> since ASDF 3.
+</p>
+<p>If you need non-standard character encodings for your source code,
+use the extension system <code>asdf-encodings</code>, by specifying
+<code>:defsystem-depends-on (&quot;asdf-encodings&quot;)</code> in your <code>defsystem</code>.
+This extension system will register support for more encodings using the
+<code>*encoding-external-format-hook*</code> facility,
+so you can explicitly specify <code>:encoding :latin1</code>
+in your <samp>.asd</samp> file.
+Using the <code>*encoding-detection-hook*</code> it will also
+eventually implement some autodetection of a file&rsquo;s encoding
+from an emacs-style <code>-*- mode: lisp ; coding: latin1 -*-</code> declaration,
+or otherwise based on an analysis of octet patterns in the file.
+At this point, <code>asdf-encoding</code> only supports the encodings
+that are supported as part of your implementation.
+Since the list varies depending on implementations,
+we still recommend you use <code>:utf-8</code> everywhere,
+which is the most portable (next to it is <code>:latin1</code>).
+</p>
+<p>Recent versions of Quicklisp include <code>asdf-encodings</code>;
+if you&rsquo;re not using it, you may get this extension using git:
+<kbd>git clone https://gitlab.common-lisp.net/asdf/asdf-encodings.git</kbd>
+or
+<kbd>git clone git@gitlab.common-lisp.net:asdf/asdf-encodings.git</kbd>.
+You can also browse the repository on
+<a href="https://gitlab.common-lisp.net/asdf/asdf-encodings">https://gitlab.common-lisp.net/asdf/asdf-encodings</a>.
+</p>
+<p>When you use <code>asdf-encodings</code>,
+any <samp>.asd</samp> file loaded
+will use the autodetection algorithm to determine its encoding.
+If you depend on this detection happening,
+you should explicitly load <code>asdf-encodings</code> early in your build.
+Note that <code>:defsystem-depends-on</code> cannot be used here: by the time
+the <code>:defsystem-depends-on</code> is loaded, the enclosing
+<code>defsystem</code> form has already been read.
+</p>
+<p>In practice, this means that the <code>*default-encoding*</code>
+is usually used for <samp>.asd</samp> files.
+Currently, this defaults to <code>:utf-8</code>, and
+you should be safe using Unicode characters in those files.
+This might matter, for instance, in meta-data about author&rsquo;s names.
+Otherwise, the main data in these files is component (path)names,
+and we don&rsquo;t recommend using non-ASCII characters for these,
+for the result probably isn&rsquo;t very portable.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Miscellaneous-Functions.html#Miscellaneous-Functions" accesskey="n" rel="next">Miscellaneous Functions</a>, Previous: <a href="Controlling-file-compilation.html#Controlling-file-compilation" accesskey="p" rel="prev">Controlling file compilation</a>, Up: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="u" rel="up">Miscellaneous additional functionality</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

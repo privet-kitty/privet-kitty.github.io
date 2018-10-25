@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Top (ASDF マニュアル)</title>
+
+<meta name="description" content="Top (ASDF マニュアル)">
+<meta name="keywords" content="Top (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="../../index.html" rel="up" title="(dir)">
+<link href="hazimeni.html#g_t_306f_3058_3081_306b" rel="next" title="はじめに">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<h1 class="settitle" align="center">ASDF マニュアル</h1>
+
+
+
+
+
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a name="toc-hazimeni" href="hazimeni.html#g_t_306f_3058_3081_306b">1 はじめに</a></li>
+  <li><a name="toc-kuitukusutatogaido" href="kuitukusutatogaido.html#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9">2 クイックスタートガイド</a></li>
+  <li><a name="toc-ASDFworodosuru" href="ASDFworodosuru.html#ASDF_3092_30ed_30fc_30c9_3059_308b">3 ASDFをロードする</a>
+  <ul class="no-bullet">
+    <li><a name="toc-insutoruJi-minoASDFworodosuru" href="insutoruJi-minoASDFworodosuru.html#g_t_30a4_30f3_30b9_30c8_30fc_30eb_6e08_307f_306eASDF_3092_30ed_30fc_30c9_3059_308b">3.1 インストール済みのASDFをロードする</a></li>
+    <li><a name="toc-ASDFgarodosareteirukaDiao-beru" href="ASDFgarodosareteirukaDiao-beru.html#ASDF_304c_30ed_30fc_30c9_3055_308c_3066_3044_308b_304b_8abf_3079_308b">3.2 ASDFがロードされているか調べる</a></li>
+    <li><a name="toc-ASDFwoatupuguredosuru" href="ASDFwoatupuguredosuru.html#ASDF_3092_30a2_30c3_30d7_30b0_30ec_30fc_30c9_3059_308b">3.3 ASDFをアップグレードする</a></li>
+    <li><a name="toc-Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru" href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">3.4 処理系付属のASDFを置き換える</a></li>
+    <li><a name="toc-ASDFwososukararodosuru" href="ASDFwososukararodosuru.html#ASDF_3092_30bd_30fc_30b9_304b_3089_30ed_30fc_30c9_3059_308b">3.5 ASDFをソースからロードする</a></li>
+  </ul></li>
+  <li><a name="toc-ASDFwoShe-Ding-suru" href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b">4 ASDFを設定する</a>
+  <ul class="no-bullet">
+    <li><a name="toc-ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru" href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b">4.1 ASDFがシステムを見つけられるように設定する</a></li>
+    <li><a name="toc-ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029" href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09">4.2 ASDFがシステムを見つけられるように設定する（従来のスタイル）</a></li>
+    <li><a name="toc-ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru" href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">4.3 ASDFがオブジェクトファイルを保持する場所を設定する</a></li>
+    <li><a name="toc-ASDFnoShe-Ding-worisetutosuru" href="ASDFnoShe-Ding-worisetutosuru.html#ASDF_306e_8a2d_5b9a_3092_30ea_30bb_30c3_30c8_3059_308b">4.4 ASDFの設定をリセットする</a></li>
+  </ul></li>
+  <li><a name="toc-ASDFwoShi-u" href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046">5 ASDFを使う</a>
+  <ul class="no-bullet">
+    <li><a name="toc-sisutemuworodosuru" href="sisutemuworodosuru.html#g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b">5.1 システムをロードする</a></li>
+    <li><a name="toc-Bian-Li-naGuan-Shu-" href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570">5.2 便利な関数</a></li>
+    <li><a name="toc-konoXian-heJin-mu" href="konoXian-heJin-mu.html#g_t_3053_306e_5148_3078_9032_3080">5.3 この先へ進む</a></li>
+  </ul></li>
+  <li><a name="toc-defsystemdesisutemuwoDing-Yi-suru" href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">6 defsystemでシステムを定義する</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Dan-Chun-naLi" href="Dan-Chun-naLi.html#g_t_5358_7d14_306a_4f8b">6.1 単純な例</a></li>
+    <li><a name="toc-Fu-Za-naLi" href="Fu-Za-naLi.html#g_t_8907_96d1_306a_4f8b">6.2 複雑な例</a></li>
+    <li><a name="toc-defsystemnoWenFa-" href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">6.3 defsystemの文法</a>
+    <ul class="no-bullet">
+      <li><a name="toc-konponentoMing-" href="defsystemnoWenFa-.html#konponentoMing-">6.3.1 コンポーネント名</a></li>
+      <li><a name="toc-konponentoXing-" href="defsystemnoWenFa-.html#konponentoXing-">6.3.2 コンポーネント型</a></li>
+      <li><a name="toc-sisutemukurasuMing-" href="defsystemnoWenFa-.html#sisutemukurasuMing-">6.3.3 システムクラス名</a></li>
+      <li><a name="toc-defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029" href="defsystemnoWenFa-.html#defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029">6.3.4 defsystemの依存（<code>:defsystem-depends-on</code>）</a></li>
+      <li><a name="toc-birudoCao-Zuo-_0028_003abuild_002doperation_0029" href="defsystemnoWenFa-.html#birudoCao-Zuo-_0028_003abuild_002doperation_0029">6.3.5 ビルド操作（<code>:build-operation</code>）</a></li>
+      <li><a name="toc-Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029" href="defsystemnoWenFa-.html#Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029">6.3.6 弱い依存関係（<code>:weakly-depends-on</code>）</a></li>
+      <li><a name="toc-pasuMing-Zhi-Ding-Zi-" href="defsystemnoWenFa-.html#pasuMing-Zhi-Ding-Zi-">6.3.7 パス名指定子</a></li>
+      <li><a name="toc-baziyonZhi-Ding-Zi-" href="defsystemnoWenFa-.html#baziyonZhi-Ding-Zi-">6.3.8 バージョン指定子</a></li>
+      <li><a name="toc-_003arequire-1" href="defsystemnoWenFa-.html#g_t_003arequire-1">6.3.9 <code>:require</code></a></li>
+      <li><a name="toc-huitiyaniYing-zitaYi-Cun-Guan-Xi-_0028_003afeature_0029" href="defsystemnoWenFa-.html#huitiyaniYing-zitaYi-Cun-Guan-Xi-_0028_003afeature_0029">6.3.10 フィーチャーに応じた依存関係（<code>:feature</code>）</a></li>
+      <li><a name="toc-Lun-Li-pasuMing-woShi-u" href="defsystemnoWenFa-.html#Lun-Li-pasuMing-woShi-u">6.3.11 論理パス名を使う</a></li>
+      <li><a name="toc-Lian-Sok-De-naYi-Cun-Guan-Xi-_0028_003aserial_0029" href="defsystemnoWenFa-.html#Lian-Sok-De-naYi-Cun-Guan-Xi-_0028_003aserial_0029">6.3.12 連続的な依存関係（<code>:serial</code>）</a></li>
+      <li><a name="toc-sosunoChang-Suo-_0028_003apathname_0029" href="defsystemnoWenFa-.html#sosunoChang-Suo-_0028_003apathname_0029">6.3.13 ソースの場所（<code>:pathname</code>）</a></li>
+      <li><a name="toc-huitiyaniYing-zitakonponento_0028_003aif_002dfeature_0029" href="defsystemnoWenFa-.html#huitiyaniYing-zitakonponento_0028_003aif_002dfeature_0029">6.3.14 フィーチャーに応じたコンポーネント（<code>:if-feature</code>）</a></li>
+      <li><a name="toc-entoripointo_0028_003aentry_002dpoint_0029" href="defsystemnoWenFa-.html#entoripointo_0028_003aentry_002dpoint_0029">6.3.15 エントリーポイント（<code>:entry-point</code>）</a></li>
+      <li><a name="toc-feature-requirement_0028Fei-Zhi-_0029" href="defsystemnoWenFa-.html#feature-requirement_0028Fei-Zhi-_0029">6.3.16 feature requirement（廃止）</a></li>
+    </ul></li>
+    <li><a name="toc-_002easdhuairuZhongnoTa-nokodo" href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a4_30eb_4e2d_306e_4ed6_306e_30b3_30fc_30c9">6.4 .asdファイル中の他のコード</a></li>
+    <li><a name="toc-package_002dinferred_002dsystemKuo-Zhang-" href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferred_002dsystem_62e1_5f35">6.5 package-inferred-system拡張</a></li>
+  </ul></li>
+  <li><a name="toc-ASDFnoobuziekutomoderu" href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">7 ASDFのオブジェクトモデル</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Cao-Zuo-" href="Cao-Zuo-.html#g_t_64cd_4f5c">7.1 操作</a>
+    <ul class="no-bullet">
+      <li><a name="toc-Zu-miIp-minoCao-Zuo-" href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">7.1.1 組み込みの操作</a></li>
+      <li><a name="toc-Xin-siiCao-Zuo-woDing-Yi-suru" href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">7.1.2 新しい操作を定義する</a></li>
+    </ul></li>
+    <li><a name="toc-konponento" href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">7.2 コンポーネント</a>
+    <ul class="no-bullet">
+      <li><a name="toc-konponentonoGong-Tong-noShu-Xing-" href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027">7.2.1 コンポーネントの共通の属性</a>
+      <ul class="no-bullet">
+        <li><a name="toc-konponentoMing--1" href="konponentonoGong-Tong-noShu-Xing-.html#konponentoMing--1">7.2.1.1 コンポーネント名</a></li>
+        <li><a name="toc-baziyonShi-Bie-Zi-_0028_003aversion_0029" href="konponentonoGong-Tong-noShu-Xing-.html#baziyonShi-Bie-Zi-_0028_003aversion_0029">7.2.1.2 バージョン識別子（<code>:version</code>）</a></li>
+        <li><a name="toc-Bi-Yao-nahuitiya_0028_003aif_002dfeature_0029" href="konponentonoGong-Tong-noShu-Xing-.html#Bi-Yao-nahuitiya_0028_003aif_002dfeature_0029">7.2.1.3 必要なフィーチャー（<code>:if-feature</code>）</a></li>
+        <li><a name="toc-akusiyonnoYi-Cun-Guan-Xi-_0028_003ain_002dorder_002dto_0029" href="konponentonoGong-Tong-noShu-Xing-.html#akusiyonnoYi-Cun-Guan-Xi-_0028_003ain_002dorder_002dto_0029">7.2.1.4 アクションの依存関係（<code>:in-order-to</code>）</a></li>
+        <li><a name="toc-pasuMing-_0028_003apathname_0029" href="konponentonoGong-Tong-noShu-Xing-.html#pasuMing-_0028_003apathname_0029">7.2.1.5 パス名（<code>:pathname</code>）</a></li>
+        <li><a name="toc-puropatei_0028_003aproperties_0029" href="konponentonoGong-Tong-noShu-Xing-.html#puropatei_0028_003aproperties_0029">7.2.1.6 プロパティ（<code>:properties</code>）</a></li>
+      </ul></li>
+      <li><a name="toc-konponentonoZu-miIp-minosabukurasu" href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">7.2.2 コンポーネントの組み込みのサブクラス</a></li>
+      <li><a name="toc-Xin-siikonponentoXing-woDing-Yi-suru" href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3_30f3_30dd_30fc_30cd_30f3_30c8_578b_3092_5b9a_7fa9_3059_308b">7.2.3 新しいコンポーネント型を定義する</a></li>
+    </ul></li>
+    <li><a name="toc-Yi-Cun-Guan-Xi-nituite" href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066">7.3 依存関係について</a></li>
+    <li><a name="toc-Guan-Lian-suruGuan-Shu-" href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570">7.4 関連する関数</a></li>
+  </ul></li>
+  <li><a name="toc-ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru" href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">8 ASDFがシステムを探す場所を設定する</a>
+  <ul class="no-bullet">
+    <li><a name="toc-sosurezisutori" href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea">8.1 ソースレジストリ</a></li>
+    <li><a name="toc-Truenames-and-other-dangers-1" href="Truenames-and-other-dangers.html#Truenames-and-other-dangers">8.2 Truenames and other dangers</a></li>
+    <li><a name="toc-XDG-base-directory-1" href="XDG-base-directory.html#XDG-base-directory">8.3 XDG base directory</a></li>
+    <li><a name="toc-Backward-Compatibility-1" href="Backward-Compatibility.html#Backward-Compatibility">8.4 Backward Compatibility</a></li>
+    <li><a name="toc-Configuration-DSL-1" href="Configuration-DSL.html#Configuration-DSL">8.5 Configuration DSL</a></li>
+    <li><a name="toc-Configuration-Directories-1" href="Configuration-Directories.html#Configuration-Directories">8.6 Configuration Directories</a>
+    <ul class="no-bullet">
+      <li><a name="toc-The-_003ahere-directive" href="The-here-directive.html#The-here-directive">8.6.1 The :here directive</a></li>
+    </ul></li>
+    <li><a name="toc-Shell_002dfriendly-syntax-for-configuration-1" href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration">8.7 Shell-friendly syntax for configuration</a></li>
+    <li><a name="toc-Search-Algorithm-1" href="Search-Algorithm.html#Search-Algorithm">8.8 Search Algorithm</a></li>
+    <li><a name="toc-Caching-Results-1" href="Caching-Results.html#Caching-Results">8.9 Caching Results</a></li>
+    <li><a name="toc-Configuration-API-1" href="Configuration-API.html#Configuration-API">8.10 Configuration API</a></li>
+    <li><a name="toc-Introspection-1" href="Introspection.html#Introspection">8.11 Introspection</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_002asource_002dregistry_002dparameter_002a-variable-1" href="_002asource_002dregistry_002dparameter_002a-variable.html#g_t_002asource_002dregistry_002dparameter_002a-variable">8.11.1 *source-registry-parameter* variable</a></li>
+      <li><a name="toc-Information-about-system-dependencies-1" href="Information-about-system-dependencies.html#Information-about-system-dependencies">8.11.2 Information about system dependencies</a></li>
+    </ul></li>
+    <li><a name="toc-Status-1" href="Status.html#Status">8.12 Status</a></li>
+    <li><a name="toc-Rejected-ideas-1" href="Rejected-ideas.html#Rejected-ideas">8.13 Rejected ideas</a></li>
+    <li><a name="toc-TODO-1" href="TODO.html#TODO">8.14 TODO</a></li>
+    <li><a name="toc-Credits-for-the-source_002dregistry-1" href="Credits-for-the-source_002dregistry.html#Credits-for-the-source_002dregistry">8.15 Credits for the source-registry</a></li>
+  </ul></li>
+  <li><a name="toc-Controlling-where-ASDF-saves-compiled-files-1" href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">9 Controlling where ASDF saves compiled files</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Output-Configurations-1" href="Output-Configurations.html#Output-Configurations">9.1 Output Configurations</a></li>
+    <li><a name="toc-Backward-Compatibility-2" href="Output-Backward-Compatibility.html#Output-Backward-Compatibility">9.2 Backward Compatibility</a></li>
+    <li><a name="toc-Configuration-DSL-2" href="Output-Configuration-DSL.html#Output-Configuration-DSL">9.3 Configuration DSL</a></li>
+    <li><a name="toc-Configuration-Directories-2" href="Output-Configuration-Directories.html#Output-Configuration-Directories">9.4 Configuration Directories</a></li>
+    <li><a name="toc-Shell_002dfriendly-syntax-for-configuration-2" href="Output-Shell_002dfriendly-syntax-for-configuration.html#Output-Shell_002dfriendly-syntax-for-configuration">9.5 Shell-friendly syntax for configuration</a></li>
+    <li><a name="toc-Semantics-of-Output-Translations-1" href="Semantics-of-Output-Translations.html#Semantics-of-Output-Translations">9.6 Semantics of Output Translations</a></li>
+    <li><a name="toc-Caching-Results-2" href="Output-Caching-Results.html#Output-Caching-Results">9.7 Caching Results</a></li>
+    <li><a name="toc-Output-location-API-1" href="Output-location-API.html#Output-location-API">9.8 Output location API</a></li>
+    <li><a name="toc-Credits-for-output-translations-1" href="Credits-for-output-translations.html#Credits-for-output-translations">9.9 Credits for output translations</a></li>
+  </ul></li>
+  <li><a name="toc-eraChu-Li-" href="eraChu-Li-.html#g_t_30a8_30e9_30fc_51e6_7406">10 エラー処理</a>
+  <ul class="no-bullet">
+    <li><a name="toc-ASDFnoera" href="eraChu-Li-.html#ASDFnoera">10.1 ASDFのエラー</a></li>
+    <li><a name="toc-konpairuShi-noeraJing-Gao-noChu-Li-" href="eraChu-Li-.html#konpairuShi-noeraJing-Gao-noChu-Li-">10.2 コンパイル時のエラー・警告の処理</a></li>
+  </ul></li>
+  <li><a name="toc-Miscellaneous-additional-functionality-1" href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality">11 Miscellaneous additional functionality</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Controlling-file-compilation-1" href="Controlling-file-compilation.html#Controlling-file-compilation">11.1 Controlling file compilation</a></li>
+    <li><a name="toc-Controlling-source-file-character-encoding-1" href="Controlling-source-file-character-encoding.html#Controlling-source-file-character-encoding">11.2 Controlling source file character encoding</a></li>
+    <li><a name="toc-Miscellaneous-Functions-1" href="Miscellaneous-Functions.html#Miscellaneous-Functions">11.3 Miscellaneous Functions</a></li>
+    <li><a name="toc-Some-Utility-Functions-1" href="Some-Utility-Functions.html#Some-Utility-Functions">11.4 Some Utility Functions</a></li>
+  </ul></li>
+  <li><a name="toc-Zui-Xin-Ban-woShou-niRu-reru" href="Zui-Xin-Ban-woShou-niRu-reru.html#g_t_6700_65b0_7248_3092_624b_306b_5165_308c_308b">12 最新版を手に入れる</a></li>
+  <li><a name="toc-FAQ-1" href="FAQ.html#FAQ">13 FAQ</a>
+  <ul class="no-bullet">
+    <li><a name="toc-dokonibaguwoBao-Gao-surebayoidesuka" href="dokonibaguwoBao-Gao-surebayoidesuka.html#g_t_3069_3053_306b_30d0_30b0_3092_5831_544a_3059_308c_3070_3088_3044_3067_3059_304b">13.1 どこにバグを報告すればよいですか</a></li>
+    <li><a name="toc-meringurisuto" href="meringurisuto.html#g_t_30e1_30fc_30ea_30f3_30b0_30ea_30b9_30c8">13.2 メーリングリスト</a></li>
+    <li><a name="toc-_0060_0060What-has-changed-between-ASDF-1_002c-ASDF-2_002c-and-ASDF-3_003f_0027_0027" href="What-has-changed-between-ASDF-1-ASDF-2-and-ASDF-3_003f.html#What-has-changed-between-ASDF-1-ASDF-2-and-ASDF-3_003f">13.3 &ldquo;What has changed between ASDF 1, ASDF 2, and ASDF 3?&rdquo;</a>
+    <ul class="no-bullet">
+      <li><a name="toc-What-are-ASDF-1_002c-ASDF-2_002c-and-ASDF-3_003f" href="What-are-ASDF-1-2-3_003f.html#What-are-ASDF-1-2-3_003f">13.3.1 What are ASDF 1, ASDF 2, and ASDF 3?</a></li>
+      <li><a name="toc-How-do-I-detect-the-ASDF-version_003f-1" href="How-do-I-detect-the-ASDF-version_003f.html#How-do-I-detect-the-ASDF-version_003f">13.3.2 How do I detect the ASDF version?</a></li>
+      <li><a name="toc-ASDF-can-portably-name-files-in-subdirectories-1" href="ASDF-can-portably-name-files-in-subdirectories.html#ASDF-can-portably-name-files-in-subdirectories">13.3.3 ASDF can portably name files in subdirectories</a></li>
+      <li><a name="toc-Output-translations-1" href="Output-translations.html#Output-translations">13.3.4 Output translations</a></li>
+      <li><a name="toc-Source-Registry-Configuration-1" href="Source-Registry-Configuration.html#Source-Registry-Configuration">13.3.5 Source Registry Configuration</a></li>
+      <li><a name="toc-Usual-operations-are-made-easier-to-the-user-1" href="Usual-operations-are-made-easier-to-the-user.html#Usual-operations-are-made-easier-to-the-user">13.3.6 Usual operations are made easier to the user</a></li>
+      <li><a name="toc-Many-bugs-have-been-fixed-1" href="Many-bugs-have-been-fixed.html#Many-bugs-have-been-fixed">13.3.7 Many bugs have been fixed</a></li>
+      <li><a name="toc-ASDF-itself-is-versioned-1" href="ASDF-itself-is-versioned.html#ASDF-itself-is-versioned">13.3.8 ASDF itself is versioned</a></li>
+      <li><a name="toc-ASDF-can-be-upgraded-1" href="ASDF-can-be-upgraded.html#ASDF-can-be-upgraded">13.3.9 ASDF can be upgraded</a></li>
+      <li><a name="toc-Decoupled-release-cycle-1" href="Decoupled-release-cycle.html#Decoupled-release-cycle">13.3.10 Decoupled release cycle</a></li>
+      <li><a name="toc-Pitfalls-of-the-transition-to-ASDF-2-1" href="Pitfalls-of-the-transition-to-ASDF-2.html#Pitfalls-of-the-transition-to-ASDF-2">13.3.11 Pitfalls of the transition to ASDF 2</a></li>
+      <li><a name="toc-Pitfalls-of-the-upgrade-to-ASDF-3-1" href="Pitfalls-of-the-upgrade-to-ASDF-3.html#Pitfalls-of-the-upgrade-to-ASDF-3">13.3.12 Pitfalls of the upgrade to ASDF 3</a></li>
+      <li><a name="toc-What-happened-to-the-bundle-operations_003f" href="What-happened-to-the-bundle-operations.html#What-happened-to-the-bundle-operations">13.3.13 What happened to the bundle operations?</a></li>
+    </ul></li>
+    <li><a name="toc-Issues-with-installing-the-proper-version-of-ASDF-1" href="Issues-with-installing-the-proper-version-of-ASDF.html#Issues-with-installing-the-proper-version-of-ASDF">13.4 Issues with installing the proper version of ASDF</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_0060_0060My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f_0027_0027" href="My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f.html#My-Common-Lisp-implementation-comes-with-an-outdated-version-of-ASDF_002e-What-to-do_003f">13.4.1 &ldquo;My Common Lisp implementation comes with an outdated version of ASDF. What to do?&rdquo;</a></li>
+      <li><a name="toc-_0060_0060I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f_0027_0027" href="I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f.html#I_0027m-a-Common-Lisp-implementation-vendor_002e-When-and-how-should-I-upgrade-ASDF_003f">13.4.2 &ldquo;I&rsquo;m a Common Lisp implementation vendor. When and how should I upgrade ASDF?&rdquo;</a></li>
+      <li><a name="toc-After-upgrading-ASDF_002c-ASDF-_0028and-Quicklisp_0029-can_0027t-find-my-systems" href="After-upgrading-ASDF.html#After-upgrading-ASDF">13.4.3 After upgrading ASDF, ASDF (and Quicklisp) can&rsquo;t find my systems</a></li>
+    </ul></li>
+    <li><a name="toc-Issues-with-configuring-ASDF-1" href="Issues-with-configuring-ASDF.html#Issues-with-configuring-ASDF">13.5 Issues with configuring ASDF</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_0060_0060How-can-I-customize-where-fasl-files-are-stored_003f_0027_0027" href="How-can-I-customize-where-fasl-files-are-stored_003f.html#How-can-I-customize-where-fasl-files-are-stored_003f">13.5.1 &ldquo;How can I customize where fasl files are stored?&rdquo;</a></li>
+      <li><a name="toc-_0060_0060How-can-I-wholly-disable-the-compiler-output-cache_003f_0027_0027" href="How-can-I-wholly-disable-the-compiler-output-cache_003f.html#How-can-I-wholly-disable-the-compiler-output-cache_003f">13.5.2 &ldquo;How can I wholly disable the compiler output cache?&rdquo;</a></li>
+    </ul></li>
+    <li><a name="toc-Issues-with-using-and-extending-ASDF-to-define-systems-1" href="Issues-with-using-and-extending-ASDF-to-define-systems.html#Issues-with-using-and-extending-ASDF-to-define-systems">13.6 Issues with using and extending ASDF to define systems</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_0060_0060How-can-I-cater-for-unit_002dtesting-in-my-system_003f_0027_0027" href="How-can-I-cater-for-unit_002dtesting-in-my-system_003f.html#How-can-I-cater-for-unit_002dtesting-in-my-system_003f">13.6.1 &ldquo;How can I cater for unit-testing in my system?&rdquo;</a></li>
+      <li><a name="toc-_0060_0060How-can-I-cater-for-documentation-generation-in-my-system_003f_0027_0027" href="How-can-I-cater-for-documentation-generation-in-my-system_003f.html#How-can-I-cater-for-documentation-generation-in-my-system_003f">13.6.2 &ldquo;How can I cater for documentation generation in my system?&rdquo;</a></li>
+      <li><a name="toc-_0060_0060How-can-I-maintain-non_002dLisp-_0028e_002eg_002e-C_0029-source-files_003f_0027_0027" href="How-can-I-maintain-non_002dLisp-_0028e_002eg_002e-C_0029-source-files_003f.html#How-can-I-maintain-non_002dLisp-_0028e_002eg_002e-C_0029-source-files_003f">13.6.3 &ldquo;How can I maintain non-Lisp (e.g. C) source files?&rdquo;</a></li>
+      <li><a name="toc-_0060_0060I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f_0027_0027" href="I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f.html#I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f">13.6.4 &ldquo;I want to put my module&rsquo;s files at the top level.  How do I do this?&rdquo;</a></li>
+      <li><a name="toc-How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f-1" href="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f.html#How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f">13.6.5 How do I create a system definition where all the source files have a .cl extension?</a></li>
+      <li><a name="toc-How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f-1" href="How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f.html#How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f">13.6.6 How do I mark a source file to be loaded only and not compiled?</a></li>
+      <li><a name="toc-How-do-I-work-with-readtables_003f-1" href="How-do-I-work-with-readtables_003f.html#How-do-I-work-with-readtables_003f">13.6.7 How do I work with readtables?</a>
+      <ul class="no-bullet">
+        <li><a name="toc-How-should-my-system-use-a-readtable-exported-by-another-system_003f" href="How-do-I-work-with-readtables_003f.html#How-should-my-system-use-a-readtable-exported-by-another-system_003f">13.6.7.1 How should my system use a readtable exported by another system?</a></li>
+        <li><a name="toc-How-should-my-library-make-a-readtable-available-to-other-systems_003f" href="How-do-I-work-with-readtables_003f.html#How-should-my-library-make-a-readtable-available-to-other-systems_003f">13.6.7.2 How should my library make a readtable available to other systems?</a></li>
+      </ul></li>
+      <li><a name="toc-How-can-I-capture-ASDF_0027s-output_003f-1" href="How-can-I-capture-ASDF_0027s-output_003f.html#How-can-I-capture-ASDF_0027s-output_003f">13.6.8 How can I capture ASDF&rsquo;s output?</a></li>
+      <li><a name="toc-_002aLOAD_002dPATHNAME_002a-and-_002aLOAD_002dTRUENAME_002a-have-weird-values_002c-help_0021" href="LOAD_002dPATHNAME-has-a-weird-value.html#LOAD_002dPATHNAME-has-a-weird-value">13.6.9 *LOAD-PATHNAME* and *LOAD-TRUENAME* have weird values, help!</a></li>
+    </ul></li>
+    <li><a name="toc-ASDF-development-FAQs-1" href="ASDF-development-FAQs.html#ASDF-development-FAQs">13.7 ASDF development FAQs</a>
+    <ul class="no-bullet">
+      <li><a name="toc-How-do-I-run-the-tests-interactively-in-a-REPL_003f-1" href="How-do-I-run-the-tests-interactively-in-a-REPL_003f.html#How-do-I-run-the-tests-interactively-in-a-REPL_003f">13.7.1 How do I run the tests interactively in a REPL?</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a name="toc-ASDFpuroziekutodeJin-Xing-ZhongnoZuo-Ye-" href="ASDFpuroziekutodeJin-Xing-ZhongnoZuo-Ye-.html#ASDF_30d7_30ed_30b8_30a7_30af_30c8_3067_9032_884c_4e2d_306e_4f5c_696d">ASDFプロジェクトで進行中の作業</a></li>
+  <li><a name="toc-Can-Kao-WenXian-" href="Can-Kao-WenXian-.html#g_t_53c2_8003_6587_732e">参考文献</a></li>
+  <li><a name="toc-Suo-Yin-_0028Yong-Yu-_0029" href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09">索引（用語）</a></li>
+  <li><a name="toc-Suo-Yin-_0028Guan-Shu-tomakuro_0029" href="Suo-Yin-_0028Guan-Shu-tomakuro_0029.html#g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09">索引（関数とマクロ）</a></li>
+  <li><a name="toc-Suo-Yin-_0028Bian-Shu-_0029" href="Suo-Yin-_0028Bian-Shu-_0029.html#g_t_7d22_5f15_ff08_5909_6570_ff09">索引（変数）</a></li>
+  <li><a name="toc-Suo-Yin-_0028kurasutoXing-_0029" href="Suo-Yin-_0028kurasutoXing-_0029.html#g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09">索引（クラスと型）</a></li>
+</ul>
+</div>
+
+
+
+
+<a name="Top"></a>
+<div class="header">
+<p>
+Next: <a href="hazimeni.html#g_t_306f_3058_3081_306b" accesskey="n" rel="next">はじめに</a>, Previous: <a href="../../index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../../index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="ASDF_003a-Another-System-Definition-Facility"></a>
+<h1 class="top">ASDF: Another System Definition Facility</h1>
+<p>バージョン3.3.2.11 マニュアル
+</p>
+<p>このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+</p>
+<p>このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+<a href="https://common-lisp.net/project/asdf/asdf.html">https://common-lisp.net/project/asdf/asdf.html</a> </p>
+<p>[訳者補足]
+</p>
+<p>この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（<a href="https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja">https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja</a>） 翻訳に関する訂正、意見などは常に歓迎します。その際は<a href="https://gitlab.common-lisp.net/hishimaru/asdf/issues">Issues</a>を使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+</p>
+<p>[訳者補足終わり]
+</p>
+
+<p>ASDF Copyright &copy; 2001-2018 Daniel Barlow and contributors.
+</p>
+<p>This manual Copyright &copy; 2001-2018 Daniel Barlow and contributors.
+</p>
+<p>This manual revised &copy; 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+</p>
+<p>This manual translated into Japanese &copy; 2018 Hugo Ishimaru.
+</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+</p>
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="hazimeni.html#g_t_306f_3058_3081_306b" accesskey="1">はじめに</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="kuitukusutatogaido.html#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9" accesskey="2">クイックスタートガイド</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFworodosuru.html#ASDF_3092_30ed_30fc_30c9_3059_308b" accesskey="3">ASDFをロードする</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="4">ASDFを設定する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046" accesskey="5">ASDFを使う</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b" accesskey="6">defsystemでシステムを定義する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="7">ASDFのオブジェクトモデル</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="8">ASDFがシステムを探す場所を設定する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" accesskey="9">Controlling where ASDF saves compiled files</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="eraChu-Li-.html#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality">Miscellaneous additional functionality</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Zui-Xin-Ban-woShou-niRu-reru.html#g_t_6700_65b0_7248_3092_624b_306b_5165_308c_308b">最新版を手に入れる</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="FAQ.html#FAQ">FAQ</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ASDFpuroziekutodeJin-Xing-ZhongnoZuo-Ye-.html#ASDF_30d7_30ed_30b8_30a7_30af_30c8_3067_9032_884c_4e2d_306e_4f5c_696d">ASDFプロジェクトで進行中の作業</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Can-Kao-WenXian-.html#g_t_53c2_8003_6587_732e">参考文献</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09">索引（用語）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Suo-Yin-_0028Guan-Shu-tomakuro_0029.html#g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09">索引（関数とマクロ）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Suo-Yin-_0028Bian-Shu-_0029.html#g_t_7d22_5f15_ff08_5909_6570_ff09">索引（変数）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Suo-Yin-_0028kurasutoXing-_0029.html#g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09">索引（クラスと型）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="hazimeni.html#g_t_306f_3058_3081_306b" accesskey="n" rel="next">はじめに</a>, Previous: <a href="../../index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../../index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

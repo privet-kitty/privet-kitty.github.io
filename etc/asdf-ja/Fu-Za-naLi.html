@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>複雑な例 (ASDF マニュアル)</title>
+
+<meta name="description" content="複雑な例 (ASDF マニュアル)">
+<meta name="keywords" content="複雑な例 (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b" rel="up" title="defsystemでシステムを定義する">
+<link href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" rel="next" title="defsystemの文法">
+<link href="Dan-Chun-naLi.html#g_t_5358_7d14_306a_4f8b" rel="prev" title="単純な例">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_8907_96d1_306a_4f8b"></a>
+<div class="header">
+<p>
+Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" rel="next">defsystemの文法</a>, Previous: <a href="Dan-Chun-naLi.html#g_t_5358_7d14_306a_4f8b" accesskey="p" rel="prev">単純な例</a>, Up: <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b" accesskey="u" rel="up">defsystemでシステムを定義する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Fu-Za-naLi"></a>
+<h3 class="section">6.2 複雑な例</h3>
+<a name="index-defsystem-1"></a>
+
+<p><code>defsystem</code>のより複雑な使い方を説明するために、いくぶん込み入った例を挙げてみましょう。
+</p>
+<div class="lisp">
+<pre class="lisp">(in-package :asdf-user)
+
+(defsystem &quot;foo&quot;
+  :version (:read-file-form &quot;variables&quot; :at (3 2))
+  :components
+  ((:file &quot;package&quot;)
+   (:file &quot;variables&quot; :depends-on (&quot;package&quot;))
+   (:module &quot;mod&quot;
+     :depends-on (&quot;package&quot;)
+     :serial t
+     :components ((:file &quot;utils&quot;)
+                  (:file &quot;reader&quot;)
+                  (:file &quot;cooker&quot;)
+                  (:static-file &quot;data.raw&quot;))
+     :output-files (compile-op (o c) (list &quot;data.cooked&quot;))
+     :perform (compile-op :after (o c)
+        (cook-data
+         :in (component-pathname (find-component c &quot;data.raw&quot;))
+         :out (first (output-files o c)))))
+   (:file &quot;foo&quot; :depends-on (&quot;mod&quot;))))
+
+(defmethod action-description
+    ((o compile-op) (c (eql (find-component &quot;foo&quot; &quot;mod&quot;))))
+  &quot;cooking data&quot;)
+</pre></div>
+
+<p>それでは例を説明していきます。
+</p>
+<ul>
+<li> このファイル（<samp>foo.asd</samp>）は主としてシステム<code>foo</code>を定義しますが、それ以外のフォームも含んでいます。この点については以下で説明します。
+
+</li><li> このシステムは、Lispのソースファイルのほかに<code>&quot;mod&quot;</code>という名の<code>:module</code>コンポーネントを含んでいます。<code>&quot;mod&quot;</code>は３つのソースファイル（<samp>utils.lisp</samp>、<samp>reader.lisp</samp>、<samp>cooker.lisp</samp>）と<samp>data.raw</samp>の集まりです。
+
+</li><li> <code>:static-file</code>には、Lispのソースファイルと違って暗黙の拡張子がないことに注意してください。
+
+</li><li> <code>&quot;mod&quot;</code>コンポーネントに含まれる４つのファイルは、システムのディレクトリ直下の<samp>mod/</samp>というサブディレクトリにあるでしょう。（このディレクトリの場所は<code>:pathname</code>オプションで任意に上書きすることができます。<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>内の解説を参照してください。）
+
+</li><li> <code>:serial t</code>は<code>mod</code>のそれぞれの子コンポーネントがその前のコンポーネントに依存していることを示しています。つまり、<samp>cooker.lisp</samp>は<samp>reader.lisp</samp>に依存し、<samp>reader.lisp</samp>は<samp>utils.lisp</samp>に依存します。最後に<samp>data.raw</samp>がこれら全てに依存していることになりますが、静的なファイルですから特に動作への影響はもたらしません。しかし、<code>(:static-file &quot;data.raw&quot;)</code>が最初に置かれていた場合は、このデータファイルが変更されるとほかのすべてのソースファイルが再コンパイルされることになります。それはおそらくこの例では不都合でしょう。
+
+</li><li> <code>:output-files</code>、<code>:perform</code>以下のメソッド形式の表現は、特定のコンポーネントについてメソッドを定義するための省略表現です。つまり、以下の部分
+
+<div class="lisp">
+<pre class="lisp">     :output-files (compile-op (o c) (list &quot;data.cooked&quot;))
+     :perform (compile-op :after (o c)
+        (cook-data
+         :in (component-pathname (find-component c &quot;data.raw&quot;))
+         :out (first (output-files o c))))
+</pre></div>
+
+<p>は次のようにメソッドを定義しているのと同じことになります。
+</p>
+<div class="lisp">
+<pre class="lisp">(defmethod output-files ((o compile-op) (c (eql ...)))
+  (list &quot;data.cooked&quot;))
+(defmethod perform :after ((o compile-op) (c (eql ...)))
+  (cook-data
+   :in (component-pathname (find-component c &quot;data.raw&quot;))
+   :out (first (output-files o c))))
+</pre></div>
+
+<p>ただし、<code>...</code>の部分は当該のコンポーネントに対応します。上の例では、次のような式に相当するでしょう。
+</p>
+<div class="lisp">
+<pre class="lisp">(find-component &quot;foo&quot; &quot;mod&quot;)
+</pre></div>
+
+<p>文法の詳細は<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>で、これらのメソッドが何をしているかは<a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>以下の<a href="Cao-Zuo-.html#g_t_64cd_4f5c">操作</a>で解説されています。
+</p>
+</li><li> 
+末尾の<code>defmethod</code>も似たような定義をしていますが、<code>action-description</code>メソッドは（ASDF 3.1.5では）<code>defsystem</code>内で定義することができないため、外に分離されています。<code>action-description</code>メソッドは廃止予定の<code>explain</code>インターフェースの代わりにサポートされた機能であり、操作とコンポーネントを引数に取って、操作の説明を返すメソッドです。この例では、コンポーネント<code>&quot;mod&quot;</code>の<code>compile-op</code>がデータクックをする操作であることを説明しています。
+
+
+</li><li> この例で重要なポイントは、データ処理に関わる入力・出力ファイルがASDFに登録されていることであり、<code>cook-data</code>はそれらのパス名にASDFを通じてアクセスしています。
+
+
+
+</li><li> この<samp>.asd</samp>ファイルは<code>(in-package :asdf-user)</code>から始まっていますが、これは冗長な記述であり、不要ですし推奨もされません。しかし、より複雑なことをしたい場合には（やはり推奨はされませんが）<code>in-package</code>でパッケージを移動するのが役に立つかもしれません。
+
+</li><li> ASDFは<samp>.asd</samp>ファイルを<code>cl:load</code>でロードするわけではないし、あなた自身もそのように使うべきではありません。システムを操作したいときにはASDFを通してアクセスするべきです。しかし、どうしても<samp>.asd</samp>ファイルを直接ロードしなければならない事情があるならば、<code>asdf:load-asd</code>が使えます。<code>asdf:load-asd</code>は<code>*package*</code>を<code>asdf-user</code>に束縛してからロードを行います。最近のバージョンのSLIME（2013-02以降）では、<code>slime-asdf</code>拡張を使っていれば、<samp>.asd</samp>ファイルに対して<kbd>C-c C-k</kbd>で<code>slime-compile-and-load-file</code>を実行したときにも、適切な処理を行うでしょう。
+
+</li><li> システム定義を簡潔にしたいのであれば<code>in-package</code>を使うべきではありません。<code>in-package</code>（とその前の<code>defpackage</code>）を使うのは、新しいクラス、関数、変数、マクロ等を<code>.asd</code>ファイル中で定義する際に、名前の衝突を避けるためだけにしましょう。古いバージョンのASDFのマニュアルでは<samp>.asd</samp>ファイル中で<code>in-package</code>を使うような記法が推奨されていましたが、ASDF 3ではもはや推奨されていません。代わりに、ASDFの拡張を定義した上で<code>:defsystem-depends-on</code>を使ってそれをロードすることを勧めます。（→ <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>）
+
+</li><li> より一般的な話をすれば、<code>.asd</code>ファイルの中では<code>asdf</code>、<code>common-lisp</code>、<code>uiop</code>パッケージのシンボルを常に使うことができます。中でもいちばん重要なのは<code>defsystem</code>ですが、パッケージの接頭辞を使って<code>asdf:defsystem</code>と書くのは冗長で悪いやり方です。単に<code>(defsystem ...)</code>と書きましょう。パッケージの接頭辞を付けるのは、（<code>asdf</code>パッケージを<code>use</code>していないパッケージから）動的にシステム定義を生成するような場合のみにしてください。
+
+</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
+
+</li><li> <code>asdf-user</code>が<code>uiop</code>を<code>use</code>しているのはASDF 3.1からであり、それ以前のASDF 3では<code>uiop/package</code>のみが使えました。したがって、UIOPの関数を使う場合には、いちいち<code>uiop:</code>という接頭辞を付けるか、システムの依存関係を<code>(defsystem foo :depends-on ((:version &quot;asdf&quot; &quot;3.1.2&quot;))</code>で明示するか、あるいは<code>#-asdf3.1 (error &quot;MY-SYSTEM requires ASDF 3.1.2&quot;)</code>という行を加えるかすることを勧めます。
+
+</li><li> 最後に、この例ではメタデータはほぼ省略されていますが、別のソースファイル中で定義されているバージョンを抽出する方法を示しています。<code>(:read-file-form &quot;variables&quot; :at (3 2))</code>は、<samp>variables.lisp</samp>の４番目のフォーム中の３番目のフォーム（Lispコードでは０番目から数えるので３番目のフォーム中の２番目のフォームという指定になっています）からバージョンを抽出するように指定しています。おそらく、<samp>variables.lisp</samp>の４番目のフォームは<code>(defparameter *foo-version* &quot;5.6.7&quot;)</code>などとなっていて、<code>&quot;5.6.7&quot;</code>がバージョンの文字列として使われるのでしょう。
+</li></ul>
+
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT16" href="#DOCF16">(16)</a></h3>
+<p>ASDF 1、2（バージョン2.26まで）は、各<samp>.asd</samp>ファイルに対して<code>asdf<em>N</em></code>という一時的なパッケージを作っては削除していました。これは名前の衝突を減らすための仕様でしたが、目的にかなってもいなかったし、ものごとを複雑にしただけでした。ASDF 3は単に共通のパッケージである<code>asdf-user</code>を使い、シンボル衝突の回避はCommon Lispの慣習に委ねます。<code>asdf-user</code>パッケージの特筆すべき点は、<code>uiop/common-lisp</code>を<code>use</code>していることです。このパッケージは<code>common-lisp</code>パッケージのすべてのシンボルを再エクスポートしていて、いくつかのCommon Lisp処理系のANSI CL違反の挙動が修正されています。しかし、Corman Lisp、GCL、Genera、MCLを使っているのでなければ、この点を気にするべきではありません。</p>
+</div>
+
+
+
+</body>
+</html>
