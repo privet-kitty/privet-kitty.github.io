@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="index.html#Top" rel="up" title="Top">
-<link href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea" rel="next" title="ソースレジストリ">
+<link href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a" rel="next" title="ソースレジストリの設定">
 <link href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570" rel="prev" title="関連する関数">
 <style type="text/css">
 <!--
@@ -91,25 +91,26 @@ ul.no-bullet {list-style: none}
 <a name="ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b"></a>
 <div class="header">
 <p>
-Next: <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" accesskey="n" rel="next">Controlling where ASDF saves compiled files</a>, Previous: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="p" rel="prev">ASDFのオブジェクトモデル</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="n" rel="next">ASDFがコンパイルされたファイルを保持する場所を設定する</a>, Previous: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="p" rel="prev">ASDFのオブジェクトモデル</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru"></a>
 <h2 class="chapter">8 ASDFがシステムを探す場所を設定する</h2>
+<a name="index-sosurezisutori"></a>
 
 
 <table class="menu" border="0" cellspacing="0">
-<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea" accesskey="1">ソースレジストリ</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a" accesskey="1">ソースレジストリの設定</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" accesskey="2">Truenames and other dangers</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="XDG-base-directory.html#XDG-base-directory" accesskey="3">XDG base directory</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea" accesskey="3">XDGベースディレクトリ</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Backward-Compatibility.html#Backward-Compatibility" accesskey="4">Backward Compatibility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="4">後方互換性のための機能（ソースレジストリ）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Configuration-DSL.html#Configuration-DSL" accesskey="5">Configuration DSL</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL" accesskey="5">ソースレジストリを設定するDSL</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Configuration-Directories.html#Configuration-Directories" accesskey="6">Configuration Directories</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="6">設定ディレクトリ（ソースレジストリ）</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration" accesskey="7">Shell-friendly syntax for configuration</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>

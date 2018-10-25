@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -42,10 +42,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>XDG base directory (ASDF マニュアル)</title>
+<title>XDGベースディレクトリ (ASDF マニュアル)</title>
 
-<meta name="description" content="XDG base directory (ASDF マニュアル)">
-<meta name="keywords" content="XDG base directory (ASDF マニュアル)">
+<meta name="description" content="XDGベースディレクトリ (ASDF マニュアル)">
+<meta name="keywords" content="XDGベースディレクトリ (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
-<link href="Backward-Compatibility.html#Backward-Compatibility" rel="next" title="Backward Compatibility">
+<link href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="next" title="後方互換性のための機能（ソースレジストリ）">
 <link href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" rel="prev" title="Truenames and other dangers">
 <style type="text/css">
 <!--
@@ -88,36 +88,22 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="XDG-base-directory"></a>
+<a name="XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea"></a>
 <div class="header">
 <p>
-Next: <a href="Backward-Compatibility.html#Backward-Compatibility" accesskey="n" rel="next">Backward Compatibility</a>, Previous: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" accesskey="p" rel="prev">Truenames and other dangers</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="n" rel="next">後方互換性のための機能（ソースレジストリ）</a>, Previous: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" accesskey="p" rel="prev">Truenames and other dangers</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="XDG-base-directory-1"></a>
-<h3 class="section">8.3 XDG base directory</h3>
+<a name="XDGbesudeirekutori"></a>
+<h3 class="section">8.3 XDGベースディレクトリ</h3>
 
-<p>Note that we purport to respect the XDG base directory specification
-as to where configuration files are located,
-where data files are located,
-where output file caches are located.
-Mentions of XDG variables refer to that document.
+<p>設定ファイルやデータファイル、キャッシュファイルを保持する場所に関しては、我々はXDGベースディレクトリの仕様に従うことを目指しています。XDGの環境変数については、次のドキュメントを参照しています。
 </p>
 <p><a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html</a>
 </p>
-<p>This specification allows the user to specify some environment variables
-to customize how applications behave to his preferences.
+<p>この仕様は、ユーザーがアプリケーションをカスタマイズするための環境変数を規定しています。
 </p>
-<p>On Windows platforms, even when not using Cygwin, and starting with ASDF 3.1.5,
-we still do a best effort at following the XDG base directory specification,
-even though it doesn&rsquo;t exactly fit common practice for Windows applications.
-However, we replace the fixed Unix paths <samp>~/.local</samp>, <samp>/usr/local</samp> and <samp>/usr</samp>
-with their rough Windows equivalent <samp>Local AppData</samp>, <samp>AppData</samp>, <samp>Common AppData</samp>, etc.
-Since support for querying the Windows registry
-is not possible to do in reasonable amounts of portable Common Lisp code,
-ASDF 3 relies on the environment variables that Windows usually exports,
-and are hopefully in synch with the Windows registry.
-If you care about the details, see <samp>uiop/configuration.lisp</samp> and don&rsquo;t hesitate to suggest improvements.
+<p>ASDF 3.1.5より、Windows上で（Cygwin不使用で）もXDGベースディレクトリの仕様に可能な限り従うようになりました。もっとも、この仕様はWindowsアプリケーションの一般的な慣習に必ずしも適合するわけではありません。この際、Unixのパス<samp>~/.local</samp>、<samp>/usr/local</samp>、<samp>/usr</samp>は、おおむねWindows上で同等と考えられる<samp>Local AppData</samp>、<samp>AppData</samp>、<samp>Common AppData</samp>などに置き換えています。また、Windowsのレジストリに問い合わせるのは、大量のポータブルなCommon Lispコードにおいては不可能ですから、ASDF 3は（レジストリと同期していることを願って）対応する環境変数を使っています。詳細については<samp>uiop/configuration.lisp</samp>を参照してください。また、改善案があればぜひお願いします。
 </p>
 
 

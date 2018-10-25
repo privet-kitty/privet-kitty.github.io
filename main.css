@@ -1,10 +1,12 @@
+/* -*- encoding: utf-8 -*- */
+
 body {
     max-width: 980px;
     margin: auto;
     padding: 0.5em 0em 3em 0em;
     background: #ffffff;
     color: #111111;
-    font-family: メイリオ, Meiryo;
+    font-family: メイリオ, Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 h1#webtitle {font-size: 222%; font-family:"Times New Roman";}
 h2 {font-size: 137%; font-weight: bold; margin-top: 1.5em;}

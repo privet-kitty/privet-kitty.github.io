@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>アウトプットトランスレーションの設定 (ASDF マニュアル)</title>
+
+<meta name="description" content="アウトプットトランスレーションの設定 (ASDF マニュアル)">
+<meta name="keywords" content="アウトプットトランスレーションの設定 (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがコンパイルされたファイルを保持する場所を設定する">
+<link href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" rel="next" title="Output Backward Compatibility">
+<link href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="prev" title="ASDFがコンパイルされたファイルを保持する場所を設定する">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a"></a>
+<div class="header">
+<p>
+Next: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" accesskey="n" rel="next">Output Backward Compatibility</a>, Previous: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFがコンパイルされたファイルを保持する場所を設定する</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="autopututotoransuresiyonnoShe-Ding-"></a>
+<h3 class="section">9.1 アウトプットトランスレーションの設定</h3>
+
+
+
+<p><em>アウトプットトランスレーション(output translations)</em>は（ソースファイルなどの）入力パスに（faslなどの）出力パスを対応させる仕組みです。アウトプットトランスレーションの設定ファイルは、ソースレジストリと同様に、<a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>の仕様に沿った場所に置かれます。
+</p>
+
+<p>[訳者補足]
+</p>
+<p>アウトプットトランスレーション（や前章で解説したソースレジストリ）の設定を記述したファイルは、<em>システム設定ファイル(system configuration file)</em>または単に<em>設定ファイル(configuration file)</em>と呼ばれます。ファイル形式は<samp>.conf</samp>です。システム定義ファイル（<samp>.asd</samp>ファイル）と混同しないようにしましょう。さらに、<em>設定ディレクトリ(configuration directory)</em>という概念もあります。設定ディレクトリは設定ファイルを含むディレクトリですが、設定ディレクトリ中の設定ファイルはその文法が微妙に異なるので注意が必要です。詳しくは<a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>と<a href="Output-Configuration-Directories.html#Output-Configuration-Directories">Output Configuration Directories</a>を参照してください。
+</p>
+<p>また、以下の記述は、OSや処理系、環境変数によって異なる複雑なロジックを漏れなく解説したものではありませんが、これを補完するのは訳者の手に余ります。正確な挙動を把握する必要がある場合は<samp>output-translations.lisp</samp>と<samp>uiop/configuration.lisp</samp>を参照してください。
+</p>
+<p>アウトプットトランスレーションは次のように設定されます。おおむね、上から順に処理されていくと考えてかまいません。
+</p>
+<p>[訳者補足終わり]
+</p>
+
+<ol>
+<li> アウトプットトランスレーションには、ハードコーディングされた設定が加わることがあります。これはソースレジストリの特別なエントリに対応した特別な出力先として機能します。
+
+</li><li> アプリケーションは、アウトプットトランスレーションのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="Output-location-API.html#Output-location-API">Output location API</a>）
+
+</li><li> 環境変数<code>ASDF_OUTPUT_TRANSLATIONS</code>が存在する場合は、アウトプットトランスレーションがこの変数によって設定されます。
+
+</li><li> 環境変数<code>XDG_CONFIG_DIRS</code>とユーザー設定ファイル<samp>$XDG_CONFIG_DIRS/common-lisp/asdf-output-translations.conf</samp>が存在する場合は、アウトプットトランスレーションがこのファイルによって設定されます。<code>XDG_CONFIG_DIRS</code>のデフォルトの値は<samp>~/.config/</samp>です。
+
+</li><li> 環境変数<code>XDG_CONFIG_DIRS</code>とユーザー設定ディレクトリ<samp>$XDG_CONFIG_DIRS/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合は、アウトプットトランスレーションがこのディレクトリ内の設定ファイルによって設定されます。
+
+</li><li> 設定ファイル<samp>/etc/common-lisp/asdf-output-translations.conf</samp>が存在する場合、アウトプットトランスレーションがこのファイルによって設定されます。Unixのみの処理です。 
+
+</li><li> 設定ディレクトリ<samp>/etc/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合、ソースレジストリがこのディレクトリ内の設定ファイルによって設定されます。Unixのみの処理です。
+<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
+
+</li></ol>
+
+<p>これらの設定は、S式による簡単なDSLで記述します。（→ <a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>） 加えて、環境変数で設定する場合は、よりシェルに向いた文法も用意されています。（→ <a href="Output-Shell_002dfriendly-syntax-for-configuration.html#Output-Shell_002dfriendly-syntax-for-configuration">Output Shell-friendly syntax for configuration</a>）
+</p>
+<p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
+</p>
+<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザー毎のキャッシュが使われます。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
+この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+</p>
+
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
+<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
+<p>[訳注] 順序としては、このキャッシュの場所は上の箇条書きの１番目の処理で追加されます。無効にする方法については<a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
+<p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
+</div>
+
+
+
+</body>
+</html>

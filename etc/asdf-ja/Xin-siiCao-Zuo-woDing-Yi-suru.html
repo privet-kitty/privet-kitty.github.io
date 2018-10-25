@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -99,7 +99,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 
 <p>ASDFは、オブジェクト指向の手法で拡張可能なようにデザインされています。プログラマは<code>operation</code>のサブクラスを作って必要な挙動を実装することで、ASDFに新しい機能を追加することができます。
 </p>
-<p>ASDFの組み込みの操作は、ユーザー定義の操作に対して「特権的」な地位にあるわけではまったくありませんが、開発者の方には、独自の操作を追加するときに決して<code>asdf</code>パッケージを使わないようにお願いします。というのも、名前の衝突は避けるべきですし、かといって我々は「ASDFの操作名を管理するグローバルなレジストリ」をいちいち作りたくもないからです。
+<p>ASDFの組み込みの操作は、ユーザー定義の操作に対して「特権的」な地位にあるわけではありませんが、開発者の方には、独自の操作を追加するときに決して<code>asdf</code>パッケージを使わないようにお願いします。というのも、名前の衝突は避けるべきですし、かといって我々は「ASDFの操作名を管理するグローバルなレジストリ」をいちいち作りたくもないからです。
 </p>
 <p>[訳者補足]
 </p>
@@ -113,7 +113,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
    ))
 </pre></div>
 
-<p><code>non-propagating-operation</code>を除く４つのクラスはすべて、同名のスロットをクラス変数として備えています。<code>selfward-operation</code>は「同一コンポーネントに対する別の操作」に依存する操作です。上の例では、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>に<code>prepare-op</code>と<code>compile-op</code>が適用されなければならないということです。次に、<code>downward-operation</code>は「子コンポーネントに対する操作」に依存する操作です。上の例では<code>downward-operation</code>スロットを省略していますが、既定は<code>nil</code>であり、同じ操作<code>my-load-op</code>を意味します。つまり、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>のすべての子コンポーネントに対して<code>my-load-op</code>が適用されなければならないということです。
+<p><code>non-propagating-operation</code>を除く４つのクラスはすべて、同名のスロットをクラス変数として備えています。<code>selfward-operation</code>は「同一コンポーネントに対する別の操作」に依存する操作です。上の例では、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>に<code>prepare-op</code>と<code>compile-op</code>が適用されます。次に、<code>downward-operation</code>は「子コンポーネントに対する操作」に依存する操作です。上の例では<code>downward-operation</code>スロットを省略していますが、デフォルトの<code>nil</code>は同じ操作<code>my-load-op</code>を意味します。つまり、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>のすべての子コンポーネントに対して<code>my-load-op</code>が適用されます。
 </p>
 <dl>
 <dt><a name="index-downward_002doperation"></a>操作: <strong>downward-operation</strong> <em><var>(downward-operation :type operation-designator :allocation :class)</var></em></dt>
@@ -122,7 +122,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 <dt><a name="index-selfward_002doperation"></a>操作: <strong>selfward-operation</strong> <em><var>(selfward-operation :type (or operation-designator list) :allocation :class)</var></em></dt>
 <dt><a name="index-non_002dpropagating_002doperation"></a>操作: <strong>non-propagating-operation</strong></dt>
 <dd>
-<p><code>operation-designator</code>型は、操作オブジェクト・シンボル・クラスのいずれかです。多くの場合、シンボルが使われるでしょう。その際、<code>nil</code>は「同じ操作」を意味します。
+<p><code>asdf::operation-designator</code>型は、操作オブジェクト・シンボル・クラスのいずれかです。多くの場合、シンボルが使われるでしょう。その際、<code>nil</code>は「同じ操作」を意味します。
 </p>
 <p><code>downward-operation</code>は子コンポーネントについての依存関係を持つ操作です。<code>baz-op</code>が<code>foo-op</code>の<code>downward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>parent</code>に対するアクション<code>(foo-op . parent)</code>を実行する前に、まずは<code>parent</code>のすべての子コンポーネント<code>child</code>についてアクション<code>(baz-op . child)</code>を実行します。
 </p>
@@ -149,14 +149,14 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 <dt><a name="index-perform"></a>総称関数: <strong>perform</strong> <em>operation component</em></dt>
 <dd><p><code>perform</code>は何らかの入力ファイルから出力ファイルを作り出すための総称関数です。<code>prepare-op</code>のように依存関係の伝搬だけするような操作は別にしても、たいていの操作については<code>perform</code>メソッドが最も重要でしょう。<code>perform</code>が呼ばれると、（すべての依存関係について<code>perform</code>が実行されたあと）ターゲットのコンポーネントに対して処理が実行されます。
 </p>
-<p><code>perform</code>メソッドは、その入力と出力のパスを決めるのに<code>input-files</code>と<code>output-files</code>（下述）を呼ばなければなりません。ユーザーが、このメソッドを上書きしたり、<a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">アウトプットトランスレーション</a>を変更したりできるようにするためです。<code>output-files</code>は多値を返しますが、<code>perform</code>は最初の値――出力パス名のリスト――のみを使うべきです。出力ファイルがただ１つと決まっている場合は、代わりに関数<code>output-file</code>が使えます。<code>output-file</code>は出力パス名が１つだけであることを保証し、そのパス名を返します。
+<p><code>perform</code>メソッドは、その入力と出力のパスを決めるのに<code>input-files</code>と<code>output-files</code>（下述）を呼ばなければなりません。ユーザーが、このメソッドを上書きしたり、<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>を変更したりできるようにするためです。<code>output-files</code>は多値を返しますが、<code>perform</code>は最初の値――出力パス名のリスト――のみを使うべきです。出力ファイルがただ１つと決まっている場合は、代わりに関数<code>output-file</code>が使えます。<code>output-file</code>は出力パス名が１つだけであることを保証し、そのパス名を返します。
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-output_002dfiles"></a>総称関数: <strong>output-files</strong> <em>operation component</em></dt>
 <dd><p><code>perform</code>メソッドが何らかの出力ファイルを伴うならば、その出力先をASDFが定められるようにこのメソッドも定義しなくてはなりません。
 </p>
-<p><code>output-files</code>は２つの値を返します。１つ目はパス名のリストであり、２つ目はブーリアンです。ブーリアンが<code>nil</code>の場合（返り値が１つしかなく、２つ目が暗黙に<code>nil</code>となる場合も含む）、<code>:around</code>メソッドが<a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">アウトプットトランスレーション</a>に従ってパス名を変換します。例えば、コンパイルされたオブジェクトファイルが処理系依存のキャッシュとして保存される場合などは、アウトプットトランスレーションが使われています。ブーリアンが<code>t</code>の場合は<code>:around</code>メソッドで変換されることはありません。
+<p><code>output-files</code>は２つの値を返します。１つ目はパス名のリストであり、２つ目はブーリアンです。ブーリアンが<code>nil</code>の場合（返り値が１つしかなく、２つ目が暗黙に<code>nil</code>となる場合も含む）、<code>:around</code>メソッドが<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に従ってパス名を変換します。例えば、コンパイルされたオブジェクトファイルが処理系依存のキャッシュとして保存される場合などは、アウトプットトランスレーションが使われています。ブーリアンが<code>t</code>の場合は<code>:around</code>メソッドで変換されることはありません。
 </p></dd></dl>
 
 <dl>
@@ -166,9 +166,9 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 </p>
 <p>[訳者補足]
 </p>
-<p>上述の５つのサブクラスを継承して操作間の依存関係を指定すれば、<code>component-depends-on</code>メソッドは適切に構成されるので、通常は明示的にこのメソッドを定義する必要はありません。また、特定のコンポーネント、システムに限った依存関係を記述したい場合も、<code>:in-order-to</code>オプションを使えば事足りるでしょう。（→ <a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2">アクションの依存関係</a>） しかし、それらを超えるような複雑な依存関係を指定したい場合――例えば特定の<em>コンポーネント型</em>に対する操作に限って依存関係を追加したい場合など――は、メソッド定義が必要になるかもしれません。
+<p>上述の５つのサブクラスを継承して操作間の依存関係を指定すれば、<code>component-depends-on</code>メソッドは適切に構成されるので、通常は明示的にこのメソッドを定義する必要はありません。また、特定のコンポーネント、システムに対して依存関係を記述したい場合も、<code>:in-order-to</code>オプションを使えば事足りるでしょう。（→ <a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2">アクションの依存関係</a>） しかし、それらを超えるような複雑な依存関係を指定したい場合――例えば特定の<em>コンポーネント型</em>に対する操作に限って依存関係を追加したい場合など――は、メソッド定義が必要になるかもしれません。
 </p>
-<p>なお、名前の印象に反して、コンポーネント間の依存関係を返す関数ではないことに気を付けましょう。<code>:depends-on</code>オプションに与えた依存コンポーネントを調べたい場合は、代わりに<code>component-sideway-dependencies</code>という総称関数があります。
+<p>なお、名前の印象に反して、コンポーネント間の依存関係を返す関数ではないことに気を付けましょう。システムの<code>:depends-on</code>オプションに与えた依存コンポーネントを調べたい場合は、代わりに<code>system-depends-on</code>という総称関数があります。
 </p>
 
 <p>[訳者補足終わり]
@@ -176,7 +176,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 
 <p>自分でこのメソッドを定義する場合は、メソッドで追加したい内容と<code>(call-next-method)</code>で返るリストを常に<code>append</code>して返すことを<em>強く</em>推奨します。あなたがASDFの内部を熟知しているのでない限り、そうしないと「興味深い」エラーが起こる可能性が高いです。これは概念的には、メソッドコンビネーションの<code>append</code>を手動でやっているのと同じことになります。（残念ながら、標準のメソッドコンビネーションを互換的に導入するのは、手遅れでした。）
 </p>
-<p>それでは、返り値について説明しましょう。<code>component-depends-on</code>が返すリストの各エントリもまたリストです。
+<p>それでは、返り値について説明します。<code>component-depends-on</code>が返すリストの各エントリもまたリストです。
 </p>
 <p>各エントリの最初の要素（<code>car</code>）は操作指示子、つまり操作オブジェクトそのものか操作クラスのシンボル（例えば<code>load-op</code>、<code>compile-op</code>、<code>prepare-op</code>など）であり、後者は<code>make-operation</code>でインスタンス化されるでしょう。
 </p>
@@ -191,7 +191,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 
 <dl>
 <dt><a name="index-input_002dfiles"></a>総称関数: <strong>input-files</strong> <em>operation component</em></dt>
-<dd><p><code>input-files</code>は、<code>perform</code>を実行する際の入力ファイルのパス名のリストを返します。
+<dd><p><code>input-files</code>は、<code>perform</code>に対する入力ファイルのパス名のリストを返します。
 </p>
 <p>デフォルトの<code>input-files</code>のメカニズムは賢くできているので、あなたが自らメソッドを定義する必要はないことのほうが多いでしょう。メソッド定義が必要なのは、最終的な入力ファイル（のまとまり）が複数通り考えられるケースのみです。ほとんどの操作は<code>selfward-operation</code>を継承していて、<code>selfward-operation</code>はソースファイルを含むように入力ファイルを適切に設定します。
 </p>
@@ -205,7 +205,7 @@ Previous: <a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4
 <p><code>operation-done-p</code>にメソッドを定義する必要があるのは、ファイルシステム上のタイムスタンプが変わっていなくても前回の操作の実行を無効にしてやりなおすべき状況がある、という場合に限ります。そしてその場合、このメソッドは<code>nil</code>を返すべきでしょう。
 </p>
 
-<p>例えば、このメソッドは<code>test-op</code>については常に<code>nil</code>を返します。テストというのは決して完了する性質のものではないからです。もちろん、単にテストのリポートファイルから結果を読み出すだけの操作として<code>test-report-op</code>のようなものを定義し、システム定義の<code>:in-order-to</code>オプションで<code>test-op</code>をこの操作に委ねて、何度繰り返しても同じになるようにすることは可能ですし、その場合はこのメソッドが<code>t</code>を返すようにしても良いでしょう。
+<p>例えば、このメソッドは<code>test-op</code>については常に<code>nil</code>を返します。テストというのは決して完了する性質の操作ではないからです。もちろん、単にテストのリポートファイルから結果を読み出すだけの操作として<code>test-report-op</code>のようなものを定義し、システム定義の<code>:in-order-to</code>オプションで<code>test-op</code>をこの操作に委ねて、何度繰り返しても同じになるようにすることは可能です。その場合はこのメソッドが<code>t</code>を返すようにしても良いでしょう。
 </p></dd></dl>
 
 

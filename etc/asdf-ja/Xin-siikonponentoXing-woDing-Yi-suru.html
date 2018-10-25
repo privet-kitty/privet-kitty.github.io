@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -100,7 +100,7 @@ Previous: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30
 <p>新しいコンポーネント型を作るには、既存のコンポーネントのサブクラスを作り、新しいクラスに特定化されたメソッドを定義します。
 </p>
 
-<p>例として、新しいコンポーネント型を定義してみましょう。あなたのシステムは処理系依存の機能をいくつか備えています。あなたは、それらのソースファイルを１つの（サポートする）Lisp処理系ごとに１つのサブディレクトリに隔離したいと考えました。まずは<code>cl-source-file</code>のサブクラスを定義しましょう。
+<p>例を見てみましょう。あなたのシステムは処理系依存の機能をいくつか備えています。あなたは、それらのソースファイルを１つの（サポートする）Lisp処理系ごとに１つのサブディレクトリに隔離したいと考えました。まずは<code>cl-source-file</code>のサブクラスを定義しましょう。
 </p>
 <div class="lisp">
 <pre class="lisp">(defclass unportable-cl-source-file (cl-source-file)
@@ -108,16 +108,16 @@ Previous: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30
   (:documentation &quot;処理系依存のLispソースファイル&quot;))
 </pre></div>
 
-<p><code>asdf:implementation-type</code>（バージョン2.014.14以降でエクスポートされています）をサブディレクトリの名前にすることにします。あとは、<code>unportable-cl-source-file</code>のパス名を推論する仕組みを作るだけです。
+<p>サブディレクトリの名前は、<code>asdf:implementation-type</code>（バージョン2.014.14以降でエクスポートされています）の返り値を使うことにします。あとは、<code>unportable-cl-source-file</code>のパス名を推論する仕組みを加えるだけです。
 </p>
 <div class="lisp">
 <pre class="lisp">(defmethod component-pathname ((component unportable-cl-source-file))
   (merge-pathnames*
-   (parse-unix-namestring (format nil &quot;~(~A~)/&quot; (asdf:implementation-type)))
-   (call-next-method)))
+    (parse-unix-namestring (format nil &quot;~(~A~)/&quot; (asdf:implementation-type)))
+    (call-next-method)))
 </pre></div>
 
-<p>新しいコンポーネント型は、<code>defsystem</code>フォーム中で次のように使われます:
+<p>これで完了です。新しいコンポーネント型は、<code>defsystem</code>フォーム中で次のように使われます:
 </p>
 <div class="lisp">
 <pre class="lisp">(defsystem :foo
@@ -127,7 +127,7 @@ Previous: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30
      (:unportable-cl-source-file &quot;threads&quot;
       :depends-on (&quot;packages&quot; ...))
      ...
-    )
+    ))
 </pre></div>
 
 

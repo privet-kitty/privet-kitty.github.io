@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -42,19 +42,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>The here directive (ASDF マニュアル)</title>
+<title>:hereディレクティブ (ASDF マニュアル)</title>
 
-<meta name="description" content="The here directive (ASDF マニュアル)">
-<meta name="keywords" content="The here directive (ASDF マニュアル)">
+<meta name="description" content=":hereディレクティブ (ASDF マニュアル)">
+<meta name="keywords" content=":hereディレクティブ (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Configuration-Directories.html#Configuration-Directories" rel="up" title="Configuration Directories">
+<link href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="up" title="設定ディレクトリ（ソースレジストリ）">
 <link href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration" rel="next" title="Shell-friendly syntax for configuration">
-<link href="Configuration-Directories.html#Configuration-Directories" rel="prev" title="Configuration Directories">
+<link href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="prev" title="設定ディレクトリ（ソースレジストリ）">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -88,14 +88,14 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="The-here-directive"></a>
+<a name="g_t_003ahere_30c7_30a3_30ec_30af_30c6_30a3_30d6"></a>
 <div class="header">
 <p>
-Previous: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="p" rel="prev">Configuration Directories</a>, Up: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="u" rel="up">Configuration Directories</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">設定ディレクトリ（ソースレジストリ）</a>, Up: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="u" rel="up">設定ディレクトリ（ソースレジストリ）</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="The-_003ahere-directive"></a>
-<h4 class="subsection">8.6.1 The :here directive</h4>
+<a name="g_t_003aheredeirekuteibu"></a>
+<h4 class="subsection">8.6.1 <code>:here</code>ディレクティブ</h4>
 
 <p>The <code>:here</code> directive is an absolute pathname designator that
 refers to the directory containing the configuration file currently
@@ -140,11 +140,6 @@ form containing that s-expression.  ASDF will find the .conf file that X
 has provided, and then set up source locations within the working
 directory according to X&rsquo;s (relative) instructions.
 </p>
-<hr>
-<div class="header">
-<p>
-Previous: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="p" rel="prev">Configuration Directories</a>, Up: <a href="Configuration-Directories.html#Configuration-Directories" accesskey="u" rel="up">Configuration Directories</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
-</div>
 
 
 

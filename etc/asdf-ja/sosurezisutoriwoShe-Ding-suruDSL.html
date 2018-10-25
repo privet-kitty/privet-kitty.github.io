@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ソースレジストリを設定するDSL (ASDF マニュアル)</title>
+
+<meta name="description" content="ソースレジストリを設定するDSL (ASDF マニュアル)">
+<meta name="keywords" content="ソースレジストリを設定するDSL (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
+<link href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="next" title="設定ディレクトリ（ソースレジストリ）">
+<link href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="prev" title="後方互換性のための機能（ソースレジストリ）">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL"></a>
+<div class="header">
+<p>
+Next: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="n" rel="next">設定ディレクトリ（ソースレジストリ）</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">後方互換性のための機能（ソースレジストリ）</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="sosurezisutoriwoShe-Ding-suruDSL"></a>
+<h3 class="section">8.5 ソースレジストリを設定するDSL</h3>
+<a name="index-_003ainherit_002dconfiguration-source-config-directive"></a>
+<a name="index-inherit_002dconfiguration-source-config-directive"></a>
+<a name="index-_003aignore_002dinvalid_002dentries-source-config-directive"></a>
+<a name="index-ignore_002dinvalid_002dentries-source-config-directive"></a>
+<a name="index-_003adirectory-source-config-directive"></a>
+<a name="index-directory-source-config-directive"></a>
+<a name="index-_003atree-source-config-directive"></a>
+<a name="index-tree-source-config-directive"></a>
+<a name="index-_003aexclude-source-config-directive"></a>
+<a name="index-exclude-source-config-directive"></a>
+<a name="index-_003aalso_002dexclude-source-config-directive"></a>
+<a name="index-also_002dexclude-source-config-directive"></a>
+<a name="index-_003ainclude-source-config-directive"></a>
+<a name="index-include-source-config-directive"></a>
+<a name="index-_003adefault_002dregistry-source-config-directive"></a>
+<a name="index-default_002dregistry-source-config-directive"></a>
+
+<p>ソースレジストリの設定は、S式によるDSLで行います。以下はその文法です:
+</p>
+
+<div class="example">
+<pre class="example">;; 設定の１単位は１つのS式であり、S式はキーワード:source-registryから
+;; 始まって１つ以上のディレクティブが続きます。
+CONFIGURATION := (:source-registry DIRECTIVE ...)
+
+;; ディレクティブは次のいずれかです:
+DIRECTIVE :=
+    ;; 継承ディレクティブ:
+    ;; CONFIGURATIONは<em>必ず</em>次の２つのディレクティブのいずれかを含ま
+    ;; なければなりません。
+    :inherit-configuration |
+    ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
+    ;; 最後に指定されます。<a name="DOCF37" href="#FOOT37">(37)</a>
+    :ignore-inherited-configuration |
+    ;; 継承した設定を除外します。どこに指定してもかまいません。
+
+    ;; 前方互換性のためのディレクティブ（ASDF 2.011.4）以降です。新し
+    ;; い設定機能を使いたいが、その機能をサポートしていない古いASDFか
+    ;; ら新しいASDFをブートストラップして使っているという場合には、こ
+    ;; のディレクティブが必要でしょう。
+    :ignore-invalid-entries |
+
+    ;; １つのディレクトリを探索の対象に加えます。（ただし再帰的探索はしない）
+    (:directory DIRECTORY-PATHNAME-DESIGNATOR) |
+
+    ;; １つのディレクトリ階層を再帰的探索の対象に加えます。
+    ;; 除外するパターンは下述のディレクティブで指定できます。
+    (:tree DIRECTORY-PATHNAME-DESIGNATOR) |
+
+    ;; デフォルトの除外パターンを上書きします。
+    (:exclude EXCLUSION-PATTERN ...) |
+    ;; デフォルトの除外パターンに追加します。
+    (:also-exclude EXCLUSION-PATTERN ...) |
+    ;; 除外パターンが適用されるスコープはその設定（もしくはファイル）
+    ;; の残りの部分です。
+
+    ;; 別の設定ファイルの内容をパースして、この位置に挿入します。
+    (:include REGULAR-FILE-PATHNAME-DESIGNATOR) |
+
+    ;; デフォルトのレジストリをこの位置に挿入します。
+    :default-registry
+
+REGULAR-FILE-PATHNAME-DESIGNATOR
+    := PATHNAME-DESIGNATOR ; ファイル名として解釈されます
+DIRECTORY-PATHNAME-DESIGNATOR
+    := PATHNAME-DESIGNATOR ; ディレクトリ名として解釈されます
+
+PATHNAME-DESIGNATOR :=
+    NIL | ; このエントリをスキップします
+    ABSOLUTE-COMPONENT-DESIGNATOR ; パス名のDSLを参照（下述）
+
+EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あるサブディ
+レクトリの名前とこの文字列が正確に一致する場合、そのパス名は除外されま
+す。例えば<code>&quot;_darcs&quot;</code>は<samp>#p&quot;/foo/bar/_darcs/src/bar.asd&quot;</samp>にマッチする
+でしょう。
+</pre></div>
+
+<p>パス名は別のDSLで指定されます。このDSLは<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定と共通であり、<code>asdf:resolve-location</code>によって解決されます。この関数はまだドキュメント化されていません。
+</p>
+<div class="example">
+<pre class="example">ABSOLUTE-COMPONENT-DESIGNATOR :=
+    (ABSOLUTE-COMPONENT-DESIGNATOR RELATIVE-COMPONENT-DESIGNATOR ...) |
+    STRING |
+    ;; 文字列は<a href="http://clhs.lisp.se/Body/26_glo_n.htm#namestring">ネームストリング</a>（絶対パスを推奨、ディレクトリが必要な
+    ;; 箇所ではディレクトリと判断される）です。アウトプットトランスレー
+    ;; ションにおいては、常にディレクトリと判断され、最後に**/*.*.*が
+    ;; 加わります。MCLではMacOS XスタイルのPOSIXネームストリングが使わ
+    ;; れます。（MacOS 9のスタイルが必要であれば、リテラル#p&quot;...&quot;を使
+    ;; いましょう。）
+    ;; なお、この文字列は*central-registry*で使われる文字列とは異なる
+    ;; ことに注意してください。セントラルレジストリはこのDSLを使ってお
+    ;; らず、普通のネームストリングとして処理されます。しかし、
+    ;; asdf:resolve-locationを呼べば、*central-regisrry*で使えるオブジェ
+    ;; クトは得られます:
+    ;; (asdf:resolve-location &quot;/Users/fare/cl/cl-foo/&quot;)
+    PATHNAME |
+    ;; パス名は絶対パスを推奨します。アウトプットトランスレーションに
+    ;; おいては（その後にRELATIVE-COMPONENT-DESIGNATORが続かない限り）
+    ;; **/*.*.*のようなワイルドカードを含めたほうがよいでしょう。
+    :HOME | ; user-homedir-pathname、つまり~/を指します
+    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します
+    :HERE |
+    ;; 設定ファイルの場所を指します。（対話的に呼び出された場合は
+    ;; *default-pathname-defaults*です。）
+    :ROOT
+    ;; magic, for output-translations source only: paths that are relative
+    ;; to the root of the source host and device
+
+キーワード:SYSTEM-CACHEはASDF 3.1以降では受け付けません。セキュリティ
+上の問題を引き起こすからです。
+
+RELATIVE-COMPONENT-DESIGNATOR :=
+    (RELATIVE-COMPONENT-DESIGNATOR RELATIVE-COMPONENT-DESIGNATOR ...) |
+    STRING |
+      ;; parse-unix-namestringで解釈される相対パスです。アウトプットト
+      ;; ランスレーションにおいては、最後のコンポーネントに**/*.*.*が
+      ;; 加わります。
+    PATHNAME | ; 最後のコンポーネント以外は、ディレクトリと判断されます。
+    :IMPLEMENTATION |
+      ;; 処理系に基づくディレクトリです。例えばsbcl-1.0.45-linux-x64/など。
+    :IMPLEMENTATION-TYPE |
+      ;; lisp-implementation-typeに基づくディレクトリです。例えばsbcl/など。
+    :*/ | ; 直下のすべてのサブディレクトリです。（ASDF 2.011.4以降）
+    :**/ | ; 再帰的に辿れるすべてのサブディレクトリです。（ASDF 2.011.4以降）
+    :*.*.* | ; すべてのファイルです。（ASDF 2.011.4以降）
+
+キーワード:UID、:USERNAME、:DEFAULT-DIRECTORYは今ではサポートされていません。
+</pre></div>
+
+<p>単純な例を挙げてみましょう。<samp>~/.config/common-lisp/source-registry.conf</samp>は、ASDFが設定ファイルを探す既定のパスです。このファイルの内容が
+</p><div class="lisp">
+<pre class="lisp">(:source-registry
+  (:tree (:home &quot;cl&quot;))
+  :inherit-configuration)
+</pre></div>
+<p>であれば、ソースレジストリに<samp>~/cl/</samp>が加わり、ASDFがシステム定義ファイルを見つける際には、このディレクトリ以下が再帰的に探索されることになります。
+</p>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<p>[訳注] 継承した設定(inherited configuration)とは、<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
+</div>
+
+
+
+</body>
+</html>

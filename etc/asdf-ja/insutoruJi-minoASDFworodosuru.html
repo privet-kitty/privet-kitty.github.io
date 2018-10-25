@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -97,7 +97,7 @@ Next: <a href="ASDFgarodosareteirukaDiao-beru.html#ASDF_304c_30ed_30fc_30c9_3055
 <a name="insutoruJi-minoASDFworodosuru"></a>
 <h3 class="section">3.1 インストール済みのASDFをロードする</h3>
 
-<p>ASDFをロードするには、次のフォームを実行するのが良いでしょう。
+<p>ASDFをロードする際は、次のフォームを使うとよいでしょう。
 </p><div class="lisp">
 <pre class="lisp">(require &quot;asdf&quot;)
 </pre></div>
@@ -116,7 +116,7 @@ MOCL、XCL。
 Corman CL、GCL、Genera、MCL、SCL。
 後半に挙げた処理系は現在メンテナンスされていません（おそらくGCLを除く）。それらが再びリリースされることがあれば、ASDF 3を含むことでしょう。
 </p>
-<p>利便性のために、Lisp処理系が起動するときにASDFが自動でロードされるようにしたい方もいるかもしれません。これを実現するには例えば、起動スクリプトにロードの処理を加えたり、ASDFが含まれるカスタムコアをダンプしたりといった方法がありますが、詳細はお使いの処理系のマニュアルに求めるべきでしょう。また、SLIMEの<code>slime-asdf</code>はASDFを扱いやすくするものとして、特筆に値します。
+<p>利便性のために、Lisp処理系が起動するときにASDFが自動でロードされるようにしたい方もいるかもしれません。これを実現するには例えば、起動スクリプトにロードの処理を加えたり、ASDFが含まれるカスタムコアをダンプしたりといった方法がありますが、詳細はお使いの処理系のマニュアルに求めるべきでしょう。また、SLIMEの<code>slime-asdf</code>はASDFを扱いやすくする機能として、特筆に値します。
 </p>
 
 <div class="footnote">

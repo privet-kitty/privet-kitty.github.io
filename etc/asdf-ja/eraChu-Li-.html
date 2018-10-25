@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -91,7 +91,7 @@ ul.no-bullet {list-style: none}
 <a name="g_t_30a8_30e9_30fc_51e6_7406"></a>
 <div class="header">
 <p>
-Next: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="n" rel="next">Miscellaneous additional functionality</a>, Previous: <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files" accesskey="p" rel="prev">Controlling where ASDF saves compiled files</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="n" rel="next">Miscellaneous additional functionality</a>, Previous: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFがコンパイルされたファイルを保持する場所を設定する</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="eraChu-Li-"></a>
@@ -102,9 +102,9 @@ Next: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additio
 <a name="ASDFnoera"></a>
 <h3 class="section">10.1 ASDFのエラー</h3>
 
-<p>ASDFが不正なシステム定義を検出すると、<code>system-definition-error</code>（またはそのサブクラス）のインスタンスを通知します。
+<p>ASDFが不正なシステム定義を検出すると、<code>system-definition-error</code>を通知します。
 </p>
-<p>いっぽう、操作が失敗した場合（例えばソースファイルがエラーを含んでいた場合）は、<code>operation-error</code>（またはそのサブクラス）のインスタンスが通知されます。
+<p>いっぽう、操作が失敗した場合（例えばソースファイルがエラーを含んでいた場合）は、<code>operation-error</code>が通知されます。
 </p>
 <a name="konpairuShi-noeraJing-Gao-noChu-Li-"></a>
 <h3 class="section">10.2 コンパイル時のエラー・警告の処理</h3>

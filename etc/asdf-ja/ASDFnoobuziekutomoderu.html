@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -106,9 +106,9 @@ Next: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30
 <a name="index-action"></a>
 <a name="index-akusiyon"></a>
 <p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF23" href="#FOOT23"><sup>23</sup></a>
-<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。１つのアクションは<code>operation</code>と<code>component</code>のペアであり、１つのビルドステップとして<code>perform</code>されるべきものです。計画の順序は、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF24" href="#FOOT24"><sup>24</sup></a>
+<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF24" href="#FOOT24"><sup>24</sup></a>
 </p>
-<p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それらに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスや（総称関数に対する）メソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのいろいろな<em>フック</em>についても解説します。
+<p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="Cao-Zuo-.html#g_t_64cd_4f5c" accesskey="1">操作</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">

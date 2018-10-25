@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -53,8 +53,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
-<link href="XDG-base-directory.html#XDG-base-directory" rel="next" title="XDG base directory">
-<link href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea" rel="prev" title="ソースレジストリ">
+<link href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea" rel="next" title="XDGベースディレクトリ">
+<link href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a" rel="prev" title="ソースレジストリの設定">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -91,31 +91,18 @@ ul.no-bullet {list-style: none}
 <a name="Truenames-and-other-dangers"></a>
 <div class="header">
 <p>
-Next: <a href="XDG-base-directory.html#XDG-base-directory" accesskey="n" rel="next">XDG base directory</a>, Previous: <a href="sosurezisutori.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea" accesskey="p" rel="prev">ソースレジストリ</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea" accesskey="n" rel="next">XDGベースディレクトリ</a>, Previous: <a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a" accesskey="p" rel="prev">ソースレジストリの設定</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Truenames-and-other-dangers-1"></a>
 <h3 class="section">8.2 Truenames and other dangers</h3>
 
-<p>One great innovation of the original ASDF was its ability to leverage
-<code>CL:TRUENAME</code> to locate where your source code was and where to build it,
-allowing for symlink farms as a simple but effective configuration mechanism
-that is easy to control programmatically.
-ASDF 3 still supports this configuration style, and it is enabled by default;
-however we recommend you instead use
-our source-registry configuration mechanism described below,
-because it is easier to setup in a portable way across users and implementations.
+<p>初期のASDFが導入した偉大な革新の１つは、ソースコードの場所やビルドを行う場所を決めるのに<code>cl:truename</code>を活用したことでした。これによって（システム定義ファイルへの）シンボリックリンクを集めたディレクトリを管理の対象にできるようになりました。このメカニズムは単純だが効果的であり、プログラムで扱うのが容易でした。ASDF 3は今なおこのスタイルをサポートしていますし、デフォルトで有効です。しかし我々は、以下で解説するソースレジストリの仕組みを代わりに使うことを推奨します。そちらのほうが特定のユーザー、処理系に依存しないポータブルな設定をするのが容易だからです。
 </p>
-<p>Additionally, some people dislike truename,
-either because it is very slow on their system, or
-because they are using content-addressed storage where the truename of a file
-is related to a digest of its individual contents,
-and not to other files in the same intended project.
-For these people, ASDF 3 allows to eschew the <code>TRUENAME</code> mechanism,
-by setting the variable <var>asdf:*resolve-symlinks*</var> to <code>nil</code>.
+<p>また、<code>truename</code>を嫌う人もいます。というのも、システムによっては<code>truename</code>はとても遅いし、また、いわゆる内容アドレス記憶装置(CAS, content-addressable storage)を使っている場合、ファイルの<code>truename</code>が指すのは個々のコンテンツの要約であり、同じプロジェクト内の別のファイルではないからです。そのような人のために、ASDF 3では<code>truename</code>を避ける方法も用意されています: <code>asdf:*resolve-symlinks*</code>に<code>nil</code>をセットしてください。
 </p>
-<p>PS: Yes, if you haven&rsquo;t read Vernor Vinge&rsquo;s short but great classic
-&ldquo;True Names... and Other Dangers&rdquo; then you&rsquo;re in for a treat.
+
+<p>追記: Vernor Vingeの短編 &ldquo;True Names... and Other Dangers&rdquo;（邦題: 『マイクロチップの魔術師』）を読んだことがない方は、きっと楽しめるでしょう。偉大なSFの古典です。
 </p>
 
 

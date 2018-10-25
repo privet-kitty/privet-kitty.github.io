@@ -1,6 +1,21 @@
+/* -*- coding: utf-8 -*- */
+
 body {
     max-width: 980px;
     margin: auto;
+    font-family: メイリオ, Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+h1 { font-size: 232% }
+h1.top { font-family: "Times New Roman"; }
+h2 {font-size: 147%; font-weight: bold; margin-top: 1em;}
+/* h2.contents-heading { font-family: "Times New Roman"} */
+h3 {font-size: 116%; margin-top: 1em}
+
+/* div.header {float: left;} */
+
+pre.example, .verbatim {
+    font-family: "Courier New", Courier, Consolas, Monaco, monospace
 }
 
 div.lisp pre.lisp {
@@ -30,9 +45,7 @@ code {
     border-radius: 3px;
 }
 
-hr {
-    color: #eaecef;
-}
+hr { color: #eaecef }
 
 em {
     font-style: normal;
@@ -46,9 +59,3 @@ dt em {
 
 a:link { color: #0076AD }
 a:visited { color: #6D38A0 }
-/* a:hover { */
-/*     background: #f3f4f4; */
-/*     text-decoration:none; */
-/*     color: #0076AD */
-/* } */
-

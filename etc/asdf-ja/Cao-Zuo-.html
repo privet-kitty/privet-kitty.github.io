@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -103,7 +103,7 @@ Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey
 </p>
 <ul>
 <li> システムのすべてのファイルをコンパイルする
-</li><li> 実行中のLisp環境にコンパイルされたファイルをロードする
+</li><li> コンパイルされたファイルを起動中のLisp環境にロードする
 </li><li> ソースファイルを別の場所にコピーする
 </li></ul>
 
@@ -126,10 +126,10 @@ Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey
 <dt><a name="index-oos-1"></a>総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
 <dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
 </p>
-<p><var>operation</var>は操作指示子です。操作指示子は<code>operation</code>オブジェクトそのものでも良いですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
+<p><var>operation</var>は操作指示子です。操作指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
 <var>component</var>はコンポーネント指示子です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF26" href="#FOOT26"><sup>26</sup></a>も使えます。
 </p>
-<p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳細は<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
+<p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
 </p>
 <p><var>force</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムが、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が<code>t</code>の場合、ロードされるシステムに限り、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから未変更でも再コンパイルされます。<var>force-not</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムは、前回のコンパイルから変更されていても再コンパイルされません。<var>force-not</var>が<code>t</code>の場合、ロードされるシステム<em>以外</em>のシステムは、前回のコンパイルから変更されていても再コンパイルされません。（この仕様はASDF 3.1.2で変更されました。）<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから変更されていてもコンパイルされません。
 </p>
@@ -160,7 +160,7 @@ Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
-<p>[訳注] operationはこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
+<p>[訳注] &ldquo;operation&rdquo;はこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
 <h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
 <p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; ... :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
 <h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>

@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -97,9 +97,9 @@ Next: <a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferr
 <a name="g_t_002easdhuairuZhongnoTa-nokodo"></a>
 <h3 class="section">6.4 .asdファイル中の他のコード</h3>
 
-<p><code>defsystem</code>フォームを含むファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>、任意のLispコードを置くことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
+<p><samp>.asd</samp>ファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>、任意のLispコードを含むことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
 </p>
-<p>とは言っても、<samp>.asd</samp>ファイルにコードを含めなければならない場合もあるでしょう。例えば、コンパイル時の環境を調べて設定するために<code>*features*</code>にフィーチャーを加える、などといったケースが考えられます。その場合は、ユーザーが<samp>.asd</samp>ファイル中の処理の詳細をコントロールできるように、次の慣習に従うと良いでしょう:
+<p>とは言っても、<samp>.asd</samp>ファイルにコードを含めなければならない場合もあるでしょう。例えば、コンパイル時の環境を調べて設定するために<code>*features*</code>にフィーチャーを加える、などといったケースが考えられます。その場合は、ユーザーが<samp>.asd</samp>ファイル中の処理の詳細をコントロールできるように、次の慣習に従うことを推奨します:
 </p>
 <ul>
 <li> 何かしらの情報を表示する場合は、CLの標準のストリームである<code>*standard-output*</code>に出力するべきです。（ただし、警告とエラーを除きます。それらはコンディションシステムが対処する領域です。）ASDFの操作由来の出力を、ユーザーが容易に扱えるようにするためです。

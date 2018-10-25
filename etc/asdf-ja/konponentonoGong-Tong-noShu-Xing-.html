@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -102,7 +102,7 @@ Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_3
 <a name="konponentoMing--1"></a>
 <h4 class="subsubsection">7.2.1.1 コンポーネント名</h4>
 <a name="index-coerce_002dname-2"></a>
-<p>コンポーネント名(component name)は文字列またはシンボルであり、シンボルは<code>asdf:coerce-name</code>によって、小文字の文字列に変換されます。コンポーネント名には総称関数<code>component-name</code>でアクセスできます。
+<p>コンポーネント名(component name)は文字列またはシンボルであり、シンボルは<code>asdf:coerce-name</code>によって小文字の文字列に変換されます。コンポーネント名には総称関数<code>component-name</code>でアクセスできます。
 </p>
 <p><code>:pathname</code>属性を上書きしない限り、コンポーネント名はUNIXスタイルの相対パスとしてそのままパス名指定子に使われるでしょう。（→ <a href="defsystemnoWenFa-.html#g_t_30d1_30b9_540d_6307_5b9a_5b50">パス名指定子</a>）
 </p>
@@ -125,7 +125,7 @@ Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_3
 </p><div class="lisp">
 <pre class="lisp">     #+sbcl       (:file &quot;cffi-sbcl&quot;)
 </pre></div>
-<p>しかしこの方法には、どの処理系もシステム全体を読み込むことができないという欠点があります。例えば、新しく<code>archive-op</code>という操作を作り、システムのすべてのソースファイルをまとめたアーカイブを作ろうとしたとしましょう。この時、上の例の<code>cffi-sbcl.lisp</code>はSBCL以外の処理系では不可視であり、<code>archive-op</code>を実行してもアーカイブに収集されないという問題が起きます。
+<p>しかしこの方法には、どの処理系もシステム全体を読み込むことができないという欠点があります。例えば、新しく<code>archive-op</code>という操作を作り、システムのすべてのソースファイルをまとめたアーカイブを作ろうとしたとしましょう。この時、上の例の<samp>cffi-sbcl.lisp</samp>はSBCL以外の処理系では不可視であり、<code>archive-op</code>を実行してもアーカイブに収集されないという問題が起きます。
 </p>
 <p>この問題を解決するため、ASDF 3からコンポーネントに<code>:if-feature</code>オプションが導入されました。このオプションの値はフィーチャー表現であり、つまり、<code>#+</code>と同じ文法を使います。フィーチャー表現が満たされないとき、そのコンポーネントはコンパイル、ロード、リンクの際に無視されます。なお、「同じ文法」と述べましたが、このフィーチャー表現は標準のリーダーで読まれるので、シンボルを使う際には<code>:</code>を前置して明示的にキーワードにしなくてはなりません。<code>#+</code>に続くフィーチャー表現は暗黙にキーワードパッケージを使いますから、その点は異なることになります。
 </p>
@@ -151,17 +151,19 @@ Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_3
 </p>
 <p>文法はおおむね次のようになります。
 </p>
-<pre class="verbatim">(this-op @{(other-op required-components)@}+)
-
-simple-component-name := string
-                      |  symbol
-
-required-components := simple-component-name
+<div class="example">
+<pre class="example">(this-op {(other-op required-components)}+)
+                
+required-components := component-name
                      | (required-components required-components)
 
 component-name := simple-component-name
                 | (:version simple-component-name minimum-version-object)
-</pre>
+                
+simple-component-name := string
+                      |  symbol
+</pre></div>
+
 <p>[付記]
 </p>
 <p>これはACLのdefsystemと同等の機能です。mk-defsystemはやや一般性に欠けていて、次のような暗黙の依存関係
@@ -228,7 +230,7 @@ component-name := simple-component-name
 </p>
 <p>[訳者補足]
 </p>
-<p>この属性は廃止予定であり、ASDF 2との後方互換性のためだけに存在します。また、その名に反して、<code>:properties</code>オプションにはプロパティリストではなく連想リストを指定します。次のパラグラフは直訳ですので、読む価値があるかどうかは疑わしいです。
+<p>この属性は廃止予定であり、ASDF 2との後方互換性のためだけに存在します。また、その名に反して、<code>:properties</code>オプションにはプロパティリストではなく連想リストを指定します。昔のASDFでは独自の属性が必要な時に<code>component-property</code>で読み書きしていた、という点だけ知っていれば十分でしょう。
 </p>
 <p>[訳者補足終わり]
 </p>

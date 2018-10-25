@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFを設定する">
-<link href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" rel="next" title="ASDFがシステムを見つけられるように設定する（従来のスタイル）">
+<link href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09" rel="next" title="ASDFがシステムを見つけられるように設定する（古いスタイル）">
 <link href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" rel="prev" title="ASDFを設定する">
 <style type="text/css">
 <!--
@@ -91,7 +91,7 @@ ul.no-bullet {list-style: none}
 <a name="ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b"></a>
 <div class="header">
 <p>
-Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09" accesskey="n" rel="next">ASDFがシステムを見つけられるように設定する（従来のスタイル）</a>, Previous: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFを設定する</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09" accesskey="n" rel="next">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>, Previous: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFを設定する</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru"></a>
@@ -106,8 +106,8 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-no
 <li> <samp>~/common-lisp/</samp> または
 </li><li> <samp>~/.local/share/common-lisp/source/</samp>
 </li></ul>
-<p>のことです。これらの場所にソフトウェアをインストールするなら特に追加設定は必要ないので<a name="DOCF4" href="#FOOT4"><sup>4</sup></a>
-  、次のセクションに進んでかまいません。（→ <a href="sisutemuworodosuru.html#g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b">システムをロードする</a>）
+<p>のことです。これらの場所にソフトウェアをインストールするなら特に追加設定は必要ないので、<a name="DOCF4" href="#FOOT4"><sup>4</sup></a>
+次のセクションに進んでかまいません。（→ <a href="sisutemuworodosuru.html#g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b">システムをロードする</a>）
 </p>
 </li><li> Quicklispのようなパッケージインストーラを使っている場合、既にそれらがASDFの設定を済ませているでしょう。
 
@@ -136,11 +136,11 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-no
 
 <p>でソースレジストリの設定をリセットすることができます。（→ <a href="Configuration-API.html#Configuration-API">Configuration API</a>）
 </p>
-</li><li> ASDFの古いバージョンでは、システムのソースレジストリはグローバル変数<code>asdf:*central-registry*</code>を使って設定されていました。詳細については次のセクション（<a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-nosutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_5f93_6765_306e_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（従来のスタイル）</a>）を参照してください。これについて知る必要がなければ、飛ばして<a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a>に進みましょう。
+</li><li> ASDFの古いバージョンでは、システムのソースレジストリはグローバル変数<code>asdf:*central-registry*</code>を使って設定されていました。詳細については次のセクション（<a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>）を参照してください。これについて知る必要がなければ、飛ばして<a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a>に進みましょう。
 
 </li></ul>
 
-<p>なお、あなたのOSディストリビューションやシステム管理者が、既にシステム全体でライブラリ管理の設定をしているというケースもあることに注意してください。
+<p>なお、あなたのOSディストリビューションやシステム管理者が、既にシステム全体のライブラリ管理を設定しているというケースもあることに注意してください。
 </p>
 
 
@@ -149,15 +149,17 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Cong-Lai-no
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT4" href="#DOCF4">(4)</a></h3>
-<p><samp>~/common-lisp/</samp>がデフォルトのパスに含まれるのはASDF 3.1.2以降です。それ以前のASDFを使っている場合は、後述のように、このパスを使うことを明示的に設定する必要があるかもしれません。</p>
+<p><samp>~/common-lisp/</samp>がデフォルトのパスに含まれるのはASDF 3.1.2以降です。それ以前のASDFを使っている場合は、後述のように、このパスを使うことを明示的に設定する必要があるかもしれません。
+</p>
+<p>[訳注] また、Windowsの場合、後者は<samp>%LOCALAPPDATA%/common-lisp/source/</samp>または<samp>%APPDATA%/Local/common-lisp/source/</samp>に相当することが多いでしょう。詳細については<a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a>を参照するべきですが、特に必要でなければ<samp>~/common-lisp/</samp>を使うことを推奨します。</p>
 <h3><a name="FOOT5" href="#DOCF5">(5)</a></h3>
 <p>Windowsの場合、ASDF 3.1.5以降では、<samp>%LOCALAPPDATA%</samp>以下に<samp>config/common-lisp/source-registry.conf.d/</samp>ディレクトリを作りましょう。<samp>%LOCALAPPDATA%</samp>は通常なら<samp>~/AppData/Local/</samp>を指していますが、実際の値は<code>CMD.EXE</code>上で<code>echo %LOCALAPPDATA%</code>を実行することで確かめることができます。</p>
 <h3><a name="FOOT6" href="#DOCF6">(6)</a></h3>
-<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定のファイルを無効にすることができます。例えば、エディタのバックアップ等のファイルは同じディレクトリにあっても読み込まれないでしょう。
+<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップ等のファイルは同じディレクトリにあっても読み込まれないでしょう。
 </p>
 <p>また、ASDFは<samp>.</samp>で始まるファイル名も無視します。
 </p>
-<p>慣習では、これらのファイル名は２つの１０進数字から始まります。こうすることでソースレジストリディレクトリ内の<samp>.conf</samp>ファイルの並びが決まるので、スキャンの順序をコントロールすることができます。</p>
+<p>慣習では、これらの設定ファイル名は２つの数字から始まります。こうすることで設定ディレクトリ内の<samp>.conf</samp>ファイルの並びが決まるので、設定が読み込まれる順序をコントロールすることができます。</p>
 </div>
 
 

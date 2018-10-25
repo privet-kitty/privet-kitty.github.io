@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -139,7 +139,7 @@ The <var>system-designator</var> may be a string, symbol, or ASDF system object.
 For these cases, <code>(asdf:clear-system :foo)</code>
 will remove the system from the table of currently loaded systems:
 the next time the system <code>foo</code> or one that depends on it is re-loaded,
-<code>foo</code> will be loaded again.<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>
+<code>foo</code> will be loaded again.<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>
 </p>
 <p>Note that this does not and cannot undo
 the previous loading of the system.
@@ -241,7 +241,7 @@ while others (like SBCL) will make an attempt at invoking a POSIX shell
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
+<h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
 <p>Alternatively, you could touch <code>foo.asd</code> or
 remove the corresponding fasls from the output file cache.</p>
 </div>

@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -135,14 +135,14 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
    :c2cl-user))
 </pre></div>
 
-<p>最初のフォームは、<code>package-inferred-system</code>を扱えるASDF 3.1以降であるかどうかチェックしています。もっとも、主要なLisp処理系でこれ以前のバージョンを含んでいるものはありませんから、おそらくもはや必要のない記述でしょう。
+<p><code>package-inferred-system</code>を扱えるのはASDF 3.1以降なので、最初のフォームはそのチェックをしています。もっとも、主要なLisp処理系でこれ以前のバージョンを含んでいるものはありませんから、おそらくもはや必要のない記述でしょう。
 </p>
 <a name="index-register_002dsystem_002dpackages"></a>
-<p>このスタイルでは、システムやコンポーネントによって<code>:use</code>される、あるいは提供されるパッケージは、パッケージ名（の小文字化）とシステム名が一致していない場合は<code>register-system-packages</code>で登録されなければなりません。
+<p>このスタイルでは、システムやコンポーネントによって<code>use</code>される、あるいは提供されるパッケージは、パッケージ名（の小文字化）とシステム名が一致していない場合は<code>register-system-packages</code>で登録されなければなりません。
 </p>
 <a name="index-define_002dpackage"></a>
 <a name="index-uiop_003adefine_002dpackage"></a>
-<p>次に、<code>my-lib</code>以下の各ソースファイルは、<code>defpackage</code>か<code>uiop:define-package</code>によるパッケージ定義から始まるでしょう。それらの依存関係は<code>:use</code>や<code>:mix</code>などのオプションから推論されます。例えば、<samp>interface/order.lisp</samp>というファイルが次のパッケージ定義で始まるとします:
+<p>次に、<code>my-lib</code>を構成する各ソースファイルは、<code>defpackage</code>か<code>uiop:define-package</code>によるパッケージ定義から始まるでしょう。それらの間の依存関係は<code>:use</code>や<code>:mix</code>などのオプションから推論されます。例えば、<samp>interface/order.lisp</samp>というファイルが次のパッケージ定義で始まるとします:
 </p>
 <div class="lisp">
 <pre class="lisp">(uiop:define-package :my-lib/interface/order
@@ -153,7 +153,7 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
   (:export ...))
 </pre></div>
 
-<p>ASDFはこのファイルがシステム<code>closer-mop</code>に依存していることを知り（<code>:use</code>しているのは<code>closer-common-lisp</code>パッケージですが、このパッケージがシステム<code>closer-mop</code>に対応していることは上で登録されています）、また、２つのシステム<code>my-lib/interface/definition</code>、<code>my-lib/interface/base</code>にも依存していると判断します。
+<p>ASDFはこのファイルがシステム<code>closer-mop</code>に依存していることを知り（<code>use</code>しているのは<code>closer-common-lisp</code>パッケージですが、このパッケージがシステム<code>closer-mop</code>に対応していることは上で登録されています）、また、２つのシステム<code>my-lib/interface/definition</code>、<code>my-lib/interface/base</code>にも依存していると判断します。
 </p>
 <p>しかし、ASDFはどのようにして、トップレベルのシステム<code>my-lib</code>から<samp>interface/order.lisp</samp>にたどり着くのでしょうか？ 上の例では、<samp>interface/all.lisp</samp>（と他の<samp>all.lisp</samp>）が、それ以下の階層にあるパッケージの（エクスポートされている）シンボルをまとめて再エクスポートしているでしょう。このようなファイルは<code>uiop:define-package</code>で簡単に書けます:
 </p>
@@ -191,7 +191,7 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT22" href="#DOCF22">(22)</a></h3>
-<p>[訳注] システム<code>foo</code>のディレクトリ構成として、ソースファイルを全て<samp>foo/src/</samp>以下に置くような方式を選んだしましょう。この時、<samp>foo/src/baz.lisp</samp>に対応するシステムはデフォルトでは<code>foo/src/baz</code>ですが、<code>:pathname &quot;src&quot;</code>でトップレベルのパスを<samp>foo/src/</samp>に変えると<code>foo/baz</code>にできます。<code>:pathname</code>オプションについては<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>を参照してください。</p>
+<p>[訳注] システム<code>foo</code>のディレクトリ構成として、ソースファイルをすべて<samp>foo/src/</samp>以下に置くような方式を選んだとしましょう。この時、<samp>foo/src/baz.lisp</samp>に対応するシステムはデフォルトでは<code>foo/src/baz</code>ですが、<code>:pathname &quot;src&quot;</code>でトップレベルのパスを<samp>foo/src/</samp>に変えると<code>foo/baz</code>にできます。<code>:pathname</code>オプションについては<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>を参照してください。</p>
 </div>
 
 

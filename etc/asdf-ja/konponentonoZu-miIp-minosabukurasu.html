@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -100,11 +100,11 @@ Next: <a href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3
 <dl>
 <dt><a name="index-source_002dfile"></a>コンポーネント: <strong>source-file</strong></dt>
 <dd>
-<p>ソースファイルとは、システムの他のコンポーネントから生成する方法を（システムに）知られていないファイルを指します。
+<p>ソースファイルとは、システムの他のコンポーネントから生成する方法をシステムが知らないファイルを指します。
 </p>
-<p>これは一般的な意味でのソースファイル、つまり「コンパイラに渡すデータを含んだファイル」と必ずしも同じでないことに注意してください。何らかのプリプロッセンシグを経て生成されたファイル（例えば<samp>.h.in</samp>からautoconfによって生成された<samp>.h</samp>ファイルなど）は、定義上、ソースファイルとは呼ばれないことになります。逆に、自動生成されない画像ファイルだとか、バイナリとして受け取るプロプライエタリな共有ライブラリなどは、我々の目的においてはソースファイルとみなすことになります。
+<p>これは一般的な意味でのソースファイル、つまり「コンパイラに渡すデータを含んだファイル」と必ずしも同じでないことに注意してください。何らかのプリプロッセンシグを経て生成されたファイル（例えば<samp>.h.in</samp>からautoconfによって生成された<samp>.h</samp>ファイルなど）は、定義上、ソースファイルとは呼ばれないことになります。逆に、（毎回自動生成されない）画像ファイルや、バイナリとして得られるプロプライエタリな共有ライブラリなどは、我々の目的においてはソースファイルとみなすことになります。
 </p>
-<p>様々な言語に対して<code>source-file</code>のサブクラスが存在します。
+<p>さまざまな言語に対して<code>source-file</code>のサブクラスが存在します。
 </p>
 <p>[訳者補足]
 </p>
@@ -117,7 +117,7 @@ Next: <a href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3
 <dt><a name="index-html_002dfile"></a>コンポーネント: <strong>html-file</strong></dt>
 <dd><p><code>cl-source-file</code>、<code>c-source-file</code>、<code>java-source-file</code>はそれぞれCL、C、Javaのソースファイルに対応し、ファイル形式は<samp>lisp</samp>、<samp>c</samp>、<samp>java</samp>です。<code>static-file</code>はビルドの際にそのまま出力されることを意図したファイルを表し、ファイル形式は不定です。<code>doc-file</code>は<code>static-file</code>のサブクラス、<code>html-file</code>は<code>doc-file</code>のサブクラスであり、<code>html-file</code>のファイル形式は<samp>html</samp>です。
 </p>
-<p><code>defsystem</code>フォームの<code>:components</code>オプションにコンポーネントを記述するとき、<code>:file</code>は既定では<code>cl-source-file</code>を意味しますが、このクラスは親コンポーネントの<code>:default-component-class</code>オプションで書き換えることができます。
+<p><code>defsystem</code>フォームの<code>:components</code>オプションにコンポーネントを記述するとき、<code>:file</code>は既定では<code>cl-source-file</code>を意味します。このクラスは親コンポーネントの<code>:default-component-class</code>オプションで書き換えることができます。
 </p></dd></dl>
 
 
@@ -128,7 +128,7 @@ Next: <a href="Xin-siikonponentoXing-woDing-Yi-suru.html#g_t_65b0_3057_3044_30b3
 <dl>
 <dt><a name="index-module"></a>コンポーネント: <strong>module</strong></dt>
 <dd>
-<p>モジュールはサブコンポーネントのまとまりです。
+<p>モジュールは、コンポーネントのまとまりとしてのコンポーネントです。
 </p>
 <p>モジュールコンポーネントには次の追加の属性が指定できます。
 </p>

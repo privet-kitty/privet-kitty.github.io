@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -120,7 +120,8 @@ Next: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a4_30
 
 
 <div class="example">
-<pre class="example">system-definition := ( defsystem system-designator system-option* ) # → <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">システム指示子</a>
+<pre class="example">system-definition := ( defsystem system-designator system-option* )
+                     # → <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">システム指示子</a>
 
 system-option := :defsystem-depends-on system-list
                  | :weakly-depends-on system-list
@@ -135,6 +136,11 @@ system-option := :homepage string
                  | :bug-tracker string
                  | :mailto string
                  | :long-name string
+                 | :author string
+                 | :maintainer string
+                 | :license string
+                 | :description string
+                 | :long-description string
                  | :source-control source-control
                  | :version version-specifier # → <a href="#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>
                  | :entry-point object # → <a href="#g_t_30a8_30f3_30c8_30ea_30fc_30dd_30a4_30f3_30c8">エントリーポイント</a>
@@ -143,10 +149,10 @@ source-control := (keyword string)
 
 module-option := :components component-list
                  | :serial [ t | nil ]
+                 | :default-component-class class-name
 
 option :=
         | :pathname pathname-specifier # → <a href="#g_t_30d1_30b9_540d_6307_5b9a_5b50">パス名指定子</a>
-        | :default-component-class class-name
         | :perform method-form
         | :explain method-form
         | :output-files method-form
@@ -154,6 +160,7 @@ option :=
         | :if-feature feature-expression
         | :depends-on ( dependency-def* )
         | :in-order-to ( dependency+ )
+        | :around-compile function # → <a href="Controlling-file-compilation.html#Controlling-file-compilation">Controlling file compilation</a>
 
 
 system-list := ( simple-component-name* )
@@ -161,6 +168,7 @@ system-list := ( simple-component-name* )
 component-list := ( component-def* )
 
 component-def  := ( component-type simple-component-name option* )
+# component-typeが:moduleであればmodule-optionも使えます。
 
 component-type := :module | :file | :static-file | other-component-type
 
@@ -185,8 +193,8 @@ simple-component-name := string | symbol # → <a href="#g_t_30b3_30f3_30dd_30fc
 pathname-specifier := pathname | string | symbol
 
 version-specifier := string
-                     | (:read-file-form &lt;pathname-specifier&gt; &lt;form-specifier&gt;?)
-                     | (:read-file-line &lt;pathname-specifier&gt; &lt;line-specifier&gt;?)
+                     | (:read-file-form pathname-specifier form-specifier?)
+                     | (:read-file-line pathname-specifier line-specifier?)
 line-specifier := :at integer # 0オリジン
 form-specifier := :at [ integer | ( integer+ )]
 
@@ -265,7 +273,8 @@ feature-expression := keyword
 また、コンポーネント型の１つである<code>:file</code>は、ファイル形式が<samp>lisp</samp>のファイルを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar.lisp&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux.lisp&quot;</samp>と解釈されます。<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>
 最後に、コンポーネント型の１つである<code>:static-file</code>は、特定のファイル形式を前提とせずにファイルを対象にとるので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux&quot;</samp>と解釈されます。
 </p>
-<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF18" href="#FOOT18"><sup>18</sup></a> つまり、文字列中の<code>&quot;..&quot;</code>は１つ上の階層のディレクトリを意味します。
+<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF18" href="#FOOT18"><sup>18</sup></a>
+つまり、文字列中の<code>&quot;..&quot;</code>は１つ上の階層のディレクトリを意味します。
 </p>
 <p>シンボルが与えられた場合、小文字の文字列に変換されます。小文字に変換するのは慣習と異なっていますが、検討の末このような仕様になりました。我々がサポートしたいシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるので、単に<code>make-pathname</code>を<code>:case :common</code>として使う方式（うまく動かない処理系もある）よりも適切と思われます。
 </p>
@@ -311,18 +320,18 @@ feature-expression := keyword
 <a name="g_t_8ad6_7406_30d1_30b9_540d_3092_4f7f_3046"></a><a name="index-logical-pathnames"></a>
 <a name="index-ronripasumei_0028Lun-Li-pasuMing-_0029"></a>
 
-<p>我々は基本的に、論理パス名を使うことを推奨しません。（最近Common Lispを使い始めた人にはなおのことです。） しかし、こちらを好む古参の方のためにサポートはしています。
+<p>我々は一般に、論理パス名を使うことを推奨しません。（最近Common Lispを使い始めた人にはなおのことです。） しかし、論理パス名を好む古参の方のためにサポートはしています。
 </p>
 <p>論理パス名を使うなら、コンポーネントの定義中の<code>:pathname</code>に対して<code>#p&quot;LOGICAL-HOST:absolute;path;to;component.lisp&quot;</code>などといった文法でパス名オブジェクトを与える必要があるでしょう。
 </p>
-<p>論理パス名はシステムや親コンポーネントに指定すれば十分です。それらに属するコンポーネントは、特にパスを指定しなくても、名前を相対パスとして親コンポーネントのパスと適切にマージされます。なお、<code>:pathname</code>に文字列を与える場合は、論理パス名のホストの指定をすることは<em>できません</em>。
+<p>論理パス名はシステムや親コンポーネントに指定すれば十分です。それらに属する子コンポーネントには特にパスを指定しなくても、名前を相対パスとして親コンポーネントのパスと適切にマージされます。なお、<code>:pathname</code>に文字列を与える場合は、論理パス名のホストの指定をすることは<em>できません</em>。
 </p>
-<p><code>asdf-output-translations</code>レイヤー（→ <a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">Controlling where ASDF saves compiled files</a>）は論理パス名の解決・解釈をすることを避けます。この仕様の良いところは、論理パス名をどのように解釈するかあなた自身で決められることですが、解釈を定義しなかった場合に、論理パス名を含むシステムが異なる環境の<code>asdf-output-translations</code>で異なる振る舞いをするという欠点もあります。
+<p><code>asdf-output-translations</code>レイヤー（→ <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがコンパイルされたファイルを保持する場所を設定する</a>）は論理パス名の解決・解釈をすることを避けます。この仕様の良いところは、論理パス名をどのように解釈するかあなた自身で決められることですが、解釈を定義しなかった場合に、論理パス名を含むシステムが異なる環境の<code>asdf-output-translations</code>で異なる振る舞いをするという欠点もあります。
 </p>
 
 <p>したがって、論理パス名を使いたい時は、使われる前にその解釈（<code>logical-pathname-translations</code>）を設定する必要があるでしょう。ASDFには今のところ、論理パス名の解釈を決めるための機能がありません。
 </p>
-<p>我々が論理パス名の使用を推奨しない理由としては、(1) 論理パス名が使われる<em>前</em>にその解釈を設定するポータブルな方法がないことと、(2) 論理パス名には１つのレターケース（大文字か小文字のどちらか）、数字、ハイフンしか使えないことがあります。１つ目の問題はあなた自身で解決することもできるでしょうが、15の処理系についてそれぞれどのように対処するかは、我々がドキュメントとして書ける範囲を超えています。また、２つ目の制約はSBCLが要求しているので、ポータビリティのためには無視することができません。したがって、この制約を犯す物理パス名を参照したい時は、あなた自身が何らかのエンコーディングを定義して独立したマッピングを追加しなくてはなりません。とりわけ、大規模プロジェクトの一部としてLispファイルが含まれる場合、この仕様は悩みの種になるかもしれません。典型的な例としては、プロジェクトのファイル、ディレクトリ名にバージョン番号が含まれる場合や、あるいは他のプログラミング言語で書かれたソフトウェアが共存していて、パス名にアンダースコアやドット、キャメルケースが使われる場合などがあります。
+<p>我々が論理パス名の使用を推奨しない理由としては、(1) 論理パス名が使われる<em>前</em>にその解釈を設定するポータブルな方法がないことと、(2) 論理パス名には１つのレターケース（大文字か小文字のどちらか）、数字、ハイフンしか使えないことがあります。１つ目の問題はあなた自身で解決することもできるでしょうが、15の処理系についてそれぞれどのように対処するかは、我々がドキュメントとして書ける範囲を超えています。また、２つ目の制約はSBCLが要求しているので、ポータビリティのためには無視することができません。したがって、この制約を侵す物理パス名を参照したい時は、あなた自身が何らかのエンコーディングを定義して独立したマッピングを追加しなくてはなりません。とりわけ、大規模プロジェクトの一部としてLispファイルが含まれる場合、この仕様は悩みの種になるかもしれません。典型的な例としては、プロジェクトのファイル、ディレクトリ名にバージョン番号が含まれる場合や、あるいは他のプログラミング言語で書かれたソフトウェアが共存していて、ファイル名にアンダースコアやドット、キャメルケースが使われる場合などがあります。
 </p>
 
 <a name="Lian-Sok-De-naYi-Cun-Guan-Xi-_0028_003aserial_0029"></a>
@@ -363,20 +372,20 @@ feature-expression := keyword
 <p>システムが初めて定義される場合、そのトップレベルのパス名は次のように決まるでしょう:
 </p>
 <ul>
-<li> <code>*load-truename*</code>が束縛されている場合、そのホスト、デバイス、ディレクトリが使われます。
-</li><li> <code>*load-truename*</code>が束縛されていない場合は、<code>*default-pathname-defaults*</code>が代わりに使われます。
+<li> <code>*load-truename*</code>にパス名が束縛されている場合、そのホスト、デバイス、ディレクトリが使われます。
+</li><li> <code>*load-truename*</code>にパス名が束縛されていない場合は、<code>*default-pathname-defaults*</code>が代わりに使われます。
 
 </li></ul>
 
 <p>システムが再定義される場合、トップレベルのパス名は次のように決まります:
 </p>
 <ul>
-<li> <code>*load-truename*</code>が束縛されている場合は、新しいソースの場所を反映するように更新されます。
+<li> <code>*load-truename*</code>にパス名が束縛されている場合は、新しいソースの場所を反映するように更新されます。
 
 
 </li><li> 以前に<code>*default-pathname-defaults*</code>によってセットされていた場合は、更新されます。
 
-</li><li> 以前に<code>*load-truename*</code>によってセットされていて、現在は<code>*load-truename*</code>が未束縛である場合は、更新されません。この仕様によって、開発者は<code>defsystem</code>フォームを（ソースの場所に影響を与えずに）エディタ内で評価することができます。
+</li><li> 以前に<code>*load-truename*</code>によってセットされていて、現在は<code>*load-truename*</code>が<code>nil</code>である場合は、更新されません。この仕様によって、開発者は<code>defsystem</code>フォームを（ソースの場所に影響を与えずに）エディタ内で評価することができます。
 </li></ul>
 
 <a name="huitiyaniYing-zitakonponento_0028_003aif_002dfeature_0029"></a>
@@ -412,7 +421,7 @@ feature-expression := keyword
 <h3><a name="FOOT17" href="#DOCF17">(17)</a></h3>
 <p>[訳注] <code>&quot;foo/bar.lisp&quot;</code>は<samp>#p&quot;foo/bar.lisp.lisp&quot;</samp>と解釈されるので、拡張子を明示して書くことはできません。</p>
 <h3><a name="FOOT18" href="#DOCF18">(18)</a></h3>
-<p>[訳注] ここはわかりにくいですが、文字列中では<code>&quot;..&quot;</code>がUnixのパスと同じように使えるということを知っていれば十分です。ANSI CLの<a href="http://clhs.lisp.se/Body/26_glo_p.htm#pathname">パス名オブジェクト</a>は６つのコンポーネントを含みますが、その内の１つである<a href="http://clhs.lisp.se/Body/26_glo_v.htm#valid_pathname_directory">ディレクトリ</a>コンポーネント中に<code>:back</code>が含まれているのと同じ意味になるということです。リンク先によれば<code>:back</code>はCLHSには定められていませんが、ASDF(UIOP)では常に使えます。</p>
+<p>[訳注] ここはわかりにくいですが、文字列中では<code>&quot;..&quot;</code>がUnixのパスと同じように使えるということを知っていれば十分です。ANSI CLの<a href="http://clhs.lisp.se/Body/26_glo_p.htm#pathname">パス名</a>オブジェクトは６つのコンポーネントを含みますが、その内の１つである<a href="http://clhs.lisp.se/Body/26_glo_v.htm#valid_pathname_directory">ディレクトリ</a>コンポーネント中に<code>:back</code>が含まれているのと同じ意味になるということです。<a href="http://www.lispworks.com/documentation/lw50/CLHS/Body/19_bbdc.htm">CLHS: 19.2.2.4.3 Restrictions on Examining a Pathname Directory Component</a>も参照。</p>
 <h3><a name="FOOT19" href="#DOCF19">(19)</a></h3>
 <p>[訳注] CLのパス名（リテラル<code>#p...</code>あるいは<code>#.(make-pathname ...)</code>による）を与えるか、文字列でUnixスタイルの相対パスを与えるかの２択であり、絶対パスを指定したい場合は（稀と思われますが）前者のパス名しか使えないということです。相対パスは<samp>.asd</samp>ファイルのあるディレクトリを基点に解釈されるので、<code>:pathname</code>オプションでシステムのトップレベルのディレクトリを変更していても影響しないという点にも注意しましょう。
 </p>

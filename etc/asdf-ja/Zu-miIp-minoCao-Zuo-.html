@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -97,7 +97,7 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 <a name="Zu-miIp-minoCao-Zuo-"></a>
 <h4 class="subsection">7.1.1 組み込みの操作</h4>
 
-<p>このセクションで解説されるすべての操作(operation)は<code>asdf</code>パッケージにあり、総称関数<code>operate</code>で呼び出すことができます。
+<p>このセクションで解説する操作(operation)はすべて<code>asdf</code>パッケージにあり、総称関数<code>operate</code>で呼び出すことができます。
 </p>
 <div class="lisp">
 <pre class="lisp">(asdf:operate 'asdf:<var>操作名</var> :<var>システム名</var> {<var>操作のオプション ...</var>})
@@ -108,7 +108,7 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 <dd>
 <p>この操作は、指定されたコンポーネントをコンパイルします。つまり、<code>cl-source-file</code>は<code>compile-file</code>でコンパイルされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>compile-op</code>が適用されます。
 </p>
-<p><code>compile-op</code>は<code>prepare-op</code>に依存していて、<code>prepare-op</code>は依存するすべてのコンポーネントに対する<code>load-op</code>に依存しています。したがって、<code>operate</code>で<code>compile-op</code>を呼び出すと、それらのコンポーネント群は単にコンパイルされるだけでなくロードもされるでしょう、しかし、<code>compile-op</code>では、ターゲットとなるシステムそのもの（の一部）は、それに依存するシステムがないのでロードされずに残ることになります。システムをロードしたい場合には<code>load-op</code>を使ってください。
+<p><code>compile-op</code>は<code>prepare-op</code>に依存していて、<code>prepare-op</code>は依存するすべてのコンポーネントに対する<code>load-op</code>に依存しています。したがって、<code>operate</code>で<code>compile-op</code>を呼び出すと、それらのコンポーネント群は単にコンパイルされるだけでなくロードもされるでしょう、しかし、<code>compile-op</code>では、指定されたシステムそのもの（の一部）は、それに依存するシステムがないのでロードされずに残ることになります。システムをロードしたい場合には<code>load-op</code>を使ってください。
 </p></dd></dl>
 
 <dl>
@@ -123,23 +123,23 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 <dl>
 <dt><a name="index-prepare_002dop"></a>操作: <strong>prepare-op</strong></dt>
 <dd>
-<p>この操作は、指定されたコンポーネントが依存する（再帰的な意味で）全てのコンポーネントが（<code>load-op</code>で）ロードされることを保証します。この操作は、<code>compile-op</code>や<code>load-op</code>が実行される前に、必要な前提を満たすための操作です。
+<p>この操作は、指定されたコンポーネントが依存する（再帰的な意味で）すべてのコンポーネントが（<code>load-op</code>で）ロードされることを保証します。この操作は、<code>compile-op</code>や<code>load-op</code>が実行される前に、必要な前提を満たすための操作です。
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-load_002dsource_002dop"></a>操作: <strong>load-source-op</strong></dt>
 <dt><a name="index-prepare_002dsource_002dop"></a>操作: <strong>prepare-source-op</strong></dt>
 <dd>
-<p><code>load-source-op</code>は、モジュールに属する<code>cl-source-file</code>をfaslからではなくソースからロードします。<code>load-source-op</code>は（<code>prepare-op</code>に代えて）<code>prepare-source-op</code>に依存しています。<code>prepare-source-op</code>は<code>prepare-op</code>に類似の操作で、依存関係が<code>load-source-op</code>でロードされることを保証します。
+<p><code>load-source-op</code>は<code>load-op</code>と似ていますが、モジュールに属する<code>cl-source-file</code>をfaslからではなくソースからロードします。<code>load-source-op</code>は（<code>prepare-op</code>に代えて）<code>prepare-source-op</code>に依存しています。<code>prepare-source-op</code>は<code>prepare-op</code>に類似の操作で、依存関係が<code>load-source-op</code>でロードされることを保証します。
 </p>
 </dd></dl>
 
 <a name="test_002dop"></a><dl>
 <dt><a name="index-test_002dop"></a>操作: <strong>test-op</strong></dt>
 <dd>
-<p>この操作は、モジュールのテストを行うためにありますが、デフォルトのメソッドは何もしません。また、デフォルトではモジュールに対して先に<code>load-op</code>が実行されることを要求します。なお、デフォルトの<code>operation-done-p</code>メソッドは（訳注: たとえ、<code>test-op</code>が正常に実行された後であっても）常に<code>nil</code>を返すので、この操作は<em>決して</em>完了したことにはなりません。<a name="DOCF28" href="#FOOT28"><sup>28</sup></a> つまり、あなたが<code>test-op</code>を呼ぶと、既にそのシステムをテストしたことがあっても、もう一度テストしたいのだとみなされるわけです。
+<p>この操作はモジュールのテストを行うためにありますが、デフォルトのメソッドは何もしません。また、デフォルトではモジュールに対して先に<code>load-op</code>が実行されることを要求します。なお、デフォルトの<code>operation-done-p</code>メソッドは（訳注: たとえ、<code>test-op</code>が正常に実行された後であっても）常に<code>nil</code>を返すので、この操作は<em>決して</em>完了したことにはなりません。（→ <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>） つまり、あなたが<code>test-op</code>を呼ぶと、既にそのシステムをテストしたことがあっても、もう一度テストしたいのだとみなされるわけです。
 </p>
-<p>ASDFは、この操作の結果について何も定義していません。というのも、テスト結果をユーザーに伝える方法を、Lispコミュニティで使われる様々なテストのテクニックやライブラリすべてに対して互換性を持つように、統一的に定義するのは困難だとわかっているからです。さらに、ASDFの操作は成功・失敗を返り値とするわけではないという点も、この問題を難しくしています。テスト結果を返すようにしたいのであれば、何らかのコンディションを定義し、<code>test-op</code>が失敗した時にそのコンディションを通知することを勧めます。どのテストが失敗したか、という情報はコンディションに保持させると良いでしょう。
+<p>ASDFはこの操作の結果について何も定義していません。というのも、テスト結果をユーザーに伝える方法を、Lispコミュニティで使われる様々なテストのテクニックやライブラリすべてに対して互換性を持つように、統一的に定義するのは困難だとわかっているからです。さらに、ASDFの操作は成功・失敗を返り値とするわけではないという点も、この問題を難しくしています。テスト結果を返すようにしたいのであれば、何らかのコンディションを定義し、<code>test-op</code>が失敗した時にそのコンディションを通知することを勧めます。どのテストが失敗したか、という情報はコンディションに保持させると良いでしょう。
 </p>
 <p>一般的に、テストコードはテスト用の別の<em>システム</em>に記述されることが多いです。テスト用のシステムを分離すれば、メインのシステムの依存関係には不要なテストフレームワークを指定しなくてすみます。それでは、テストフレームワーク<a href="https://common-lisp.net/project/fiveam/">fiveam</a>を使った例を見てみましょう:
 </p><div class="lisp">
@@ -206,7 +206,7 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 <dd>
 <p>これらは「バンドル(bundle)」に関わる操作です。バンドルは、アプリケーション全体（もしくはアプリケーション中の各システム）を単一のファイルに束ねたものです。
 </p>
-<p><code>compile-bundle-op</code>はターゲットとなるシステムとそれが依存する各システムについて、それぞれ単一のfaslファイルを作ります。<code>monolithic-compile-bundle-op</code>はターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のfaslファイルを作ります。つまり、アプリケーション全体を１つのfaslファイルにすることができます。<code>load-bundle-op</code>は<code>compile-bundle-op</code>の出力をロードします。ただし、<code>compile-bundle-op</code>は、（出力が最新でない場合）コンパイルの副作用として、中間生成物である各faslファイルをロードすることもあるという点に注意してください。バンドルに関する操作は特にECLにおいて重要です。というのも、ECLではダイナミックリンクの際に、数十もの独立したfaslファイルはロードするのは１つのファイルをロードするのに比べてずっと重いからです。
+<p><code>compile-bundle-op</code>はターゲットとなるシステムとそれが依存する各システムについて、それぞれ単一のfaslファイルを作ります。<code>monolithic-compile-bundle-op</code>はターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のfaslファイルを作ります。つまり、アプリケーション全体を１つのfaslファイルにすることができます。<code>load-bundle-op</code>は<code>compile-bundle-op</code>の出力をロードします。ただし、<code>compile-bundle-op</code>は（出力が最新でない場合）コンパイルの副作用として、中間生成物である各faslファイルをロードすることもあるという点に注意してください。バンドルに関する操作は特にECLにおいて重要です。というのもECLでは、ダイナミックリンクの際に、数十もの独立したfaslファイルをロードするのは１つのファイルをロードするのに比べてずっと重いからです。
 </p>
 <p>注意: <code>compile-bundle-op</code>、<code>monolithic-compile-bundle-op</code>、<code>load-bundle-op</code>、<code>monolithic-load-bundle-op</code>、<code>deliver-asd-op</code>、<code>monolithic-deliver-asd-op</code>は、ASDF 3.1以前はそれぞれ<code>fasl-op</code>、<code>monolithic-fasl-op</code>、<code>load-fasl-op</code>、<code>monolithic-load-fasl-op</code>、<code>binary-op</code>、<code>monolithic-binary-op</code>と呼ばれていました。後方互換性のために古い名称も残されていますが、それらは実際の機能を表していない不適切な名前ではあります。
 </p>
@@ -224,9 +224,9 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 </p>
 <p><code>lib-op</code>はターゲットとなるシステムとそれが依存する各システムについて、リンク可能なオブジェクト（FFIファイル、あるいはECLであればLispファイルも）から<samp>.a</samp>ファイル（Windowsでは<samp>.lib</samp>）をそれぞれビルドするための操作であり、<code>monolithic-lib-op</code>はアプリケーション全体に対して１つの<samp>.a</samp>ファイルを作ります。<code>dll-op</code>、<code>monolithic-dll-op</code>も類似の操作ですが、ダイナミックリンクのための<samp>.so</samp>ファイル（Windowsでは<samp>.dll</samp>、MacOS Xでは<samp>.dynlib</samp>）を作ります。
 </p>
-<p>これらの「バンドル」の操作は、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、レガシーの処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
+<p>これらの「バンドル」の操作は、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、メンテナンスされていない古い処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
 </p>
-<p>バンドル操作の出力先のパスは、他のオブジェクトファイルと同様に<a href="Controlling-where-ASDF-saves-compiled-files.html#Controlling-where-ASDF-saves-compiled-files">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定された操作に限っては異なります。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
+<p>バンドル操作の出力先のパスは、他のオブジェクトファイルと同様に<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定された操作に限っては異なります。<a name="DOCF28" href="#FOOT28"><sup>28</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
 </p></dd></dl>
 
 <dl>
@@ -252,8 +252,6 @@ Next: <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
-<p>[訳注] <code>(asdf:operation-done-p 'asdf:test-op <var>システム指示子</var>)</code>で確認できます。（→ <a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>）</p>
-<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>[訳注] この場合、<code>:build-pathname</code>の指定があれば出力先はそのパス名になります。指定がない場合は<code>component-pathname</code>の返すディレクトリが使われるようですが、公式の仕様かどうかは明示されていません。</p>
 </div>
 

@@ -7,7 +7,7 @@
 https://common-lisp.net/project/asdf/asdf.html 
 [訳者補足]
 
-この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。なお、2018年11月8日より、gitlab.common-lisp.netのアカウントはGitHubかGoogleのアカウントがあれば自動で取れるようになりました。
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
 
 [訳者補足終わり]
 
@@ -138,7 +138,7 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 
 </li><li> <code>&quot;mod&quot;</code>コンポーネントに含まれる４つのファイルは、システムのディレクトリ直下の<samp>mod/</samp>というサブディレクトリにあるでしょう。（このディレクトリの場所は<code>:pathname</code>オプションで任意に上書きすることができます。<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>内の解説を参照してください。）
 
-</li><li> <code>:serial t</code>は<code>mod</code>のそれぞれの子コンポーネントがその前のコンポーネントに依存していることを示しています。つまり、<samp>cooker.lisp</samp>は<samp>reader.lisp</samp>に依存し、<samp>reader.lisp</samp>は<samp>utils.lisp</samp>に依存します。最後に<samp>data.raw</samp>がこれら全てに依存していることになりますが、静的なファイルですから特に動作への影響はもたらしません。しかし、<code>(:static-file &quot;data.raw&quot;)</code>が最初に置かれていた場合は、このデータファイルが変更されるとほかのすべてのソースファイルが再コンパイルされることになります。それはおそらくこの例では不都合でしょう。
+</li><li> <code>:serial t</code>は<code>mod</code>のそれぞれの子コンポーネントがその前のコンポーネントに依存していることを示しています。つまり、<samp>cooker.lisp</samp>は<samp>reader.lisp</samp>に依存し、<samp>reader.lisp</samp>は<samp>utils.lisp</samp>に依存します。最後に<samp>data.raw</samp>がこれらすべてに依存していることになりますが、静的なファイルですから特に動作への影響はもたらしません。しかし、<code>(:static-file &quot;data.raw&quot;)</code>が最初に置かれていた場合は、このデータファイルが変更されるとほかのすべてのソースファイルが再コンパイルされることになります。それはおそらくこの例では不都合でしょう。
 
 </li><li> <code>:output-files</code>、<code>:perform</code>以下のメソッド形式の表現は、特定のコンポーネントについてメソッドを定義するための省略表現です。つまり、以下の部分
 
