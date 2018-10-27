@@ -515,7 +515,7 @@ Corman CL、GCL、Genera、MCL、SCL。
 <p>お使いの処理系にすでにASDF 3以降が付属している場合（そのはずです）、さらに新しいバージョンを使いたいならば、ほかのシステムと同様に、既定のパスにただ新しいASDFをインストールすれば良いです。
 具体的には、公式のtarボールかgitリポジトリを<samp>~/common-lisp/asdf/</samp>に展開することを勧めます。<a name="DOCF3" href="#FOOT3"><sup>3</sup></a>（→ <a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b">ASDFがシステムを見つけられるように設定する</a>）
 </p>
-<p>ASDFのソースコードがいったん正しい場所に置かれれば、それをロードするには、これまで通り<code>(require &quot;asdf&quot;)</code>を実行するだけです。ASDF 3は、他のシステムのコンパイルを行う前に、自身の新しいバージョンが既定のパスに存在するかどうかを自動的に判断し（訳注: 存在する場合には新しいバージョンを使い）ます。
+<p>ASDFのソースコードがいったん正しい場所に置かれれば、これまで通り<code>(require &quot;asdf&quot;)</code>を実行するだけで新しいASDFがロードされます。ASDF 3は、他のシステムのコンパイルを行う前に、自身の新しいバージョンが所定のパスに存在するかどうかを自動的に判断し、存在する場合には新しいバージョンを使います。
 </p>
 <p>お使いの処理系にASDF 3以降が付属していない場合は、<a href="#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>を参照してください。
 </p>
@@ -525,7 +525,7 @@ Corman CL、GCL、Genera、MCL、SCL。
 <a name="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru"></a>
 <h3 class="section">3.4 処理系付属のASDFを置き換える</h3>
 
-<p>現在メンテナンスされている処理系であれば最新版にはASDF 3が付属しているので、お使いのものに含まれていない場合は（最新版に）アップグレードすることを勧めます。
+<p>現在もメンテナンスされている処理系であれば最新版にはASDF 3が付属しているので、お使いのものに含まれていない場合は最新版にアップグレードすることを勧めます。
 </p>
 <p>ASDFが付属していない、あるいは古いバージョンが付属している処理系を使い続けたい場合は、下記の通りに最近のASDFをインストールすることを勧めます。その際、書き込みのアクセス権を変えたり、管理者権限で実行したりといったことが必要になるかもしれません。
 </p>
@@ -852,7 +852,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> <code>:version</code>の文字列はASDFにパースされるので、なんでもよいわけではありません。今のところは、ピリオド<code>#\.</code>で区切られた非負整数のみが許容されています。（→ <a href="#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>）
 
-</li><li> 上のファイルはただ１つの<code>defsystem</code>フォームだけを含んでいて、<code>in-package</code>もなければ、パッケージの接頭辞<code>asdf:</code>も付いていません。これが我々の推奨する書き方です。より複雑なシステム定義ファイルを書きたければ、任意のLispコードが使えますが、可能ならばシンプルな定義に保っておくことを勧めます。そのほうが堅牢で、将来においても有効なシステム定義になるでしょうから。
+</li><li> 上のファイルはただ１つの<code>defsystem</code>フォームだけを含んでいて、<code>in-package</code>もなければ、パッケージの接頭辞<code>asdf:</code>も付いていません。これが我々の推奨する書き方です。より複雑なシステム定義ファイルを書きたければ任意のLispコードが使えますが、可能ならばシンプルな定義に保っておくことを勧めます。そのほうが堅牢で、将来においても有効なシステム定義になるでしょうから。
 
 <a name="index-_003aversion"></a>
 
@@ -949,7 +949,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> この<samp>.asd</samp>ファイルは<code>(in-package :asdf-user)</code>から始まっていますが、これは冗長な記述であり、不要ですし推奨もされません。しかし、より複雑なことをしたい場合には（やはり推奨はされませんが）<code>in-package</code>でパッケージを移動するのが役に立つかもしれません。
 
-</li><li> ASDFは<samp>.asd</samp>ファイルを<code>cl:load</code>でロードするわけではないし、あなた自身もそのように使うべきではありません。システムを操作したいときにはASDFを通してアクセスするべきです。しかし、どうしても<samp>.asd</samp>ファイルを直接ロードしなければならない事情があるならば、<code>asdf:load-asd</code>が使えます。<code>asdf:load-asd</code>は<code>*package*</code>を<code>asdf-user</code>に束縛してからロードを行います。最近のバージョンのSLIME（2013-02以降）では、<code>slime-asdf</code>拡張を使っていれば、<samp>.asd</samp>ファイルに対して<kbd>C-c C-k</kbd>で<code>slime-compile-and-load-file</code>を実行したときにも、適切な処理を行うでしょう。
+</li><li> ASDFは<samp>.asd</samp>ファイルを<code>cl:load</code>でロードするわけではないし、あなた自身もそのように使うべきではありません。システムを操作したいときにはASDFを通してアクセスするべきです。しかし、どうしても<samp>.asd</samp>ファイルを直接ロードしなければならない事情があるならば、<code>asdf:load-asd</code>が使えます。<code>asdf:load-asd</code>は<code>*package*</code>に<code>asdf-user</code>を束縛してからロードを行います。最近のバージョンのSLIME（2013-02以降）では、<code>slime-asdf</code>拡張を使っていれば、<samp>.asd</samp>ファイルに対して<kbd>C-c C-k</kbd>で<code>slime-compile-and-load-file</code>を実行したときにも、適切な処理を行うでしょう。
 
 </li><li> システム定義を簡潔にしたいのであれば<code>in-package</code>を使うべきではありません。<code>in-package</code>（とその前の<code>defpackage</code>）を使うのは、新しいクラス、関数、変数、マクロ等を<code>.asd</code>ファイル中で定義する際に、名前の衝突を避けるためだけにしましょう。古いバージョンのASDFのマニュアルでは<samp>.asd</samp>ファイル中で<code>in-package</code>を使うような記法が推奨されていましたが、ASDF 3ではもはや推奨されていません。代わりに、ASDFの拡張を定義した上で<code>:defsystem-depends-on</code>を使ってそれをロードすることを勧めます。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）
 
