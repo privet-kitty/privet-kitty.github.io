@@ -129,11 +129,11 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 
 </li><li> <samp>$XDG_DATA_DIRS/common-lisp/systems/</samp>と<samp>$XDG_DATA_DIRS/common-lisp/source/</samp>がソースレジストリに加わります。ただし、前者には再帰的探索がされないので、<samp>.asd</samp>ファイルへのリンクを置く目的で使います。Unixでは<code>XDG_DATA_DIRS</code>のデフォルトは<samp>/usr/local/share</samp>と<samp>/usr/share</samp>です。Windowsで<code>XDG_DATA_DIRS</code>が存在しない場合、代わりに<code>AppData</code>と<code>Common AppData</code>が使われるでしょう。
 
-</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF36" href="#FOOT36"><sup>36</sup></a>
+</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF35" href="#FOOT35"><sup>35</sup></a>
 
 </li></ol>
 
-<p>これらの設定は、S式による簡単なDSLで記述します。（→ <a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>） 加えて、環境変数で設定する場合は、よりシェルに向いた文法も用意されています。（→ <a href="Shell_002dfriendly-syntax-for-configuration.html#Shell_002dfriendly-syntax-for-configuration">Shell-friendly syntax for configuration</a>）
+<p>これらの設定は、S式による簡単なDSLで記述します。（→ <a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>） 加えて、環境変数で設定する場合は、よりシェルに向いた文法も用意されています。（→ <a href="sieruXiang-kenoShe-Ding-noGou-Wen_0028sosurezisutori_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09">シェル向けの設定の構文（ソースレジストリ）</a>）
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。
 </p>
@@ -144,7 +144,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
+<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
 </div>
 

@@ -127,7 +127,7 @@ Next: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility"
 </li><li> 設定ファイル<samp>/etc/common-lisp/asdf-output-translations.conf</samp>が存在する場合、アウトプットトランスレーションがこのファイルによって設定されます。Unixのみの処理です。 
 
 </li><li> 設定ディレクトリ<samp>/etc/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合、ソースレジストリがこのディレクトリ内の設定ファイルによって設定されます。Unixのみの処理です。
-<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
+<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
 
 </li></ol>
 
@@ -135,8 +135,8 @@ Next: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility"
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
 </p>
-<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザー毎のキャッシュが使われます。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
-この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュが使われます。<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
+この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
 </p>
 
 
@@ -144,11 +144,11 @@ Next: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility"
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
+<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<p>[訳注] 順序としては、このキャッシュの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
 <h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
-<p>[訳注] 順序としては、このキャッシュの場所は上の箇条書きの１番目の処理で追加されます。無効にする方法については<a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
-<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
 <p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
 </div>
 

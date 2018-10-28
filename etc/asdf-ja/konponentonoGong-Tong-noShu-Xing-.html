@@ -136,7 +136,7 @@ Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_3
 <a name="akusiyonnoYi-Cun-Guan-Xi-_0028_003ain_002dorder_002dto_0029"></a>
 <h4 class="subsubsection">7.2.1.4 アクションの依存関係（<code>:in-order-to</code>）</h4>
 <a name="g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2"></a>
-<p>この属性は、当該コンポーネントに関するアクションが別のアクションに依存していることを記述します。任意の属性ですが、しばしば必要になります。
+<p>この属性には、当該コンポーネントに関するアクションが別のアクションに依存していることを記述します。任意の属性ですが、しばしば必要になります。
 </p>
 
 
@@ -147,7 +147,7 @@ Next: <a href="konponentonoZu-miIp-minosabukurasu.html#g_t_30b3_30f3_30dd_30fc_3
               (load-op (load-op &quot;foo&quot;)))
 </pre></div>
 
-<p>このとき、このコンポーネントに対して<code>compile-op</code>を実行する前に、<code>a</code>と<code>b</code>に対して<code>load-op</code>を実行し、<code>c</code>に対して<code>compile-op</code>を実行しなければなりません。また、<code>load-op</code>を実行する前に、<code>foo</code>がロードされていなければなりません。
+<p>このとき、このコンポーネントに対して<code>compile-op</code>を実行する前に、ASDFは<code>a</code>と<code>b</code>に対して<code>load-op</code>を実行し、さらに<code>c</code>に対して<code>compile-op</code>を実行しなければなりません。また、<code>load-op</code>を実行する前に、<code>foo</code>がロードされていなければなりません。
 </p>
 <p>文法はおおむね次のようになります。
 </p>

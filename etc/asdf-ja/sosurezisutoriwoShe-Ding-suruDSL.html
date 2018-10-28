@@ -128,7 +128,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF37" href="#FOOT37">(37)</a>
+    ;; 最後に指定されます。<a name="DOCF36" href="#FOOT36">(36)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -198,8 +198,8 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     :HOME | ; user-homedir-pathname、つまり~/を指します
     :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します
     :HERE |
-    ;; 設定ファイルの場所を指します。（対話的に呼び出された場合は
-    ;; *default-pathname-defaults*です。）
+    ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
+    ;; た場合は*default-pathname-defaults*です。）
     :ROOT
     ;; magic, for output-translations source only: paths that are relative
     ;; to the root of the source host and device
@@ -237,7 +237,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
 </div>
 

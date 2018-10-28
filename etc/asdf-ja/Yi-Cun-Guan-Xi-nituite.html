@@ -99,8 +99,21 @@ Next: <a href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570" a
 
 <p>ビルドを成功させるためには、アクションのグラフが循環的であってはなりません。あなたが（ASDFの純粋なユーザーであれ、拡張を実装しているのであれ）依存関係のグラフにループを含めてしまうと、ASDFは盛大なエラーを引き起こすでしょう。依存の向きを明確にするため、ASDF 3では、アクションが他のアクションに依存していることを<em>requiring</em>、<em>required</em>という言葉で表しています。つまり&ldquo;requiring action&rdquo;は、それ自身が<code>perform</code>される前に、そのすべての&ldquo;required action&rdquo;が完了することに依存（<code>depends-on</code>）しているわけです。
 </p>
-<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的な操作である<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対する操作を行う前に、まずはすべての子コンポーネントに対して同じ操作を行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のような操作は、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備する操作を行う前に、まずは親コンポーネントに対して同じ操作を行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまる操作であり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。<a name="DOCF34" href="#FOOT34"><sup>34</sup></a>
+<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的な操作である<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対する操作を行う前に、まずはすべての子コンポーネントに対して同じ操作を行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のような操作は、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備する操作を行う前に、まずは親コンポーネントに対して同じ操作を行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまる操作であり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
 </p>
+<p>[訳者補足]
+</p>
+<p>このセクションは操作の依存関係について述べたものですが、実践的には、<a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>の補足に挙げた５つの操作について理解していれば事足りるでしょう。つまり、
+</p><ul>
+<li> <code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>は<code>downward-operation</code>（かつ<code>selfward-operation</code>）であり、
+</li><li> <code>prepare-op</code>、<code>prepare-source-op</code>は<code>upward-operation</code>（かつ<code>sideway-operation</code>）であり、
+</li><li> <code>test-op</code>、<code>load-bundle-op</code>は<code>selfward-operation</code>です。
+</li></ul>
+
+
+<p>[訳者補足終わり]
+</p>
+
 
 <div class="footnote">
 <hr>
@@ -108,13 +121,6 @@ Next: <a href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570" a
 
 <h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
 <p>[訳注] ASDFでは、<code>:depends-on</code>でつながっているコンポーネントをsibling（兄弟姉妹）と呼びます。</p>
-<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
-<p>[訳注] このパラグラフは操作の依存関係について述べたものですが、実践的には、<a href="Xin-siiCao-Zuo-woDing-Yi-suru.html#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>の補足に挙げた５つの操作について理解していれば事足りるでしょう。つまり、
-</p><ul>
-<li> <code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>は<code>downward-operation</code>（かつ<code>selfward-operation</code>）であり、
-</li><li> <code>prepare-op</code>、<code>prepare-source-op</code>は<code>upward-operation</code>（かつ<code>sideway-operation</code>）であり、
-</li><li> <code>test-op</code>、<code>load-bundle-op</code>は<code>selfward-operation</code>です。
-</li></ul>
 </div>
 
 
