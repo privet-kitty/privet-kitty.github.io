@@ -113,7 +113,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 <ol>
 <li> ソースレジストリには、ハードコーディングされたレジストリ設定が加わることがあります。これは主に処理系（特にSBCL）自身が提供するシステムの場所を追加するもので、処理系のバージョンによってパスが変わるのにも対応しています。
 
-</li><li> アプリケーションは、ソースレジストリのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="Configuration-API.html#Configuration-API">Configuration API</a>）
+</li><li> アプリケーションは、ソースレジストリのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>）
 
 </li><li> 環境変数<code>CL_SOURCE_REGISTRY</code>が存在する場合は、ソースレジストリがこの変数によって設定されます。
 
@@ -129,7 +129,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 
 </li><li> <samp>$XDG_DATA_DIRS/common-lisp/systems/</samp>と<samp>$XDG_DATA_DIRS/common-lisp/source/</samp>がソースレジストリに加わります。ただし、前者には再帰的探索がされないので、<samp>.asd</samp>ファイルへのリンクを置く目的で使います。Unixでは<code>XDG_DATA_DIRS</code>のデフォルトは<samp>/usr/local/share</samp>と<samp>/usr/share</samp>です。Windowsで<code>XDG_DATA_DIRS</code>が存在しない場合、代わりに<code>AppData</code>と<code>Common AppData</code>が使われるでしょう。
 
-</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF35" href="#FOOT35"><sup>35</sup></a>
+</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>
 
 </li></ol>
 
@@ -144,7 +144,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
+<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
 </div>
 

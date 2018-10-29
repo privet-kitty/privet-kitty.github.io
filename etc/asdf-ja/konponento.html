@@ -116,7 +116,7 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 <p><em>コンポーネント指示子(component designator)</em>は基点となるコンポーネントに対する相対的な指示子であり、コンポーネントそのものか、文字列、シンボルか、あるいはコンポーネント指示子のリストです。
 </p>
 <dl>
-<dt><a name="index-find_002dsystem"></a>Function: <strong>find-system</strong> <em>system-designator &amp;optional (error-p t)</em></dt>
+<dt><a name="index-find_002dsystem"></a>関数: <strong>find-system</strong> <em>system-designator &amp;optional (error-p t)</em></dt>
 <dd>
 <p><code>find-system</code>はシステム指示子を引数に取り、システムを返します。システムが見つからなかった場合、デフォルトではエラー<code>missing-component</code>を通知しますが、<var>error-p</var>が<code>nil</code>の場合は単に<code>nil</code>を返します。
 </p>
@@ -129,10 +129,10 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 </li></ul>
 
 <a name="index-ASDF_002dUSER-package"></a>
-<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a>
-<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF30" href="#FOOT30"><sup>30</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
+<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>
+<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
 </p>
-<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF31" href="#FOOT31"><sup>31</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
+<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
 </p>
 <p>システムのサーチ関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義し、セントラルレジストリかソースレジストリで指定されたディレクトリに置くようにするべきです。
 </p>
@@ -141,18 +141,18 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 <a name="index-primary_002dsystem_002dname"></a>
 <a name="index-puraimarinemu"></a>
 <a name="index-puraimarisisutemu"></a>
-<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>
+<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF30" href="#FOOT30"><sup>30</sup></a>
 <samp>foo.asd</samp>に、この命名ルールに従わないシステム（例えば<code>foo-test</code>など）が定義されている場合、ASDFはシステム定義の場所を自動的に見つけることができないので、事前に<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、明示的にプライマリシステムの定義をロードしておかなければなりません。我々はそのような命名の慣習をやめることを強く推奨しますが、今のところ、後方互換性のためにサポートされてはいます。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-primary_002dsystem_002dname-1"></a>Function: <strong>primary-system-name</strong> <em>name</em></dt>
+<dt><a name="index-primary_002dsystem_002dname-1"></a>関数: <strong>primary-system-name</strong> <em>name</em></dt>
 <dd>
 <p><var>name</var>がスラッシュ<code>/</code>によって区切られている場合、<code>primary-system-name</code>はプライマリネーム、つまり最初の部分を返します。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-locate_002dsystem"></a>Function: <strong>locate-system</strong> <em>name</em></dt>
+<dt><a name="index-locate_002dsystem"></a>関数: <strong>locate-system</strong> <em>name</em></dt>
 <dd>
 <p>一般的には、この関数を直接呼び出す<em>べきではありません</em>。この関数がAPIの一部としてエクスポートされているのは、独自の<code>*system-definition-search-functions*</code>を使いたいプログラマのためです。
 </p>
@@ -180,7 +180,7 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 </dd></dl>
 
 <dl>
-<dt><a name="index-find_002dcomponent-1"></a>Function: <strong>find-component</strong> <em>base path</em></dt>
+<dt><a name="index-find_002dcomponent-1"></a>関数: <strong>find-component</strong> <em>base path</em></dt>
 <dd>
 <p><var>base</var>コンポーネント（あるいは指示子）と<var>path</var>を引数に取り、<var>base</var>を基点として<var>path</var>で指示されるコンポーネントを見つけます。
 </p>
@@ -213,13 +213,13 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>バージョン2.27～3.0.3では、<code>uiop</code>の代わりに<code>uiop/package</code>のみが<code>use</code>されていました。バージョン3.1.2以前に対応したコードを書くためには、<code>uiop</code>を<code>use</code>したパッケージを自ら定義するか、あるいは<code>uiop:</code>というパッケージ接頭辞をいちいち付ける必要があります。</p>
-<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
+<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
 <p>[訳注] 例えば冒頭に<code>(cl:in-package :asdf-user)</code>を追加する、など。</p>
-<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
+<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>[訳注] <code>clear-source-registry</code>でキャッシュのリセットができます。</p>
-<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
+<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
 <p>ASDF 2.26以前はプライマリネームの機能をサポートしていませんでした。従って、それらのバージョンでは、システム<code>foo/bar</code>が<samp>foo.asd</samp>に定義されている場合は、<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、事前にそのファイルを明示的にロードしなければなりません。我々はASDF 2をサポートしていませんので、ASDF 3にアップグレードすることを推奨します。</p>
 </div>
 

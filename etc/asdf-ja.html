@@ -246,12 +246,12 @@ a:visited { color: #6D38A0 }
       <li><a name="toc-_003aheredeirekuteibu" href="#g_t_003ahere_30c7_30a3_30ec_30af_30c6_30a3_30d6">8.6.1 <code>:here</code>ディレクティブ</a></li>
     </ul></li>
     <li><a name="toc-sieruXiang-kenoShe-Ding-noGou-Wen" href="#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09">8.7 シェル向けの設定の構文</a></li>
-    <li><a name="toc-Search-Algorithm-1" href="#Search-Algorithm">8.8 Search Algorithm</a></li>
-    <li><a name="toc-Caching-Results-1" href="#Caching-Results">8.9 Caching Results</a></li>
-    <li><a name="toc-Configuration-API-1" href="#Configuration-API">8.10 Configuration API</a></li>
-    <li><a name="toc-Introspection-1" href="#Introspection">8.11 Introspection</a>
+    <li><a name="toc-Tan-Suo-arugorizumu" href="#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0">8.8 探索アルゴリズム</a></li>
+    <li><a name="toc-sosurezisutorinokiyatusiyu" href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5">8.9 ソースレジストリのキャッシュ</a></li>
+    <li><a name="toc-sosurezisutorinoAPI" href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">8.10 ソースレジストリのAPI</a></li>
+    <li><a name="toc-intorosupekusiyon" href="#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3">8.11 イントロスぺクション</a>
     <ul class="no-bullet">
-      <li><a name="toc-_002asource_002dregistry_002dparameter_002a-variable-1" href="#g_t_002asource_002dregistry_002dparameter_002a-variable">8.11.1 *source-registry-parameter* variable</a></li>
+      <li><a name="toc-_002asource_002dregistry_002dparameter_002aBian-Shu-" href="#g_t_002asource_002dregistry_002dparameter_002a_5909_6570">8.11.1 <code>*source-registry-parameter*</code>変数</a></li>
       <li><a name="toc-Information-about-system-dependencies-1" href="#Information-about-system-dependencies">8.11.2 Information about system dependencies</a></li>
     </ul></li>
     <li><a name="toc-Status-1" href="#Status">8.12 Status</a></li>
@@ -267,7 +267,7 @@ a:visited { color: #6D38A0 }
     <li><a name="toc-Configuration-Directories" href="#Output-Configuration-Directories">9.4 Configuration Directories</a></li>
     <li><a name="toc-Shell_002dfriendly-syntax-for-configuration" href="#Output-Shell_002dfriendly-syntax-for-configuration">9.5 Shell-friendly syntax for configuration</a></li>
     <li><a name="toc-Semantics-of-Output-Translations-1" href="#Semantics-of-Output-Translations">9.6 Semantics of Output Translations</a></li>
-    <li><a name="toc-Caching-Results-2" href="#Output-Caching-Results">9.7 Caching Results</a></li>
+    <li><a name="toc-Caching-Results" href="#Output-Caching-Results">9.7 Caching Results</a></li>
     <li><a name="toc-Output-location-API-1" href="#Output-location-API">9.8 Output location API</a></li>
     <li><a name="toc-Credits-for-output-translations-1" href="#Credits-for-output-translations">9.9 Credits for output translations</a></li>
   </ul></li>
@@ -351,7 +351,7 @@ a:visited { color: #6D38A0 }
 <a name="Top"></a>
 <a name="ASDF_003a-Another-System-Definition-Facility"></a>
 <h1 class="top">ASDF: Another System Definition Facility</h1>
-<p>バージョン3.3.2.11 マニュアル
+<p>バージョン3.3.2.11 (2018-10-19) マニュアル
 </p>
 <p>このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
 テム定義ツール――について解説したものです。
@@ -593,19 +593,19 @@ Corman CL、GCL、Genera、MCL、SCL。
 <code>(:tree &quot;/home/luser/lisp/&quot;)</code>
 という記述を加えると、ASDFは<samp>/home/luser/lisp/</samp>以下のディレクトリを再帰的にスキャンして、すべての<samp>.asd</samp>ファイルを見つけるようになります。
 </p>
-<p>これで完了です。<samp>/home/luser/lisp/</samp>はソースコードをインストールしたい場所に自由に置き換えてください。ASDF 3.1.2以降で<samp>~/common-lisp/</samp>を使う限り、このような設定は必要ありませんが、それ以前のASDF 3を使っている場合、最近のASDFを<samp>~/common-lisp/asdf/</samp>に置いた上で、ブートストラップのために<samp>.conf</samp>ファイルに<code>(:tree (:home &quot;common-lisp/&quot;))</code>を加える、というようなテクニックが有効かもしれません、
+<p>これで完了です。<samp>/home/luser/lisp/</samp>はソースコードをインストールしたい場所に自由に置き換えてください。ASDF 3.1.2以降で<samp>~/common-lisp/</samp>を使う限り、このような設定は必要ありませんが、それ以前のASDF 3を使っている場合、最近のASDFを<samp>~/common-lisp/asdf/</samp>に置いた上で、ブートストラップのために<samp>.conf</samp>ファイルに<code>(:tree (:home &quot;common-lisp/&quot;))</code>を加える、というようなテクニックが必要かもしれません、
 </p>
-<p>別の方式として、１つのディレクトリに<samp>.asd</samp>ファイルへのリンクを集めるやり方もあります。この方法は上記の再帰的なスキャンに比べると速いですが、管理は大変になります。リンクを集めるディレクトリを<samp>/home/luser/.asd-link-farm/</samp>としましょう。この場合は、ソースレジストリディレクトリに例えば<samp>42-asd-link-farm.conf</samp>ファイルを作り、<code>(:directory &quot;/home/luser/.asd-link-farm/&quot;)</code>という行を加えれば有効になります。
+<p>別のやり方として、１つのディレクトリに<samp>.asd</samp>ファイルへのリンクを集める方式もあります。この方式は上記の再帰的なスキャンに比べると速いですが、管理は大変になります。リンクを集めるディレクトリを<samp>/home/luser/.asd-link-farm/</samp>としましょう。この場合は、ソースレジストリディレクトリに例えば<samp>42-asd-link-farm.conf</samp>ファイルを作り、<code>(:directory &quot;/home/luser/.asd-link-farm/&quot;)</code>という行を加えれば有効になります。
 </p>
 
 
-<p>ASDFは、初めてシステムを探すときに自動的に<samp>.conf</samp>ファイルを読み込みますが、必要であれば、
+<p>ASDFは初めてシステムを探すときに自動的に<samp>.conf</samp>ファイルを読み込みますが、必要であれば、
 </p>
 <div class="lisp">
 <pre class="lisp">(asdf:clear-source-registry)
 </pre></div>
 
-<p>でソースレジストリの設定をリセットすることができます。（→ <a href="#Configuration-API">Configuration API</a>）
+<p>でソースレジストリの設定をリセットすることができます。（→ <a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>）
 </p>
 </li><li> ASDFの古いバージョンでは、システムのソースレジストリはグローバル変数<code>asdf:*central-registry*</code>を使って設定されていました。詳細については次のセクション（<a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>）を参照してください。これについて知る必要がなければ、飛ばして<a href="#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a>に進みましょう。
 
@@ -640,15 +640,15 @@ Corman CL、GCL、Genera、MCL、SCL。
 </pre></div>
 
 
-<p>末尾のスラッシュが必要なことに注意してください。システムを探すとき、ASDFは<code>asdf:*central-registry*</code>のそれぞれの要素をパス名に変換します。正確に言うと、それぞれの要素は<code>eval</code>されます。<a name="DOCF8" href="#FOOT8"><sup>8</sup></a> つまり、S式を<code>asdf:*central-registry*</code>に<code>push</code>することも可能です。文字列やパス名は自己評価オブジェクトなので<code>eval</code>は何もしませんが、S式を使うと、シェル変数やユーザーに応じた値を返すなど、コンテキストに依存した設定をすることができます。
+<p>末尾のスラッシュが必要なことに注意してください。システムを探すとき、ASDFは<code>asdf:*central-registry*</code>のそれぞれの要素をパス名に変換します。正確に言うと、それぞれの要素は<code>eval</code>されます。つまり、S式を<code>asdf:*central-registry*</code>に<code>push</code>することも可能です。文字列やパス名は自己評価オブジェクトなので<code>eval</code>は何もしませんが、S式を使うと、シェル変数やユーザーに応じた値を返すなど、コンテキストに依存した設定をすることができます。なお、<code>nil</code>に評価された場合、その要素はスキップされます。
 </p>
 
-<p>このように、<code>asdf:*central-registry*</code>は「システムディレクトリ指示子」のリストであると言えます。<em>システムディレクトリ指示子(system directory desinator)</em>はシステムを探すときに実行されるフォームであり、ディレクトリ（あるいは<code>nil</code>）を返さなくてはなりません。ここでいう「ディレクトリ」とは「空でないディレクトリコンポーネントを持つパス名に対する指示子」<a name="DOCF9" href="#FOOT9"><sup>9</sup></a>のことです。
+<p>このように、<code>asdf:*central-registry*</code>は「システムディレクトリ指示子」のリストであると言えます。<em>システムディレクトリ指示子(system directory desinator)</em>はシステムを探すときに実行されるフォームであり、ディレクトリ（あるいは<code>nil</code>）を返さなくてはなりません。ここでいう「ディレクトリ」とは「空でないディレクトリコンポーネントを持つパス名の指示子」<a name="DOCF8" href="#FOOT8"><sup>8</sup></a>のことです。
 </p>
-<p>パス名の末尾のスラッシュは、ファイルではなくディレクトリを指していることを示すのに必要です。このスラッシュがないと、（古い）ASDFは<code>/home/me/src/foo/</code>ではなく<code>/home/me/src/</code>を探してしまうおそれがあります。現在のバージョンでは、単にエラーを通知し、<code>asdf:*central-registry*</code>からこの要素を取り除くリスタートが提供されるでしょう。
+<p>パス名の末尾のスラッシュは、ファイルではなくディレクトリを指していることを示すのに必要です。このスラッシュがないと、（古い）ASDFは<code>/home/me/src/foo/</code>ではなく<code>/home/me/src/</code>を探してしまうおそれがあります。現在のバージョンでは、単にエラーを通知し、<code>asdf:*central-registry*</code>からこのエントリを取り除くリスタートが起動するでしょう。
 </p>
 
-<p>多くの場合、<samp>.asd</samp>ファイルは大量にありますから、それらの存在するディレクトリを１つ１つ<code>asdf:*central-registry*</code>に<code>push</code>するよりは、各<samp>.asd</samp>ファイルの<em>シンボリックリンク</em>を１つの共通ディレクトリに置き、そのディレクトリだけを<code>push</code>するという方法が使われていました。ASDFはシステムへの<em>シンボリックリンク</em>を適切に解釈することができます。<a name="DOCF10" href="#FOOT10"><sup>10</sup></a>
+<p>多くの場合、<samp>.asd</samp>ファイルは大量にありますから、それらの存在するディレクトリを１つ１つ<code>asdf:*central-registry*</code>に<code>push</code>するよりは、各<samp>.asd</samp>ファイルの<em>シンボリックリンク</em>を１つの共通ディレクトリに置き、そのディレクトリだけを<code>push</code>するという方法が使われていました。ASDFはシステムへの<em>シンボリックリンク</em>を適切に解釈することができます。<a name="DOCF9" href="#FOOT9"><sup>9</sup></a>
 </p>
 <p>例えば<code>#p&quot;/home/me/cl/systems/&quot;</code>が<code>*central-registry*</code>に含まれているとき、次のようにセットアップすれば<var>foo</var>システムを使えるようになります。
 </p>
@@ -695,8 +695,8 @@ $ ln -s ~/src/foo/foo.asd .
 <p>Lispのコアイメージをダンプしてから復元するときや、設定を変更するときなどは、いったんASDFの設定をリセットしたいことがあるでしょう。このために次の関数があります。
 </p>
 <dl>
-<dt><a name="index-clear_002dconfiguration"></a>Function: <strong>clear-configuration</strong></dt>
-<dd><p>ASDFの設定をデフォルトに戻します。具体的には、<a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ソースレジストリ</a>と<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定が消去されます。<a name="DOCF11" href="#FOOT11"><sup>11</sup></a>
+<dt><a name="index-clear_002dconfiguration"></a>関数: <strong>clear-configuration</strong></dt>
+<dd><p>ASDFの設定をデフォルトに戻します。具体的には、<a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ソースレジストリ</a>と<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定が消去されます。<a name="DOCF10" href="#FOOT10"><sup>10</sup></a>
 </p></dd></dl>
 
 <a name="index-_002aimage_002ddump_002dhook_002a"></a>
@@ -752,30 +752,30 @@ $ ln -s ~/src/foo/foo.asd .
 <a name="index-operate"></a>
 <a name="index-oos"></a>
 
-<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>操作</em>を定義することもできます。操作一般を呼び出す総称関数として<code>operate</code>があり、デフォルトの操作だけでなく任意の操作を扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF12" href="#FOOT12"><sup>12</sup></a>から受け継いだ名前です。） コンパイル、ロード、テスト以外の操作を行いたい場合には<code>operate</code>を使うと良いでしょう。
+<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>操作</em>を定義することもできます。操作一般を呼び出す総称関数として<code>operate</code>があり、デフォルトの操作だけでなく任意の操作を扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF11" href="#FOOT11"><sup>11</sup></a>から受け継いだ名前です。） コンパイル、ロード、テスト以外の操作を行いたい場合には<code>operate</code>を使うと良いでしょう。
 </p>
 
 
 <a name="index-already_002dloaded_002dsystems"></a>
 
 <dl>
-<dt><a name="index-load_002dsystem"></a>Function: <strong>load-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
-<dd><p><code>load-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。<a name="DOCF13" href="#FOOT13"><sup>13</sup></a> システムを現在のイメージにロードしたいなら、<code>load-system</code>を呼び出すのがもっとも標準的で推奨されるやり方です。
+<dt><a name="index-load_002dsystem"></a>関数: <strong>load-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
+<dd><p><code>load-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。システムを現在のイメージにロードしたい場合は、<code>load-system</code>を呼び出すのがもっとも標準的で推奨されるやり方です。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-compile_002dsystem"></a>Function: <strong>compile-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
-<dd><p><code>compile-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。この関数はシステムのすべてのファイルをコンパイルしますが、必ずしもそれらを現在のイメージにロードするとは限りません（しないとも限りません）。実際のところ、ほとんどのシステムでは、すべてのオブジェクトファイルがロードされるということはないでしょう。この関数は<code>load-system</code>との対称性のために存在しますが、挙動をちゃんと理解した上でビルドスクリプトを書く、という場合以外は使わないほうがよいです。もっとも、そのようなケースでは<code>compile-op</code>よりも<code>program-op</code>のほうが適切なこともあるでしょう。
+<dt><a name="index-compile_002dsystem"></a>関数: <strong>compile-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
+<dd><p><code>compile-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。この関数はシステムのすべてのファイルをコンパイルしますが、必ずしもそれらを現在のイメージにロードするとは限りません（が、しないとも限りません）。実際のところ、ほとんどのシステムでは、すべてのオブジェクトファイルがロードされるということはないでしょう。この関数は<code>load-system</code>との対称性のために存在しますが、挙動をちゃんと理解した上でビルドスクリプトを書く、という場合以外は使わないほうがよいです。もっとも、そのようなケースでは<code>compile-op</code>よりも<code>program-op</code>のほうが適切なこともあるでしょう。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-test_002dsystem"></a>Function: <strong>test-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
+<dt><a name="index-test_002dsystem"></a>関数: <strong>test-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
 <dd><p><code>test-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。<a href="#test_002dop">test-op</a>の解説を参照してください。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-make"></a>Function: <strong>make</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
-<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかの操作を実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべき操作を指定することができます。具体的には、<code>defsystem</code>中の<code>:build-operation</code>によって操作を指定し、<code>:build-pathname</code>で出力先のパス名を指定します。（→ <a href="#g_t_30d3_30eb_30c9_64cd_4f5c">ビルド操作</a>）
+<dt><a name="index-make"></a>関数: <strong>make</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
+<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかの操作を実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべき操作を指定することができます。具体的には、<code>defsystem</code>フォームの<code>:build-operation</code>に操作を指定し、<code>:build-pathname</code>に出力先のパス名を指定します。（→ <a href="#g_t_30d3_30eb_30c9_64cd_4f5c">ビルド操作</a>）
 </p>
 
 <p>この関数は実験的であり、テストが十分ではありませんので、自己責任で使ってください。
@@ -784,12 +784,12 @@ $ ln -s ~/src/foo/foo.asd .
 <a name="index-build_002doperation"></a>
 
 <dl>
-<dt><a name="index-require_002dsystem"></a>Function: <strong>require-system</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
-<dd><p><code>require-system</code>は<code>cl:require</code>と類似の動作をします。つまり、既にロードされているシステムを（例えシステムが更新されていても）ロードしません。同じ動作は<code>load-system</code>にロード済みシステムを除外するようにキーワード引数を指定しても可能です。<a name="DOCF14" href="#FOOT14"><sup>14</sup></a> 現在メンテナンスされているフリーの処理系（ABCL、Clozure CL、CMUCL、ECL、GNU CLISP、MKCL、SBCLの最近のバージョン）では、いったんASDFがロードされると、<code>cl:require</code>でもASDFシステムをロードできるようになりますが、その動作は、<code>cl:require</code>が処理系の知らないモジュール名を受け取ったときは<code>require-system</code>に渡す、という仕組みになります。（逆に<code>require-system</code>が<code>cl:require</code>を呼び出すことはありません。潜在的に無限ループを生んでしまう可能性があるからです。）
+<dt><a name="index-require_002dsystem"></a>関数: <strong>require-system</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
+<dd><p><code>require-system</code>は<code>cl:require</code>と類似の動作をします。つまり、既にロードされているシステムを（例えシステムが更新されていても）ロードしません。同じ動作は<code>load-system</code>にロード済みシステムを除外するようにキーワード引数を指定しても可能です。<a name="DOCF12" href="#FOOT12"><sup>12</sup></a> 現在メンテナンスされているフリーの処理系（ABCL、Clozure CL、CMUCL、ECL、GNU CLISP、MKCL、SBCLの最近のバージョン）では、いったんASDFがロードされると、<code>cl:require</code>でもASDFシステムをロードできるようになりますが、その動作は、<code>cl:require</code>が処理系の知らないモジュール名を受け取ったときは<code>require-system</code>に渡す、という仕組みになります。（逆に<code>require-system</code>が<code>cl:require</code>を呼び出すことはありません。潜在的に無限ループを生んでしまう可能性があるからです。）
 </p>
 <p><code>cl:require</code>や<code>require-system</code>は、現在のセッションでは修正されていないコードをロードするのに向いています。この２つの違いを説明すると、<code>cl:require</code>は処理系の提供する拡張モジュールをロードするのに使われますが、<code>require-system</code>は普通はその用途では使えません。（ただし、SBCLやMKCLのように、処理系の拡張モジュールがそもそもシステムとして定義されている場合は<code>require-system</code>でもロードできます。）また、あなたが開発もデバッグもしていないシステムで、インストール済みのバージョンを使えば問題ないと考えられる場合にも<code>require-system</code>（あるいは、上に挙げた処理系では<code>cl:require</code>）でロードするとよいかもしれません。
 </p>
-<p>しかし、あなたが開発、デバッグしていたり、あるいは何にせよ変更を行ったシステムに対しては<code>load-system</code>を使うべきです。<code>load-system</code>は変更されたファイルとその依存関係に基づいて適切に再ビルドを行います。（指定されたシステムとそれが依存しているシステムです、それ以外のビルドは行いません。）<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>
+<p>しかし、あなたが開発、デバッグしていたり、あるいは何にせよ変更を行ったシステムに対しては<code>load-system</code>を使うべきです。<code>load-system</code>は変更されたファイルとその依存関係に基づいて適切に再ビルドを行います。（指定されたシステムとそれが依存しているシステムです、それ以外のビルドは行いません。）<a name="DOCF13" href="#FOOT13"><sup>13</sup></a>
 </p></dd></dl>
 
 
@@ -955,7 +955,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> より一般的な話をすれば、<code>.asd</code>ファイルの中では<code>asdf</code>、<code>common-lisp</code>、<code>uiop</code>パッケージのシンボルを常に使うことができます。中でもいちばん重要なのは<code>defsystem</code>ですが、パッケージの接頭辞を使って<code>asdf:defsystem</code>と書くのは冗長で悪いやり方です。単に<code>(defsystem ...)</code>と書きましょう。パッケージの接頭辞を付けるのは、（<code>asdf</code>パッケージを<code>use</code>していないパッケージから）動的にシステム定義を生成するような場合のみにしてください。
 
-</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
+</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF14" href="#FOOT14"><sup>14</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
 
 </li><li> <code>asdf-user</code>が<code>uiop</code>を<code>use</code>しているのはASDF 3.1からであり、それ以前のASDF 3では<code>uiop/package</code>のみが使えました。したがって、UIOPの関数を使う場合には、いちいち<code>uiop:</code>という接頭辞を付けるか、システムの依存関係を<code>(defsystem foo :depends-on ((:version &quot;asdf&quot; &quot;3.1.2&quot;))</code>で明示するか、あるいは<code>#-asdf3.1 (error &quot;MY-SYSTEM requires ASDF 3.1.2&quot;)</code>という行を加えるかすることを勧めます。
 
@@ -1141,10 +1141,10 @@ feature-expression := keyword
 <p>普通は文字列を与えますが、文字列はUnixスタイルのパス名として解釈され、文字<code>/</code>はディレクトリのセパレータとみなされます。たいていは相対パスが使われ、その場合は親コンポーネントのパスを基点にした相対パスとみなされます。文字列はコンポーネント型に応じてファイルともディレクトリとも解釈されますが、ファイルの場合、コンポーネント型によっては自動的に拡張子が付加されることがあります。
 </p>
 <p>例えば、コンポーネント型の１つである<code>:module</code>は、ディレクトリを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar/&quot;</samp>と解釈されます。
-また、コンポーネント型の１つである<code>:file</code>は、ファイル形式が<samp>lisp</samp>のファイルを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar.lisp&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux.lisp&quot;</samp>と解釈されます。<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>
+また、コンポーネント型の１つである<code>:file</code>は、ファイル形式が<samp>lisp</samp>のファイルを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar.lisp&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux.lisp&quot;</samp>と解釈されます。<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>
 最後に、コンポーネント型の１つである<code>:static-file</code>は、特定のファイル形式を前提とせずにファイルを対象にとるので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux&quot;</samp>と解釈されます。
 </p>
-<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF18" href="#FOOT18"><sup>18</sup></a>
+<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>
 つまり、文字列中の<code>&quot;..&quot;</code>は１つ上の階層のディレクトリを意味します。
 </p>
 <p>シンボルが与えられた場合、小文字の文字列に変換されます。小文字に変換するのは慣習と異なっていますが、検討の末このような仕様になりました。我々がサポートしたいシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるので、単に<code>make-pathname</code>を<code>:case :common</code>として使う方式（うまく動かない処理系もある）よりも適切と思われます。
@@ -1161,7 +1161,7 @@ feature-expression := keyword
 <a name="g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50"></a>
 <p>バージョン指定子(version specifier)は文字列であり、ピリオド<code>#\.</code>で区切られた整数としてパースされます。例えば、<code>&quot;0.2.1&quot;</code>は大ざっぱに言えば<code>(0 2 1)</code>というバージョンと解釈されます。留意点として、<code>&quot;0.0002.1&quot;</code>は<code>&quot;0.2.1&quot;</code>と同じバージョンと判断されますが、前者は正規の書き方ではないので、警告が通知されるでしょう。また、バージョンは小数として扱われるわけではないので、<code>&quot;1.3&quot;</code>や<code>&quot;1.4&quot;</code>は<code>&quot;1.30&quot;</code>と比較してバージョンが小さい（<code>(uiop:version&lt; &quot;1.3&quot; &quot;1.30&quot;)</code>が真を返す）ことにも注意してください。
 </p>
-<p><code>:version</code>引数には、バージョンを文字列リテラルで直接指定する代わりに、他の場所からバージョン文字列を抽出するための表現を与えることも可能で、次のようなDSLが用意されています: <code>(:read-file-form &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>あるいは<code>(:read-file-line &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>。名前が示すように、前者は与えられたパス（相対パス名やunix-namestringで与えられた場合はシステムのパスをベースに解釈される<a name="DOCF19" href="#FOOT19"><sup>19</sup></a>）から１つのフォームを読み、後者は１つの行を読みます。<code>:at</code>引数には<code>uiop:access-at</code>と同様の指定をすることができますが、デフォルトでは<code>0</code>、つまり最初のフォーム/行を読み込むことになります。（訳注: 記述の例は<a href="#g_t_8907_96d1_306a_4f8b">複雑な例</a>にあります。） また、<code>:read-file-form</code>にはサブフォーム、つまりフォーム中のフォームを指定することもできます。例えば<code>(1 2 2)</code>は「２番目のフォーム中の３番目のフォーム中の３番目のフォーム」を指定しています。この指定は０番目から数えることに気をつけましょう。
+<p><code>:version</code>引数には、バージョンを文字列リテラルで直接指定する代わりに、他の場所からバージョン文字列を抽出するための表現を与えることも可能で、次のようなDSLが用意されています: <code>(:read-file-form &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>あるいは<code>(:read-file-line &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>。名前が示すように、前者は与えられたパス（相対パス名や<code>unix-namestring</code>で与えられた場合はシステムのパスをベースに解釈される<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>）から１つのフォームを読み、後者は１つの行を読みます。<code>:at</code>引数には<code>uiop:access-at</code>と同様の指定をすることができますが、デフォルトでは<code>0</code>、つまり最初のフォーム/行を読み込むことになります。（訳注: 記述の例は<a href="#g_t_8907_96d1_306a_4f8b">複雑な例</a>にあります。） また、<code>:read-file-form</code>にはサブフォーム、つまりフォーム中のフォームを指定することもできます。例えば<code>(1 2 2)</code>は「２番目のフォーム中の３番目のフォーム中の３番目のフォーム」を指定しています。この指定は０番目から数えることに気をつけましょう。
 </p>
 <p>システムを定義する際には、<var>x</var>.<var>y</var>.<var>z</var>という形式でバージョンを指定し、それぞれメジャーバージョン、マイナーバージョン、パッチレベルに対応させることを推奨します。APIの重要な非互換が発生する場合は、メジャーバージョンを上げてそのことを示しましょう。
 </p>
@@ -1235,7 +1235,7 @@ feature-expression := keyword
 </p>
 <ol>
 <li> <code>find-system</code>
-はシステムをディスクからロードして、そのデフォルトのパス名<a name="DOCF20" href="#FOOT20"><sup>20</sup></a>を正しく設定します。
+はシステムをディスクからロードして、そのデフォルトのパス名<a name="DOCF18" href="#FOOT18"><sup>18</sup></a>を正しく設定します。
 
 </li><li> ユーザーが<samp>.asd</samp>ファイルをエディタに読み込んでフォームを１つ１つ評価したような場合でも、このパス名の情報は<code>*default-pathname-defaults*</code>（この場合、まったく別の場所を指しているかもしれません）によって書き換えられることはありません。
 </li></ol>
@@ -1290,7 +1290,7 @@ feature-expression := keyword
 <a name="g_t_002easdhuairuZhongnoTa-nokodo"></a>
 <h3 class="section">6.4 .asdファイル中の他のコード</h3>
 
-<p><samp>.asd</samp>ファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>、任意のLispコードを含むことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
+<p><samp>.asd</samp>ファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF19" href="#FOOT19"><sup>19</sup></a>、任意のLispコードを含むことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
 </p>
 <p>とは言っても、<samp>.asd</samp>ファイルにコードを含めなければならない場合もあるでしょう。例えば、コンパイル時の環境を調べて設定するために<code>*features*</code>にフィーチャーを加える、などといったケースが考えられます。その場合は、ユーザーが<samp>.asd</samp>ファイル中の処理の詳細をコントロールできるように、次の慣習に従うことを推奨します:
 </p>
@@ -1389,7 +1389,7 @@ feature-expression := keyword
   (:export ...))
 </pre></div>
 
-<p>ASDF 3.1.5.6から、ASDFはソースファイルの場所を（<code>:pathname</code>オプションで指定できる）<code>component-pathname</code>を基点に探すようになりました。それ以前のバージョンでは<code>system-source-directory</code>を使っていたので、明示的に<code>:pathname</code>を指定していても、<samp>.asd</samp>ファイルのあるディレクトリを基点にしていました。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
+<p>ASDF 3.1.5.6から、ASDFはソースファイルの場所を（<code>:pathname</code>オプションで指定できる）<code>component-pathname</code>を基点に探すようになりました。それ以前のバージョンでは<code>system-source-directory</code>を使っていたので、明示的に<code>:pathname</code>を指定していても、<samp>.asd</samp>ファイルのあるディレクトリを基点にしていました。<a name="DOCF20" href="#FOOT20"><sup>20</sup></a>
 </p>
 
 
@@ -1406,8 +1406,8 @@ feature-expression := keyword
 </p>
 <a name="index-action"></a>
 <a name="index-akusiyon"></a>
-<p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF23" href="#FOOT23"><sup>23</sup></a>
-<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF24" href="#FOOT24"><sup>24</sup></a>
+<p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>
+<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
 </p>
 <p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
 </p>
@@ -1419,7 +1419,7 @@ feature-expression := keyword
 <a name="index-operation"></a>
 <a name="index-sousa_0028Cao-Zuo-_0029"></a>
 
-<p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>操作(operation)</em><a name="DOCF25" href="#FOOT25"><sup>25</sup></a>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
+<p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>操作(operation)</em><a name="DOCF23" href="#FOOT23"><sup>23</sup></a>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
 </p>
 <ul>
 <li> システムのすべてのファイルをコンパイルする
@@ -1441,7 +1441,7 @@ feature-expression := keyword
 <dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
 </p>
 <p><var>operation</var>は操作指示子です。操作指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
-<var>component</var>はコンポーネント指示子です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF26" href="#FOOT26"><sup>26</sup></a>も使えます。
+<var>component</var>はコンポーネント指示子です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
 </p>
 <p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
 </p>
@@ -1452,14 +1452,14 @@ feature-expression := keyword
 <p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先しますが、この仕様は残念ながらASDF 3.1.2以降にしかありません。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="#Miscellaneous-Functions">Miscellaneous Functions</a>）
 </p>
 <a name="index-traverse"></a>
-<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>
+<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF25" href="#FOOT25"><sup>25</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(asdf:traverse operation-class system-name)
 </pre></div>
 </dd></dl>
 
 <dl>
-<dt><a name="index-make_002doperation"></a>Function: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
+<dt><a name="index-make_002doperation"></a>関数: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
 <dd><a name="make_002doperation"></a>
 <p><var>initargs</var>は、操作オブジェクトを作る際に<code>make-instance</code>に渡されます。
 </p>
@@ -1603,7 +1603,7 @@ feature-expression := keyword
 </p>
 <p>これらの「バンドル」の操作は、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、メンテナンスされていない古い処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
 </p>
-<p>バンドル操作の出力先のパスは、他のオブジェクトファイルと同様に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定された操作に限っては異なります。<a name="DOCF28" href="#FOOT28"><sup>28</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
+<p>バンドル操作の出力先のパスは、他のオブジェクトファイルと同様に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定された操作に限っては異なります。<a name="DOCF26" href="#FOOT26"><sup>26</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
 </p></dd></dl>
 
 <dl>
@@ -1767,7 +1767,7 @@ feature-expression := keyword
 <p><em>コンポーネント指示子(component designator)</em>は基点となるコンポーネントに対する相対的な指示子であり、コンポーネントそのものか、文字列、シンボルか、あるいはコンポーネント指示子のリストです。
 </p>
 <dl>
-<dt><a name="index-find_002dsystem"></a>Function: <strong>find-system</strong> <em>system-designator &amp;optional (error-p t)</em></dt>
+<dt><a name="index-find_002dsystem"></a>関数: <strong>find-system</strong> <em>system-designator &amp;optional (error-p t)</em></dt>
 <dd>
 <p><code>find-system</code>はシステム指示子を引数に取り、システムを返します。システムが見つからなかった場合、デフォルトではエラー<code>missing-component</code>を通知しますが、<var>error-p</var>が<code>nil</code>の場合は単に<code>nil</code>を返します。
 </p>
@@ -1780,10 +1780,10 @@ feature-expression := keyword
 </li></ul>
 
 <a name="index-ASDF_002dUSER-package"></a>
-<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a>
-<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF30" href="#FOOT30"><sup>30</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
+<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>
+<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
 </p>
-<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF31" href="#FOOT31"><sup>31</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
+<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
 </p>
 <p>システムのサーチ関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義し、セントラルレジストリかソースレジストリで指定されたディレクトリに置くようにするべきです。
 </p>
@@ -1792,18 +1792,18 @@ feature-expression := keyword
 <a name="index-primary_002dsystem_002dname"></a>
 <a name="index-puraimarinemu"></a>
 <a name="index-puraimarisisutemu"></a>
-<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>
+<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF30" href="#FOOT30"><sup>30</sup></a>
 <samp>foo.asd</samp>に、この命名ルールに従わないシステム（例えば<code>foo-test</code>など）が定義されている場合、ASDFはシステム定義の場所を自動的に見つけることができないので、事前に<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、明示的にプライマリシステムの定義をロードしておかなければなりません。我々はそのような命名の慣習をやめることを強く推奨しますが、今のところ、後方互換性のためにサポートされてはいます。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-primary_002dsystem_002dname-1"></a>Function: <strong>primary-system-name</strong> <em>name</em></dt>
+<dt><a name="index-primary_002dsystem_002dname-1"></a>関数: <strong>primary-system-name</strong> <em>name</em></dt>
 <dd>
 <p><var>name</var>がスラッシュ<code>/</code>によって区切られている場合、<code>primary-system-name</code>はプライマリネーム、つまり最初の部分を返します。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-locate_002dsystem"></a>Function: <strong>locate-system</strong> <em>name</em></dt>
+<dt><a name="index-locate_002dsystem"></a>関数: <strong>locate-system</strong> <em>name</em></dt>
 <dd>
 <p>一般的には、この関数を直接呼び出す<em>べきではありません</em>。この関数がAPIの一部としてエクスポートされているのは、独自の<code>*system-definition-search-functions*</code>を使いたいプログラマのためです。
 </p>
@@ -1831,7 +1831,7 @@ feature-expression := keyword
 </dd></dl>
 
 <dl>
-<dt><a name="index-find_002dcomponent-1"></a>Function: <strong>find-component</strong> <em>base path</em></dt>
+<dt><a name="index-find_002dcomponent-1"></a>関数: <strong>find-component</strong> <em>base path</em></dt>
 <dd>
 <p><var>base</var>コンポーネント（あるいは指示子）と<var>path</var>を引数に取り、<var>base</var>を基点として<var>path</var>で指示されるコンポーネントを見つけます。
 </p>
@@ -2114,7 +2114,7 @@ simple-component-name := string
 
 <p>ビルドを成功させるためには、アクションのグラフが循環的であってはなりません。あなたが（ASDFの純粋なユーザーであれ、拡張を実装しているのであれ）依存関係のグラフにループを含めてしまうと、ASDFは盛大なエラーを引き起こすでしょう。依存の向きを明確にするため、ASDF 3では、アクションが他のアクションに依存していることを<em>requiring</em>、<em>required</em>という言葉で表しています。つまり&ldquo;requiring action&rdquo;は、それ自身が<code>perform</code>される前に、そのすべての&ldquo;required action&rdquo;が完了することに依存（<code>depends-on</code>）しているわけです。
 </p>
-<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的な操作である<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対する操作を行う前に、まずはすべての子コンポーネントに対して同じ操作を行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のような操作は、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備する操作を行う前に、まずは親コンポーネントに対して同じ操作を行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまる操作であり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
+<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF31" href="#FOOT31"><sup>31</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的な操作である<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対する操作を行う前に、まずはすべての子コンポーネントに対して同じ操作を行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のような操作は、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備する操作を行う前に、まずは親コンポーネントに対して同じ操作を行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまる操作であり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
 </p>
 <p>[訳者補足]
 </p>
@@ -2143,7 +2143,7 @@ simple-component-name := string
 </p>
 <p>ASDF 3.0.1以前（ASDF 1、2を含む）では、<code>version-satisfies</code>は<var>version</var>と<var>version-spec</var>が同じメジャーバージョン番号（１番目の整数）であることも必要条件にしていました。メジャーバージョンが違う場合は<var>version-spec</var>を満たさないとみなされたのです。しかし、この挙動はドキュメントには書かれておらず、おそらく仕様として依拠することはできなかったし、一部のユーザーにとっては悩みの種でした。ASDF 3.0.1から、<code>version-satisfies</code>はメジャーバージョンを特別扱いしなくなり、単にバージョンが同じか新しければ<code>t</code>を返すようになりました。
 </p>
-<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a name="DOCF34" href="#FOOT34"><sup>34</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
+<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
 </p></dd></dl>
 
 <hr>
@@ -2175,7 +2175,7 @@ simple-component-name := string
 <ol>
 <li> ソースレジストリには、ハードコーディングされたレジストリ設定が加わることがあります。これは主に処理系（特にSBCL）自身が提供するシステムの場所を追加するもので、処理系のバージョンによってパスが変わるのにも対応しています。
 
-</li><li> アプリケーションは、ソースレジストリのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="#Configuration-API">Configuration API</a>）
+</li><li> アプリケーションは、ソースレジストリのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>）
 
 </li><li> 環境変数<code>CL_SOURCE_REGISTRY</code>が存在する場合は、ソースレジストリがこの変数によって設定されます。
 
@@ -2191,7 +2191,7 @@ simple-component-name := string
 
 </li><li> <samp>$XDG_DATA_DIRS/common-lisp/systems/</samp>と<samp>$XDG_DATA_DIRS/common-lisp/source/</samp>がソースレジストリに加わります。ただし、前者には再帰的探索がされないので、<samp>.asd</samp>ファイルへのリンクを置く目的で使います。Unixでは<code>XDG_DATA_DIRS</code>のデフォルトは<samp>/usr/local/share</samp>と<samp>/usr/share</samp>です。Windowsで<code>XDG_DATA_DIRS</code>が存在しない場合、代わりに<code>AppData</code>と<code>Common AppData</code>が使われるでしょう。
 
-</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF35" href="#FOOT35"><sup>35</sup></a>
+</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>
 
 </li></ol>
 
@@ -2276,7 +2276,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF36" href="#FOOT36">(36)</a>
+    ;; 最後に指定されます。<a name="DOCF34" href="#FOOT34">(34)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -2388,7 +2388,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <p>設定ディレクトリ内の<samp>.conf</samp>ファイルのDSLは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>と少し<em>異なります</em>。まず、ディレクティブを<code>(:source-registry ...)</code>で囲む必要はありません。また、継承ディレクティブ<code>:inherit-configuration</code>、<code>:ignore-inherited-configuration</code>は使えず、ディレクティブのリストの<em>末尾</em>に暗黙に<code>:inherit-configuration</code>が加わります。これらに反した設定ファイルを読み込むと、ASDFは<code>uiop:invalid-configuration</code>エラーを通知するでしょう。なお、ディレクトリ中の設定ファイルは、そのネームストリングに従って<code>string&lt;</code>の順で読み込まれ、ディレクティブもこの順番で結合されます。
 </p>
-<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル<samp>10-foo.conf</samp>を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
+<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル<samp>10-foo.conf</samp>を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF35" href="#FOOT35"><sup>35</sup></a>
 </p>
 <p>設定ディレクトリ内の設定ファイル名は、上で挙げたように２つの数字から始めるのが慣習です。こうすることで、設定が読み込まれる順番を決めることができます。また、ファイル形式は<samp>.conf</samp>でなければなりません。この仕様は、実装を簡単にするだけでなく、設定ファイルを無効にするには単にファイル形式を変えればよい、というメリットも生みます。
 </p>
@@ -2398,7 +2398,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <pre class="lisp">	(:include &quot;/foo/bar/&quot;)
 </pre></div>
 
-<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>:
+<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF36" href="#FOOT36"><sup>36</sup></a>:
 </p><div class="lisp">
 <pre class="lisp">(:tree &quot;/home/fare/cl/&quot;)
 </pre></div>
@@ -2445,191 +2445,92 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <a name="sieruXiang-kenoShe-Ding-noGou-Wen"></a>
 <h3 class="section">8.7 シェル向けの設定の構文</h3>
 
-<p>When considering environment variable <code>CL_SOURCE_REGISTRY</code>
-ASDF will skip to next configuration if it&rsquo;s an empty string.
-It will <code>READ</code> the string as a SEXP in the DSL
-if it begins with a paren <code>(</code>,
-otherwise it will be interpreted much like <code>TEXINPUTS</code>,
-as a list of paths, where
+<p>環境変数<code>CL_SOURCE_REGISTRY</code>が空の文字列の時、ASDFはこの設定をスキップします。また、<code>(</code>から始まる場合は、先に述べたDSLによるS式と解釈し、全体に<code>read</code>を適用します。しかし、それ以外の場合は別の構文によるパスのリストとみなします。この構文は以下の通りで、<code>TEXINPUTS</code>に似ています。
 </p>
-<p>* paths are separated
-   by a <code>:</code> (colon) on Unix platforms (including cygwin),
-   by a <code>;</code> (semicolon) on other platforms (mainly, Windows).
-</p>
-<p>* each entry is a directory to add to the search path.
-</p>
-<p>* if the entry ends with a double slash <code>//</code>
-    then it instead indicates a tree in the subdirectories
-    of which to recurse.
-</p>
-<p>* if the entry is the empty string (which may only appear once),
-    then it indicates that the inherited configuration should be
-    spliced there.
-</p>
+<ul>
+<li> Unix（Cygwin含む）上ではエントリの区切りは<code>:</code>であり、それ以外（主にWindows）では<code>;</code>です。
+
+</li><li> 各エントリは探索パスに追加されるディレクトリです。<code>:directory</code>ディレクティブと同等であり、再帰的探索はしません。
+
+</li><li> エントリの末尾が<code>//</code>の場合は、再帰的探索の対象になります。<code>:tree</code>ディレクティブと同等です。
+
+</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
+</li></ul>
+
 <hr>
-<a name="Search-Algorithm"></a>
-<a name="Search-Algorithm-1"></a>
-<h3 class="section">8.8 Search Algorithm</h3>
+<a name="g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0"></a>
+<a name="Tan-Suo-arugorizumu"></a>
+<h3 class="section">8.8 探索アルゴリズム</h3>
 <a name="index-_002adefault_002dsource_002dregistry_002dexclusions_002a"></a>
 
-<p>In case that isn&rsquo;t clear, the semantics of the configuration is that
-when searching for a system of a given name,
-directives are processed in order.
+<p>念のため説明しておくと、与えられたシステム名を持つシステムを探すとき、ディレクティブは順番に処理されていきます。
 </p>
-<p>When looking in a directory, if the system is found, the search succeeds,
-otherwise it continues.
+<p>ディレクトリ（<code>:directory</code>）を探索する場合、システムが見つかれば探索は成功であり、見つからなければ次の探索に進みます。
 </p>
-<p>When looking in a tree, if one system is found, the search succeeds.
-If multiple systems are found, the consequences are unspecified:
-the search may succeed with any of the found systems,
-or an error may be raised.
-ASDF 3.2.1 or later returns the pathname whose normalized directory component
-has the shortest length (as a list), and breaks ties by choosing the system
-with the smallest <code>unix-namestring</code> when compared with <code>string&lt;</code>.
-Earlier versions of ASDF return ASDF return the first system found,
-which is implementation-dependent, and may or may not be the pathname
-with the smallest <code>unix-namestring</code> when compared with <code>string&lt;</code>.
-XCVB raises an error.
-If none is found, the search continues.
+<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
 </p>
-<p>Exclude statements specify patterns of subdirectories
-the systems from which to ignore.
-Typically you don&rsquo;t want to use copies of files kept by such
-version control systems as Darcs.
-Exclude statements are not propagated to further included or inherited
-configuration files or expressions;
-instead the defaults are reset around every configuration statement
-to the default defaults from <code>asdf::*default-source-registry-exclusions*</code>.
+
+<p><code>:exclude</code>、<code>:also-exclude</code>ディレクティブには、ツリーを探索するときに除外するサブディレクトリ名を指定します。一般的には、バージョン管理システムのデータベースディレクトリ（<samp>.git</samp>、<samp>_darcs</samp>など）は除外されるでしょう。なお、除外の指定は継承された設定には<em>伝搬しません</em>。すべての設定は、デフォルトでは<code>asdf::*default-source-registry-exclusions*</code>に登録されている除外パターンを採用します。
 </p>
-<p>Include statements cause the search to recurse with the path specifications
-from the file specified.
-</p>
-<p>An inherit-configuration statement cause the search to recurse with the path
-specifications from the next configuration
-(see <a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a> above).
+
+<p><code>:include</code>ディレクティブでインクルードされた設定については、探索は再帰的に適用されます。
+また、<code>:inherit-configuration</code>ディレクティブで継承された設定についても、探索は再帰的に適用されます。
 </p>
 
 
 <hr>
-<a name="Caching-Results"></a>
-<a name="Caching-Results-1"></a>
-<h3 class="section">8.9 Caching Results</h3>
+<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5"></a>
+<a name="sosurezisutorinokiyatusiyu"></a>
+<h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
 
-<p>The implementation is allowed to either eagerly compute the information
-from the configurations and file system, or to lazily re-compute it
-every time, or to cache any part of it as it goes.
-In practice, the recommended <code>source-registry</code> eagerly collects and caches results
-and you need to explicitly flush the cache for change to be taken into account,
-whereas the old-style <code>*central-registry*</code> mechanism queries the filesystem every time.
+<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
+いっぽう、古いスタイルである<code>*central-registry*</code>のメカニズムは、ファイルシステムに毎回問い合わせるというものでした。
 </p>
-<p>To explicitly flush any information cached by the system
-after a change was made in the filesystem, See <a href="#Configuration-API">Configuration API</a>,
-and e.g. call <code>asdf:clear-source-registry</code>.
+<p>ファイルシステムを変更したあと、キャッシュを明示的にクリアする方法については<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>を参照してください。例えば<code>asdf:clear-source-registry</code>を呼ぶ方法があります。
 </p>
-<p>Starting with ASDF 3.1.4, you can also explicitly build a persistent cache
-of the <samp>.asd</samp> files found under a tree:
-when recursing into a directory declared by <code>:tree</code> and its transitive subdirectories,
-if a file <samp>.cl-source-registry.cache</samp> exists containing a form
-that is a list starting with <code>:source-registry-cache</code> followed by a list of strings,
-as in <code>(:source-registry-cache <em>&quot;foo/bar.asd&quot; &quot;path/to/more.asd&quot; ...</em>)</code>,
-then the strings are assumed to be <code>unix-namestring</code>s designating
-the available asd files under that tree, and the recursion otherwise stops.
-The list can also be empty, allowing to stop a costly recursion in a huge directory tree.
+<p>ASDF 3.1.4から、ツリー内にある<samp>.asd</samp>ファイルの場所を指定する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
 </p>
-<p>To update such a cache after you install, update or remove source repositories,
-you can run a script distributed with ASDF:
-<code>tools/cl-source-registry-cache.lisp <em>/path/to/directory</em></code>.
-To wholly invalidate the cache, you can
-delete the file <samp>.cl-source-registry.cache</samp> in that directory.
-In either case, for an existing Lisp process to see this change,
-it needs to clear its own cache with e.g. <code>(asdf:clear-source-registry)</code>.
+<p>このキャッシュファイルを新たに作りたい場合、あるいはソースリポジトリのインストール・アップデート・削除などを行ったあとにキャッシュファイルをアップデートしたい場合、ASDFに含まれるスクリプトが使えます: <code>tools/cl-source-registry-cache.lisp <var>/path/to/directory</var></code>。また、キャッシュを無効にしたい場合は単に<samp>.cl-source-registry.cache</samp>を削除すればよいでしょう。いずれの場合も、起動中のLispプロセスにこの変更を反映するためには<code>(asdf:clear-source-registry)</code>などで（メモリ上の）キャッシュをクリアする必要があります。
 </p>
-<p>Developers may safely create a cache in their development tree,
-and we recommend they do it at the top of their source tree if
-it contains more than a small number of files and directories;
-they only need update it when they create, remove or move <samp>.asd</samp> files.
-Software distribution managers may also safely create such a cache,
-but they must be careful to update it every time they install, update or remove
-a software source repository or installation package.
-Finally, advanced developers who juggle with a lot of code
-in their <code>source-registry</code> may manually manage such a cache,
-to allow for faster startup of Lisp programs.
+<p>開発者は自分の開発ツリー内に安全にキャッシュファイルを作ることができますし、もしもソースツリーにたくさんのファイルやディレクトリが含まれているのであれば、そうすることを勧めます。このキャッシュファイルをアップデートする必要があるのは、<samp>.asd</samp>ファイルを作成・削除・移動したときだけです。また、ソフトウェアディストリビューションの管理者も安全にキャッシュファイルを作ることができますが、ソースリポジトリやインストールパッケージをインストール・アップデート・アンインストールする際にキャッシュファイルが更新されるように注意しなければなりません。最後に、経験ある開発者でソースレジストリ内の大量のコードを管理しなければならない方は、Lispプログラムを高速に起動するためにキャッシュファイルを手動で管理することも可能です。
 </p>
-<p>This persistence cache can help you reduce startup latency.
-For instance, on one machine with hundreds of source repositories,
-such a cache shaves half a second at the startup
-of every <code>#!/usr/bin/cl</code> script using SBCL, more on other implementations;
-this makes a notable difference as to
-their subjective interactivity and usability.
-The speedup will only happen if the implementation-provided ASDF is recent enough
-(3.1.3.7 or later); it is not enough for a recent ASDF upgrade to be present,
-since the upgrade will itself be found but
-after the old version has scanned the directories without heeding such a cache.
-To upgrade the implementation-provided ASDF,
-see <a href="#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>.
+<p>この永続的なキャッシュは起動を高速化するのに役立ちます。例えば数百ものソースレジストリを１つのマシンに抱えている場合、キャッシュファイルがあれば、SBCLで<code>#!/usr/bin/cl</code>スクリプトを起動するのが半秒ほど早くなりますし、他の処理系ではさらに差が大きいでしょう。これは主観的なインタラクティビティやユーザビリティに大きな違いをもたらします。なお、この起動の高速化を実現するには、処理系<em>付属</em>のASDFのバージョンが3.1.3.7以降である必要があります。すなわち、新しいASDFをソースレジストリに設定された場所に置いて処理系付属のASDFからブートストラップするというやり方では、この方式の恩恵は得られないでしょう。なぜなら、新しいASDFはキャッシュ無しで探すことになるからです。（→ <a href="#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
 </p>
 
 <hr>
-<a name="Configuration-API"></a>
-<a name="Configuration-API-1"></a>
-<h3 class="section">8.10 Configuration API</h3>
+<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI"></a>
+<a name="sosurezisutorinoAPI"></a>
+<h3 class="section">8.10 ソースレジストリのAPI</h3>
 
-<p>The specified functions are exported from your build system&rsquo;s package.
-Thus for ASDF the corresponding functions are in package ASDF,
-and for XCVB the corresponding functions are in package XCVB.
+<p>次の関数は<code>asdf</code>パッケージからエクスポートされています。
 </p>
 <dl>
-<dt><a name="index-initialize_002dsource_002dregistry"></a>Function: <strong>initialize-source-registry</strong> <em>&amp;optional PARAMETER</em></dt>
-<dd><p>will read the configuration and initialize all internal variables.
-   You may extend or override configuration
-   from the environment and configuration files
-   with the given <var>PARAMETER</var>, which can be
-   <code>nil</code> (no configuration override),
-   or a SEXP (in the SEXP DSL),
-   a string (as in the string DSL),
-   a pathname (of a file or directory with configuration),
-   or a symbol (fbound to function that when called returns one of the above).
+<dt><a name="index-initialize_002dsource_002dregistry"></a>関数: <strong>initialize-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dd><p>設定を読み込み、すべての内部変数を初期化します。その際、引数を与えることで、環境変数や設定ファイルによる設定を上書きしたり拡張したりすることができます。<var>parameter</var>が<code>nil</code>の時は設定の上書きは起こりません。S式の時は<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">S式によるDSL</a>が適用されます。文字列の時は<a href="#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09">シェル向けのDSL</a>が適用されます。パス名の時は対応する設定ファイル・設定ディレクトリから設定が読み込まれます。シンボルの時は<code>funcall</code>され、返ったオブジェクトの型に応じて同じ処理が適用されます。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-clear_002dsource_002dregistry"></a>Function: <strong>clear-source-registry</strong></dt>
-<dd><p>undoes any source registry configuration
-   and clears any cache for the search algorithm.
-   You might want to call this function
-   (or better, <code>clear-configuration</code>)
-   before you dump an image that would be resumed
-   with a different configuration,
-   and return an empty configuration.
-   Note that this does not include clearing information about
-   systems defined in the current image, only about
-   where to look for systems not yet defined.
+<dt><a name="index-clear_002dsource_002dregistry"></a>関数: <strong>clear-source-registry</strong></dt>
+<dd><p>ソースレジストリの現在の設定と探索アルゴリズムによるキャッシュをすべて削除します。コアイメージのダンプをする際、そのイメージを別の設定で復元する予定であれば、その前にこの関数（あるいは<code>clear-configuration</code>）を呼んで、設定を空にしておく必要があるかもしれません。なお、この関数を呼んでも、現在のイメージにロードされているシステム定義は削除されないことに注意してください。消えるのは（まだシステム定義が読み込まれていない）システムを見つける際にどこを探すか、という情報だけです。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-ensure_002dsource_002dregistry"></a>Function: <strong>ensure-source-registry</strong> <em>&amp;optional PARAMETER</em></dt>
-<dd><p>checks whether a source registry has been initialized.
-   If not, initialize it with the given <var>PARAMETER</var>.
+<dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されているかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
 </p></dd></dl>
 
-<p>Every time you use ASDF&rsquo;s <code>find-system</code>, or
-anything that uses it (such as <code>operate</code>, <code>load-system</code>, etc.),
-<code>ensure-source-registry</code> is called with parameter <code>nil</code>,
-which the first time around causes your configuration to be read.
-If you change a configuration file,
-you need to explicitly <code>initialize-source-registry</code> again,
-or maybe simply to <code>clear-source-registry</code> (or <code>clear-configuration</code>)
-which will cause the initialization to happen next time around.
+<p><code>find-system</code>が呼ばれた時、（直接呼ばれたにせよ、<code>operate</code>や<code>load-system</code>などから呼ばれたにせよ）ASDFは<code>(ensure-source-registry nil)</code>を実行します。つまり、<code>find-system</code>が初めて呼ばれた時に、ソースレジストリは初期化されるわけです。また、設定ファイルを変更したあとは、明示的に<code>initialize-source-registry</code>で初期化するか、あるいは<code>clear-source-registry</code>や<code>clear-configuration</code>でソースレジストリをクリアし、次の<code>find-system</code>で初期化が行われるようにする必要があります。
 </p>
 <hr>
-<a name="Introspection"></a>
-<a name="Introspection-1"></a>
-<h3 class="section">8.11 Introspection</h3>
+<a name="g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3"></a>
+<a name="intorosupekusiyon"></a>
+<h3 class="section">8.11 イントロスぺクション</h3>
 
 
 <hr>
-<a name="g_t_002asource_002dregistry_002dparameter_002a-variable"></a>
-<a name="g_t_002asource_002dregistry_002dparameter_002a-variable-1"></a>
-<h4 class="subsection">8.11.1 *source-registry-parameter* variable</h4>
+<a name="g_t_002asource_002dregistry_002dparameter_002a_5909_6570"></a>
+<a name="g_t_002asource_002dregistry_002dparameter_002aBian-Shu-"></a>
+<h4 class="subsection">8.11.1 <code>*source-registry-parameter*</code>変数</h4>
 <a name="index-_002asource_002dregistry_002dparameter_002a"></a>
 
 <p>We have made available the variable <code>*source-registry-parameter*</code>
@@ -2765,7 +2666,7 @@ But so are good design ideas and elegant implementation tricks.
 <a name="index-ASDF_005fOUTPUT_005fTRANSLATIONS"></a>
 <a name="index-autopututotoransuresiyon"></a>
 
-<p>fasl<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
+<p>fasl<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
 </p>
 <p>この問題を軽減するため、ASDF 2以降には<code>asdf-output-translations</code>機能が備わっています。
 </p>
@@ -2805,7 +2706,7 @@ But so are good design ideas and elegant implementation tricks.
 </li><li> 設定ファイル<samp>/etc/common-lisp/asdf-output-translations.conf</samp>が存在する場合、アウトプットトランスレーションがこのファイルによって設定されます。Unixのみの処理です。 
 
 </li><li> 設定ディレクトリ<samp>/etc/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合、ソースレジストリがこのディレクトリ内の設定ファイルによって設定されます。Unixのみの処理です。
-<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
+<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
 
 </li></ol>
 
@@ -2813,8 +2714,8 @@ But so are good design ideas and elegant implementation tricks.
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
 </p>
-<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュが使われます。<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
-この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
+<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュが使われます。<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>
+この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>
 </p>
 
 
@@ -3113,7 +3014,7 @@ with same fall-through semantics).
 </p>
 <hr>
 <a name="Output-Caching-Results"></a>
-<a name="Caching-Results-2"></a>
+<a name="Caching-Results"></a>
 <h3 class="section">9.7 Caching Results</h3>
 
 <p>The implementation is allowed to either eagerly compute the information
@@ -3495,7 +3396,7 @@ The <var>system-designator</var> may be a string, symbol, or ASDF system object.
 For these cases, <code>(asdf:clear-system :foo)</code>
 will remove the system from the table of currently loaded systems:
 the next time the system <code>foo</code> or one that depends on it is re-loaded,
-<code>foo</code> will be loaded again.<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+<code>foo</code> will be loaded again.<a name="DOCF46" href="#FOOT46"><sup>46</sup></a>
 </p>
 <p>Note that this does not and cannot undo
 the previous loading of the system.
@@ -4317,7 +4218,7 @@ Since it isn&rsquo;t possible to automatically detect what extensions
 need to be invalidated and what systems use them,
 ASDF will invalidate <em>all</em> previously loaded systems
 when it is loaded on top of a forward-incompatible ASDF version.
-<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>
+<a name="DOCF47" href="#FOOT47"><sup>47</sup></a>
 
 </li><li> To write a portable build script, you need to rely on a recent version of UIOP,
 but until you have ensured a recent ASDF is loaded,
@@ -5344,7 +5245,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-clear_002dconfiguration"><code>clear-configuration</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_306e_8a2d_5b9a_3092_30ea_30bb_30c3_30c8_3059_308b">ASDFの設定をリセットする</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-clear_002doutput_002dtranslations"><code>clear-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-clear_002doutput_002dtranslations-1"><code>clear-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-clear_002dsource_002dregistry"><code>clear-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Configuration-API">Configuration API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-clear_002dsource_002dregistry"><code>clear-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-clear_002dsystem"><code>clear-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-coerce_002dname"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-coerce_002dname-1"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
@@ -5364,7 +5265,7 @@ interested, too.
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-E">E</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"><code>enable-asdf-binary-locations-compatibility</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-Backward-Compatibility">Output Backward Compatibility</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ensure_002doutput_002dtranslations"><code>ensure-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-ensure_002dsource_002dregistry"><code>ensure-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Configuration-API">Configuration API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ensure_002dsource_002dregistry"><code>ensure-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-file_002dtype"><code>file-type</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Pitfalls-of-the-transition-to-ASDF-2">Pitfalls of the transition to ASDF 2</a></td></tr>
@@ -5374,7 +5275,7 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-I">I</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-initialize_002doutput_002dtranslations"><code>initialize-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-initialize_002dsource_002dregistry"><code>initialize-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Configuration-API">Configuration API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-initialize_002dsource_002dregistry"><code>initialize-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-input_002dfiles"><code>input-files</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-L">L</a></th><td></td><td></td></tr>
@@ -5485,14 +5386,14 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-_002acentral_002dregistry_002a"><code>*central-registry*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#After-upgrading-ASDF">After upgrading ASDF</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002acompile_002dfile_002dfailure_002dbehaviour_002a"><code>*compile-file-failure-behaviour*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002acompile_002dfile_002dwarnings_002dbehaviour_002a"><code>*compile-file-warnings-behaviour*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002adefault_002dsource_002dregistry_002dexclusions_002a"><code>*default-source-registry-exclusions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Search-Algorithm">Search Algorithm</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002adefault_002dsource_002dregistry_002dexclusions_002a"><code>*default-source-registry-exclusions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0">探索アルゴリズム</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002afeatures_002a-1"><code>*features*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_306f_3058_3081_306b">はじめに</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002aimage_002ddump_002dhook_002a"><code>*image-dump-hook*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_306e_8a2d_5b9a_3092_30ea_30bb_30c3_30c8_3059_308b">ASDFの設定をリセットする</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002aLOAD_002dPATHNAME_002a"><code>*LOAD-PATHNAME*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#LOAD_002dPATHNAME-has-a-weird-value">LOAD-PATHNAME has a weird value</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002aLOAD_002dTRUENAME_002a"><code>*LOAD-TRUENAME*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#LOAD_002dPATHNAME-has-a-weird-value">LOAD-PATHNAME has a weird value</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002anil_002dpathname_002a"><code>*nil-pathname*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"><code>*oldest-forward-compatible-asdf-version*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Pitfalls-of-the-upgrade-to-ASDF-3">Pitfalls of the upgrade to ASDF 3</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002asource_002dregistry_002dparameter_002a"><code>*source-registry-parameter*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_002asource_002dregistry_002dparameter_002a-variable">*source-registry-parameter* variable</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002asource_002dregistry_002dparameter_002a"><code>*source-registry-parameter*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_002asource_002dregistry_002dparameter_002a_5909_6570"><code>*source-registry-parameter*</code>変数</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002astandard_002doutput_002a"><code>*standard-output*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-capture-ASDF_0027s-output_003f">How can I capture ASDF's output?</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002asystem_002ddefinition_002dsearch_002dfunctions_002a"><code>*system-definition-search-functions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -5687,89 +5588,95 @@ interested, too.
 <h3><a name="FOOT5" href="#DOCF5">(5)</a></h3>
 <p>Windowsの場合、ASDF 3.1.5以降では、<samp>%LOCALAPPDATA%</samp>以下に<samp>config/common-lisp/source-registry.conf.d/</samp>ディレクトリを作りましょう。<samp>%LOCALAPPDATA%</samp>は通常なら<samp>~/AppData/Local/</samp>を指していますが、実際の値は<code>CMD.EXE</code>上で<code>echo %LOCALAPPDATA%</code>を実行することで確かめることができます。</p>
 <h3><a name="FOOT6" href="#DOCF6">(6)</a></h3>
-<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップ等のファイルは同じディレクトリにあっても読み込まれないでしょう。
+<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップなどのファイルは同じディレクトリにあっても読み込まれないでしょう。
 </p>
 <p>また、ASDFは<samp>.</samp>で始まるファイル名も無視します。
 </p>
-<p>慣習では、これらの設定ファイル名は２つの数字から始まります。こうすることで設定ディレクトリ内の<samp>.conf</samp>ファイルの並びが決まるので、設定が読み込まれる順序をコントロールすることができます。</p>
+<p>慣習では、これらの設定ファイル名は２つの数字から始まります。こうすることで設定ディレクトリ内の<samp>.conf</samp>ファイルの並びが決まり、設定が読み込まれる順番をコントロールすることができます。</p>
 <h3><a name="FOOT7" href="#DOCF7">(7)</a></h3>
-<p><samp>.asd</samp>ファイルの探索をさらにカスタマイズすることも可能です。これは発展的な使い方になるので、後に扱います。<code>*system-definition-search-functions*</code>で検索してください。（→ <a href="#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>）</p>
+<p><samp>.asd</samp>ファイルの探索をさらにカスタマイズすることも可能です。これは発展的な使い方になるので、後に扱います。<code>*system-definition-search-functions*</code>で検索してください。</p>
 <h3><a name="FOOT8" href="#DOCF8">(8)</a></h3>
-<p><code>nil</code>に評価された場合、その要素はスキップされます。</p>
-<h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p>[訳注] 実装を見る限りでは、<code>eval</code>の返す値が<code>uiop:directory-pathname-p</code>を満たせば良いようです（満たさない場合はエラーが通知される）。</p>
-<h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
+<h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p>WindowsではPOSIXのシンボリックリンクの代わりにショートカットを使うことができます。MacOSのエイリアスについては、うまく動くかどうかの情報を求めています。</p>
-<h3><a name="FOOT11" href="#DOCF11">(11)</a></h3>
+<h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
 <p>[訳注] <code>asdf:clear-source-registry</code>と<code>asdf:clear-output-translations</code>が実行されます。</p>
-<h3><a name="FOOT12" href="#DOCF12">(12)</a></h3>
+<h3><a name="FOOT11" href="#DOCF11">(11)</a></h3>
 <p>[訳注] ASDF以前に使われていたシステム定義ツール。</p>
-<h3><a name="FOOT13" href="#DOCF13">(13)</a></h3>
-<p>[訳注] 具体的には<code>(asdf:operate 'asdf:load-op <var>system</var> [キーワード引数])</code>が実行されます。以下の関数も同様です。</p>
-<h3><a name="FOOT14" href="#DOCF14">(14)</a></h3>
+<h3><a name="FOOT12" href="#DOCF12">(12)</a></h3>
 <p><code>:force-not (already-loaded-systems)</code>を指定すると実現できます。</p>
-<h3><a name="FOOT15" href="#DOCF15">(15)</a></h3>
+<h3><a name="FOOT13" href="#DOCF13">(13)</a></h3>
 <p>[訳注] 例を挙げて説明すると、システム<code>library</code>とシステム<code>application</code>があって<code>application</code>が<code>library</code>に依存しているとき、<code>library</code>のコードを変更して<code>(asdf:load-system :application)</code>を実行すると、<code>library</code>、<code>application</code>の順で必要な再コンパイル、ロードが行われます。</p>
-<h3><a name="FOOT16" href="#DOCF16">(16)</a></h3>
+<h3><a name="FOOT14" href="#DOCF14">(14)</a></h3>
 <p>ASDF 1、2（バージョン2.26まで）は、各<samp>.asd</samp>ファイルに対して<code>asdf<em>N</em></code>という一時的なパッケージを作っては削除していました。これは名前の衝突を減らすための仕様でしたが、目的にかなってもいなかったし、ものごとを複雑にしただけでした。ASDF 3は単に共通のパッケージである<code>asdf-user</code>を使い、シンボル衝突の回避はCommon Lispの慣習に委ねます。<code>asdf-user</code>パッケージの特筆すべき点は、<code>uiop/common-lisp</code>を<code>use</code>していることです。このパッケージは<code>common-lisp</code>パッケージのすべてのシンボルを再エクスポートしていて、いくつかのCommon Lisp処理系のANSI CL違反の挙動が修正されています。しかし、Corman Lisp、GCL、Genera、MCLを使っているのでなければ、この点を気にするべきではありません。</p>
-<h3><a name="FOOT17" href="#DOCF17">(17)</a></h3>
+<h3><a name="FOOT15" href="#DOCF15">(15)</a></h3>
 <p>[訳注] <code>&quot;foo/bar.lisp&quot;</code>は<samp>#p&quot;foo/bar.lisp.lisp&quot;</samp>と解釈されるので、拡張子を明示して書くことはできません。</p>
-<h3><a name="FOOT18" href="#DOCF18">(18)</a></h3>
+<h3><a name="FOOT16" href="#DOCF16">(16)</a></h3>
 <p>[訳注] ここはわかりにくいですが、文字列中では<code>&quot;..&quot;</code>がUnixのパスと同じように使えるということを知っていれば十分です。ANSI CLの<a href="http://clhs.lisp.se/Body/26_glo_p.htm#pathname">パス名</a>オブジェクトは６つのコンポーネントを含みますが、その内の１つである<a href="http://clhs.lisp.se/Body/26_glo_v.htm#valid_pathname_directory">ディレクトリ</a>コンポーネント中に<code>:back</code>が含まれているのと同じ意味になるということです。<a href="http://www.lispworks.com/documentation/lw50/CLHS/Body/19_bbdc.htm">CLHS: 19.2.2.4.3 Restrictions on Examining a Pathname Directory Component</a>も参照。</p>
-<h3><a name="FOOT19" href="#DOCF19">(19)</a></h3>
+<h3><a name="FOOT17" href="#DOCF17">(17)</a></h3>
 <p>[訳注] CLのパス名（リテラル<code>#p...</code>あるいは<code>#.(make-pathname ...)</code>による）を与えるか、文字列でUnixスタイルの相対パスを与えるかの２択であり、絶対パスを指定したい場合は（稀と思われますが）前者のパス名しか使えないということです。相対パスは<samp>.asd</samp>ファイルのあるディレクトリを基点に解釈されるので、<code>:pathname</code>オプションでシステムのトップレベルのディレクトリを変更していても影響しないという点にも注意しましょう。
 </p>
 <p>なお、具体的には<code>(uiop:subpathname (asdf:system-source-file &lt;システム名&gt;) &lt;パス名または文字列&gt;)</code>の返すパス名が使われています。</p>
-<h3><a name="FOOT20" href="#DOCF20">(20)</a></h3>
+<h3><a name="FOOT18" href="#DOCF18">(18)</a></h3>
 <p>[訳注] <code>component-pathname</code>でアクセスできるパス名です。</p>
-<h3><a name="FOOT21" href="#DOCF21">(21)</a></h3>
+<h3><a name="FOOT19" href="#DOCF19">(19)</a></h3>
 <p>[訳注] ただしこれは、<code>load-system</code>で読み込むのと<code>load</code>で読み込むのが同等、という意味ではありません。ASDFがシステム定義を<samp>.asd</samp>ファイルから読み込むときはカレントパッケージが<code>:asdf-user</code>になるなど、<code>load</code>による実行と比べるといろいろな違いがあります。</p>
-<h3><a name="FOOT22" href="#DOCF22">(22)</a></h3>
+<h3><a name="FOOT20" href="#DOCF20">(20)</a></h3>
 <p>[訳注] システム<code>foo</code>のディレクトリ構成として、ソースファイルをすべて<samp>foo/src/</samp>以下に置くような方式を選んだとしましょう。この時、<samp>foo/src/baz.lisp</samp>に対応するシステムはデフォルトでは<code>foo/src/baz</code>ですが、<code>:pathname &quot;src&quot;</code>でトップレベルのパスを<samp>foo/src/</samp>に変えると<code>foo/baz</code>にできます。<code>:pathname</code>オプションについては<a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>を参照してください。</p>
-<h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
+<h3><a name="FOOT21" href="#DOCF21">(21)</a></h3>
 <p>古いASDFでは、計画を作る関数は<code>traverse</code>であり、実行すべきアクションのリストを返していました。しかし、ASDF 3で<code>plan</code>オブジェクトが導入され、<code>make-plan</code>がこのオブジェクトを返す関数として代わりに使われるようになったため、<code>traverse</code>は廃止予定です。<code>traverse</code>は後方互換性とデバッグのためだけに残されており、近い将来には削除されるかもしれません。</p>
-<h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
+<h3><a name="FOOT22" href="#DOCF22">(22)</a></h3>
 <p><em>アクション(action)</em>という用語は、Kent Pitmanの論文 &ldquo;The Description of Large Systems&rdquo;（→ <a href="#g_t_53c2_8003_6587_732e">参考文献</a>）で使われていて、これはUnixの<code>make</code>に端を発するのではないかと我々は考えています。この用語がASDFハッカーたちに使われるようになったのはASDF 2からですが、それ以前も単に明示されてはいなかっただけで、概念としてはASDF 1の当初からありました。</p>
-<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
 <p>[訳注] &ldquo;operation&rdquo;はこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
-<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
+<h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
 <p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; ... :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
-<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
+<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
 <p>[訳注] <code>traverse</code>は操作指示子とコンポーネント指示子を引数に取り、実行されるアクション（操作とコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
-<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
+<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
 <p>[訳注] この場合、<code>:build-pathname</code>の指定があれば出力先はそのパス名になります。指定がない場合は<code>component-pathname</code>の返すディレクトリが使われるようですが、公式の仕様かどうかは明示されていません。</p>
-<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>バージョン2.27～3.0.3では、<code>uiop</code>の代わりに<code>uiop/package</code>のみが<code>use</code>されていました。バージョン3.1.2以前に対応したコードを書くためには、<code>uiop</code>を<code>use</code>したパッケージを自ら定義するか、あるいは<code>uiop:</code>というパッケージ接頭辞をいちいち付ける必要があります。</p>
-<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
+<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
 <p>[訳注] 例えば冒頭に<code>(cl:in-package :asdf-user)</code>を追加する、など。</p>
-<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
+<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>[訳注] <code>clear-source-registry</code>でキャッシュのリセットができます。</p>
-<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
+<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
 <p>ASDF 2.26以前はプライマリネームの機能をサポートしていませんでした。従って、それらのバージョンでは、システム<code>foo/bar</code>が<samp>foo.asd</samp>に定義されている場合は、<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、事前にそのファイルを明示的にロードしなければなりません。我々はASDF 2をサポートしていませんので、ASDF 3にアップグレードすることを推奨します。</p>
-<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
+<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
 <p>[訳注] ASDFでは、<code>:depends-on</code>でつながっているコンポーネントをsibling（兄弟姉妹）と呼びます。</p>
-<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
+<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
 <p>[訳注] <code>defsystem</code>の<code>:depends-on</code>オプションで使われる構文です。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）</p>
-<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
+<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
-<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
+<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
-<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
 <p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
-<h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
+<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
 <p>[訳注] こちらの例ではユーザー名が明示されていますが、もちろん<code>(:tree (:home &quot;cl&quot;))</code>という記述も有効です。</p>
+<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<p>[訳注] 文字列の末尾が<code>:</code>（または<code>;</code>）ならば、空のエントリを追加したことになります。</p>
+<h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
+<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
 <h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
-<p>&ldquo;FASL&rdquo;は&ldquo;FASt Loading&rdquo;の略です。</p>
+<p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
 <h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
-<p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
+<p>[訳注] 現在の実装もそうなっています。</p>
 <h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
-<p>[訳注] 順序としては、このキャッシュの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
 <h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
-<p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
+<p>&ldquo;FASL&rdquo;は&ldquo;FASt Loading&rdquo;の略です。</p>
 <h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
+<p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
+<h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
+<p>[訳注] 順序としては、このキャッシュの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<h3><a name="FOOT45" href="#DOCF45">(45)</a></h3>
+<p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
+<h3><a name="FOOT46" href="#DOCF46">(46)</a></h3>
 <p>Alternatively, you could touch <code>foo.asd</code> or
 remove the corresponding fasls from the output file cache.</p>
-<h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
+<h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
 <a name="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></a>
 <p>Forward incompatibility can be determined using the variable
 <code>asdf/upgrade::*oldest-forward-compatible-asdf-version*</code>,

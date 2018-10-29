@@ -105,8 +105,8 @@ Next: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30
 </p>
 <a name="index-action"></a>
 <a name="index-akusiyon"></a>
-<p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF23" href="#FOOT23"><sup>23</sup></a>
-<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF24" href="#FOOT24"><sup>24</sup></a>
+<p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>
+<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
 </p>
 <p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
 </p>
@@ -125,9 +125,9 @@ Next: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
+<h3><a name="FOOT21" href="#DOCF21">(21)</a></h3>
 <p>古いASDFでは、計画を作る関数は<code>traverse</code>であり、実行すべきアクションのリストを返していました。しかし、ASDF 3で<code>plan</code>オブジェクトが導入され、<code>make-plan</code>がこのオブジェクトを返す関数として代わりに使われるようになったため、<code>traverse</code>は廃止予定です。<code>traverse</code>は後方互換性とデバッグのためだけに残されており、近い将来には削除されるかもしれません。</p>
-<h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
+<h3><a name="FOOT22" href="#DOCF22">(22)</a></h3>
 <p><em>アクション(action)</em>という用語は、Kent Pitmanの論文 &ldquo;The Description of Large Systems&rdquo;（→ <a href="Can-Kao-WenXian-.html#g_t_53c2_8003_6587_732e">参考文献</a>）で使われていて、これはUnixの<code>make</code>に端を発するのではないかと我々は考えています。この用語がASDFハッカーたちに使われるようになったのはASDF 2からですが、それ以前も単に明示されてはいなかっただけで、概念としてはASDF 1の当初からありました。</p>
 </div>
 

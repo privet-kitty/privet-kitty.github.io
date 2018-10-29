@@ -122,19 +122,19 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu
 <code>(:tree &quot;/home/luser/lisp/&quot;)</code>
 という記述を加えると、ASDFは<samp>/home/luser/lisp/</samp>以下のディレクトリを再帰的にスキャンして、すべての<samp>.asd</samp>ファイルを見つけるようになります。
 </p>
-<p>これで完了です。<samp>/home/luser/lisp/</samp>はソースコードをインストールしたい場所に自由に置き換えてください。ASDF 3.1.2以降で<samp>~/common-lisp/</samp>を使う限り、このような設定は必要ありませんが、それ以前のASDF 3を使っている場合、最近のASDFを<samp>~/common-lisp/asdf/</samp>に置いた上で、ブートストラップのために<samp>.conf</samp>ファイルに<code>(:tree (:home &quot;common-lisp/&quot;))</code>を加える、というようなテクニックが有効かもしれません、
+<p>これで完了です。<samp>/home/luser/lisp/</samp>はソースコードをインストールしたい場所に自由に置き換えてください。ASDF 3.1.2以降で<samp>~/common-lisp/</samp>を使う限り、このような設定は必要ありませんが、それ以前のASDF 3を使っている場合、最近のASDFを<samp>~/common-lisp/asdf/</samp>に置いた上で、ブートストラップのために<samp>.conf</samp>ファイルに<code>(:tree (:home &quot;common-lisp/&quot;))</code>を加える、というようなテクニックが必要かもしれません、
 </p>
-<p>別の方式として、１つのディレクトリに<samp>.asd</samp>ファイルへのリンクを集めるやり方もあります。この方法は上記の再帰的なスキャンに比べると速いですが、管理は大変になります。リンクを集めるディレクトリを<samp>/home/luser/.asd-link-farm/</samp>としましょう。この場合は、ソースレジストリディレクトリに例えば<samp>42-asd-link-farm.conf</samp>ファイルを作り、<code>(:directory &quot;/home/luser/.asd-link-farm/&quot;)</code>という行を加えれば有効になります。
+<p>別のやり方として、１つのディレクトリに<samp>.asd</samp>ファイルへのリンクを集める方式もあります。この方式は上記の再帰的なスキャンに比べると速いですが、管理は大変になります。リンクを集めるディレクトリを<samp>/home/luser/.asd-link-farm/</samp>としましょう。この場合は、ソースレジストリディレクトリに例えば<samp>42-asd-link-farm.conf</samp>ファイルを作り、<code>(:directory &quot;/home/luser/.asd-link-farm/&quot;)</code>という行を加えれば有効になります。
 </p>
 
 
-<p>ASDFは、初めてシステムを探すときに自動的に<samp>.conf</samp>ファイルを読み込みますが、必要であれば、
+<p>ASDFは初めてシステムを探すときに自動的に<samp>.conf</samp>ファイルを読み込みますが、必要であれば、
 </p>
 <div class="lisp">
 <pre class="lisp">(asdf:clear-source-registry)
 </pre></div>
 
-<p>でソースレジストリの設定をリセットすることができます。（→ <a href="Configuration-API.html#Configuration-API">Configuration API</a>）
+<p>でソースレジストリの設定をリセットすることができます。（→ <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>）
 </p>
 </li><li> ASDFの古いバージョンでは、システムのソースレジストリはグローバル変数<code>asdf:*central-registry*</code>を使って設定されていました。詳細については次のセクション（<a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>）を参照してください。これについて知る必要がなければ、飛ばして<a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30aa_30d6_30b8_30a7_30af_30c8_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがオブジェクトファイルを保持する場所を設定する</a>に進みましょう。
 
@@ -155,11 +155,11 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu
 <h3><a name="FOOT5" href="#DOCF5">(5)</a></h3>
 <p>Windowsの場合、ASDF 3.1.5以降では、<samp>%LOCALAPPDATA%</samp>以下に<samp>config/common-lisp/source-registry.conf.d/</samp>ディレクトリを作りましょう。<samp>%LOCALAPPDATA%</samp>は通常なら<samp>~/AppData/Local/</samp>を指していますが、実際の値は<code>CMD.EXE</code>上で<code>echo %LOCALAPPDATA%</code>を実行することで確かめることができます。</p>
 <h3><a name="FOOT6" href="#DOCF6">(6)</a></h3>
-<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップ等のファイルは同じディレクトリにあっても読み込まれないでしょう。
+<p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップなどのファイルは同じディレクトリにあっても読み込まれないでしょう。
 </p>
 <p>また、ASDFは<samp>.</samp>で始まるファイル名も無視します。
 </p>
-<p>慣習では、これらの設定ファイル名は２つの数字から始まります。こうすることで設定ディレクトリ内の<samp>.conf</samp>ファイルの並びが決まるので、設定が読み込まれる順序をコントロールすることができます。</p>
+<p>慣習では、これらの設定ファイル名は２つの数字から始まります。こうすることで設定ディレクトリ内の<samp>.conf</samp>ファイルの並びが決まり、設定が読み込まれる順番をコントロールすることができます。</p>
 </div>
 
 

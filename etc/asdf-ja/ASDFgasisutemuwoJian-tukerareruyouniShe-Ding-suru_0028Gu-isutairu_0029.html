@@ -117,15 +117,15 @@ Next: <a href="ASDFgaobuziekutohuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.htm
 </pre></div>
 
 
-<p>末尾のスラッシュが必要なことに注意してください。システムを探すとき、ASDFは<code>asdf:*central-registry*</code>のそれぞれの要素をパス名に変換します。正確に言うと、それぞれの要素は<code>eval</code>されます。<a name="DOCF8" href="#FOOT8"><sup>8</sup></a> つまり、S式を<code>asdf:*central-registry*</code>に<code>push</code>することも可能です。文字列やパス名は自己評価オブジェクトなので<code>eval</code>は何もしませんが、S式を使うと、シェル変数やユーザーに応じた値を返すなど、コンテキストに依存した設定をすることができます。
+<p>末尾のスラッシュが必要なことに注意してください。システムを探すとき、ASDFは<code>asdf:*central-registry*</code>のそれぞれの要素をパス名に変換します。正確に言うと、それぞれの要素は<code>eval</code>されます。つまり、S式を<code>asdf:*central-registry*</code>に<code>push</code>することも可能です。文字列やパス名は自己評価オブジェクトなので<code>eval</code>は何もしませんが、S式を使うと、シェル変数やユーザーに応じた値を返すなど、コンテキストに依存した設定をすることができます。なお、<code>nil</code>に評価された場合、その要素はスキップされます。
 </p>
 
-<p>このように、<code>asdf:*central-registry*</code>は「システムディレクトリ指示子」のリストであると言えます。<em>システムディレクトリ指示子(system directory desinator)</em>はシステムを探すときに実行されるフォームであり、ディレクトリ（あるいは<code>nil</code>）を返さなくてはなりません。ここでいう「ディレクトリ」とは「空でないディレクトリコンポーネントを持つパス名に対する指示子」<a name="DOCF9" href="#FOOT9"><sup>9</sup></a>のことです。
+<p>このように、<code>asdf:*central-registry*</code>は「システムディレクトリ指示子」のリストであると言えます。<em>システムディレクトリ指示子(system directory desinator)</em>はシステムを探すときに実行されるフォームであり、ディレクトリ（あるいは<code>nil</code>）を返さなくてはなりません。ここでいう「ディレクトリ」とは「空でないディレクトリコンポーネントを持つパス名の指示子」<a name="DOCF8" href="#FOOT8"><sup>8</sup></a>のことです。
 </p>
-<p>パス名の末尾のスラッシュは、ファイルではなくディレクトリを指していることを示すのに必要です。このスラッシュがないと、（古い）ASDFは<code>/home/me/src/foo/</code>ではなく<code>/home/me/src/</code>を探してしまうおそれがあります。現在のバージョンでは、単にエラーを通知し、<code>asdf:*central-registry*</code>からこの要素を取り除くリスタートが提供されるでしょう。
+<p>パス名の末尾のスラッシュは、ファイルではなくディレクトリを指していることを示すのに必要です。このスラッシュがないと、（古い）ASDFは<code>/home/me/src/foo/</code>ではなく<code>/home/me/src/</code>を探してしまうおそれがあります。現在のバージョンでは、単にエラーを通知し、<code>asdf:*central-registry*</code>からこのエントリを取り除くリスタートが起動するでしょう。
 </p>
 
-<p>多くの場合、<samp>.asd</samp>ファイルは大量にありますから、それらの存在するディレクトリを１つ１つ<code>asdf:*central-registry*</code>に<code>push</code>するよりは、各<samp>.asd</samp>ファイルの<em>シンボリックリンク</em>を１つの共通ディレクトリに置き、そのディレクトリだけを<code>push</code>するという方法が使われていました。ASDFはシステムへの<em>シンボリックリンク</em>を適切に解釈することができます。<a name="DOCF10" href="#FOOT10"><sup>10</sup></a>
+<p>多くの場合、<samp>.asd</samp>ファイルは大量にありますから、それらの存在するディレクトリを１つ１つ<code>asdf:*central-registry*</code>に<code>push</code>するよりは、各<samp>.asd</samp>ファイルの<em>シンボリックリンク</em>を１つの共通ディレクトリに置き、そのディレクトリだけを<code>push</code>するという方法が使われていました。ASDFはシステムへの<em>シンボリックリンク</em>を適切に解釈することができます。<a name="DOCF9" href="#FOOT9"><sup>9</sup></a>
 </p>
 <p>例えば<code>#p&quot;/home/me/cl/systems/&quot;</code>が<code>*central-registry*</code>に含まれているとき、次のようにセットアップすれば<var>foo</var>システムを使えるようになります。
 </p>
@@ -142,12 +142,10 @@ $ ln -s ~/src/foo/foo.asd .
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT7" href="#DOCF7">(7)</a></h3>
-<p><samp>.asd</samp>ファイルの探索をさらにカスタマイズすることも可能です。これは発展的な使い方になるので、後に扱います。<code>*system-definition-search-functions*</code>で検索してください。（→ <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>）</p>
+<p><samp>.asd</samp>ファイルの探索をさらにカスタマイズすることも可能です。これは発展的な使い方になるので、後に扱います。<code>*system-definition-search-functions*</code>で検索してください。</p>
 <h3><a name="FOOT8" href="#DOCF8">(8)</a></h3>
-<p><code>nil</code>に評価された場合、その要素はスキップされます。</p>
-<h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p>[訳注] 実装を見る限りでは、<code>eval</code>の返す値が<code>uiop:directory-pathname-p</code>を満たせば良いようです（満たさない場合はエラーが通知される）。</p>
-<h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
+<h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p>WindowsではPOSIXのシンボリックリンクの代わりにショートカットを使うことができます。MacOSのエイリアスについては、うまく動くかどうかの情報を求めています。</p>
 </div>
 

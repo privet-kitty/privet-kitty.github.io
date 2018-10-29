@@ -97,7 +97,7 @@ Next: <a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferr
 <a name="g_t_002easdhuairuZhongnoTa-nokodo"></a>
 <h3 class="section">6.4 .asdファイル中の他のコード</h3>
 
-<p><samp>.asd</samp>ファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>、任意のLispコードを含むことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
+<p><samp>.asd</samp>ファイルは、<code>load</code>で実行可能な通常のLispのソースファイルであり<a name="DOCF19" href="#FOOT19"><sup>19</sup></a>、任意のLispコードを含むことができます。しかし、追加のフォームは最小限にとどめ、複雑な処理が必要な場合は<code>defsystem</code>の拡張を別に定義して<code>:defsystem-depends-on</code>で読み込むことを推奨します。
 </p>
 <p>とは言っても、<samp>.asd</samp>ファイルにコードを含めなければならない場合もあるでしょう。例えば、コンパイル時の環境を調べて設定するために<code>*features*</code>にフィーチャーを加える、などといったケースが考えられます。その場合は、ユーザーが<samp>.asd</samp>ファイル中の処理の詳細をコントロールできるように、次の慣習に従うことを推奨します:
 </p>
@@ -110,7 +110,7 @@ Next: <a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferr
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT21" href="#DOCF21">(21)</a></h3>
+<h3><a name="FOOT19" href="#DOCF19">(19)</a></h3>
 <p>[訳注] ただしこれは、<code>load-system</code>で読み込むのと<code>load</code>で読み込むのが同等、という意味ではありません。ASDFがシステム定義を<samp>.asd</samp>ファイルから読み込むときはカレントパッケージが<code>:asdf-user</code>になるなど、<code>load</code>による実行と比べるといろいろな違いがあります。</p>
 </div>
 

@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
-<link href="Search-Algorithm.html#Search-Algorithm" rel="next" title="Search Algorithm">
+<link href="Tan-Suo-arugorizumu.html#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0" rel="next" title="探索アルゴリズム">
 <link href="_003aheredeirekuteibu.html#g_t_003ahere_30c7_30a3_30ec_30af_30c6_30a3_30d6" rel="prev" title=":hereディレクティブ">
 <style type="text/css">
 <!--
@@ -91,33 +91,31 @@ ul.no-bullet {list-style: none}
 <a name="g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09"></a>
 <div class="header">
 <p>
-Next: <a href="Search-Algorithm.html#Search-Algorithm" accesskey="n" rel="next">Search Algorithm</a>, Previous: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">設定ディレクトリ（ソースレジストリ）</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Tan-Suo-arugorizumu.html#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0" accesskey="n" rel="next">探索アルゴリズム</a>, Previous: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">設定ディレクトリ（ソースレジストリ）</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="sieruXiang-kenoShe-Ding-noGou-Wen"></a>
 <h3 class="section">8.7 シェル向けの設定の構文</h3>
 
-<p>When considering environment variable <code>CL_SOURCE_REGISTRY</code>
-ASDF will skip to next configuration if it&rsquo;s an empty string.
-It will <code>READ</code> the string as a SEXP in the DSL
-if it begins with a paren <code>(</code>,
-otherwise it will be interpreted much like <code>TEXINPUTS</code>,
-as a list of paths, where
+<p>環境変数<code>CL_SOURCE_REGISTRY</code>が空の文字列の時、ASDFはこの設定をスキップします。また、<code>(</code>から始まる場合は、先に述べたDSLによるS式と解釈し、全体に<code>read</code>を適用します。しかし、それ以外の場合は別の構文によるパスのリストとみなします。この構文は以下の通りで、<code>TEXINPUTS</code>に似ています。
 </p>
-<p>* paths are separated
-   by a <code>:</code> (colon) on Unix platforms (including cygwin),
-   by a <code>;</code> (semicolon) on other platforms (mainly, Windows).
-</p>
-<p>* each entry is a directory to add to the search path.
-</p>
-<p>* if the entry ends with a double slash <code>//</code>
-    then it instead indicates a tree in the subdirectories
-    of which to recurse.
-</p>
-<p>* if the entry is the empty string (which may only appear once),
-    then it indicates that the inherited configuration should be
-    spliced there.
-</p>
+<ul>
+<li> Unix（Cygwin含む）上ではエントリの区切りは<code>:</code>であり、それ以外（主にWindows）では<code>;</code>です。
+
+</li><li> 各エントリは探索パスに追加されるディレクトリです。<code>:directory</code>ディレクティブと同等であり、再帰的探索はしません。
+
+</li><li> エントリの末尾が<code>//</code>の場合は、再帰的探索の対象になります。<code>:tree</code>ディレクティブと同等です。
+
+</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
+</li></ul>
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<p>[訳注] 文字列の末尾が<code>:</code>（または<code>;</code>）ならば、空のエントリを追加したことになります。</p>
+</div>
 
 
 

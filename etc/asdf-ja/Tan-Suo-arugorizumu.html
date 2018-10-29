@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- このマニュアルはASDF――Common Lispプログラムとライブラリのためのシス
+テム定義ツール――について解説したものです。
+
+このマニュアルの最新バージョン（訳注: 英語版）は以下にあります:
+https://common-lisp.net/project/asdf/asdf.html 
+[訳者補足]
+
+この非公式の日本語訳は、ASDFの公式リポジトリのフォークとしてGitLab上で編集されています。（https://gitlab.common-lisp.net/hishimaru/asdf/tree/ja） 翻訳に関する訂正、意見などは常に歓迎します。その際はIssuesを使っていただけると確実です。
+
+[訳者補足終わり]
+
+
+ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+
+This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+
+This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>探索アルゴリズム (ASDF マニュアル)</title>
+
+<meta name="description" content="探索アルゴリズム (ASDF マニュアル)">
+<meta name="keywords" content="探索アルゴリズム (ASDF マニュアル)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
+<link href="sosurezisutorinokiyatusiyu.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5" rel="next" title="ソースレジストリのキャッシュ">
+<link href="sieruXiang-kenoShe-Ding-noGou-Wen_0028sosurezisutori_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" rel="prev" title="シェル向けの設定の構文（ソースレジストリ）">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../manual-ja.css">
+
+
+</head>
+
+<body lang="ja">
+<a name="g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0"></a>
+<div class="header">
+<p>
+Next: <a href="sosurezisutorinokiyatusiyu.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5" accesskey="n" rel="next">ソースレジストリのキャッシュ</a>, Previous: <a href="sieruXiang-kenoShe-Ding-noGou-Wen_0028sosurezisutori_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">シェル向けの設定の構文（ソースレジストリ）</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Tan-Suo-arugorizumu"></a>
+<h3 class="section">8.8 探索アルゴリズム</h3>
+<a name="index-_002adefault_002dsource_002dregistry_002dexclusions_002a"></a>
+
+<p>念のため説明しておくと、与えられたシステム名を持つシステムを探すとき、ディレクティブは順番に処理されていきます。
+</p>
+<p>ディレクトリ（<code>:directory</code>）を探索する場合、システムが見つかれば探索は成功であり、見つからなければ次の探索に進みます。
+</p>
+<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
+</p>
+
+<p><code>:exclude</code>、<code>:also-exclude</code>ディレクティブには、ツリーを探索するときに除外するサブディレクトリ名を指定します。一般的には、バージョン管理システムのデータベースディレクトリ（<samp>.git</samp>、<samp>_darcs</samp>など）は除外されるでしょう。なお、除外の指定は継承された設定には<em>伝搬しません</em>。すべての設定は、デフォルトでは<code>asdf::*default-source-registry-exclusions*</code>に登録されている除外パターンを採用します。
+</p>
+
+<p><code>:include</code>ディレクティブでインクルードされた設定については、探索は再帰的に適用されます。
+また、<code>:inherit-configuration</code>ディレクティブで継承された設定についても、探索は再帰的に適用されます。
+</p>
+
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
+<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
+<h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
+<p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
+</div>
+
+
+
+</body>
+</html>

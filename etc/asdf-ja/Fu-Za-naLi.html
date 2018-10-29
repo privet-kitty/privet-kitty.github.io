@@ -185,7 +185,7 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 
 </li><li> より一般的な話をすれば、<code>.asd</code>ファイルの中では<code>asdf</code>、<code>common-lisp</code>、<code>uiop</code>パッケージのシンボルを常に使うことができます。中でもいちばん重要なのは<code>defsystem</code>ですが、パッケージの接頭辞を使って<code>asdf:defsystem</code>と書くのは冗長で悪いやり方です。単に<code>(defsystem ...)</code>と書きましょう。パッケージの接頭辞を付けるのは、（<code>asdf</code>パッケージを<code>use</code>していないパッケージから）動的にシステム定義を生成するような場合のみにしてください。
 
-</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
+</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF14" href="#FOOT14"><sup>14</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
 
 </li><li> <code>asdf-user</code>が<code>uiop</code>を<code>use</code>しているのはASDF 3.1からであり、それ以前のASDF 3では<code>uiop/package</code>のみが使えました。したがって、UIOPの関数を使う場合には、いちいち<code>uiop:</code>という接頭辞を付けるか、システムの依存関係を<code>(defsystem foo :depends-on ((:version &quot;asdf&quot; &quot;3.1.2&quot;))</code>で明示するか、あるいは<code>#-asdf3.1 (error &quot;MY-SYSTEM requires ASDF 3.1.2&quot;)</code>という行を加えるかすることを勧めます。
 
@@ -197,7 +197,7 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT16" href="#DOCF16">(16)</a></h3>
+<h3><a name="FOOT14" href="#DOCF14">(14)</a></h3>
 <p>ASDF 1、2（バージョン2.26まで）は、各<samp>.asd</samp>ファイルに対して<code>asdf<em>N</em></code>という一時的なパッケージを作っては削除していました。これは名前の衝突を減らすための仕様でしたが、目的にかなってもいなかったし、ものごとを複雑にしただけでした。ASDF 3は単に共通のパッケージである<code>asdf-user</code>を使い、シンボル衝突の回避はCommon Lispの慣習に委ねます。<code>asdf-user</code>パッケージの特筆すべき点は、<code>uiop/common-lisp</code>を<code>use</code>していることです。このパッケージは<code>common-lisp</code>パッケージのすべてのシンボルを再エクスポートしていて、いくつかのCommon Lisp処理系のANSI CL違反の挙動が修正されています。しかし、Corman Lisp、GCL、Genera、MCLを使っているのでなければ、この点を気にするべきではありません。</p>
 </div>
 
