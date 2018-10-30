@@ -42,10 +42,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Status (ASDF マニュアル)</title>
+<title>現状 (ASDF マニュアル)</title>
 
-<meta name="description" content="Status (ASDF マニュアル)">
-<meta name="keywords" content="Status (ASDF マニュアル)">
+<meta name="description" content="現状 (ASDF マニュアル)">
+<meta name="keywords" content="現状 (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -53,8 +53,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
-<link href="Rejected-ideas.html#Rejected-ideas" rel="next" title="Rejected ideas">
-<link href="Information-about-system-dependencies.html#Information-about-system-dependencies" rel="prev" title="Information about system dependencies">
+<link href="Que-Xia-saretaaidea.html#g_t_5374_4e0b_3055_308c_305f_30a2_30a4_30c7_30a2" rel="next" title="却下されたアイデア">
+<link href="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-.html#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831" rel="prev" title="システムの依存関係についての情報">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -88,21 +88,18 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="Status"></a>
+<a name="g_t_73fe_72b6"></a>
 <div class="header">
 <p>
-Next: <a href="Rejected-ideas.html#Rejected-ideas" accesskey="n" rel="next">Rejected ideas</a>, Previous: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3" accesskey="p" rel="prev">イントロスぺクション</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Que-Xia-saretaaidea.html#g_t_5374_4e0b_3055_308c_305f_30a2_30a4_30c7_30a2" accesskey="n" rel="next">却下されたアイデア</a>, Previous: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3" accesskey="p" rel="prev">イントロスぺクション</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Status-1"></a>
-<h3 class="section">8.12 Status</h3>
+<a name="Xian-Zhuang-"></a>
+<h3 class="section">8.12 現状</h3>
 
-<p>This mechanism is vastly successful, and we have declared
-that <code>asdf:*central-registry*</code> is not recommended anymore,
-though we will continue to support it.
-All hooks into implementation-specific search mechanisms
-have been integrated in the <code>wrapping-source-registry</code>
-that everyone uses implicitly.
+<p>ソースレジストリの仕組みは大いに成功をおさめたので、我々はもはや<code>asdf:*central-registry*</code>は推奨しないと宣言しました。しかし、サポートは継続するでしょう。
+</p>
+<p>探索の仕組みのうち、処理系に依存する部分についてはすべて<code>asdf::wrapping-source-registry</code>関数（<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>の１番目の処理にあたる）に統合され、常に暗黙に利用されています。
 </p>
 
 

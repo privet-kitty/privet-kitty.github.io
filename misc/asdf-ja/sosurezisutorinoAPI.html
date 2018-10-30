@@ -100,7 +100,7 @@ Next: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b
 <p>次の関数は<code>asdf</code>パッケージからエクスポートされています。
 </p>
 <dl>
-<dt><a name="index-initialize_002dsource_002dregistry"></a>関数: <strong>initialize-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dt><a name="index-initialize_002dsource_002dregistry"></a>関数: <strong>initialize-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
 <dd><p>設定を読み込み、すべての内部変数を初期化します。その際、引数を与えることで、環境変数や設定ファイルによる設定を上書きしたり拡張したりすることができます。<var>parameter</var>が<code>nil</code>の時は設定の上書きは起こりません。S式の時は<a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">S式によるDSL</a>が適用されます。文字列の時は<a href="sieruXiang-kenoShe-Ding-noGou-Wen_0028sosurezisutori_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09">シェル向けのDSL</a>が適用されます。パス名の時は対応する設定ファイル・設定ディレクトリから設定が読み込まれます。シンボルの時は<code>funcall</code>され、返ったオブジェクトの型に応じて同じ処理が適用されます。
 </p></dd></dl>
 
@@ -110,7 +110,7 @@ Next: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
 <dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されているかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
 </p></dd></dl>
 

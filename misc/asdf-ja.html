@@ -252,12 +252,12 @@ a:visited { color: #6D38A0 }
     <li><a name="toc-intorosupekusiyon" href="#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3">8.11 イントロスぺクション</a>
     <ul class="no-bullet">
       <li><a name="toc-_002asource_002dregistry_002dparameter_002aBian-Shu-" href="#g_t_002asource_002dregistry_002dparameter_002a_5909_6570">8.11.1 <code>*source-registry-parameter*</code>変数</a></li>
-      <li><a name="toc-Information-about-system-dependencies-1" href="#Information-about-system-dependencies">8.11.2 Information about system dependencies</a></li>
+      <li><a name="toc-sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-" href="#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831">8.11.2 システムの依存関係についての情報</a></li>
     </ul></li>
-    <li><a name="toc-Status-1" href="#Status">8.12 Status</a></li>
-    <li><a name="toc-Rejected-ideas-1" href="#Rejected-ideas">8.13 Rejected ideas</a></li>
+    <li><a name="toc-Xian-Zhuang-" href="#g_t_73fe_72b6">8.12 現状</a></li>
+    <li><a name="toc-Que-Xia-saretaaidea" href="#g_t_5374_4e0b_3055_308c_305f_30a2_30a4_30c7_30a2">8.13 却下されたアイデア</a></li>
     <li><a name="toc-TODO-1" href="#TODO">8.14 TODO</a></li>
-    <li><a name="toc-Credits-for-the-source_002dregistry-1" href="#Credits-for-the-source_002dregistry">8.15 Credits for the source-registry</a></li>
+    <li><a name="toc-sosurezisutoriniGuan-surukurezituto" href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306b_95a2_3059_308b_30af_30ec_30b8_30c3_30c8">8.15 ソースレジストリに関するクレジット</a></li>
   </ul></li>
   <li><a name="toc-ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru" href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">9 ASDFがコンパイルされたファイルを保持する場所を設定する</a>
   <ul class="no-bullet">
@@ -408,9 +408,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <a name="index-_003aasdf2"></a>
 <a name="index-_003aasdf3"></a>
 
-<p>ASDF (Another System Definition Facility) は<em>ビルドシステム</em>です。ASDFは、システムがどのようなコンポーネント（＝サブシステムとファイル）を含んでいるか、それらにどの順序でどういう操作をすれば良いか記述するためのツールであり、Common Lispソフトウェアのコンパイル、ロード、テストなどを支援します。ASDFを使ったことがない方は、<a href="#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9">クイックスタートガイド</a>を読むと良いでしょう。
+<p>ASDF (Another System Definition Facility) は<em>ビルドシステム</em>です。ASDFは、システムがどのようなコンポーネント（＝サブシステムとファイル）を含んでいるか、それらにどの順序でどういう操作をすれば良いか記述するためのツールであり、Common Lispソフトウェアのコンパイル・ロード・テストなどを支援します。ASDFを使ったことがない方は、<a href="#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9">クイックスタートガイド</a>を読むと良いでしょう。
 </p>
-<p>このマニュアルは３つのケースを想定して書かれています: １つ目は、ユーザーとして他人のコードを使いたい場合であり、２つ目は、開発者としてシステムをビルドする手順を記述したい場合です。そして３つ目は、（ASDFのような）Common Lisp拡張の実装者として、ビルドシステムそのものに手を入れたい場合です。より具体的には、<a href="#ASDF_3092_4f7f_3046">ASDFを使う</a>にシステムをロードする方法が、<a href="#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>にシステムを定義する方法が、<a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>にASDFの内部仕様と拡張方法が書かれています。
+<p>このマニュアルは３つのケースを想定して書かれています: １つ目は、ユーザーとして他人のコードを使いたい場合であり、２つ目は、開発者としてシステムをビルドする手順を記述したい場合です。そして３つ目は、（ASDFのような）Common Lisp拡張の実装者として、ビルドシステムそのものに関わりたい場合です。より具体的には、<a href="#ASDF_3092_4f7f_3046">ASDFを使う</a>にシステムをロードする方法が、<a href="#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>にシステムを定義する方法が、<a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>にASDFの内部仕様と拡張方法が書かれています。
 </p>
 <p>ASDFはライブラリやシステムを<em>インストールするためのツールではありません</em>。ASDFの役割は言うなれば<code>make</code>や<code>ant</code>のようなものであり、パッケージマネージャとしての機能は持ちません。特に、QuicklispやASDF-InstallのようにASDFシステムを探してダウンロードするツールと、ASDFそのものとを混同しないようにしましょう。ASDF-Installは、その名に反してASDFの一部ではなく独立したソフトウェアであり、また、ずっと前からメンテナンスされておらず、使われてもいません。我々は代わりに<a href="http://www.quicklisp.org/">Quicklisp</a>を推奨します。Quicklispは優秀なパッケージマネージャであり、現在もメンテナンスが続いています。もしあなたが、自分でコードを修正できるように、tarアーカイブではなくバージョン管理システムのリポジトリからソフトウェアを手に入れたい場合は、<a href="http://common-lisp.net/project/clbuild/">clbuild</a>を使うと良いでしょう。
 ソフトウェアをインストールする場所としては<samp>~/common-lisp/</samp>を推奨します。ASDF 3.1.2 (2014)からは、このディレクトリは<a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ソースレジストリ</a>の既定のパスに含まれています。<a name="DOCF1" href="#FOOT1"><sup>1</sup></a>
@@ -951,7 +951,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> ASDFは<samp>.asd</samp>ファイルを<code>cl:load</code>でロードするわけではないし、あなた自身もそのように使うべきではありません。システムを操作したいときにはASDFを通してアクセスするべきです。しかし、どうしても<samp>.asd</samp>ファイルを直接ロードしなければならない事情があるならば、<code>asdf:load-asd</code>が使えます。<code>asdf:load-asd</code>は<code>*package*</code>に<code>asdf-user</code>を束縛してからロードを行います。最近のバージョンのSLIME（2013-02以降）は、<code>slime-asdf</code>拡張をロードすれば<code>load-asd</code>に対応します。<samp>.asd</samp>ファイルに対して<kbd>C-c C-k</kbd>で<code>slime-compile-and-load-file</code>を実行したときに、適切な処理を行うでしょう。
 
-</li><li> システム定義を簡潔にしたいのであれば<code>in-package</code>を使うべきではありません。<code>in-package</code>（とその前の<code>defpackage</code>）を使うのは、新しいクラス、関数、変数、マクロ等を<code>.asd</code>ファイル中で定義する際に、名前の衝突を避けるためだけにしましょう。古いバージョンのASDFのマニュアルでは<samp>.asd</samp>ファイル中で<code>in-package</code>を使うような記法が推奨されていましたが、ASDF 3ではもはや推奨されていません。代わりに、ASDFの拡張を定義した上で<code>:defsystem-depends-on</code>を使ってそれをロードすることを勧めます。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）
+</li><li> システム定義を簡潔にしたいのであれば<code>in-package</code>を使うべきではありません。<code>in-package</code>（とその前の<code>defpackage</code>）を使うのは、新しいクラス・関数・変数・マクロなどを<code>.asd</code>ファイル中で定義する際に、名前の衝突を避けるためだけにしましょう。古いバージョンのASDFのマニュアルでは<samp>.asd</samp>ファイル中で<code>in-package</code>を使うような記法が推奨されていましたが、ASDF 3ではもはや推奨されていません。代わりに、ASDFの拡張を定義した上で<code>:defsystem-depends-on</code>を使ってそれをロードすることを勧めます。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）
 
 </li><li> より一般的な話をすれば、<code>.asd</code>ファイルの中では<code>asdf</code>、<code>common-lisp</code>、<code>uiop</code>パッケージのシンボルを常に使うことができます。中でもいちばん重要なのは<code>defsystem</code>ですが、パッケージの接頭辞を使って<code>asdf:defsystem</code>と書くのは冗長で悪いやり方です。単に<code>(defsystem ...)</code>と書きましょう。パッケージの接頭辞を付けるのは、（<code>asdf</code>パッケージを<code>use</code>していないパッケージから）動的にシステム定義を生成するような場合のみにしてください。
 
@@ -994,7 +994,7 @@ $ ln -s ~/src/foo/foo.asd .
 <pre class="example">system-definition := ( defsystem system-designator system-option* )
                      # → <a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">システム指示子</a>
 
-system-option := :defsystem-depends-on system-list
+system-option := :defsystem-depends-on dependency-def
                  | :weakly-depends-on system-list
                  | :class class-name # → <a href="#g_t_30b7_30b9_30c6_30e0_30af_30e9_30b9_540d">システムクラス名</a>
                  | :build-operation operation-name
@@ -2505,7 +2505,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <p>次の関数は<code>asdf</code>パッケージからエクスポートされています。
 </p>
 <dl>
-<dt><a name="index-initialize_002dsource_002dregistry"></a>関数: <strong>initialize-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dt><a name="index-initialize_002dsource_002dregistry"></a>関数: <strong>initialize-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
 <dd><p>設定を読み込み、すべての内部変数を初期化します。その際、引数を与えることで、環境変数や設定ファイルによる設定を上書きしたり拡張したりすることができます。<var>parameter</var>が<code>nil</code>の時は設定の上書きは起こりません。S式の時は<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">S式によるDSL</a>が適用されます。文字列の時は<a href="#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09">シェル向けのDSL</a>が適用されます。パス名の時は対応する設定ファイル・設定ディレクトリから設定が読み込まれます。シンボルの時は<code>funcall</code>され、返ったオブジェクトの型に応じて同じ処理が適用されます。
 </p></dd></dl>
 
@@ -2515,7 +2515,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional parameter</em></dt>
+<dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
 <dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されているかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
 </p></dd></dl>
 
@@ -2533,60 +2533,47 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <h4 class="subsection">8.11.1 <code>*source-registry-parameter*</code>変数</h4>
 <a name="index-_002asource_002dregistry_002dparameter_002a"></a>
 
-<p>We have made available the variable <code>*source-registry-parameter*</code>
-that can be used by code that wishes to introspect about the (past)
-configuration of ASDF&rsquo;s source registry.  <strong>This variable should
-never be set!</strong>  It will be set as a side-effect of calling
-<code>initialize-source-registry</code>; user code should treat it as
-read-only.
+<p><code>*source-registry-parameter*</code>は、前回<code>initialize-source-registry</code>が呼ばれた時の引数を保持しているので、過去のソースレジストリの設定について知りたい時に使えます。デフォルトは<code>nil</code>です。<strong>この変数はリードオンリーです。書き込んではいけません。</strong>
 </p>
 <hr>
-<a name="Information-about-system-dependencies"></a>
-<a name="Information-about-system-dependencies-1"></a>
-<h4 class="subsection">8.11.2 Information about system dependencies</h4>
+<a name="g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831"></a>
+<a name="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-"></a>
+<h4 class="subsection">8.11.2 システムの依存関係についての情報</h4>
 
-<p>ASDF makes available three functions to read system interdependencies.
-These are intended to aid programmers who wish to perform dependency
-analyses.
+<p>システム間の依存関係について知りたい時には、次の３つの関数が使えます。これらは依存関係の解析を行いたいプログラマのために用意されています。
 </p>
 <dl>
-<dt><a name="index-system_002ddefsystem_002ddepends_002don"></a>Function: <strong>system-defsystem-depends-on</strong> <em>system</em></dt>
+<dt><a name="index-system_002ddefsystem_002ddepends_002don"></a>関数: <strong>system-defsystem-depends-on</strong> <em>system</em></dt>
 </dl>
 
 <dl>
-<dt><a name="index-system_002ddepends_002don"></a>Function: <strong>system-depends-on</strong> <em>system</em></dt>
+<dt><a name="index-system_002ddepends_002don"></a>関数: <strong>system-depends-on</strong> <em>system</em></dt>
 </dl>
 
 <dl>
-<dt><a name="index-system_002dweakly_002ddepends_002don"></a>Function: <strong>system-weakly-depends-on</strong> <em>system</em></dt>
-<dd><p>Returns a list of names of systems that are weakly depended on by
-<var>system</var>.  Weakly depended on systems are optionally loaded only if
-ASDF can find them; failure to find such systems does <em>not</em> cause an
-error in loading.
+<dt><a name="index-system_002dweakly_002ddepends_002don"></a>関数: <strong>system-weakly-depends-on</strong> <em>system</em></dt>
+<dd><p><var>system</var>が弱依存しているシステムの名前のリストを返します。弱依存は<em>廃止予定</em>の機能であり、使うことは推奨されていません。<code>defsystem</code>フォームの<code>:weakly-depends-on</code>オプションに指定されたシステムについては、ASDFはそれらのシステムを探しますが、仮に見つからなくてもエラーを通知<em>しません</em>。
 </p>
-<p>Note that the return value for <code>system-weakly-depends-on</code> is simpler
-than the return values of the other two system dependency introspection
-functions.
-</p></dd></dl>
+</dd></dl>
+
+<p>上２つの関数については、返り値は<code>dependency-def</code>のリスト（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）であるため、必ずしもシステム名のリストとは限りません。<code>system-weakly-depends-on</code>は単にシステム名のリストを返します。
+</p>
 
 <hr>
-<a name="Status"></a>
-<a name="Status-1"></a>
-<h3 class="section">8.12 Status</h3>
+<a name="g_t_73fe_72b6"></a>
+<a name="Xian-Zhuang-"></a>
+<h3 class="section">8.12 現状</h3>
 
-<p>This mechanism is vastly successful, and we have declared
-that <code>asdf:*central-registry*</code> is not recommended anymore,
-though we will continue to support it.
-All hooks into implementation-specific search mechanisms
-have been integrated in the <code>wrapping-source-registry</code>
-that everyone uses implicitly.
+<p>ソースレジストリの仕組みは大いに成功をおさめたので、我々はもはや<code>asdf:*central-registry*</code>は推奨しないと宣言しました。しかし、サポートは継続するでしょう。
+</p>
+<p>探索の仕組みのうち、処理系に依存する部分についてはすべて<code>asdf::wrapping-source-registry</code>関数（<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>の１番目の処理にあたる）に統合され、常に暗黙に利用されています。
 </p>
 <hr>
-<a name="Rejected-ideas"></a>
-<a name="Rejected-ideas-1"></a>
-<h3 class="section">8.13 Rejected ideas</h3>
+<a name="g_t_5374_4e0b_3055_308c_305f_30a2_30a4_30c7_30a2"></a>
+<a name="Que-Xia-saretaaidea"></a>
+<h3 class="section">8.13 却下されたアイデア</h3>
 
-<p>Alternatives I (FRR) considered and rejected while developing ASDF 2 included:
+<p>ASDF 2の開発中に私(FRR)が検討し、却下した代案には、次のようなものがあります。
 </p>
 <ol>
 <li> Keep <code>asdf:*central-registry*</code> as the master with its current semantics,
@@ -2611,15 +2598,12 @@ that everyone uses implicitly.
 </li></ol>
 
 
-<p>I&rsquo;ve been suggested the below features, but have rejected them,
-for the sake of keeping ASDF no more complex than strictly necessary.
+<p>また、私は次の機能を提案しましたが、けっきょく却下しました。ASDFを必要以上に複雑にしないためです。
 </p>
 <ul>
-<li> More syntactic sugar: synonyms for the configuration directives, such as
-  <code>(:add-directory X)</code> for <code>(:directory X)</code>, or <code>(:add-directory-hierarchy X)</code>
-  or <code>(:add-directory X :recurse t)</code> for <code>(:tree X)</code>.
+<li> シンタックスシュガーの追加: いくつかのディレクティブにエイリアスを追加する案。例えば<code>(:add-directory X)</code>を<code>(:directory X)</code>と、<code>(:add-directory-hierarchy X)</code>や<code>(:add-directory X :recurse t)</code>を<code>(:tree X)</code>と同等にする、など。
 
-</li><li> The possibility to register individual files instead of directories.
+</li><li> ディレクトリの代わりに個々のファイルを登録できるようにする案。
 
 </li><li> Integrate Xach Beane&rsquo;s tilde expander into the parser,
   or something similar that is shell-friendly or shell-compatible.
@@ -2639,20 +2623,19 @@ for the sake of keeping ASDF no more complex than strictly necessary.
 <h3 class="section">8.14 TODO</h3>
 
 <ul>
-<li> Add examples
+<li> 例を追加する
 </li></ul>
 
 <hr>
-<a name="Credits-for-the-source_002dregistry"></a>
-<a name="Credits-for-the-source_002dregistry-1"></a>
-<h3 class="section">8.15 Credits for the source-registry</h3>
+<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306b_95a2_3059_308b_30af_30ec_30b8_30c3_30c8"></a>
+<a name="sosurezisutoriniGuan-surukurezituto"></a>
+<h3 class="section">8.15 ソースレジストリに関するクレジット</h3>
 
-<p>Thanks a lot to Stelian Ionescu for the initial idea.
+<p>最初のアイデアについてはStelian Ionescuに多大な感謝をささげます。
 </p>
-<p>Thanks to Rommel Martinez for the initial implementation attempt.
+<p>最初の実装の試みについてはRommel Martinezに感謝をささげます。
 </p>
-<p>All bad design ideas and implementation bugs are mine, not theirs.
-But so are good design ideas and elegant implementation tricks.
+<p>良いデザイン案やエレガントな実装のトリックは彼らのおかげですが、悪いデザイン案や実装のバグはすべて、私に帰するものです。
 </p>
 <p>&mdash; Francois-Rene Rideau <a href="mailto:fare@tunes.org">fare@tunes.org</a>, Mon, 22 Feb 2010 00:07:33 -0500
 </p>
@@ -5317,12 +5300,12 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-source_002dfile_002dtype"><code>source-file-type</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Pitfalls-of-the-transition-to-ASDF-2">Pitfalls of the transition to ASDF 2</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-subpathname"><code>subpathname</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-subpathname_002a"><code>subpathname*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-system_002ddefsystem_002ddepends_002don"><code>system-defsystem-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Information-about-system-dependencies">Information about system dependencies</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-system_002ddepends_002don"><code>system-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Information-about-system-dependencies">Information about system dependencies</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-system_002ddefsystem_002ddepends_002don"><code>system-defsystem-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831">システムの依存関係についての情報</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-system_002ddepends_002don"><code>system-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831">システムの依存関係についての情報</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system_002drelative_002dpathname"><code>system-relative-pathname</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system_002drelative_002dpathname-1"><code>system-relative-pathname</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#LOAD_002dPATHNAME-has-a-weird-value">LOAD-PATHNAME has a weird value</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system_002dsource_002ddirectory"><code>system-source-directory</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-system_002dweakly_002ddepends_002don"><code>system-weakly-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Information-about-system-dependencies">Information about system dependencies</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-system_002dweakly_002ddepends_002don"><code>system-weakly-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831">システムの依存関係についての情報</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-T">T</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-test_002dsystem"><code>test-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
@@ -5580,7 +5563,7 @@ interested, too.
 <h3><a name="FOOT2" href="#DOCF2">(2)</a></h3>
 <p><code>(require &quot;ASDF&quot;)</code>や<code>(require 'asdf)</code>、<code>(require :asdf)</code>などもGNU CLISP以外では有効ですが、ポータビリティのためには<code>(require &quot;asdf&quot;)</code>を使うべきです。</p>
 <h3><a name="FOOT3" href="#DOCF3">(3)</a></h3>
-<p>[訳注] <samp>~/common-lisp/</samp>等のディレクトリに移動して<code>git clone https://gitlab.common-lisp.net/asdf/asdf.git</code>を実行します。</p>
+<p>[訳注] <samp>~/common-lisp/</samp>などのディレクトリに移動して<code>git clone https://gitlab.common-lisp.net/asdf/asdf.git</code>を実行します。</p>
 <h3><a name="FOOT4" href="#DOCF4">(4)</a></h3>
 <p><samp>~/common-lisp/</samp>がデフォルトのパスに含まれるのはASDF 3.1.2以降です。それ以前のASDFを使っている場合は、後述のように、このパスを使うことを明示的に設定する必要があるかもしれません。
 </p>

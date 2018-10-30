@@ -123,7 +123,7 @@ Next: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a4_30
 <pre class="example">system-definition := ( defsystem system-designator system-option* )
                      # → <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">システム指示子</a>
 
-system-option := :defsystem-depends-on system-list
+system-option := :defsystem-depends-on dependency-def
                  | :weakly-depends-on system-list
                  | :class class-name # → <a href="#g_t_30b7_30b9_30c6_30e0_30af_30e9_30b9_540d">システムクラス名</a>
                  | :build-operation operation-name

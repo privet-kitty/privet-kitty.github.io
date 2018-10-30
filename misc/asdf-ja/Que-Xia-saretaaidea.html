@@ -42,10 +42,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Rejected ideas (ASDF マニュアル)</title>
+<title>却下されたアイデア (ASDF マニュアル)</title>
 
-<meta name="description" content="Rejected ideas (ASDF マニュアル)">
-<meta name="keywords" content="Rejected ideas (ASDF マニュアル)">
+<meta name="description" content="却下されたアイデア (ASDF マニュアル)">
+<meta name="keywords" content="却下されたアイデア (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -54,7 +54,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがシステムを探す場所を設定する">
 <link href="TODO.html#TODO" rel="next" title="TODO">
-<link href="Status.html#Status" rel="prev" title="Status">
+<link href="Xian-Zhuang-.html#g_t_73fe_72b6" rel="prev" title="現状">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -88,16 +88,16 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="Rejected-ideas"></a>
+<a name="g_t_5374_4e0b_3055_308c_305f_30a2_30a4_30c7_30a2"></a>
 <div class="header">
 <p>
-Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a href="Status.html#Status" accesskey="p" rel="prev">Status</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a href="Xian-Zhuang-.html#g_t_73fe_72b6" accesskey="p" rel="prev">現状</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Rejected-ideas-1"></a>
-<h3 class="section">8.13 Rejected ideas</h3>
+<a name="Que-Xia-saretaaidea"></a>
+<h3 class="section">8.13 却下されたアイデア</h3>
 
-<p>Alternatives I (FRR) considered and rejected while developing ASDF 2 included:
+<p>ASDF 2の開発中に私(FRR)が検討し、却下した代案には、次のようなものがあります。
 </p>
 <ol>
 <li> Keep <code>asdf:*central-registry*</code> as the master with its current semantics,
@@ -122,15 +122,12 @@ Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a h
 </li></ol>
 
 
-<p>I&rsquo;ve been suggested the below features, but have rejected them,
-for the sake of keeping ASDF no more complex than strictly necessary.
+<p>また、私は次の機能を提案しましたが、けっきょく却下しました。ASDFを必要以上に複雑にしないためです。
 </p>
 <ul>
-<li> More syntactic sugar: synonyms for the configuration directives, such as
-  <code>(:add-directory X)</code> for <code>(:directory X)</code>, or <code>(:add-directory-hierarchy X)</code>
-  or <code>(:add-directory X :recurse t)</code> for <code>(:tree X)</code>.
+<li> シンタックスシュガーの追加: いくつかのディレクティブにエイリアスを追加する案。例えば<code>(:add-directory X)</code>を<code>(:directory X)</code>と、<code>(:add-directory-hierarchy X)</code>や<code>(:add-directory X :recurse t)</code>を<code>(:tree X)</code>と同等にする、など。
 
-</li><li> The possibility to register individual files instead of directories.
+</li><li> ディレクトリの代わりに個々のファイルを登録できるようにする案。
 
 </li><li> Integrate Xach Beane&rsquo;s tilde expander into the parser,
   or something similar that is shell-friendly or shell-compatible.
@@ -144,11 +141,6 @@ for the sake of keeping ASDF no more complex than strictly necessary.
   It isn&rsquo;t that Lisp friendly either.
 </li></ul>
 
-<hr>
-<div class="header">
-<p>
-Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a href="Status.html#Status" accesskey="p" rel="prev">Status</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
-</div>
 
 
 
