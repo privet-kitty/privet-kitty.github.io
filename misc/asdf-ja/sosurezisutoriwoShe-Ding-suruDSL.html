@@ -155,7 +155,7 @@ DIRECTIVE :=
     ;; 別の設定ファイルの内容をパースして、この位置に挿入します。
     (:include REGULAR-FILE-PATHNAME-DESIGNATOR) |
 
-    ;; デフォルトのレジストリをこの位置に挿入します。
+    ;; デフォルトのレジストリをこの位置に挿入します。<a name="DOCF35" href="#FOOT35">(35)</a>
     :default-registry
 
 REGULAR-FILE-PATHNAME-DESIGNATOR
@@ -196,7 +196,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; おいては（その後にRELATIVE-COMPONENT-DESIGNATORが続かない限り）
     ;; **/*.*.*のようなワイルドカードを含めたほうがよいでしょう。
     :HOME | ; user-homedir-pathname、つまり~/を指します
-    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します
+    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a name="DOCF36" href="#FOOT36">(36)</a>
     :HERE |
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
@@ -205,7 +205,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; to the root of the source host and device
 
 キーワード:SYSTEM-CACHEはASDF 3.1以降では受け付けません。セキュリティ
-上の問題を引き起こすからです。
+上の問題を引き起こすためです。
 
 RELATIVE-COMPONENT-DESIGNATOR :=
     (RELATIVE-COMPONENT-DESIGNATOR RELATIVE-COMPONENT-DESIGNATOR ...) |
@@ -213,14 +213,15 @@ RELATIVE-COMPONENT-DESIGNATOR :=
       ;; parse-unix-namestringで解釈される相対パスです。アウトプットト
       ;; ランスレーションにおいては、最後のコンポーネントに**/*.*.*が
       ;; 加わります。
-    PATHNAME | ; 最後のコンポーネント以外は、ディレクトリと判断されます。
+    PATHNAME | ; 末尾にある場合を除いて、ディレクトリと判断されます。
     :IMPLEMENTATION |
-      ;; 処理系に基づくディレクトリです。例えばsbcl-1.0.45-linux-x64/など。
+      ;; implementation-identifierに基づくディレクトリです。
+      ;; 例えばsbcl-1.0.45-linux-x64/など。
     :IMPLEMENTATION-TYPE |
       ;; lisp-implementation-typeに基づくディレクトリです。例えばsbcl/など。
     :*/ | ; 直下のすべてのサブディレクトリです。（ASDF 2.011.4以降）
     :**/ | ; 再帰的に辿れるすべてのサブディレクトリです。（ASDF 2.011.4以降）
-    :*.*.* | ; すべてのファイルです。（ASDF 2.011.4以降）
+    :*.*.* ; すべてのファイルです。（ASDF 2.011.4以降）
 
 キーワード:UID、:USERNAME、:DEFAULT-DIRECTORYは今ではサポートされていません。
 </pre></div>
@@ -239,6 +240,10 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
+<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
+<p>[訳注] <code>asdf::default-user-source-registry</code>と<code>asdf::default-system-source-registry</code>による設定が挿入されます。<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>のリスト中の６番目と９番目の処理に相当します。</p>
+<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
+<p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="Output-Configuration-DSL.html#Output-Configuration-DSL">Output Configuration DSL</a>を参照。</p>
 </div>
 
 

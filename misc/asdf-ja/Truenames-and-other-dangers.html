@@ -97,12 +97,12 @@ Next: <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30
 <a name="Truenames-and-other-dangers-1"></a>
 <h3 class="section">8.2 Truenames and other dangers</h3>
 
-<p>初期のASDFが導入した偉大な革新の１つは、ソースコードの場所やビルドを行う場所を決めるのに<code>cl:truename</code>を活用したことでした。これによって（システム定義ファイルへの）シンボリックリンクを集めたディレクトリを管理の対象にできるようになりました。このメカニズムは単純だが効果的であり、プログラムで扱うのが容易でした。ASDF 3は今なおこのスタイルをサポートしていますし、デフォルトで有効です。しかし我々は、以下で解説するソースレジストリの仕組みを代わりに使うことを推奨します。そちらのほうが特定のユーザー、処理系に依存しないポータブルな設定をするのが容易だからです。
+<p>初期のASDFが導入した偉大な革新の１つは、ソースコードの場所やビルドを行う場所を決めるのに<code>cl:truename</code>を活用したことでした。これによって（システム定義ファイルへの）シンボリックリンクを集めたディレクトリを管理の対象にできるようになりました。このメカニズムは単純ですが効果的であり、プログラムで扱うのが容易でした。ASDF 3は今なおこのスタイルをサポートしていますし、デフォルトで有効です。しかし我々は、以下で解説するソースレジストリの仕組みを代わりに使うことを推奨します。そちらのほうが特定のユーザー、処理系に依存しないポータブルな設定をするのが容易だからです。
 </p>
-<p>また、<code>truename</code>を嫌う人もいます。というのも、システムによっては<code>truename</code>はとても遅いし、また、いわゆる内容アドレス記憶装置(CAS, content-addressable storage)を使っている場合、ファイルの<code>truename</code>が指すのは個々のコンテンツの要約であり、同じプロジェクト内の別のファイルではないからです。そのような人のために、ASDF 3では<code>truename</code>を避ける方法も用意されています: <code>asdf:*resolve-symlinks*</code>に<code>nil</code>をセットしてください。
+<p>また、<code>truename</code>を嫌う人もいます。というのも、システムによっては<code>truename</code>はとても遅いし、また、いわゆる内容アドレス記憶装置(CAS, content-addressable storage)を使っている場合、ファイルの<code>truename</code>が指すのは個々のコンテンツのダイジェストであり、同じプロジェクト内の別のファイルではないからです。そこで、ASDF 3には<code>truename</code>を避ける方法も用意されています: <code>asdf:*resolve-symlinks*</code>に<code>nil</code>をセットしてください。
 </p>
 
-<p>追記: Vernor Vingeの短編 &ldquo;True Names... and Other Dangers&rdquo;（邦題: 『マイクロチップの魔術師』）を読んだことがない方は、きっと楽しめるでしょう。偉大なSFの古典です。
+<p>PS: Vernor Vingeの短編 &ldquo;True Names... and Other Dangers&rdquo;（邦題: 『マイクロチップの魔術師』）を読んだことがない方は、きっと楽しめるでしょう。偉大なSFの古典です。
 </p>
 
 

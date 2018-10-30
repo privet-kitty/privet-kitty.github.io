@@ -129,16 +129,9 @@ Next: <a href="TODO.html#TODO" accesskey="n" rel="next">TODO</a>, Previous: <a h
 
 </li><li> ディレクトリの代わりに個々のファイルを登録できるようにする案。
 
-</li><li> Integrate Xach Beane&rsquo;s tilde expander into the parser,
-  or something similar that is shell-friendly or shell-compatible.
-  I&rsquo;d rather keep ASDF minimal. But maybe this precisely keeps it
-  minimal by removing the need for evaluated entries that ASDF has?
-  i.e. uses of <code>USER-HOMEDIR-PATHNAME</code> and <code>$SBCL_HOME</code>
-  Hopefully, these are already superseded by the <code>:default-registry</code>
+</li><li> Xach Beaneの<a href="https://github.com/xach/tilde">tilde展開器</a>をパーザに統合するか、あるいは類似のシェル互換の（またはシェルに近い）構文を導入する案。私はASDFを最小に保っておきたいのですが、今のASDFにある、評価されるエントリの必要性をなくしてしまえば、そちらのほうが的確に最小性を維持できるかもしれません。すなわち、<code>user-homedir-pathname</code>と<code>$SBCL_HOME</code>を使うことになります。おそらく、これらは既に<code>:default-registry</code>ディレクティブで置き換えられているでしょう。
 
-</li><li> Using the shell-unfriendly syntax <code>/**</code> instead of TEXINPUTS-like <code>//</code> to specify recursion
-  down a filesystem tree in the environment variable.
-  It isn&rsquo;t that Lisp friendly either.
+</li><li> 環境変数での設定で、ツリーを指定する構文をTEXINPUTS風の<code>//</code>の代わりにシェル向けでない<code>/**</code>にする案。いずれにせよLispの構文とは相性がよくありません。
 </li></ul>
 
 

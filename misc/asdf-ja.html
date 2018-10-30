@@ -1120,7 +1120,7 @@ feature-expression := keyword
 </p>
 <a name="Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029"></a>
 <h4 class="subsection">6.3.6 弱い依存関係（<code>:weakly-depends-on</code>）</h4>
-<a name="index-_003aweakly_002ddepends_002don"></a>
+<a name="g_t_5f31_3044_4f9d_5b58_95a2_4fc2"></a><a name="index-_003aweakly_002ddepends_002don"></a>
 
 <p>この機能を使うことは<em>推奨しません</em>。システム<code>bar</code>に弱依存しているシステム<code>foo</code>を作りたい場合は、パラメトリックに<code>foo</code>を定義して、スペシャル変数やフックで動作を変えられるようにすると良いでしょう。そして、システム<code>foo+bar</code>を定義してまとめてフックできるようにしましょう。
 </p>
@@ -2173,7 +2173,7 @@ simple-component-name := string
 </p>
 
 <ol>
-<li> ソースレジストリには、ハードコーディングされたレジストリ設定が加わることがあります。これは主に処理系（特にSBCL）自身が提供するシステムの場所を追加するもので、処理系のバージョンによってパスが変わるのにも対応しています。
+<li> ソースレジストリには、ハードコーディングされた設定が加わることがあります。これは主に処理系（特にSBCL）自身が提供するシステムの場所を追加する処理で、処理系のバージョンによってパスが変わるのにも対応しています。
 
 </li><li> アプリケーションは、ソースレジストリのAPIを使って明示的に設定を初期化することが許されており、その場合はその設定が優先されることになります。設定はコマンドラインからも行えますし、スクリプトファイルからも、あるいは独自のシステム設定ファイルからも行うことができます。（→ <a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>）
 
@@ -2207,12 +2207,12 @@ simple-component-name := string
 <a name="Truenames-and-other-dangers-1"></a>
 <h3 class="section">8.2 Truenames and other dangers</h3>
 
-<p>初期のASDFが導入した偉大な革新の１つは、ソースコードの場所やビルドを行う場所を決めるのに<code>cl:truename</code>を活用したことでした。これによって（システム定義ファイルへの）シンボリックリンクを集めたディレクトリを管理の対象にできるようになりました。このメカニズムは単純だが効果的であり、プログラムで扱うのが容易でした。ASDF 3は今なおこのスタイルをサポートしていますし、デフォルトで有効です。しかし我々は、以下で解説するソースレジストリの仕組みを代わりに使うことを推奨します。そちらのほうが特定のユーザー、処理系に依存しないポータブルな設定をするのが容易だからです。
+<p>初期のASDFが導入した偉大な革新の１つは、ソースコードの場所やビルドを行う場所を決めるのに<code>cl:truename</code>を活用したことでした。これによって（システム定義ファイルへの）シンボリックリンクを集めたディレクトリを管理の対象にできるようになりました。このメカニズムは単純ですが効果的であり、プログラムで扱うのが容易でした。ASDF 3は今なおこのスタイルをサポートしていますし、デフォルトで有効です。しかし我々は、以下で解説するソースレジストリの仕組みを代わりに使うことを推奨します。そちらのほうが特定のユーザー、処理系に依存しないポータブルな設定をするのが容易だからです。
 </p>
-<p>また、<code>truename</code>を嫌う人もいます。というのも、システムによっては<code>truename</code>はとても遅いし、また、いわゆる内容アドレス記憶装置(CAS, content-addressable storage)を使っている場合、ファイルの<code>truename</code>が指すのは個々のコンテンツの要約であり、同じプロジェクト内の別のファイルではないからです。そのような人のために、ASDF 3では<code>truename</code>を避ける方法も用意されています: <code>asdf:*resolve-symlinks*</code>に<code>nil</code>をセットしてください。
+<p>また、<code>truename</code>を嫌う人もいます。というのも、システムによっては<code>truename</code>はとても遅いし、また、いわゆる内容アドレス記憶装置(CAS, content-addressable storage)を使っている場合、ファイルの<code>truename</code>が指すのは個々のコンテンツのダイジェストであり、同じプロジェクト内の別のファイルではないからです。そこで、ASDF 3には<code>truename</code>を避ける方法も用意されています: <code>asdf:*resolve-symlinks*</code>に<code>nil</code>をセットしてください。
 </p>
 
-<p>追記: Vernor Vingeの短編 &ldquo;True Names... and Other Dangers&rdquo;（邦題: 『マイクロチップの魔術師』）を読んだことがない方は、きっと楽しめるでしょう。偉大なSFの古典です。
+<p>PS: Vernor Vingeの短編 &ldquo;True Names... and Other Dangers&rdquo;（邦題: 『マイクロチップの魔術師』）を読んだことがない方は、きっと楽しめるでしょう。偉大なSFの古典です。
 </p>
 <hr>
 <a name="XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea"></a>
@@ -2303,7 +2303,7 @@ DIRECTIVE :=
     ;; 別の設定ファイルの内容をパースして、この位置に挿入します。
     (:include REGULAR-FILE-PATHNAME-DESIGNATOR) |
 
-    ;; デフォルトのレジストリをこの位置に挿入します。
+    ;; デフォルトのレジストリをこの位置に挿入します。<a name="DOCF35" href="#FOOT35">(35)</a>
     :default-registry
 
 REGULAR-FILE-PATHNAME-DESIGNATOR
@@ -2344,7 +2344,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; おいては（その後にRELATIVE-COMPONENT-DESIGNATORが続かない限り）
     ;; **/*.*.*のようなワイルドカードを含めたほうがよいでしょう。
     :HOME | ; user-homedir-pathname、つまり~/を指します
-    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します
+    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a name="DOCF36" href="#FOOT36">(36)</a>
     :HERE |
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
@@ -2353,7 +2353,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; to the root of the source host and device
 
 キーワード:SYSTEM-CACHEはASDF 3.1以降では受け付けません。セキュリティ
-上の問題を引き起こすからです。
+上の問題を引き起こすためです。
 
 RELATIVE-COMPONENT-DESIGNATOR :=
     (RELATIVE-COMPONENT-DESIGNATOR RELATIVE-COMPONENT-DESIGNATOR ...) |
@@ -2361,14 +2361,15 @@ RELATIVE-COMPONENT-DESIGNATOR :=
       ;; parse-unix-namestringで解釈される相対パスです。アウトプットト
       ;; ランスレーションにおいては、最後のコンポーネントに**/*.*.*が
       ;; 加わります。
-    PATHNAME | ; 最後のコンポーネント以外は、ディレクトリと判断されます。
+    PATHNAME | ; 末尾にある場合を除いて、ディレクトリと判断されます。
     :IMPLEMENTATION |
-      ;; 処理系に基づくディレクトリです。例えばsbcl-1.0.45-linux-x64/など。
+      ;; implementation-identifierに基づくディレクトリです。
+      ;; 例えばsbcl-1.0.45-linux-x64/など。
     :IMPLEMENTATION-TYPE |
       ;; lisp-implementation-typeに基づくディレクトリです。例えばsbcl/など。
     :*/ | ; 直下のすべてのサブディレクトリです。（ASDF 2.011.4以降）
     :**/ | ; 再帰的に辿れるすべてのサブディレクトリです。（ASDF 2.011.4以降）
-    :*.*.* | ; すべてのファイルです。（ASDF 2.011.4以降）
+    :*.*.* ; すべてのファイルです。（ASDF 2.011.4以降）
 
 キーワード:UID、:USERNAME、:DEFAULT-DIRECTORYは今ではサポートされていません。
 </pre></div>
@@ -2388,9 +2389,9 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <p>設定ディレクトリ内の<samp>.conf</samp>ファイルのDSLは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>と少し<em>異なります</em>。まず、ディレクティブを<code>(:source-registry ...)</code>で囲む必要はありません。また、継承ディレクティブ<code>:inherit-configuration</code>、<code>:ignore-inherited-configuration</code>は使えず、ディレクティブのリストの<em>末尾</em>に暗黙に<code>:inherit-configuration</code>が加わります。これらに反した設定ファイルを読み込むと、ASDFは<code>uiop:invalid-configuration</code>エラーを通知するでしょう。なお、ディレクトリ中の設定ファイルは、そのネームストリングに従って<code>string&lt;</code>の順で読み込まれ、ディレクティブもこの順番で結合されます。
 </p>
-<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル<samp>10-foo.conf</samp>を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF35" href="#FOOT35"><sup>35</sup></a>
+<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル（例えば<samp>10-foo.conf</samp>）を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
 </p>
-<p>設定ディレクトリ内の設定ファイル名は、上で挙げたように２つの数字から始めるのが慣習です。こうすることで、設定が読み込まれる順番を決めることができます。また、ファイル形式は<samp>.conf</samp>でなければなりません。この仕様は、実装を簡単にするだけでなく、設定ファイルを無効にするには単にファイル形式を変えればよい、というメリットも生みます。
+<p>設定ディレクトリ内の設定ファイル名は、上で挙げたように２つの数字から始めるのが慣習です。こうすることで、設定が読み込まれる順番を決めることができます。また、ファイル形式は<samp>.conf</samp>でなければなりません。この仕様のメリットは、単に実装が簡単であるだけでなく、設定ファイルを無効にするにはただファイル形式を変えればよい、という点にもあります。
 </p>
 <p>設定ファイル内で別の設定ディレクトリをインクルードしたい場合は、ディレクトリのパス名か文字列を<code>:include</code>ディレクティブに指定してください:
 </p>
@@ -2398,7 +2399,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <pre class="lisp">	(:include &quot;/foo/bar/&quot;)
 </pre></div>
 
-<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF36" href="#FOOT36"><sup>36</sup></a>:
+<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>:
 </p><div class="lisp">
 <pre class="lisp">(:tree &quot;/home/fare/cl/&quot;)
 </pre></div>
@@ -2417,7 +2418,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p><div class="lisp">
 <pre class="lisp">   (:tree &quot;path/to/dir&quot;)
 </pre></div>
-<p>しかし、<samp>dir/</samp>以下には、Javaのソースコードやアイコンの画像ファイルなどを含めた巨大なサブツリーがあるとしたらどうでしょうか。ASDFのシステム定義ファイルがあるのは<samp>dir/src/lisp/</samp>と<samp>dir/extlib/lisp/</samp>だけで、探すべきなのもこれらのディレクトリだけです。
+<p>しかし、<samp>dir/</samp>以下には巨大なサブツリーがあって、Javaのソースコードやアイコンの画像など、多様なファイルが存在するとしたらどうでしょうか。ASDFのシステム定義ファイルがあるのは<samp>dir/src/lisp/</samp>と<samp>dir/extlib/lisp/</samp>以下のツリーだけで、探すべきなのもそこだけだとしましょう。
 </p>
 <p>この場合、Xさんは<samp>dir/</samp>に次のような<samp>asdf.conf</samp>ファイルを置くでしょう。
 </p><div class="lisp">
@@ -2438,23 +2439,23 @@ RELATIVE-COMPONENT-DESIGNATOR :=
      (:include &quot;/path/to/my/checkout/directory/asdf.conf&quot;)
      :inherit-configuration))
 </pre></div>
-<p>をREPLで呼び出してもかまいません。ASDFはXさんが提供した<samp>asdf.conf</samp>ファイルを見つけて、その内容通りにソースの場所を（作業ディレクトリを基点にした相対パスで）設定するでしょう。
+<p>をREPLで呼び出してもかまいません。ASDFはXさんが提供した<samp>asdf.conf</samp>ファイルを見つけて、その内容通りにソースの場所を（<samp>dir/</samp>を基点にした相対パスを解釈して）設定するでしょう。
 </p>
 <hr>
 <a name="g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09"></a>
 <a name="sieruXiang-kenoShe-Ding-noGou-Wen"></a>
 <h3 class="section">8.7 シェル向けの設定の構文</h3>
 
-<p>環境変数<code>CL_SOURCE_REGISTRY</code>が空の文字列の時、ASDFはこの設定をスキップします。また、<code>(</code>から始まる場合は、先に述べたDSLによるS式と解釈し、全体に<code>read</code>を適用します。しかし、それ以外の場合は別の構文によるパスのリストとみなします。この構文は以下の通りで、<code>TEXINPUTS</code>に似ています。
+<p>環境変数<code>CL_SOURCE_REGISTRY</code>が空の文字列の時、ASDFはこの設定をスキップします。また、<code>(</code>から始まる場合は、先に述べたDSLによるS式と解釈し、全体に<code>read</code>を適用します。しかし、それ以外の場合は別の構文によるパスのリストとみなします。この構文は以下の通りで、<code>TEXINPUTS</code>のスタイルに似ています。
 </p>
 <ul>
 <li> Unix（Cygwin含む）上ではエントリの区切りは<code>:</code>であり、それ以外（主にWindows）では<code>;</code>です。
 
-</li><li> 各エントリは探索パスに追加されるディレクトリです。<code>:directory</code>ディレクティブと同等であり、再帰的探索はしません。
+</li><li> 各エントリはシステムの探索パスに追加されるディレクトリです。<code>:directory</code>ディレクティブと同等であり、再帰的探索はしません。
 
 </li><li> エントリの末尾が<code>//</code>の場合は、再帰的探索の対象になります。<code>:tree</code>ディレクティブと同等です。
 
-</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
+</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>
 </li></ul>
 
 <hr>
@@ -2467,7 +2468,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <p>ディレクトリ（<code>:directory</code>）を探索する場合、システムが見つかれば探索は成功であり、見つからなければ次の探索に進みます。
 </p>
-<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
+<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
 </p>
 
 <p><code>:exclude</code>、<code>:also-exclude</code>ディレクティブには、ツリーを探索するときに除外するサブディレクトリ名を指定します。一般的には、バージョン管理システムのデータベースディレクトリ（<samp>.git</samp>、<samp>_darcs</samp>など）は除外されるでしょう。なお、除外の指定は継承された設定には<em>伝搬しません</em>。すべての設定は、デフォルトでは<code>asdf::*default-source-registry-exclusions*</code>に登録されている除外パターンを採用します。
@@ -2483,18 +2484,18 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <a name="sosurezisutorinokiyatusiyu"></a>
 <h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
 
-<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
+<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
 いっぽう、古いスタイルである<code>*central-registry*</code>のメカニズムは、ファイルシステムに毎回問い合わせるというものでした。
 </p>
 <p>ファイルシステムを変更したあと、キャッシュを明示的にクリアする方法については<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>を参照してください。例えば<code>asdf:clear-source-registry</code>を呼ぶ方法があります。
 </p>
-<p>ASDF 3.1.4から、ツリー内にある<samp>.asd</samp>ファイルの場所を指定する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
+<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を指定する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
 </p>
 <p>このキャッシュファイルを新たに作りたい場合、あるいはソースリポジトリのインストール・アップデート・削除などを行ったあとにキャッシュファイルをアップデートしたい場合、ASDFに含まれるスクリプトが使えます: <code>tools/cl-source-registry-cache.lisp <var>/path/to/directory</var></code>。また、キャッシュを無効にしたい場合は単に<samp>.cl-source-registry.cache</samp>を削除すればよいでしょう。いずれの場合も、起動中のLispプロセスにこの変更を反映するためには<code>(asdf:clear-source-registry)</code>などで（メモリ上の）キャッシュをクリアする必要があります。
 </p>
 <p>開発者は自分の開発ツリー内に安全にキャッシュファイルを作ることができますし、もしもソースツリーにたくさんのファイルやディレクトリが含まれているのであれば、そうすることを勧めます。このキャッシュファイルをアップデートする必要があるのは、<samp>.asd</samp>ファイルを作成・削除・移動したときだけです。また、ソフトウェアディストリビューションの管理者も安全にキャッシュファイルを作ることができますが、ソースリポジトリやインストールパッケージをインストール・アップデート・アンインストールする際にキャッシュファイルが更新されるように注意しなければなりません。最後に、経験ある開発者でソースレジストリ内の大量のコードを管理しなければならない方は、Lispプログラムを高速に起動するためにキャッシュファイルを手動で管理することも可能です。
 </p>
-<p>この永続的なキャッシュは起動を高速化するのに役立ちます。例えば数百ものソースレジストリを１つのマシンに抱えている場合、キャッシュファイルがあれば、SBCLで<code>#!/usr/bin/cl</code>スクリプトを起動するのが半秒ほど早くなりますし、他の処理系ではさらに差が大きいでしょう。これは主観的なインタラクティビティやユーザビリティに大きな違いをもたらします。なお、この起動の高速化を実現するには、処理系<em>付属</em>のASDFのバージョンが3.1.3.7以降である必要があります。すなわち、新しいASDFをソースレジストリに設定された場所に置いて処理系付属のASDFからブートストラップするというやり方では、この方式の恩恵は得られないでしょう。なぜなら、新しいASDFはキャッシュ無しで探すことになるからです。（→ <a href="#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
+<p>この永続的なキャッシュは起動を高速化するのに役立ちます。例えば数百ものソースレジストリを１つのマシンに抱えている場合、キャッシュファイルがあれば、SBCLで<code>#!/usr/bin/cl</code>スクリプトを起動するのが半秒ほど早くなりますし、他の処理系ではさらに差が大きいでしょう。これは主観的なインタラクティビティやユーザビリティに大きな違いをもたらします。なお、この起動の高速化を実現するには、処理系<em>付属</em>のASDFのバージョンが3.1.3.7以降である必要があります。すなわち、新しいASDFをソースレジストリに設定された場所に置いて処理系付属のASDFからブートストラップするというやり方では、この方式の恩恵は得られないでしょう。なぜなら、新しいASDFをキャッシュ無しで探すことになるからです。（→ <a href="#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
 </p>
 
 <hr>
@@ -2511,12 +2512,12 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <dl>
 <dt><a name="index-clear_002dsource_002dregistry"></a>関数: <strong>clear-source-registry</strong></dt>
-<dd><p>ソースレジストリの現在の設定と探索アルゴリズムによるキャッシュをすべて削除します。コアイメージのダンプをする際、そのイメージを別の設定で復元する予定であれば、その前にこの関数（あるいは<code>clear-configuration</code>）を呼んで、設定を空にしておく必要があるかもしれません。なお、この関数を呼んでも、現在のイメージにロードされているシステム定義は削除されないことに注意してください。消えるのは（まだシステム定義が読み込まれていない）システムを見つける際にどこを探すか、という情報だけです。
+<dd><p>ソースレジストリの現在の設定と探索アルゴリズムによるキャッシュをすべて削除します。コアイメージのダンプをする際、そのイメージを別の（ソースレジストリの）設定で復元する予定であれば、その前にこの関数（あるいは<code>clear-configuration</code>）を呼んで、設定を空にしておく必要があるかもしれません。なお、この関数を呼んでも、現在のイメージにロードされているシステム定義は削除されないことに注意してください。消えるのは（まだシステム定義が読み込まれていない）システムを見つける際にどこを探すか、という情報だけです。
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
-<dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されているかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
+<dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されたかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
 </p></dd></dl>
 
 <p><code>find-system</code>が呼ばれた時、（直接呼ばれたにせよ、<code>operate</code>や<code>load-system</code>などから呼ばれたにせよ）ASDFは<code>(ensure-source-registry nil)</code>を実行します。つまり、<code>find-system</code>が初めて呼ばれた時に、ソースレジストリは初期化されるわけです。また、設定ファイルを変更したあとは、明示的に<code>initialize-source-registry</code>で初期化するか、あるいは<code>clear-source-registry</code>や<code>clear-configuration</code>でソースレジストリをクリアし、次の<code>find-system</code>で初期化が行われるようにする必要があります。
@@ -2552,7 +2553,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <dl>
 <dt><a name="index-system_002dweakly_002ddepends_002don"></a>関数: <strong>system-weakly-depends-on</strong> <em>system</em></dt>
-<dd><p><var>system</var>が弱依存しているシステムの名前のリストを返します。弱依存は<em>廃止予定</em>の機能であり、使うことは推奨されていません。<code>defsystem</code>フォームの<code>:weakly-depends-on</code>オプションに指定されたシステムについては、ASDFはそれらのシステムを探しますが、仮に見つからなくてもエラーを通知<em>しません</em>。
+<dd><p><var>system</var>が弱依存しているシステムの名前のリストを返します。弱依存は<em>廃止予定</em>の機能であり、使うことは推奨されていません。<code>defsystem</code>フォームの<code>:weakly-depends-on</code>オプションに指定されたシステムについては、ASDFはそれらのシステムを探しますが、仮に見つからなくてもエラーを通知<em>しません</em>。（→ <a href="#g_t_5f31_3044_4f9d_5b58_95a2_4fc2">弱い依存関係</a>）
 </p>
 </dd></dl>
 
@@ -2605,16 +2606,9 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 </li><li> ディレクトリの代わりに個々のファイルを登録できるようにする案。
 
-</li><li> Integrate Xach Beane&rsquo;s tilde expander into the parser,
-  or something similar that is shell-friendly or shell-compatible.
-  I&rsquo;d rather keep ASDF minimal. But maybe this precisely keeps it
-  minimal by removing the need for evaluated entries that ASDF has?
-  i.e. uses of <code>USER-HOMEDIR-PATHNAME</code> and <code>$SBCL_HOME</code>
-  Hopefully, these are already superseded by the <code>:default-registry</code>
+</li><li> Xach Beaneの<a href="https://github.com/xach/tilde">tilde展開器</a>をパーザに統合するか、あるいは類似のシェル互換の（またはシェルに近い）構文を導入する案。私はASDFを最小に保っておきたいのですが、今のASDFにある、評価されるエントリの必要性をなくしてしまえば、そちらのほうが的確に最小性を維持できるかもしれません。すなわち、<code>user-homedir-pathname</code>と<code>$SBCL_HOME</code>を使うことになります。おそらく、これらは既に<code>:default-registry</code>ディレクティブで置き換えられているでしょう。
 
-</li><li> Using the shell-unfriendly syntax <code>/**</code> instead of TEXINPUTS-like <code>//</code> to specify recursion
-  down a filesystem tree in the environment variable.
-  It isn&rsquo;t that Lisp friendly either.
+</li><li> 環境変数での設定で、ツリーを指定する構文をTEXINPUTS風の<code>//</code>の代わりにシェル向けでない<code>/**</code>にする案。いずれにせよLispの構文とは相性がよくありません。
 </li></ul>
 
 <hr>
@@ -2635,7 +2629,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <p>最初の実装の試みについてはRommel Martinezに感謝をささげます。
 </p>
-<p>良いデザイン案やエレガントな実装のトリックは彼らのおかげですが、悪いデザイン案や実装のバグはすべて、私に帰するものです。
+<p>良いデザイン案やエレガントな実装のトリックは彼らのおかげですが、悪いデザイン案や実装のバグはすべて私に帰するものです。
 </p>
 <p>&mdash; Francois-Rene Rideau <a href="mailto:fare@tunes.org">fare@tunes.org</a>, Mon, 22 Feb 2010 00:07:33 -0500
 </p>
@@ -2649,7 +2643,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <a name="index-ASDF_005fOUTPUT_005fTRANSLATIONS"></a>
 <a name="index-autopututotoransuresiyon"></a>
 
-<p>fasl<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
+<p>fasl<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
 </p>
 <p>この問題を軽減するため、ASDF 2以降には<code>asdf-output-translations</code>機能が備わっています。
 </p>
@@ -2689,7 +2683,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </li><li> 設定ファイル<samp>/etc/common-lisp/asdf-output-translations.conf</samp>が存在する場合、アウトプットトランスレーションがこのファイルによって設定されます。Unixのみの処理です。 
 
 </li><li> 設定ディレクトリ<samp>/etc/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合、ソースレジストリがこのディレクトリ内の設定ファイルによって設定されます。Unixのみの処理です。
-<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>
 
 </li></ol>
 
@@ -2697,8 +2691,8 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
 </p>
-<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュが使われます。<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>
-この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>
+<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュディレクトリが使われます。<a name="DOCF46" href="#FOOT46"><sup>46</sup></a>
+この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF47" href="#FOOT47"><sup>47</sup></a>
 </p>
 
 
@@ -3379,7 +3373,7 @@ The <var>system-designator</var> may be a string, symbol, or ASDF system object.
 For these cases, <code>(asdf:clear-system :foo)</code>
 will remove the system from the table of currently loaded systems:
 the next time the system <code>foo</code> or one that depends on it is re-loaded,
-<code>foo</code> will be loaded again.<a name="DOCF46" href="#FOOT46"><sup>46</sup></a>
+<code>foo</code> will be loaded again.<a name="DOCF48" href="#FOOT48"><sup>48</sup></a>
 </p>
 <p>Note that this does not and cannot undo
 the previous loading of the system.
@@ -4201,7 +4195,7 @@ Since it isn&rsquo;t possible to automatically detect what extensions
 need to be invalidated and what systems use them,
 ASDF will invalidate <em>all</em> previously loaded systems
 when it is loaded on top of a forward-incompatible ASDF version.
-<a name="DOCF47" href="#FOOT47"><sup>47</sup></a>
+<a name="DOCF49" href="#FOOT49"><sup>49</sup></a>
 
 </li><li> To write a portable build script, you need to rely on a recent version of UIOP,
 but until you have ensured a recent ASDF is loaded,
@@ -5631,35 +5625,39 @@ interested, too.
 <h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
 <p>[訳注] <code>defsystem</code>の<code>:depends-on</code>オプションで使われる構文です。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）</p>
 <h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
-<p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
+<p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。リストの最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
 <h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
 <h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
-<p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
+<p>[訳注] <code>asdf::default-user-source-registry</code>と<code>asdf::default-system-source-registry</code>による設定が挿入されます。<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>のリスト中の６番目と９番目の処理に相当します。</p>
 <h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
-<p>[訳注] こちらの例ではユーザー名が明示されていますが、もちろん<code>(:tree (:home &quot;cl&quot;))</code>という記述も有効です。</p>
+<p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照。</p>
 <h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
-<p>[訳注] 文字列の末尾が<code>:</code>（または<code>;</code>）ならば、空のエントリを追加したことになります。</p>
+<p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
 <h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
-<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
+<p>[訳注] こちらの例ではユーザー名が明示されていますが、もちろん<code>(:tree (:home &quot;cl&quot;))</code>という記述も有効です。</p>
 <h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
-<p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
+<p>[訳注] 文字列の末尾を<code>:</code>（または<code>;</code>）にすると、最後に空のエントリを追加したことになります。</p>
 <h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
-<p>[訳注] 現在の実装もそうなっています。</p>
+<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
 <h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
-<p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
+<p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
 <h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
-<p>&ldquo;FASL&rdquo;は&ldquo;FASt Loading&rdquo;の略です。</p>
+<p>[訳注] 現在の実装もそうなっています。</p>
 <h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
-<p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
+<p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
 <h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
-<p>[訳注] 順序としては、このキャッシュの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<p>&ldquo;FASL&rdquo;は&ldquo;FASt Loading&rdquo;の略です。</p>
 <h3><a name="FOOT45" href="#DOCF45">(45)</a></h3>
-<p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
+<p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
 <h3><a name="FOOT46" href="#DOCF46">(46)</a></h3>
+<p>[訳注] 順序としては、このディレクトリの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
+<p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
+<h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>Alternatively, you could touch <code>foo.asd</code> or
 remove the corresponding fasls from the output file cache.</p>
-<h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
+<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
 <a name="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></a>
 <p>Forward incompatibility can be determined using the variable
 <code>asdf/upgrade::*oldest-forward-compatible-asdf-version*</code>,

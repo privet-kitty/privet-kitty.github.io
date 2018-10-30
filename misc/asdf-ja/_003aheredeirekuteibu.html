@@ -105,7 +105,7 @@ Previous: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b
 </p><div class="lisp">
 <pre class="lisp">   (:tree &quot;path/to/dir&quot;)
 </pre></div>
-<p>しかし、<samp>dir/</samp>以下には、Javaのソースコードやアイコンの画像ファイルなどを含めた巨大なサブツリーがあるとしたらどうでしょうか。ASDFのシステム定義ファイルがあるのは<samp>dir/src/lisp/</samp>と<samp>dir/extlib/lisp/</samp>だけで、探すべきなのもこれらのディレクトリだけです。
+<p>しかし、<samp>dir/</samp>以下には巨大なサブツリーがあって、Javaのソースコードやアイコンの画像など、多様なファイルが存在するとしたらどうでしょうか。ASDFのシステム定義ファイルがあるのは<samp>dir/src/lisp/</samp>と<samp>dir/extlib/lisp/</samp>以下のツリーだけで、探すべきなのもそこだけだとしましょう。
 </p>
 <p>この場合、Xさんは<samp>dir/</samp>に次のような<samp>asdf.conf</samp>ファイルを置くでしょう。
 </p><div class="lisp">
@@ -126,7 +126,7 @@ Previous: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b
      (:include &quot;/path/to/my/checkout/directory/asdf.conf&quot;)
      :inherit-configuration))
 </pre></div>
-<p>をREPLで呼び出してもかまいません。ASDFはXさんが提供した<samp>asdf.conf</samp>ファイルを見つけて、その内容通りにソースの場所を（作業ディレクトリを基点にした相対パスで）設定するでしょう。
+<p>をREPLで呼び出してもかまいません。ASDFはXさんが提供した<samp>asdf.conf</samp>ファイルを見つけて、その内容通りにソースの場所を（<samp>dir/</samp>を基点にした相対パスを解釈して）設定するでしょう。
 </p>
 
 

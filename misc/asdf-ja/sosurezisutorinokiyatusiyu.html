@@ -97,27 +97,27 @@ Next: <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_3
 <a name="sosurezisutorinokiyatusiyu"></a>
 <h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
 
-<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
+<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
 いっぽう、古いスタイルである<code>*central-registry*</code>のメカニズムは、ファイルシステムに毎回問い合わせるというものでした。
 </p>
 <p>ファイルシステムを変更したあと、キャッシュを明示的にクリアする方法については<a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>を参照してください。例えば<code>asdf:clear-source-registry</code>を呼ぶ方法があります。
 </p>
-<p>ASDF 3.1.4から、ツリー内にある<samp>.asd</samp>ファイルの場所を指定する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>
+<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を指定する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
 </p>
 <p>このキャッシュファイルを新たに作りたい場合、あるいはソースリポジトリのインストール・アップデート・削除などを行ったあとにキャッシュファイルをアップデートしたい場合、ASDFに含まれるスクリプトが使えます: <code>tools/cl-source-registry-cache.lisp <var>/path/to/directory</var></code>。また、キャッシュを無効にしたい場合は単に<samp>.cl-source-registry.cache</samp>を削除すればよいでしょう。いずれの場合も、起動中のLispプロセスにこの変更を反映するためには<code>(asdf:clear-source-registry)</code>などで（メモリ上の）キャッシュをクリアする必要があります。
 </p>
 <p>開発者は自分の開発ツリー内に安全にキャッシュファイルを作ることができますし、もしもソースツリーにたくさんのファイルやディレクトリが含まれているのであれば、そうすることを勧めます。このキャッシュファイルをアップデートする必要があるのは、<samp>.asd</samp>ファイルを作成・削除・移動したときだけです。また、ソフトウェアディストリビューションの管理者も安全にキャッシュファイルを作ることができますが、ソースリポジトリやインストールパッケージをインストール・アップデート・アンインストールする際にキャッシュファイルが更新されるように注意しなければなりません。最後に、経験ある開発者でソースレジストリ内の大量のコードを管理しなければならない方は、Lispプログラムを高速に起動するためにキャッシュファイルを手動で管理することも可能です。
 </p>
-<p>この永続的なキャッシュは起動を高速化するのに役立ちます。例えば数百ものソースレジストリを１つのマシンに抱えている場合、キャッシュファイルがあれば、SBCLで<code>#!/usr/bin/cl</code>スクリプトを起動するのが半秒ほど早くなりますし、他の処理系ではさらに差が大きいでしょう。これは主観的なインタラクティビティやユーザビリティに大きな違いをもたらします。なお、この起動の高速化を実現するには、処理系<em>付属</em>のASDFのバージョンが3.1.3.7以降である必要があります。すなわち、新しいASDFをソースレジストリに設定された場所に置いて処理系付属のASDFからブートストラップするというやり方では、この方式の恩恵は得られないでしょう。なぜなら、新しいASDFはキャッシュ無しで探すことになるからです。（→ <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
+<p>この永続的なキャッシュは起動を高速化するのに役立ちます。例えば数百ものソースレジストリを１つのマシンに抱えている場合、キャッシュファイルがあれば、SBCLで<code>#!/usr/bin/cl</code>スクリプトを起動するのが半秒ほど早くなりますし、他の処理系ではさらに差が大きいでしょう。これは主観的なインタラクティビティやユーザビリティに大きな違いをもたらします。なお、この起動の高速化を実現するには、処理系<em>付属</em>のASDFのバージョンが3.1.3.7以降である必要があります。すなわち、新しいASDFをソースレジストリに設定された場所に置いて処理系付属のASDFからブートストラップするというやり方では、この方式の恩恵は得られないでしょう。なぜなら、新しいASDFをキャッシュ無しで探すことになるからです。（→ <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b">処理系付属のASDFを置き換える</a>）
 </p>
 
 <div class="footnote">
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
+<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
 <p>[訳注] 現在の実装もそうなっています。</p>
-<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
 <p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
 </div>
 
