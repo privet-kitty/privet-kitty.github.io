@@ -132,7 +132,7 @@ Next: <a href="Fu-Za-naLi.html#g_t_8907_96d1_306a_4f8b" accesskey="n" rel="next"
 
 </li><li> このシステムはたくさんのメタデータを定義しています。例に挙げたフィールド以外にも、<code>:bug-tracker</code>, <code>:mailto</code>、<code>:long-name</code>、<code>:long-description</code>、<code>:source-control</code>などが使えます。これらの使用は任意ですが、少なくとも<code>:description</code>、<code>:version</code>、<code>:author</code>、<code>:licence</code>は定義しておくことを強く推奨します。（特にQuicklispにソフトウェアを登録するつもりであれば。）
 
-</li><li> <code>:version</code>の文字列はASDFにパースされるので、なんでもよいわけではありません。今のところは、ピリオド<code>#\.</code>で区切られた非負整数のみが許容されています。（→ <a href="defsystemnoWenFa-.html#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>）
+</li><li> <code>:version</code>の文字列はASDFにパースされるので、なんでもよいわけではありません。今のところは、ピリオド<code>.</code>で区切られた非負整数のみが許容されています。（→ <a href="defsystemnoWenFa-.html#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>）
 
 </li><li> 上のファイルはただ１つの<code>defsystem</code>フォームだけを含んでいて、<code>in-package</code>もなければ、パッケージの接頭辞<code>asdf:</code>も付いていません。これが我々の推奨する書き方です。より複雑なシステム定義ファイルを書きたければ任意のLispコードが使えますが、可能ならばシンプルな定義に保っておくことを勧めます。そのほうが堅牢で、将来においても有効なシステム定義になるでしょうから。
 

@@ -134,7 +134,7 @@ Next: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_304
 </p>
 <p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="package_002dinferred_002dsystemKuo-Zhang-.html#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
 </p>
-<p>システムのサーチ関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義し、セントラルレジストリかソースレジストリで指定されたディレクトリに置くようにするべきです。
+<p>システムの探索関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義するべきであり、また、ファイルはセントラルレジストリかソースレジストリに指定されたディレクトリに置くようにするべきです。
 </p>
 <a name="System-names"></a><a name="index-System-names"></a>
 <a name="index-Primary-system-name"></a>

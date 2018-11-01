@@ -466,7 +466,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <a name="insutoruJi-minoASDFworodosuru"></a>
 <h3 class="section">3.1 インストール済みのASDFをロードする</h3>
 
-<p>ASDFをロードする際は、次のフォームを使うとよいでしょう:
+<p>ASDFをロードする際は、次のフォームを実行するとよいでしょう:
 </p><div class="lisp">
 <pre class="lisp">(require &quot;asdf&quot;)
 </pre></div>
@@ -850,7 +850,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> このシステムはたくさんのメタデータを定義しています。例に挙げたフィールド以外にも、<code>:bug-tracker</code>, <code>:mailto</code>、<code>:long-name</code>、<code>:long-description</code>、<code>:source-control</code>などが使えます。これらの使用は任意ですが、少なくとも<code>:description</code>、<code>:version</code>、<code>:author</code>、<code>:licence</code>は定義しておくことを強く推奨します。（特にQuicklispにソフトウェアを登録するつもりであれば。）
 
-</li><li> <code>:version</code>の文字列はASDFにパースされるので、なんでもよいわけではありません。今のところは、ピリオド<code>#\.</code>で区切られた非負整数のみが許容されています。（→ <a href="#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>）
+</li><li> <code>:version</code>の文字列はASDFにパースされるので、なんでもよいわけではありません。今のところは、ピリオド<code>.</code>で区切られた非負整数のみが許容されています。（→ <a href="#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>）
 
 </li><li> 上のファイルはただ１つの<code>defsystem</code>フォームだけを含んでいて、<code>in-package</code>もなければ、パッケージの接頭辞<code>asdf:</code>も付いていません。これが我々の推奨する書き方です。より複雑なシステム定義ファイルを書きたければ任意のLispコードが使えますが、可能ならばシンプルな定義に保っておくことを勧めます。そのほうが堅牢で、将来においても有効なシステム定義になるでしょうから。
 
@@ -1407,7 +1407,7 @@ feature-expression := keyword
 <a name="index-action"></a>
 <a name="index-akusiyon"></a>
 <p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>
-<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドステップの１つとして<code>perform</code>されるべきものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
+<code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドの１ステップとして<code>perform</code>されるものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
 </p>
 <p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
 </p>
@@ -1440,8 +1440,8 @@ feature-expression := keyword
 <dt><a name="index-oos-1"></a>総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
 <dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
 </p>
-<p><var>operation</var>は操作指示子です。操作指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
-<var>component</var>はコンポーネント指示子です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
+<p><var>operation</var>は操作指示子(operation designator)です。操作指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
+<var>component</var>はコンポーネント指示子(component designator)です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
 </p>
 <p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
 </p>
@@ -1449,7 +1449,7 @@ feature-expression := keyword
 </p>
 <a name="index-register_002dimmutable_002dsystem"></a>
 <a name="index-immutable-systems"></a>
-<p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先しますが、この仕様は残念ながらASDF 3.1.2以降にしかありません。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="#Miscellaneous-Functions">Miscellaneous Functions</a>）
+<p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先する（べきな）のですが、この挙動は残念ながらASDF 3.1.2以降で初めて保証されました。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="#Miscellaneous-Functions">Miscellaneous Functions</a>）
 </p>
 <a name="index-traverse"></a>
 <p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF25" href="#FOOT25"><sup>25</sup></a>
@@ -1785,7 +1785,7 @@ feature-expression := keyword
 </p>
 <p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
 </p>
-<p>システムのサーチ関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義し、セントラルレジストリかソースレジストリで指定されたディレクトリに置くようにするべきです。
+<p>システムの探索関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義するべきであり、また、ファイルはセントラルレジストリかソースレジストリに指定されたディレクトリに置くようにするべきです。
 </p>
 <a name="System-names"></a><a name="index-System-names"></a>
 <a name="index-Primary-system-name"></a>
@@ -5607,7 +5607,7 @@ interested, too.
 <h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
 <p>[訳注] &ldquo;operation&rdquo;はこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
 <h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
-<p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; ... :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
+<p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
 <h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
 <p>[訳注] <code>traverse</code>は操作指示子とコンポーネント指示子を引数に取り、実行されるアクション（操作とコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
 <h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
