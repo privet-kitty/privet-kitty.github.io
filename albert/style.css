@@ -135,6 +135,7 @@ td.selected {
 }
 
 #south dl dt {
+    clear: both;
     float: left;
     margin-right: 1em;
     width: 10%;
@@ -153,6 +154,7 @@ td.selected {
     -webkit-appearance: none;
     -moz-appearance: none;
     width: 70%;
+    min-height: 3vh;
     border-radius: 0;
     margin-left: 0;
     margin-top: 0.5em;
