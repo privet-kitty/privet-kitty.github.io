@@ -107,7 +107,9 @@ const reflectUsersInput = (mhvc) => {
   const isOutOfGamut = r < 0 || 255 < r || g < 0 || 255 < g || b < 0 || 255 < b;
   showOutOfGamut(isOutOfGamut);
   updateUsersArea(mhvc.getMunsell());
-  updateCanvasBackground(calcRGB255ToHex(r, g, b));
+  if (!isOutOfGamut) {
+    updateCanvasBackground(calcRGB255ToHex(r, g, b));
+  }
 }
 
 const showOutOfGamut = (bool) => {

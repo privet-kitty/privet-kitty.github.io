@@ -9,7 +9,7 @@ body {
 }
 
 #north {
-    flex: 5 5 auto;
+    flex: 1 1 auto;
     background: linear-gradient(90deg, black 50%, white 50%);
     width: 100%;
     text-align: center;
@@ -152,11 +152,11 @@ td.selected {
     float: left;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
     width: 70%;
     border-radius: 0;
     margin-left: 0;
-    margin-top: 4px;
+    margin-top: 0.5em;
+    margin-right: 1em;
     background: white;
     outline: none;
 }
@@ -178,9 +178,8 @@ td.selected {
     cursor: pointer;
 }
 
-.slider::-webkit-slider-thumb, {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
     width: 25px;
     height: 25px;
     background: black;
@@ -215,6 +214,6 @@ td.selected {
 #progress-canvas {
     flex-grow: 0;
     background: gray;
-    height: 20px;
+    height: 3vh;
     width: 100%;
 }
