@@ -9,7 +9,7 @@ body {
 }
 
 #north {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     background: linear-gradient(90deg, black 50%, white 50%);
     width: 100%;
     text-align: center;
