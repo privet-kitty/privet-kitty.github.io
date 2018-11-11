@@ -83,6 +83,24 @@ class Score {
     const factor = 10/(deltaAtZero-deltaAtMax);
     return Math.max((deltaAtZero-Math.max(delta, deltaAtMax))*factor, 0);
   }
+
+  evaluate() {
+    if (this.score === 100) {
+      return "All perfect";
+    } else if (this.score >= 90) {
+      return "Excellent";
+    } else if (this.score >= 80) {
+      return "Great";
+    } else if (this.score >= 70) {
+      return "Very good";
+    } else if (this.score >= 60) {
+      return "Nice";
+    } else if (this.score >= 40) {
+      return "Good";
+    } else {
+      return "Poor";
+    }
+  }
 }
 
 const currentScore = new Score();
@@ -202,10 +220,21 @@ const setQuestion = () => {
   correctRGB = [r, g, b];
 }
 
+const showScore = () => {
+  const score = currentScore.get();
+  let str = `Total Score: ${score.toFixed(1)}; ${currentScore.evaluate()}.`;  
+  document.getElementById("evaluation").textContent = str;
+}
+
+const hideScore = () => {
+  document.getElementById("evaluation").textContent = "";
+}
+
 const forward = function* (e) {
   // Corresponds to the main button.
   const originalButtonName = e.textContent;
   while(true) {
+    hideScore();
     currentScore.reset();
     for (let i=1; i<=10; i++) {
       // Question phase
@@ -224,12 +253,13 @@ const forward = function* (e) {
       updateCanvasBackground(userMHVC.getHex());
       fillRightHalfCanvas(calcMHVCToHex.apply(null, correctMHVC));
       if (i === 10) {
-        e.textContent = `Finish`;
+        break;
       } else {
         e.textContent = `Go to next (${i}/10)`;
       }
       yield;
     }
+    showScore();
     console.log(`Your score is ${currentScore.get()}!`);
     e.textContent = originalButtonName;
     yield;
