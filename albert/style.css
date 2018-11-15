@@ -6,6 +6,15 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     height: 100vh;
+
+    /* For no anti-aliasing of canvas */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+
 }
 
 #north {
@@ -156,6 +165,7 @@ td.selected {
     width: 10%;
     min-width: 5.5em;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 #south dl dd {
@@ -255,14 +265,4 @@ td.selected {
     position: absolute;
     right: 0;
     bottom: 0;
-}
-
-canvas {
-    /* For no anti-aliasing of canvas */
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    -ms-interpolation-mode: nearest-neighbor;
 }
