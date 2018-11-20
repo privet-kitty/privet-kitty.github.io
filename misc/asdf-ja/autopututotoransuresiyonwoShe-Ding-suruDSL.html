@@ -42,10 +42,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Output Configuration DSL (ASDF マニュアル)</title>
+<title>アウトプットトランスレーションを設定するDSL (ASDF マニュアル)</title>
 
-<meta name="description" content="Output Configuration DSL (ASDF マニュアル)">
-<meta name="keywords" content="Output Configuration DSL (ASDF マニュアル)">
+<meta name="description" content="アウトプットトランスレーションを設定するDSL (ASDF マニュアル)">
+<meta name="keywords" content="アウトプットトランスレーションを設定するDSL (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -54,7 +54,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがコンパイルされたファイルを保持する場所を設定する">
 <link href="Output-Configuration-Directories.html#Output-Configuration-Directories" rel="next" title="Output Configuration Directories">
-<link href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" rel="prev" title="Output Backward Compatibility">
+<link href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" rel="prev" title="後方互換性のための機能（アウトプットトランスレーション）">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -88,14 +88,14 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="Output-Configuration-DSL"></a>
+<a name="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL"></a>
 <div class="header">
 <p>
-Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" accesskey="p" rel="prev">Output Backward Compatibility</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Configuration-DSL"></a>
-<h3 class="section">9.3 Configuration DSL</h3>
+<a name="autopututotoransuresiyonwoShe-Ding-suruDSL"></a>
+<h3 class="section">9.3 アウトプットトランスレーションを設定するDSL</h3>
 
 <p>Here is the grammar of the SEXP DSL
 for <code>asdf-output-translations</code> configuration:
@@ -229,7 +229,7 @@ which by default is the same as using
 <hr>
 <div class="header">
 <p>
-Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Output-Backward-Compatibility.html#Output-Backward-Compatibility" accesskey="p" rel="prev">Output Backward Compatibility</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

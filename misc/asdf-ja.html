@@ -262,8 +262,8 @@ a:visited { color: #6D38A0 }
   <li><a name="toc-ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru" href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">9 ASDFがコンパイルされたファイルを保持する場所を設定する</a>
   <ul class="no-bullet">
     <li><a name="toc-autopututotoransuresiyonnoShe-Ding-" href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">9.1 アウトプットトランスレーションの設定</a></li>
-    <li><a name="toc-Backward-Compatibility" href="#Output-Backward-Compatibility">9.2 Backward Compatibility</a></li>
-    <li><a name="toc-Configuration-DSL" href="#Output-Configuration-DSL">9.3 Configuration DSL</a></li>
+    <li><a name="toc-Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng--1" href="#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">9.2 後方互換性のための機能</a></li>
+    <li><a name="toc-autopututotoransuresiyonwoShe-Ding-suruDSL" href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">9.3 アウトプットトランスレーションを設定するDSL</a></li>
     <li><a name="toc-Configuration-Directories" href="#Output-Configuration-Directories">9.4 Configuration Directories</a></li>
     <li><a name="toc-Shell_002dfriendly-syntax-for-configuration" href="#Output-Shell_002dfriendly-syntax-for-configuration">9.5 Shell-friendly syntax for configuration</a></li>
     <li><a name="toc-Semantics-of-Output-Translations-1" href="#Semantics-of-Output-Translations">9.6 Semantics of Output Translations</a></li>
@@ -959,7 +959,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 </li><li> <code>asdf-user</code>が<code>uiop</code>を<code>use</code>しているのはASDF 3.1からであり、それ以前のASDF 3では<code>uiop/package</code>のみが使えました。したがって、UIOPの関数を使う場合には、いちいち<code>uiop:</code>という接頭辞を付けるか、システムの依存関係を<code>(defsystem foo :depends-on ((:version &quot;asdf&quot; &quot;3.1.2&quot;))</code>で明示するか、あるいは<code>#-asdf3.1 (error &quot;MY-SYSTEM requires ASDF 3.1.2&quot;)</code>という行を加えるかすることを勧めます。
 
-</li><li> 最後に、この例ではメタデータはほぼ省略されていますが、別のソースファイル中で定義されているバージョンを抽出する方法を示しています。<code>(:read-file-form &quot;variables&quot; :at (3 2))</code>は、<samp>variables.lisp</samp>の４番目のフォーム中の３番目のフォーム（Lispコードでは０番目から数えるので３番目のフォーム中の２番目のフォームという指定になっています）からバージョンを抽出するように指定しています。おそらく、<samp>variables.lisp</samp>の４番目のフォームは<code>(defparameter *foo-version* &quot;5.6.7&quot;)</code>などとなっていて、<code>&quot;5.6.7&quot;</code>がバージョンの文字列として使われるのでしょう。
+</li><li> 最後に、この例ではメタデータをほぼ省略していますが、別のソースファイル中で定義されているバージョンを抽出する方法を示しています。<code>(:read-file-form &quot;variables&quot; :at (3 2))</code>は、<samp>variables.lisp</samp>の４番目のフォーム中の３番目のフォーム（Lispコードでは０番目から数えるので３番目のフォーム中の２番目のフォームという指定になっています）からバージョンを抽出するように指定しています。おそらく、<samp>variables.lisp</samp>の４番目のフォームは<code>(defparameter *foo-version* &quot;5.6.7&quot;)</code>などとなっていて、<code>&quot;5.6.7&quot;</code>がバージョンの文字列として使われるのでしょう。
 </li></ul>
 
 
@@ -2660,7 +2660,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <p>[訳者補足]
 </p>
-<p>アウトプットトランスレーション（や前章で解説したソースレジストリ）の設定を記述したファイルは、<em>システム設定ファイル(system configuration file)</em>または単に<em>設定ファイル(configuration file)</em>と呼ばれます。ファイル形式は<samp>.conf</samp>です。システム定義ファイル（<samp>.asd</samp>ファイル）と混同しないようにしましょう。さらに、<em>設定ディレクトリ(configuration directory)</em>という概念もあります。設定ディレクトリは設定ファイルを含むディレクトリですが、設定ディレクトリ中の設定ファイルはその文法が微妙に異なるので注意が必要です。詳しくは<a href="#Output-Configuration-DSL">Output Configuration DSL</a>と<a href="#Output-Configuration-Directories">Output Configuration Directories</a>を参照してください。
+<p>アウトプットトランスレーション（や前章で解説したソースレジストリ）の設定を記述したファイルは、<em>システム設定ファイル(system configuration file)</em>または単に<em>設定ファイル(configuration file)</em>と呼ばれます。ファイル形式は<samp>.conf</samp>です。システム定義ファイル（<samp>.asd</samp>ファイル）と混同しないようにしましょう。さらに、<em>設定ディレクトリ(configuration directory)</em>という概念もあります。設定ディレクトリは設定ファイルを含むディレクトリですが、設定ディレクトリ中の設定ファイルはその文法が微妙に異なるので注意が必要です。詳しくは<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>と<a href="#Output-Configuration-Directories">Output Configuration Directories</a>を参照してください。
 </p>
 <p>また、以下の記述は、OSや処理系、環境変数によって異なる複雑なロジックを漏れなく解説したものではありませんが、これを補完するのは訳者の手に余ります。正確な挙動を把握する必要がある場合は<samp>output-translations.lisp</samp>と<samp>uiop/configuration.lisp</samp>を参照してください。
 </p>
@@ -2687,7 +2687,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 </li></ol>
 
-<p>これらの設定は、S式による簡単なDSLで記述します。（→ <a href="#Output-Configuration-DSL">Output Configuration DSL</a>） 加えて、環境変数で設定する場合は、よりシェルに向いた構文も用意されています。（→ <a href="#Output-Shell_002dfriendly-syntax-for-configuration">Output Shell-friendly syntax for configuration</a>）
+<p>これらの設定は、S式による簡単なDSLで記述します。（→ <a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>） 加えて、環境変数で設定する場合は、よりシェルに向いた構文も用意されています。（→ <a href="#Output-Shell_002dfriendly-syntax-for-configuration">Output Shell-friendly syntax for configuration</a>）
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
 </p>
@@ -2697,66 +2697,31 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 
 <hr>
-<a name="Output-Backward-Compatibility"></a>
-<a name="Backward-Compatibility"></a>
-<h3 class="section">9.2 Backward Compatibility</h3>
+<a name="g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09"></a>
+<a name="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng--1"></a>
+<h3 class="section">9.2 後方互換性のための機能</h3>
 <a name="index-ASDF_002dBINARY_002dLOCATIONS-compatibility"></a>
 
 
-<p>We purposely do <em>not</em> provide backward compatibility with earlier versions of
-<code>ASDF-Binary-Locations</code> (8 Sept 2009),
-<code>common-lisp-controller</code> (7.0) or
-<code>cl-launch</code> (2.35),
-each of which had similar general capabilities.
-The APIs of these programs were not designed
-for easy user configuration
-through configuration files.
-Recent versions of <code>common-lisp-controller</code> (7.2) and <code>cl-launch</code> (3.000)
-use the new <code>asdf-output-translations</code> API as defined below.
-<code>ASDF-Binary-Locations</code> is fully superseded and not to be used anymore.
+<p>アウトプットトランスレーションと同様の機能を持つ従来のツールとして<code>ASDF-Binary-Locations</code>、<code>common-lisp-controller</code>、<code>cl-launch</code>などがありましたが、ASDFにはこれらの以前のバージョンとの後方互換性が<em>ありません</em>。（この仕様は意図的なものです。）従来のツールは、ユーザーが設定ファイルで簡単に設定できるようなデザインになっていませんでした。なお、最近のバージョンの<code>common-lisp-controller</code> (7.2)と<code>cl-launch</code> (3.000)は<code>asdf-output-translations</code>のAPIを使っており、また、<code>ASDF-Binary-Locations</code>は完全に置き換えられているのでもはや使うべきではありません。
 </p>
-<p>This incompatibility shouldn&rsquo;t inconvenience many people.
-Indeed, few people use and customize these packages;
-these few people are experts who can trivially adapt to the new configuration.
-Most people are not experts, could not properly configure these features
-(except inasmuch as the default configuration of
-<code>common-lisp-controller</code> and/or <code>cl-launch</code>
-might have been doing the right thing for some users),
-and yet will experience software that &ldquo;just works&rdquo;,
-as configured by the system distributor, or by default.
+<p>もっとも、この非互換性によって不便を被る人はあまりいないでしょう。実のところ、これらのツールをカスタマイズして使っている人はほとんどいませんし、その少数の人々はエキスパートであり、新しい設定に容易に適応するでしょう。そして、エキスパートでないほとんどの人々は（デフォルトの設定で使えている限りは）これらのツールを適切に設定することができず、システムのディストリビュータによる設定やデフォルト設定によってソフトウェアが「ただ動く」ことを知るだけでしょうから。
 </p>
-<p>Nevertheless, if you are a fan of <code>ASDF-Binary-Locations</code>,
-we provide a limited emulation mode:
+<p>しかし、<code>ASDF-Binary-Locations</code>を好む方のために、限定的なエミュレーションモードが用意されています:
 </p>
 <dl>
-<dt><a name="index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"></a>Function: <strong>enable-asdf-binary-locations-compatibility</strong> <em>&amp;key centralize-lisp-binaries default-toplevel-directory include-per-user-information map-all-source-files source-to-target-mappings</em></dt>
-<dd><p>This function will initialize the new <code>asdf-output-translations</code> facility in a way
-that emulates the behaviour of the old <code>ASDF-Binary-Locations</code> facility.
-Where you would previously set global variables
-<var>*centralize-lisp-binaries*</var>,
-<var>*default-toplevel-directory*</var>,
-<var>*include-per-user-information*</var>,
-<var>*map-all-source-files*</var> or <var>*source-to-target-mappings*</var>
-you will now have to pass the same values as keyword arguments to this function.
-Note however that as an extension the <code>:source-to-target-mappings</code> keyword argument
-will accept any valid pathname designator for <code>asdf-output-translations</code>
-instead of just strings and pathnames.
+<dt><a name="index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"></a>関数: <strong>enable-asdf-binary-locations-compatibility</strong> <em>&amp;key centralize-lisp-binaries default-toplevel-directory include-per-user-information map-all-source-files source-to-target-mappings</em></dt>
+<dd><p>この機能は<code>asdf-output-translations</code>の初期化を<code>ASDF-Binary-Locations</code>と似た仕組みで行います。<code>ASDF-Binary-Locations</code>はいくつかのグローバル変数（<code>*centralize-lisp-binaries*</code>、<code>*default-toplevel-directory*</code>、<code>*include-per-user-information*</code>、<code>*map-all-source-files*</code>、<var>*source-to-target-mappings*</var>）で設定を行っていましたが、この関数では同名のキーワード引数に値を渡すことで、設定が可能になります。なお、留意点として、<code>:source-to-target-mappings</code>引数の値は、単に文字列とパス名だけではなく<code>asdf-output-translations</code>で使える有効なパス名指定子であればなんでもよい、ということを述べておきます。
 </p></dd></dl>
 
-<p>If you insist, you can also keep using the old <code>ASDF-Binary-Locations</code>
-(the one available as an extension to load of top of ASDF,
-not the one built into a few old versions of ASDF),
-but first you must disable <code>asdf-output-translations</code>
-with <code>(asdf:disable-output-translations)</code>,
-or you might experience &ldquo;interesting&rdquo; issues.
+
+<p>また、アウトプットトランスレーションはデフォルトで有効になっていることに気をつけましょう。無効にするためには<code>(asdf:disable-output-translations)</code>を実行します。特に、従来の<code>ASDF-Binary-Locations</code>（ASDFの古いバージョンに組み込まれたものではなく、最新版に拡張としてロードできるもの）を使い続ける方は、始めに無効にするように気を付けてください。そうしないと「興味深い」問題が起きるかもしれません。
 </p>
-<p>Also, note that output translation is enabled by default.
-To disable it, use <code>(asdf:disable-output-translations)</code>.
-</p>
+
 <hr>
-<a name="Output-Configuration-DSL"></a>
-<a name="Configuration-DSL"></a>
-<h3 class="section">9.3 Configuration DSL</h3>
+<a name="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL"></a>
+<a name="autopututotoransuresiyonwoShe-Ding-suruDSL"></a>
+<h3 class="section">9.3 アウトプットトランスレーションを設定するDSL</h3>
 
 <p>Here is the grammar of the SEXP DSL
 for <code>asdf-output-translations</code> configuration:
@@ -5019,7 +4984,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-around_002dcompile-keyword">around-compile keyword</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Controlling-file-compilation">Controlling file compilation</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ASDF-output">ASDF output</a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-capture-ASDF_0027s-output_003f">How can I capture ASDF's output?</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ASDF-versions">ASDF versions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_306f_3058_3081_306b">はじめに</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-ASDF_002dBINARY_002dLOCATIONS-compatibility">ASDF-BINARY-LOCATIONS compatibility</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-Backward-Compatibility">Output Backward Compatibility</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ASDF_002dBINARY_002dLOCATIONS-compatibility">ASDF-BINARY-LOCATIONS compatibility</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">後方互換性のための機能（アウトプットトランスレーション）</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-asdf_002doutput_002dtranslations">asdf-output-translations</a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがコンパイルされたファイルを保持する場所を設定する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ASDF_002drelated-features">ASDF-related features</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_306f_3058_3081_306b">はじめに</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-asdf_002duser">asdf-user</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_5358_7d14_306a_4f8b">単純な例</a></td></tr>
@@ -5240,7 +5205,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-disable_002doutput_002dtranslations"><code>disable-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-E">E</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"><code>enable-asdf-binary-locations-compatibility</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-Backward-Compatibility">Output Backward Compatibility</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"><code>enable-asdf-binary-locations-compatibility</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">後方互換性のための機能（アウトプットトランスレーション）</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ensure_002doutput_002dtranslations"><code>ensure-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ensure_002dsource_002dregistry"><code>ensure-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -5375,7 +5340,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-_002asystem_002ddefinition_002dsearch_002dfunctions_002a"><code>*system-definition-search-functions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_5909_6570_ff09_vr_letter-A">A</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-asdf_003a_003a_002auser_002dcache_002a"><code>asdf::*user-cache*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-Configuration-DSL">Output Configuration DSL</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-asdf_003a_003a_002auser_002dcache_002a"><code>asdf::*user-cache*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ASDF_005fOUTPUT_005fTRANSLATIONS"><code>ASDF_OUTPUT_TRANSLATIONS</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがコンパイルされたファイルを保持する場所を設定する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 </table>
@@ -5631,7 +5596,7 @@ interested, too.
 <h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
 <p>[訳注] <code>asdf::default-user-source-registry</code>と<code>asdf::default-system-source-registry</code>による設定が挿入されます。<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>のリスト中の６番目と９番目の処理に相当します。</p>
 <h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
-<p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照。</p>
+<p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>を参照。</p>
 <h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
 <p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
 <h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
@@ -5651,7 +5616,7 @@ interested, too.
 <h3><a name="FOOT45" href="#DOCF45">(45)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
 <h3><a name="FOOT46" href="#DOCF46">(46)</a></h3>
-<p>[訳注] 順序としては、このディレクトリの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#Output-Configuration-DSL">Output Configuration DSL</a>を参照してください。</p>
+<p>[訳注] 順序としては、このディレクトリの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>を参照してください。</p>
 <h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
 <p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
 <h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
