@@ -111,7 +111,7 @@ Next: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b
 
 <dl>
 <dt><a name="index-ensure_002dsource_002dregistry"></a>関数: <strong>ensure-source-registry</strong> <em>&amp;optional <var>(parameter *source-registry-parameter*)</var></em></dt>
-<dd><p>ソースレジストリが既に<code>initialize-source-regsitry</code>で初期化されたかどうかチェックします。されていない場合は<code>initialize-source-regsitry</code>を呼びます。
+<dd><p>ソースレジストリが既に<code>initialize-source-registry</code>で初期化されたかどうかチェックします。されていない場合は<code>initialize-source-registry</code>を呼びます。
 </p></dd></dl>
 
 <p><code>find-system</code>が呼ばれた時、（直接呼ばれたにせよ、<code>operate</code>や<code>load-system</code>などから呼ばれたにせよ）ASDFは<code>(ensure-source-registry nil)</code>を実行します。つまり、<code>find-system</code>が初めて呼ばれた時に、ソースレジストリは初期化されるわけです。また、設定ファイルを変更したあとは、明示的に<code>initialize-source-registry</code>で初期化するか、あるいは<code>clear-source-registry</code>や<code>clear-configuration</code>でソースレジストリをクリアし、次の<code>find-system</code>で初期化が行われるようにする必要があります。
