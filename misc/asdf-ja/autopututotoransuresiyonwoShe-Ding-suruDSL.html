@@ -97,68 +97,69 @@ Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Direct
 <a name="autopututotoransuresiyonwoShe-Ding-suruDSL"></a>
 <h3 class="section">9.3 アウトプットトランスレーションを設定するDSL</h3>
 
-<p>Here is the grammar of the SEXP DSL
-for <code>asdf-output-translations</code> configuration:
+<p>アウトプットトランスレーションの設定は、S式によるDSLで行います。以下はその文法です:
 </p>
-<pre class="verbatim">;; A configuration is single SEXP starting with keyword :source-registry
-;; followed by a list of directives.
+<div class="example">
+<pre class="example">;; 設定の１単位は１つのS式であり、S式はキーワード:source-registryから
+;; 始まって１つ以上のディレクティブが続きます。
 CONFIGURATION := (:output-translations DIRECTIVE ...)
 
-;; A directive is one of the following:
+;; ディレクティブは次のいずれかです:
 DIRECTIVE :=
-    ;; INHERITANCE DIRECTIVE:
-    ;; Your configuration expression MUST contain
-    ;; exactly one of either of these:
+    ;; 継承ディレクティブ:
+    ;; CONFIGURATIONは<em>必ず</em>次の２つのディレクティブのいずれかを含ま
+    ;; なければなりません。
     :inherit-configuration |
-      ;; splices inherited configuration (often specified last)
+    ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
+    ;; 最後に指定されます。<a name="DOCF49" href="#FOOT49">(49)</a>
     :ignore-inherited-configuration |
-      ;; drop inherited configuration (specified anywhere)
+    ;; 継承した設定を除外します。どこに指定してもかまいません。
 
-    ;; forward compatibility directive (since ASDF 2.011.4), useful when
-    ;; you want to use new configuration features but have to bootstrap a
-    ;; the newer required ASDF from an older release that doesn't have
-    ;; said features:
+    ;; 前方互換性のためのディレクティブ（ASDF 2.011.4）以降です。新し
+    ;; い設定機能を使いたいが、その機能をサポートしていない古いASDFか
+    ;; ら新しいASDFをブートストラップして使っているという場合には、こ
+    ;; のディレクティブが必要でしょう。
     :ignore-invalid-entries |
 
-    ;; include a configuration file or directory
+    ;; 別の設定ファイルまたは設定ディレクトリをインクルードします。
     (:include PATHNAME-DESIGNATOR) |
 
-    ;; enable global cache in ~/.common-lisp/cache/sbcl-1.0.45-linux-amd64/
-    ;; or something.
+    ;; ユーザーキャッシュを有効にします。環境に応じて、例えば
+    ;; ~/.common-lisp/cache/sbcl-1.0.45-linux-amd64/や
+    ;; C:/Users/foo/AppData/Local/cache/common-lisp/sbcl-1.4.2-win-x64/
+    ;; などが使われるでしょう。デフォルトでは有効です。
     :enable-user-cache |
-    ;; Disable global cache. Map / to /
+    ;; ユーザーキャッシュを無効にします。/が/にマップされることになり
+    ;; ます。
     :disable-cache |
 
-    ;; add a single directory to be scanned (no recursion)
+    ;; １つのマッピングを(入力　出力)として追加します。
     (DIRECTORY-DESIGNATOR DIRECTORY-DESIGNATOR)
 
-    ;; use a function to return the translation of a directory designator
+    ;; 入力パスのトランスレーションを関数で行うように指定します。
     (DIRECTORY-DESIGNATOR (:function TRANSLATION-FUNCTION))
 
 DIRECTORY-DESIGNATOR :=
-    NIL | ; As source: skip this entry. As destination: same as source
-    T | ; as source matches anything, as destination
-        ; maps pathname to itself.
-    ABSOLUTE-COMPONENT-DESIGNATOR ; same as in the source-registry language
+    NIL | ; 入力に指定した場合: このエントリをスキップします。
+          ; 出力に指定した場合: 入力されたパス名を同じパス名にマップします。
+    T | ; 入力に指定した場合: あらゆる入力パスに対応します。
+        ; 出力に指定した場合: 入力されたパス名を同じパス名にマップします。
+    ABSOLUTE-COMPONENT-DESIGNATOR ; → <a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>
 
 TRANSLATION-FUNCTION :=
-    SYMBOL | ;; symbol naming a function that takes two arguments:
-             ;; the pathname to be translated and the matching
-             ;; DIRECTORY-DESIGNATOR
-    LAMBDA   ;; A form which evaluates to a function taking two arguments:
-             ;; the pathname to be translated and the matching
-             ;; DIRECTORY-DESIGNATOR
+    ;; 入力パスを出力パスに変換する関数です。この関数は２つの引数を取
+    ;; り、１つ目は変換するべきパス名であり、２つ目は入力に指定した
+    ;; DIRECTORY-DESIGNATORです。
+    SYMBOL |
+    LAMBDA
 
-</pre>
-<p>Relative components better be either relative
-or subdirectories of the path before them, or bust.
+</pre></div>
+
+
+
+<p>&lsquo;ABSOLUTE-COMPONENT-DESIGNATOR&lsquo;の末尾のコンポーネントがパス名でない場合、<samp>/**/*.*</samp>が加わっているものとみなされます。末尾のコンポーネントにパス名を使うと、<code>#p&quot;some/path/**/foo*/bar-*.fasl&quot;</code>のようにより細かいパターンを指定することができます。（→ <a href="sosurezisutoriwoShe-Ding-suruDSL.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>）
 </p>
-<p>The last component, if not a pathname, is notionally completed by <samp>/**/*.*</samp>.
-You can specify more fine-grained patterns
-by using a pathname object as the last component
-e.g. <samp>#p&quot;some/path/**/foo*/bar-*.fasl&quot;</samp>
-</p>
-<p>You may use <code>#+features</code> to customize the configuration file.
+<p><code>#+フィーチャー</code>のようなフィーチャー表現も設定ファイル中で使うことが出来ます。
 </p>
 <p>The second designator of a mapping may be <code>nil</code>, indicating that files are not mapped
 to anything but themselves (same as if the second designator was the same as the first).
@@ -226,6 +227,13 @@ which by default is the same as using
 </li></ul>
 
 
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
+<p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
+</div>
 <hr>
 <div class="header">
 <p>

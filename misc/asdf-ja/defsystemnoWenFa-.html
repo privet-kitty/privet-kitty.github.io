@@ -231,7 +231,7 @@ feature-expression := keyword
 <pre class="lisp">:class :MY-NEW-SYSTEM-SUBCLASS
 </pre></div>
 
-<p>のようにキーワードを使うことを推奨します。キーワードではなく<code>MY-NEW-SYSTEM-SUBCLASS</code>で指定した場合、この名前のシンボルがカレントパッケージに読み込まれたあと、（ASDF拡張が<code>:defsystem-depends-on</code>によってロードされて、そのパッケージから）同名のシンボルがエクスポートされる、という順序で処理が行われるため、名前の衝突が起きてしまいます。
+<p>のようにキーワードを使うことを推奨します。キーワードではなく<code>MY-NEW-SYSTEM-SUBCLASS</code>で指定した場合、この名前のシンボルがカレントパッケージに読み込まれたあと、（ASDF拡張が<code>:defsystem-depends-on</code>によってロードされて、そのパッケージから）同名のシンボルがエクスポートされる、という順序で処理が行われるため、名前の衝突が起きてしまいます。<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>
 </p>
 <a name="defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029"></a>
 <h4 class="subsection">6.3.4 defsystemの依存（<code>:defsystem-depends-on</code>）</h4>
@@ -270,10 +270,10 @@ feature-expression := keyword
 <p>普通は文字列を与えますが、文字列はUnixスタイルのパス名として解釈され、文字<code>/</code>はディレクトリのセパレータとみなされます。たいていは相対パスが使われ、その場合は親コンポーネントのパスを基点にした相対パスとみなされます。文字列はコンポーネント型に応じてファイルともディレクトリとも解釈されますが、ファイルの場合、コンポーネント型によっては自動的に拡張子が付加されることがあります。
 </p>
 <p>例えば、コンポーネント型の１つである<code>:module</code>は、ディレクトリを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar/&quot;</samp>と解釈されます。
-また、コンポーネント型の１つである<code>:file</code>は、ファイル形式が<samp>lisp</samp>のファイルを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar.lisp&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux.lisp&quot;</samp>と解釈されます。<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>
+また、コンポーネント型の１つである<code>:file</code>は、ファイル形式が<samp>lisp</samp>のファイルを対象とするので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar.lisp&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux.lisp&quot;</samp>と解釈されます。<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>
 最後に、コンポーネント型の１つである<code>:static-file</code>は、特定のファイル形式を前提とせずにファイルを対象にとるので、文字列<code>&quot;foo/bar&quot;</code>はパス名<samp>#p&quot;foo/bar&quot;</samp>と解釈され、<code>&quot;foo/bar.quux&quot;</code>は<samp>#p&quot;foo/bar.quux&quot;</samp>と解釈されます。
 </p>
-<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF16" href="#FOOT16"><sup>16</sup></a>
+<p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>
 つまり、文字列中の<code>&quot;..&quot;</code>は１つ上の階層のディレクトリを意味します。
 </p>
 <p>シンボルが与えられた場合、小文字の文字列に変換されます。小文字に変換するのは慣習と異なっていますが、検討の末このような仕様になりました。我々がサポートしたいシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるので、単に<code>make-pathname</code>を<code>:case :common</code>として使う方式（うまく動かない処理系もある）よりも適切と思われます。
@@ -290,7 +290,7 @@ feature-expression := keyword
 <a name="g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50"></a>
 <p>バージョン指定子(version specifier)は文字列であり、ピリオド<code>#\.</code>で区切られた整数としてパースされます。例えば、<code>&quot;0.2.1&quot;</code>は大ざっぱに言えば<code>(0 2 1)</code>というバージョンと解釈されます。留意点として、<code>&quot;0.0002.1&quot;</code>は<code>&quot;0.2.1&quot;</code>と同じバージョンと判断されますが、前者は正規の書き方ではないので、警告が通知されるでしょう。また、バージョンは小数として扱われるわけではないので、<code>&quot;1.3&quot;</code>や<code>&quot;1.4&quot;</code>は<code>&quot;1.30&quot;</code>と比較してバージョンが小さい（<code>(uiop:version&lt; &quot;1.3&quot; &quot;1.30&quot;)</code>が真を返す）ことにも注意してください。
 </p>
-<p><code>:version</code>引数には、バージョンを文字列リテラルで直接指定する代わりに、他の場所からバージョン文字列を抽出するための表現を与えることも可能で、次のようなDSLが用意されています: <code>(:read-file-form &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>あるいは<code>(:read-file-line &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>。名前が示すように、前者は与えられたパス（相対パス名や<code>unix-namestring</code>で与えられた場合はシステムのパスをベースに解釈される<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>）から１つのフォームを読み、後者は１つの行を読みます。<code>:at</code>引数には<code>uiop:access-at</code>と同様の指定をすることができますが、デフォルトでは<code>0</code>、つまり最初のフォーム/行を読み込むことになります。（訳注: 記述の例は<a href="Fu-Za-naLi.html#g_t_8907_96d1_306a_4f8b">複雑な例</a>にあります。） また、<code>:read-file-form</code>にはサブフォーム、つまりフォーム中のフォームを指定することもできます。例えば<code>(1 2 2)</code>は「２番目のフォーム中の３番目のフォーム中の３番目のフォーム」を指定しています。この指定は０番目から数えることに気をつけましょう。
+<p><code>:version</code>引数には、バージョンを文字列リテラルで直接指定する代わりに、他の場所からバージョン文字列を抽出するための表現を与えることも可能で、次のようなDSLが用意されています: <code>(:read-file-form &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>あるいは<code>(:read-file-line &lt;パス名または文字列&gt; [:at &lt;access-at-specifier&gt;])</code>。名前が示すように、前者は与えられたパス（相対パス名や<code>unix-namestring</code>で与えられた場合はシステムのパスをベースに解釈される<a name="DOCF18" href="#FOOT18"><sup>18</sup></a>）から１つのフォームを読み、後者は１つの行を読みます。<code>:at</code>引数には<code>uiop:access-at</code>と同様の指定をすることができますが、デフォルトでは<code>0</code>、つまり最初のフォーム/行を読み込むことになります。（訳注: 記述の例は<a href="Fu-Za-naLi.html#g_t_8907_96d1_306a_4f8b">複雑な例</a>にあります。） また、<code>:read-file-form</code>にはサブフォーム、つまりフォーム中のフォームを指定することもできます。例えば<code>(1 2 2)</code>は「２番目のフォーム中の３番目のフォーム中の３番目のフォーム」を指定しています。この指定は０番目から数えることに気をつけましょう。
 </p>
 <p>システムを定義する際には、<var>x</var>.<var>y</var>.<var>z</var>という形式でバージョンを指定し、それぞれメジャーバージョン、マイナーバージョン、パッチレベルに対応させることを推奨します。APIの重要な非互換が発生する場合は、メジャーバージョンを上げてそのことを示しましょう。
 </p>
@@ -364,7 +364,7 @@ feature-expression := keyword
 </p>
 <ol>
 <li> <code>find-system</code>
-はシステムをディスクからロードして、そのデフォルトのパス名<a name="DOCF18" href="#FOOT18"><sup>18</sup></a>を正しく設定します。
+はシステムをディスクからロードして、そのデフォルトのパス名<a name="DOCF19" href="#FOOT19"><sup>19</sup></a>を正しく設定します。
 
 </li><li> ユーザーが<samp>.asd</samp>ファイルをエディタに読み込んでフォームを１つ１つ評価したような場合でも、このパス名の情報は<code>*default-pathname-defaults*</code>（この場合、まったく別の場所を指しているかもしれません）によって書き換えられることはありません。
 </li></ol>
@@ -419,14 +419,16 @@ feature-expression := keyword
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT15" href="#DOCF15">(15)</a></h3>
-<p>[訳注] <code>&quot;foo/bar.lisp&quot;</code>は<samp>#p&quot;foo/bar.lisp.lisp&quot;</samp>と解釈されるので、拡張子を明示して書くことはできません。</p>
+<p>[訳注] 現在のバージョンでは、キーワード指定すると<code>asdf/interface</code>パッケージからクラスが探されます。別のパッケージのクラスを使いたい場合は<code>&quot;package:my-new-system-subclass&quot;</code>のように文字列で指定しましょう。</p>
 <h3><a name="FOOT16" href="#DOCF16">(16)</a></h3>
-<p>[訳注] ここはわかりにくいですが、文字列中では<code>&quot;..&quot;</code>がUnixのパスと同じように使えるということを知っていれば十分です。ANSI CLの<a href="http://clhs.lisp.se/Body/26_glo_p.htm#pathname">パス名</a>オブジェクトは６つのコンポーネントを含みますが、その内の１つである<a href="http://clhs.lisp.se/Body/26_glo_v.htm#valid_pathname_directory">ディレクトリ</a>コンポーネント中に<code>:back</code>が含まれているのと同じ意味になるということです。<a href="http://www.lispworks.com/documentation/lw50/CLHS/Body/19_bbdc.htm">CLHS: 19.2.2.4.3 Restrictions on Examining a Pathname Directory Component</a>も参照。</p>
+<p>[訳注] <code>&quot;foo/bar.lisp&quot;</code>は<samp>#p&quot;foo/bar.lisp.lisp&quot;</samp>と解釈されるので、拡張子を明示して書くことはできません。</p>
 <h3><a name="FOOT17" href="#DOCF17">(17)</a></h3>
+<p>[訳注] ここはわかりにくいですが、文字列中では<code>&quot;..&quot;</code>がUnixのパスと同じように使えるということを知っていれば十分です。ANSI CLの<a href="http://clhs.lisp.se/Body/26_glo_p.htm#pathname">パス名</a>オブジェクトは６つのコンポーネントを含みますが、その内の１つである<a href="http://clhs.lisp.se/Body/26_glo_v.htm#valid_pathname_directory">ディレクトリ</a>コンポーネント中に<code>:back</code>が含まれているのと同じ意味になるということです。<a href="http://www.lispworks.com/documentation/lw50/CLHS/Body/19_bbdc.htm">CLHS: 19.2.2.4.3 Restrictions on Examining a Pathname Directory Component</a>も参照。</p>
+<h3><a name="FOOT18" href="#DOCF18">(18)</a></h3>
 <p>[訳注] CLのパス名（リテラル<code>#p...</code>あるいは<code>#.(make-pathname ...)</code>による）を与えるか、文字列でUnixスタイルの相対パスを与えるかの２択であり、絶対パスを指定したい場合は（稀と思われますが）前者のパス名しか使えないということです。相対パスは<samp>.asd</samp>ファイルのあるディレクトリを基点に解釈されるので、<code>:pathname</code>オプションでシステムのトップレベルのディレクトリを変更していても影響しないという点にも注意しましょう。
 </p>
 <p>なお、具体的には<code>(uiop:subpathname (asdf:system-source-file &lt;システム名&gt;) &lt;パス名または文字列&gt;)</code>の返すパス名が使われています。</p>
-<h3><a name="FOOT18" href="#DOCF18">(18)</a></h3>
+<h3><a name="FOOT19" href="#DOCF19">(19)</a></h3>
 <p>[訳注] <code>component-pathname</code>でアクセスできるパス名です。</p>
 </div>
 <hr>

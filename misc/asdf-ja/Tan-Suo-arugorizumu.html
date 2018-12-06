@@ -102,7 +102,7 @@ Next: <a href="sosurezisutorinokiyatusiyu.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9
 </p>
 <p>ディレクトリ（<code>:directory</code>）を探索する場合、システムが見つかれば探索は成功であり、見つからなければ次の探索に進みます。
 </p>
-<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
+<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
 </p>
 
 <p><code>:exclude</code>、<code>:also-exclude</code>ディレクティブには、ツリーを探索するときに除外するサブディレクトリ名を指定します。一般的には、バージョン管理システムのデータベースディレクトリ（<samp>.git</samp>、<samp>_darcs</samp>など）は除外されるでしょう。なお、除外の指定は継承された設定には<em>伝搬しません</em>。すべての設定は、デフォルトでは<code>asdf::*default-source-registry-exclusions*</code>に登録されている除外パターンを採用します。
@@ -117,9 +117,9 @@ Next: <a href="sosurezisutorinokiyatusiyu.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
-<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
 <h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
+<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
 <p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
 </div>
 
