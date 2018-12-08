@@ -201,8 +201,9 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
     :ROOT
-    ;; magic, for output-translations source only: paths that are relative
-    ;; to the root of the source host and device
+    ;; アウトプットトランスレーションでのみ使われます。入力指定子では
+    ;; すべてのホストとデバイスにマッチし、出力指定子では入力パスのホ
+    ;; ストとデバイス（のルート）を表します。
 
 キーワード:SYSTEM-CACHEはASDF 3.1以降では受け付けません。セキュリティ
 上の問題を引き起こすためです。

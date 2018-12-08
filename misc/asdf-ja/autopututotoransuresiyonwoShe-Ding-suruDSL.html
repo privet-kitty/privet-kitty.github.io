@@ -133,10 +133,10 @@ DIRECTIVE :=
     ;; ます。
     :disable-cache |
 
-    ;; １つのマッピングを(入力　出力)として追加します。
+    ;; １つのマッピングを(入力指定子　出力指定子)として追加します。
     (DIRECTORY-DESIGNATOR DIRECTORY-DESIGNATOR)
 
-    ;; 入力パスのトランスレーションを関数で行うように指定します。
+    ;; １つのマッピングを追加します。入力パスの変換は関数で行われます。
     (DIRECTORY-DESIGNATOR (:function TRANSLATION-FUNCTION))
 
 DIRECTORY-DESIGNATOR :=
@@ -161,30 +161,13 @@ TRANSLATION-FUNCTION :=
 </p>
 <p><code>#+フィーチャー</code>のようなフィーチャー表現も設定ファイル中で使うことが出来ます。
 </p>
-<p>The second designator of a mapping may be <code>nil</code>, indicating that files are not mapped
-to anything but themselves (same as if the second designator was the same as the first).
+
+
+<p>入力指定子が<code>t</code>である場合、すべてのパスにマッチします。入力指定子が<code>:root</code>から始まる場合、すべてのホストとデバイスにマッチします。いずれの場合も（出力の指定子が<code>t</code>でなく<code>:root</code>から始まるのでもなければ）<code>apply-output-translations</code>で入力パスが変換される際に、出力指定子のホストとデバイスが入力パスにマージされることになります。
 </p>
-<p>When the first designator is <code>t</code>,
-the mapping always matches.
-When the first designator starts with <code>:root</code>,
-the mapping matches any host and device.
-In either of these cases, if the second designator
-isn&rsquo;t <code>t</code> and doesn&rsquo;t start with <code>:root</code>,
-then strings indicating the host and pathname are somehow copied
-in the beginning of the directory component of the source pathname
-before it is translated.
+<p>出力指定子が<code>t</code>（または<code>nil</code>）である場合、マッピングは恒等写像であり、入力パスがそのまま出力パスになります。
 </p>
-<p>When the second designator is <code>t</code>, the mapping is the identity.
-When the second designator starts with <code>:root</code>,
-the mapping preserves the host and device of the original pathname.
-Notably, this allows you to map files
-to a subdirectory of the whichever directory the file is in.
-Though the syntax is not quite as easy to use as we&rsquo;d like,
-you can have an (source destination) mapping entry such as follows
-in your configuration file,
-or you may use <code>enable-asdf-binary-locations-compatibility</code>
-with <code>:centralize-lisp-binaries nil</code>
-which will do the same thing internally for you:
+<p>出力指定子が<code>:root</code>から始まる場合、マッピングは入力パスのホストとデバイスを保持します。ファイルが存在するディレクトリのサブディクレトリにマッピングしたい場合にはこの機能を使って実現できますが、旧来の構文は次のようにやや複雑なものでした。
 </p><div class="lisp">
 <pre class="lisp">#.(let ((wild-subdir
           (make-pathname :directory '(:relative :wild-inferiors)))
@@ -193,10 +176,13 @@ which will do the same thing internally for you:
    `((:root ,wild-subdir ,wild-file)
      (:root ,wild-subdir :implementation ,wild-file)))
 </pre></div>
-<p>Starting with ASDF 2.011.4, you can use the simpler:
-	<code>`(:root (:root :**/ :implementation :*.*.*))</code>
-</p>
+<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
+</p><div class="lisp">
+<pre class="lisp">(:root (:root :**/ :implementation :*.*.*))
+</pre></div>
 
+<p>また、ASDF-Binary-Locationsを使いたい方は、<code>enable-asdf-binary-locations-compatibility</code>を<code>:centralize-lisp-binaries nil</code>オプションで呼び出しても内部では同じ動作をすることになります。（→ <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">後方互換性のための機能（アウトプットトランスレーション）</a>
+</p>
 
 <p><code>:include</code> statements cause the search to recurse with the path specifications
 from the file specified.
@@ -233,6 +219,8 @@ which by default is the same as using
 
 <h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
+<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
+<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>に変換されます。</p>
 </div>
 <hr>
 <div class="header">
