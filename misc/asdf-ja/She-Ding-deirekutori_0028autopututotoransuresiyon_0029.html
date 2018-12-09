@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがコンパイルされたファイルを保持する場所を設定する">
-<link href="Output-Shell_002dfriendly-syntax-for-configuration.html#Output-Shell_002dfriendly-syntax-for-configuration" rel="next" title="Output Shell-friendly syntax for configuration">
+<link href="sieruXiang-kenoShe-Ding-noGou-Wen_0028autopututotoransuresiyon_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" rel="next" title="シェル向けの設定の構文（アウトプットトランスレーション）">
 <link href="autopututotoransuresiyonwoShe-Ding-suruDSL.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL" rel="prev" title="アウトプットトランスレーションを設定するDSL">
 <style type="text/css">
 <!--
@@ -91,41 +91,29 @@ ul.no-bullet {list-style: none}
 <a name="g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09"></a>
 <div class="header">
 <p>
-Next: <a href="Output-Shell_002dfriendly-syntax-for-configuration.html#Output-Shell_002dfriendly-syntax-for-configuration" accesskey="n" rel="next">Output Shell-friendly syntax for configuration</a>, Previous: <a href="autopututotoransuresiyonwoShe-Ding-suruDSL.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL" accesskey="p" rel="prev">アウトプットトランスレーションを設定するDSL</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="sieruXiang-kenoShe-Ding-noGou-Wen_0028autopututotoransuresiyon_0029.html#g_t_30b7_30a7_30eb_5411_3051_306e_8a2d_5b9a_306e_69cb_6587_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="n" rel="next">シェル向けの設定の構文（アウトプットトランスレーション）</a>, Previous: <a href="autopututotoransuresiyonwoShe-Ding-suruDSL.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL" accesskey="p" rel="prev">アウトプットトランスレーションを設定するDSL</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="She-Ding-deirekutori-1"></a>
 <h3 class="section">9.4 設定ディレクトリ</h3>
 
-<p>Configuration directories consist of files, each of which contains
-a list of directives without any enclosing
-<code>(:output-translations ...)</code> form.
-The files will be sorted by namestring as if by <code>string&lt;</code> and
-the lists of directives of these files with be concatenated in order.
-An implicit <code>:inherit-configuration</code> will be included
-at the <em>end</em> of the list.
+<p>設定ディレクトリ内の<samp>.conf</samp>ファイルのDSLは、<a href="autopututotoransuresiyonwoShe-Ding-suruDSL.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>と少し<em>異なります</em>。まず、ディレクティブを<code>(:output-translations ...)</code>で囲む必要はありません。また、継承ディレクティブ<code>:inherit-configuration</code>、<code>:ignore-inherited-configuration</code>は使えず、ディレクティブのリストの<em>末尾</em>に暗黙に<code>:inherit-configuration</code>が加わります。これらに反した設定ファイルを読み込むと、ASDFは<code>uiop:invalid-configuration</code>エラーを通知するでしょう。なお、ディレクトリ中の設定ファイルは、そのネームストリングに従って<code>string&lt;</code>の順で読み込まれ、ディレクティブもこの順番で結合されます。
 </p>
-<p>System-wide or per-user Common Lisp software distributions
-such as Debian packages or some future version of <code>clbuild</code>
-may then include files such as
-<samp>/etc/common-lisp/asdf-output-translations.conf.d/10-foo.conf</samp> or
-<samp>~/.config/common-lisp/asdf-output-translations.conf.d/10-foo.conf</samp>
-to easily and modularly register configuration information
-about software being distributed.
+<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル（例えば<samp>10-foo.conf</samp>）を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/asdf-output-translations.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/asdf-output-translations.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
 </p>
-<p>The convention is that, for sorting purposes,
-the names of files in such a directory begin with two digits
-that determine the order in which these entries will be read.
-Also, the type of these files must be <samp>.conf</samp>,
-which not only simplifies the implementation by allowing
-for more portable techniques in finding those files,
-but also makes it trivial to disable a file, by renaming it to a different file type.
+<p>設定ディレクトリ内の設定ファイル名は、上で挙げたように２つの数字から始めるのが慣習です。こうすることで、設定が読み込まれる順番を決めることができます。また、ファイル形式は<samp>.conf</samp>でなければなりません。この仕様のメリットは、単に実装が簡単であるだけでなく、設定ファイルを無効にするにはただファイル形式を変えればよい、という点にもあります。
 </p>
-<p>Directories may be included by specifying a directory pathname
-or namestring in an <code>:include</code> directive, e.g.:
+<p>設定ファイル内で別の設定ディレクトリをインクルードしたい場合は、ディレクトリのパス名か文字列を<code>:include</code>ディレクティブに指定してください:
 </p>
 <pre class="verbatim">	(:include &quot;/foo/bar/&quot;)
 </pre>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
+</div>
 
 
 
