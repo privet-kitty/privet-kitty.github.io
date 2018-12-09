@@ -98,18 +98,18 @@ Next: <a href="konoXian-heJin-mu.html#g_t_3053_306e_5148_3078_9032_3080" accessk
 <h3 class="section">5.2 便利な関数</h3>
 
 
-<p>システムに対するもっとも基本的な<em>操作(operation)</em>については、次の３つのコマンドが用意されています: <code>load-system</code>、<code>compile-system</code>、<code>test-system</code>
+<p>システムに対するもっとも基本的な<em>オペレーション</em>については、次の３つのコマンドが用意されています: <code>load-system</code>、<code>compile-system</code>、<code>test-system</code>
 </p>
 <p><code>load-system</code>の変種として<code>require-system</code>があり、後者はシステムが既にロードされている場合はロードを行いません。これは例えば、処理系のコアイメージに最初から含まれているライブラリの再ロードを避けるためなどに使えます。
 </p>
-<p>これらに加えて<code>make</code>という関数もあり、これを呼んだときの操作はシステム開発者が選ぶことができます。何も指定されていない場合は<code>load-system</code>と同じ操作（<code>load-op</code>）を実行しますが、例えば、ドキュメントを出力するためのシステムを作った場合、<code>make</code>で（ロードではなく）ドキュメントを出力するようにできます。
+<p>これらに加えて<code>make</code>という関数もあり、これを呼んだときのオペレーションはシステム開発者が選択することができます。何も指定されていない場合は<code>load-system</code>と同じオペレーション（<code>load-op</code>）を実行しますが、例えば、ドキュメントを出力するためのシステムを作った場合、<code>make</code>で（ロードではなく）ドキュメントを出力するようにできます。
 </p>
 
 
 <a name="index-operate"></a>
 <a name="index-oos"></a>
 
-<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>操作</em>を定義することもできます。操作一般を呼び出す総称関数として<code>operate</code>があり、デフォルトの操作だけでなく任意の操作を扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF11" href="#FOOT11"><sup>11</sup></a>から受け継いだ名前です。） コンパイル、ロード、テスト以外の操作を行いたい場合には<code>operate</code>を使うと良いでしょう。
+<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>オペレーション</em>を定義することもできます。オペレーション一般を呼び出す総称関数として<code>operate</code>があり、デフォルトのものだけでなく任意のオペレーションを扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF11" href="#FOOT11"><sup>11</sup></a>から受け継いだ名前です。） コンパイル・ロード・テスト以外のオペレーションを行いたい場合には<code>operate</code>を使うと良いでしょう。
 </p>
 
 
@@ -127,12 +127,12 @@ Next: <a href="konoXian-heJin-mu.html#g_t_3053_306e_5148_3078_9032_3080" accessk
 
 <dl>
 <dt><a name="index-test_002dsystem"></a>関数: <strong>test-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
-<dd><p><code>test-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。<a href="Zu-miIp-minoCao-Zuo-.html#test_002dop">test-op</a>の解説を参照してください。
+<dd><p><code>test-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。<a href="Zu-miIp-minooperesiyon.html#test_002dop">test-op</a>の解説を参照してください。
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-make"></a>関数: <strong>make</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
-<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかの操作を実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべき操作を指定することができます。具体的には、<code>defsystem</code>フォームの<code>:build-operation</code>に操作を指定し、<code>:build-pathname</code>に出力先のパス名を指定します。（→ <a href="defsystemnoWenFa-.html#g_t_30d3_30eb_30c9_64cd_4f5c">ビルド操作</a>）
+<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかのオペレーションを実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべきオペレーションを指定することができます。具体的には、<code>defsystem</code>フォームの<code>:build-operation</code>にオペレーションを指定し、<code>:build-pathname</code>に出力先のパス名を指定します。（→ <a href="defsystemnoWenFa-.html#g_t_30d3_30eb_30c9_30aa_30da_30ec_30fc_30b7_30e7_30f3">ビルドオペレーション</a>）
 </p>
 
 <p>この関数は実験的であり、テストが十分ではありませんので、自己責任で使ってください。

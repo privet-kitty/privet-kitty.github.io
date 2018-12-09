@@ -111,7 +111,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF49" href="#FOOT49">(49)</a>
+    ;; 最後に指定されます。<a name="DOCF48" href="#FOOT48">(48)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -177,7 +177,7 @@ TRANSLATION-FUNCTION :=
    `((:root ,wild-subdir ,wild-file)
      (:root ,wild-subdir :implementation ,wild-file)))
 </pre></div>
-<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
+<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF49" href="#FOOT49"><sup>49</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(:root (:root :**/ :implementation :*.*.*))
 </pre></div>
@@ -196,7 +196,7 @@ TRANSLATION-FUNCTION :=
 </p><ul>
 <li> <code>:enable-user-cache</code>は <code>(t :user-cache)</code>と同等です。
 </li><li> <code>:disable-cache</code>は<code>(t t)</code>と同等です。
-</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
+</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
 </li></ul>
 
 
@@ -204,11 +204,11 @@ TRANSLATION-FUNCTION :=
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
+<h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
-<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
+<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
 <p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
-<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
 </div>
 

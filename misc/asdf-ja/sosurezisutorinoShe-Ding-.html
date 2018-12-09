@@ -129,7 +129,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 
 </li><li> <samp>$XDG_DATA_DIRS/common-lisp/systems/</samp>と<samp>$XDG_DATA_DIRS/common-lisp/source/</samp>がソースレジストリに加わります。ただし、前者には再帰的探索がされないので、<samp>.asd</samp>ファイルへのリンクを置く目的で使います。Unixでは<code>XDG_DATA_DIRS</code>のデフォルトは<samp>/usr/local/share</samp>と<samp>/usr/share</samp>です。Windowsで<code>XDG_DATA_DIRS</code>が存在しない場合、代わりに<code>AppData</code>と<code>Common AppData</code>が使われるでしょう。
 
-</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF34" href="#FOOT34"><sup>34</sup></a>
+</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>
 
 </li></ol>
 
@@ -144,7 +144,7 @@ Next: <a href="Truenames-and-other-dangers.html#Truenames-and-other-dangers" acc
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
+<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。リストの最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
 </div>
 

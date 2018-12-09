@@ -167,10 +167,10 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 <pre class="lisp">(find-component &quot;foo&quot; &quot;mod&quot;)
 </pre></div>
 
-<p>文法の詳細は<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>で、これらのメソッドが何をしているかは<a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>以下の<a href="Cao-Zuo-.html#g_t_64cd_4f5c">操作</a>で解説されています。
+<p>文法の詳細は<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>で、これらのメソッドが何をしているかは<a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>以下の<a href="operesiyon.html#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a>で解説されています。
 </p>
 </li><li> 
-末尾の<code>defmethod</code>も似たような定義をしていますが、<code>action-description</code>メソッドは（ASDF 3.1.5では）<code>defsystem</code>内で定義することができないため、外に分離されています。<code>action-description</code>メソッドは廃止予定の<code>explain</code>インターフェースの代わりにサポートされた機能であり、操作とコンポーネントを引数に取って、操作の説明を返すメソッドです。この例では、コンポーネント<code>&quot;mod&quot;</code>の<code>compile-op</code>がデータクックをする操作であることを説明しています。
+末尾の<code>defmethod</code>も似たような定義をしていますが、<code>action-description</code>メソッドは（ASDF 3.1.5では）<code>defsystem</code>内で定義することができないため、外に分離されています。<code>action-description</code>メソッドは廃止予定の<code>explain</code>インターフェースの代わりにサポートされた機能であり、オペレーションとコンポーネントを引数に取って、オペレーションの説明を返すメソッドです。この例では、コンポーネント<code>&quot;mod&quot;</code>の<code>compile-op</code>がデータクックをするオペレーションであることを説明しています。
 
 
 </li><li> この例で重要なポイントは、データ処理に関わる入力・出力ファイルがASDFに登録されていることであり、<code>cook-data</code>はそれらのパス名にASDFを通じてアクセスしています。

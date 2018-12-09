@@ -239,11 +239,11 @@ feature-expression := keyword
 
 <p><code>:defsystem-depends-on</code>オプションを使うと、システム定義が処理される<em>前</em>に、ASDFで定義された別のシステム（またはシステムのまとまり）をロードすることができます。このオプションは典型的には、システム定義の中でASDFの拡張をロードするために使われます。
 </p>
-<a name="birudoCao-Zuo-_0028_003abuild_002doperation_0029"></a>
-<h4 class="subsection">6.3.5 ビルド操作（<code>:build-operation</code>）</h4>
+<a name="birudooperesiyon_0028_003abuild_002doperation_0029"></a>
+<h4 class="subsection">6.3.5 ビルドオペレーション（<code>:build-operation</code>）</h4>
 <a name="index-_003abuild_002doperation"></a>
-<a name="g_t_30d3_30eb_30c9_64cd_4f5c"></a>
-<p><code>:build-operation</code>オプションには、システムに対して<code>make</code>（→ <a href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570">make</a>）を実行したときに、どの操作を適用するか指定することができます。デフォルトでは<code>load-op</code>が使われます。このオプションの値は操作の名前でなければなりません。（例えば<code>:build-operation doc-op</code>など）
+<a name="g_t_30d3_30eb_30c9_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
+<p><code>:build-operation</code>オプションには、システムに対して<code>make</code>（→ <a href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570">make</a>）を実行したときに、どのオペレーションを適用するか指定することができます。デフォルトでは<code>load-op</code>が使われます。このオプションの値はオペレーションの名前でなければなりません。（例えば<code>:build-operation doc-op</code>など）
 </p>
 <p>この機能は実験的でテストが不十分です。自己責任で使ってください。
 </p>
@@ -395,7 +395,7 @@ feature-expression := keyword
 <p>このオプションは、特定のコンポーネントをビルドに含めるかどうかを（<code>#+</code>のように）フィーチャーに応じた条件で指定することができます。フィーチャーが満たされない場合、そのコンポーネントは無視され、また、他のコンポーネントがそのコンポーネントに依存するという記述も無視されます。リード時に評価される<code>#+</code>と異なり、このオプションを使うと、コンポーネントの階層にオブジェクトを追加し、そのオブジェクトをプロジェクトをビルドする際に利用したり、システム構造について推論したい外部のコードからアクセスしたりといったことができます。
 </p>
 
-<p>プログラマは<strong>いつ</strong><code>:if-feature</code>が評価されるか知っておくべきです。ASDFは最初にビルド全体の計画を建て、次にその計画を実行するという順で動作しますが、フィーチャーが満たされるかどうかは<strong>計画時</strong>にチェックされます。従って、ビルド中に<code>*features*</code>を変更して<code>:if-feature</code>に影響を与えるということはできません。<code>:if-feature</code>はビルド操作が実行される直前の<code>*features*</code>の状態だけをチェックするのです。
+<p>プログラマは<strong>いつ</strong><code>:if-feature</code>が評価されるか知っておくべきです。ASDFは最初にビルド全体の計画を建て、次にその計画を実行するという順で動作しますが、フィーチャーが満たされるかどうかは<strong>計画時</strong>にチェックされます。従って、ビルド中に<code>*features*</code>を変更して<code>:if-feature</code>に影響を与えるということはできません。<code>:if-feature</code>はビルドオペレーションが実行される直前の<code>*features*</code>の状態だけをチェックするのです。
 </p>
 <p>このオプションはASDF 3で追加されました。詳細な情報については、<a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_5fc5_8981_306a_30d5_30a3_30fc_30c1_30e3_30fc">必要なフィーチャー</a>を参照してください。
 </p>
@@ -405,7 +405,7 @@ feature-expression := keyword
 <a name="index-entoripointo"></a>
 <a name="g_t_30a8_30f3_30c8_30ea_30fc_30dd_30a4_30f3_30c8"></a><p><code>:entry-point</code>オプションには、<code>program-op</code>で実行可能ファイルを作る際のエントリーポイントを指定することが出来ます。
 </p>
-<p><code>program-op</code>が呼ばれた時、このオプションに与えられたフォームは<code>uiop:ensure-function</code>で関数に変換され、<code>uiop:*image-entry-point*</code>に束縛されます。<code>uiop:ensure-function</code>は任意のオブジェクトを引数に取れますが、このオプションでは一般に<code>&quot;foo:main&quot;</code>のような文字列が使われ、その場合、実行可能ファイルは<code>foo:main</code>関数から開始することになります。なお、シンボル<code>foo:main</code>を使うとうまく動かない可能性があることに注意してください。なぜなら、ASDFが<code>defsystem</code>フォームをリードする時に<code>foo</code>パッケージが既に存在しているとは限らないからです。<code>program-op</code>に関する詳細は<a href="Zu-miIp-minoCao-Zuo-.html#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a>を参照してください。
+<p><code>program-op</code>が呼ばれた時、このオプションに与えられたフォームは<code>uiop:ensure-function</code>で関数に変換され、<code>uiop:*image-entry-point*</code>に束縛されます。<code>uiop:ensure-function</code>は任意のオブジェクトを引数に取れますが、このオプションでは一般に<code>&quot;foo:main&quot;</code>のような文字列が使われ、その場合、実行可能ファイルは<code>foo:main</code>関数から開始することになります。なお、シンボル<code>foo:main</code>を使うとうまく動かない可能性があることに注意してください。なぜなら、ASDFが<code>defsystem</code>フォームをリードする時に<code>foo</code>パッケージが既に存在しているとは限らないからです。<code>program-op</code>に関する詳細は<a href="Zu-miIp-minooperesiyon.html#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a>を参照してください。
 </p>
 <a name="feature-requirement_0028Fei-Zhi-_0029"></a>
 <h4 class="subsection">6.3.16 feature requirement（廃止）</h4>

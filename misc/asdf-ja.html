@@ -194,7 +194,7 @@ a:visited { color: #6D38A0 }
       <li><a name="toc-konponentoXing-" href="#konponentoXing-">6.3.2 コンポーネント型</a></li>
       <li><a name="toc-sisutemukurasuMing-" href="#sisutemukurasuMing-">6.3.3 システムクラス名</a></li>
       <li><a name="toc-defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029" href="#defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029">6.3.4 defsystemの依存（<code>:defsystem-depends-on</code>）</a></li>
-      <li><a name="toc-birudoCao-Zuo-_0028_003abuild_002doperation_0029" href="#birudoCao-Zuo-_0028_003abuild_002doperation_0029">6.3.5 ビルド操作（<code>:build-operation</code>）</a></li>
+      <li><a name="toc-birudooperesiyon_0028_003abuild_002doperation_0029" href="#birudooperesiyon_0028_003abuild_002doperation_0029">6.3.5 ビルドオペレーション（<code>:build-operation</code>）</a></li>
       <li><a name="toc-Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029" href="#Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029">6.3.6 弱い依存関係（<code>:weakly-depends-on</code>）</a></li>
       <li><a name="toc-pasuMing-Zhi-Ding-Zi-" href="#pasuMing-Zhi-Ding-Zi-">6.3.7 パス名指定子</a></li>
       <li><a name="toc-baziyonZhi-Ding-Zi-" href="#baziyonZhi-Ding-Zi-">6.3.8 バージョン指定子</a></li>
@@ -212,10 +212,10 @@ a:visited { color: #6D38A0 }
   </ul></li>
   <li><a name="toc-ASDFnoobuziekutomoderu" href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">7 ASDFのオブジェクトモデル</a>
   <ul class="no-bullet">
-    <li><a name="toc-Cao-Zuo-" href="#g_t_64cd_4f5c">7.1 操作</a>
+    <li><a name="toc-operesiyon" href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">7.1 オペレーション</a>
     <ul class="no-bullet">
-      <li><a name="toc-Zu-miIp-minoCao-Zuo-" href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">7.1.1 組み込みの操作</a></li>
-      <li><a name="toc-Xin-siiCao-Zuo-woDing-Yi-suru" href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">7.1.2 新しい操作を定義する</a></li>
+      <li><a name="toc-Zu-miIp-minooperesiyon" href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">7.1.1 組み込みのオペレーション</a></li>
+      <li><a name="toc-Xin-siioperesiyonwoDing-Yi-suru" href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">7.1.2 新しいオペレーションを定義する</a></li>
     </ul></li>
     <li><a name="toc-konponento" href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">7.2 コンポーネント</a>
     <ul class="no-bullet">
@@ -741,18 +741,18 @@ $ ln -s ~/src/foo/foo.asd .
 <h3 class="section">5.2 便利な関数</h3>
 
 
-<p>システムに対するもっとも基本的な<em>操作(operation)</em>については、次の３つのコマンドが用意されています: <code>load-system</code>、<code>compile-system</code>、<code>test-system</code>
+<p>システムに対するもっとも基本的な<em>オペレーション</em>については、次の３つのコマンドが用意されています: <code>load-system</code>、<code>compile-system</code>、<code>test-system</code>
 </p>
 <p><code>load-system</code>の変種として<code>require-system</code>があり、後者はシステムが既にロードされている場合はロードを行いません。これは例えば、処理系のコアイメージに最初から含まれているライブラリの再ロードを避けるためなどに使えます。
 </p>
-<p>これらに加えて<code>make</code>という関数もあり、これを呼んだときの操作はシステム開発者が選ぶことができます。何も指定されていない場合は<code>load-system</code>と同じ操作（<code>load-op</code>）を実行しますが、例えば、ドキュメントを出力するためのシステムを作った場合、<code>make</code>で（ロードではなく）ドキュメントを出力するようにできます。
+<p>これらに加えて<code>make</code>という関数もあり、これを呼んだときのオペレーションはシステム開発者が選択することができます。何も指定されていない場合は<code>load-system</code>と同じオペレーション（<code>load-op</code>）を実行しますが、例えば、ドキュメントを出力するためのシステムを作った場合、<code>make</code>で（ロードではなく）ドキュメントを出力するようにできます。
 </p>
 
 
 <a name="index-operate"></a>
 <a name="index-oos"></a>
 
-<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>操作</em>を定義することもできます。操作一般を呼び出す総称関数として<code>operate</code>があり、デフォルトの操作だけでなく任意の操作を扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF11" href="#FOOT11"><sup>11</sup></a>から受け継いだ名前です。） コンパイル、ロード、テスト以外の操作を行いたい場合には<code>operate</code>を使うと良いでしょう。
+<p>ASDFは拡張可能なシステムであり、<em>コンポーネント</em>に対する新しい<em>オペレーション</em>を定義することもできます。オペレーション一般を呼び出す総称関数として<code>operate</code>があり、デフォルトのものだけでなく任意のオペレーションを扱うことができます。（<code>operate</code>のエイリアスとして<code>oos</code>が定義されているので、REPL上ではこちらがよく使われます。<code>oos</code>はoperate-on-systemの略で<code>mk-defsystem</code><a name="DOCF11" href="#FOOT11"><sup>11</sup></a>から受け継いだ名前です。） コンパイル・ロード・テスト以外のオペレーションを行いたい場合には<code>operate</code>を使うと良いでしょう。
 </p>
 
 
@@ -775,7 +775,7 @@ $ ln -s ~/src/foo/foo.asd .
 
 <dl>
 <dt><a name="index-make"></a>関数: <strong>make</strong> <em>system &amp;rest keys &amp;key &amp;allow-other-keys</em></dt>
-<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかの操作を実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべき操作を指定することができます。具体的には、<code>defsystem</code>フォームの<code>:build-operation</code>に操作を指定し、<code>:build-pathname</code>に出力先のパス名を指定します。（→ <a href="#g_t_30d3_30eb_30c9_64cd_4f5c">ビルド操作</a>）
+<dd><p>ASDF 3.1から加わった関数であり、システムに対して何らかのオペレーションを実行します。デフォルトの動作は<code>load-system</code>と同じですが、システム開発者はシステム定義の中で実行すべきオペレーションを指定することができます。具体的には、<code>defsystem</code>フォームの<code>:build-operation</code>にオペレーションを指定し、<code>:build-pathname</code>に出力先のパス名を指定します。（→ <a href="#g_t_30d3_30eb_30c9_30aa_30da_30ec_30fc_30b7_30e7_30f3">ビルドオペレーション</a>）
 </p>
 
 <p>この関数は実験的であり、テストが十分ではありませんので、自己責任で使ってください。
@@ -798,7 +798,7 @@ $ ln -s ~/src/foo/foo.asd .
 <a name="konoXian-heJin-mu"></a>
 <h3 class="section">5.3 この先へ進む</h3>
 
-<p>ここまでの解説で、他人が作ったシステムをロードするのに必要な情報は網羅されています。以降は、あなた自身が作ったLispソフトウェアにシステム定義を書くための知識を扱います。また、新しい操作やコンポーネントを定義してASDFを拡張するための情報も含みます。
+<p>ここまでの解説で、他人が作ったシステムをロードするのに必要な情報は網羅されています。以降は、あなた自身が作ったLispソフトウェアにシステム定義を書くための知識を扱います。また、新しいオペレーションやコンポーネントを定義してASDFを拡張するための情報も含みます。
 </p>
 
 <hr>
@@ -937,10 +937,10 @@ $ ln -s ~/src/foo/foo.asd .
 <pre class="lisp">(find-component &quot;foo&quot; &quot;mod&quot;)
 </pre></div>
 
-<p>文法の詳細は<a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>で、これらのメソッドが何をしているかは<a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>以下の<a href="#g_t_64cd_4f5c">操作</a>で解説されています。
+<p>文法の詳細は<a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>で、これらのメソッドが何をしているかは<a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>以下の<a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a>で解説されています。
 </p>
 </li><li> 
-末尾の<code>defmethod</code>も似たような定義をしていますが、<code>action-description</code>メソッドは（ASDF 3.1.5では）<code>defsystem</code>内で定義することができないため、外に分離されています。<code>action-description</code>メソッドは廃止予定の<code>explain</code>インターフェースの代わりにサポートされた機能であり、操作とコンポーネントを引数に取って、操作の説明を返すメソッドです。この例では、コンポーネント<code>&quot;mod&quot;</code>の<code>compile-op</code>がデータクックをする操作であることを説明しています。
+末尾の<code>defmethod</code>も似たような定義をしていますが、<code>action-description</code>メソッドは（ASDF 3.1.5では）<code>defsystem</code>内で定義することができないため、外に分離されています。<code>action-description</code>メソッドは廃止予定の<code>explain</code>インターフェースの代わりにサポートされた機能であり、オペレーションとコンポーネントを引数に取って、オペレーションの説明を返すメソッドです。この例では、コンポーネント<code>&quot;mod&quot;</code>の<code>compile-op</code>がデータクックをするオペレーションであることを説明しています。
 
 
 </li><li> この例で重要なポイントは、データ処理に関わる入力・出力ファイルがASDFに登録されていることであり、<code>cook-data</code>はそれらのパス名にASDFを通じてアクセスしています。
@@ -1110,11 +1110,11 @@ feature-expression := keyword
 
 <p><code>:defsystem-depends-on</code>オプションを使うと、システム定義が処理される<em>前</em>に、ASDFで定義された別のシステム（またはシステムのまとまり）をロードすることができます。このオプションは典型的には、システム定義の中でASDFの拡張をロードするために使われます。
 </p>
-<a name="birudoCao-Zuo-_0028_003abuild_002doperation_0029"></a>
-<h4 class="subsection">6.3.5 ビルド操作（<code>:build-operation</code>）</h4>
+<a name="birudooperesiyon_0028_003abuild_002doperation_0029"></a>
+<h4 class="subsection">6.3.5 ビルドオペレーション（<code>:build-operation</code>）</h4>
 <a name="index-_003abuild_002doperation"></a>
-<a name="g_t_30d3_30eb_30c9_64cd_4f5c"></a>
-<p><code>:build-operation</code>オプションには、システムに対して<code>make</code>（→ <a href="#g_t_4fbf_5229_306a_95a2_6570">make</a>）を実行したときに、どの操作を適用するか指定することができます。デフォルトでは<code>load-op</code>が使われます。このオプションの値は操作の名前でなければなりません。（例えば<code>:build-operation doc-op</code>など）
+<a name="g_t_30d3_30eb_30c9_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
+<p><code>:build-operation</code>オプションには、システムに対して<code>make</code>（→ <a href="#g_t_4fbf_5229_306a_95a2_6570">make</a>）を実行したときに、どのオペレーションを適用するか指定することができます。デフォルトでは<code>load-op</code>が使われます。このオプションの値はオペレーションの名前でなければなりません。（例えば<code>:build-operation doc-op</code>など）
 </p>
 <p>この機能は実験的でテストが不十分です。自己責任で使ってください。
 </p>
@@ -1266,7 +1266,7 @@ feature-expression := keyword
 <p>このオプションは、特定のコンポーネントをビルドに含めるかどうかを（<code>#+</code>のように）フィーチャーに応じた条件で指定することができます。フィーチャーが満たされない場合、そのコンポーネントは無視され、また、他のコンポーネントがそのコンポーネントに依存するという記述も無視されます。リード時に評価される<code>#+</code>と異なり、このオプションを使うと、コンポーネントの階層にオブジェクトを追加し、そのオブジェクトをプロジェクトをビルドする際に利用したり、システム構造について推論したい外部のコードからアクセスしたりといったことができます。
 </p>
 
-<p>プログラマは<strong>いつ</strong><code>:if-feature</code>が評価されるか知っておくべきです。ASDFは最初にビルド全体の計画を建て、次にその計画を実行するという順で動作しますが、フィーチャーが満たされるかどうかは<strong>計画時</strong>にチェックされます。従って、ビルド中に<code>*features*</code>を変更して<code>:if-feature</code>に影響を与えるということはできません。<code>:if-feature</code>はビルド操作が実行される直前の<code>*features*</code>の状態だけをチェックするのです。
+<p>プログラマは<strong>いつ</strong><code>:if-feature</code>が評価されるか知っておくべきです。ASDFは最初にビルド全体の計画を建て、次にその計画を実行するという順で動作しますが、フィーチャーが満たされるかどうかは<strong>計画時</strong>にチェックされます。従って、ビルド中に<code>*features*</code>を変更して<code>:if-feature</code>に影響を与えるということはできません。<code>:if-feature</code>はビルドオペレーションが実行される直前の<code>*features*</code>の状態だけをチェックするのです。
 </p>
 <p>このオプションはASDF 3で追加されました。詳細な情報については、<a href="#g_t_5fc5_8981_306a_30d5_30a3_30fc_30c1_30e3_30fc">必要なフィーチャー</a>を参照してください。
 </p>
@@ -1276,7 +1276,7 @@ feature-expression := keyword
 <a name="index-entoripointo"></a>
 <a name="g_t_30a8_30f3_30c8_30ea_30fc_30dd_30a4_30f3_30c8"></a><p><code>:entry-point</code>オプションには、<code>program-op</code>で実行可能ファイルを作る際のエントリーポイントを指定することが出来ます。
 </p>
-<p><code>program-op</code>が呼ばれた時、このオプションに与えられたフォームは<code>uiop:ensure-function</code>で関数に変換され、<code>uiop:*image-entry-point*</code>に束縛されます。<code>uiop:ensure-function</code>は任意のオブジェクトを引数に取れますが、このオプションでは一般に<code>&quot;foo:main&quot;</code>のような文字列が使われ、その場合、実行可能ファイルは<code>foo:main</code>関数から開始することになります。なお、シンボル<code>foo:main</code>を使うとうまく動かない可能性があることに注意してください。なぜなら、ASDFが<code>defsystem</code>フォームをリードする時に<code>foo</code>パッケージが既に存在しているとは限らないからです。<code>program-op</code>に関する詳細は<a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a>を参照してください。
+<p><code>program-op</code>が呼ばれた時、このオプションに与えられたフォームは<code>uiop:ensure-function</code>で関数に変換され、<code>uiop:*image-entry-point*</code>に束縛されます。<code>uiop:ensure-function</code>は任意のオブジェクトを引数に取れますが、このオプションでは一般に<code>&quot;foo:main&quot;</code>のような文字列が使われ、その場合、実行可能ファイルは<code>foo:main</code>関数から開始することになります。なお、シンボル<code>foo:main</code>を使うとうまく動かない可能性があることに注意してください。なぜなら、ASDFが<code>defsystem</code>フォームをリードする時に<code>foo</code>パッケージが既に存在しているとは限らないからです。<code>program-op</code>に関する詳細は<a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a>を参照してください。
 </p>
 <a name="feature-requirement_0028Fei-Zhi-_0029"></a>
 <h4 class="subsection">6.3.16 feature requirement（廃止）</h4>
@@ -1295,7 +1295,7 @@ feature-expression := keyword
 <p>とは言っても、<samp>.asd</samp>ファイルにコードを含めなければならない場合もあるでしょう。例えば、コンパイル時の環境を調べて設定するために<code>*features*</code>にフィーチャーを加える、などといったケースが考えられます。その場合は、ユーザーが<samp>.asd</samp>ファイル中の処理の詳細をコントロールできるように、次の慣習に従うことを推奨します:
 </p>
 <ul>
-<li> 何かしらの情報を表示する場合は、CLの標準のストリームである<code>*standard-output*</code>に出力するべきです。（ただし、警告とエラーを除きます。それらはコンディションシステムが対処する領域です。）ASDFの操作由来の出力を、ユーザーが容易に扱えるようにするためです。
+<li> 何かしらの情報を表示する場合は、CLの標準のストリームである<code>*standard-output*</code>に出力するべきです。（ただし、警告とエラーを除きます。それらはコンディションシステムが対処する領域です。）ASDFのオペレーション由来の出力を、ユーザーが容易に扱えるようにするためです。
 </li></ul>
 
 
@@ -1400,26 +1400,26 @@ feature-expression := keyword
 <a name="index-component-1"></a>
 <a name="index-operation-1"></a>
 
-<p>ASDFは、全体がオブジェクト指向でデザインされています。システムの構造も、システムに対する操作も、拡張可能なプロトコルに従っているので、プログラマはASDFに新しい機能を加えることができます。例えば、<code>cffi</code>は<code>cffi-grovel</code>というASDF拡張によって、Cライブラリへのインターフェースの記述ファイルや、LispにCコードを埋め込むラッパーファイルを扱うコンポーネント型（それぞれ<code>cffi-grovel-file</code>と<code>cffi-wrapper-file</code>）を追加し、ABCL提供の<code>asdf-jar</code>はJavaのJARアーカイブを作る機能をもたらし、<code>poiu</code>はバックグラウンドプロセスを使って並列ビルドを可能にします。
+<p>ASDFは、全体がオブジェクト指向でデザインされています。システムの構造も、システムに対するオペレーションも、拡張可能なプロトコルに従っているので、プログラマはASDFに新しい機能を加えることができます。例えば、<code>cffi</code>は<code>cffi-grovel</code>というASDF拡張によって、Cライブラリへのインターフェースの記述ファイルや、LispにCコードを埋め込むラッパーファイルを扱うコンポーネント型（それぞれ<code>cffi-grovel-file</code>と<code>cffi-wrapper-file</code>）を追加し、ABCL提供の<code>asdf-jar</code>はJavaのJARアーカイブを作る機能をもたらし、<code>poiu</code>はバックグラウンドプロセスを使って並列ビルドを可能にします。
 </p>
 <p>ASDFの最も基本的なクラスは<code>component</code>と<code>operation</code>です。<code>component</code>が表すのは、１つのソースファイルか、複数のソースファイルのまとまりか、あるいはそれらから生み出されるもの（faslファイルなど）です。<code>operation</code>はコンポーネントに対して行われる何らかの変換であり、コンポーネントを中間結果や最終的な生成物に変えます。コンポーネント同士は<em>依存関係</em>によって関係づけられていて、それはシステム定義の中で指定されます。
 </p>
 <a name="index-action"></a>
 <a name="index-akusiyon"></a>
-<p><code>operate</code>によってコンポーネント（たいていはシステム）に対する操作を指示されたとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
+<p><code>operate</code>によってコンポーネント（たいていはシステム）に対するオペレーションを指示したとき、ASDFはまず<code>make-plan</code>関数を使って、依存関係を調べ、処理全体の<em>計画(plan)</em>を建てます。<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>
 <code>make-plan</code>の返す<code>plan</code>オブジェクトは実行すべき<em>アクション(action)</em>の順序付きリストを含んでいます。アクションとは<code>operation</code>と<code>component</code>のペアであり、ビルドの１ステップとして<code>perform</code>されるものです。また、このアクションのリストは、どのアクションも必要な依存関係が満たされるまでは実行されないことを保証します。<a name="DOCF23" href="#FOOT23"><sup>23</sup></a>
 </p>
-<p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントと操作の両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントと操作について解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
+<p>この章では我々は、ASDFのオブジェクト指向プロトコル――プロトコルを構成するクラスと、それに対する総称関数――について解説します。これらの総称関数は多くの場合、コンポーネントとオペレーションの両方を引数に取ります。CLOSの多重ディスパッチを利用することで、ASDFは強力な機能を持ち、設定が柔軟に変更できるようになっています。我々は、まず組み込みのコンポーネントとオペレーションについて解説し、さらに新しいクラスやメソッドを定義してASDFプロトコルを拡張する方法を説明します。また、ASDFの<em>関数</em>の挙動をカスタマイズするためのさまざまな<em>フック</em>についても解説します。
 </p>
 
 <hr>
-<a name="g_t_64cd_4f5c"></a>
-<a name="Cao-Zuo-"></a>
-<h3 class="section">7.1 操作</h3>
+<a name="g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
+<a name="operesiyon"></a>
+<h3 class="section">7.1 オペレーション</h3>
 <a name="index-operation"></a>
-<a name="index-sousa_0028Cao-Zuo-_0029"></a>
+<a name="index-operesiyon"></a>
 
-<p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>操作(operation)</em><a name="DOCF24" href="#FOOT24"><sup>24</sup></a>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
+<p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>オペレーション</em>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
 </p>
 <ul>
 <li> システムのすべてのファイルをコンパイルする
@@ -1427,23 +1427,23 @@ feature-expression := keyword
 </li><li> ソースファイルを別の場所にコピーする
 </li></ul>
 
-<p>操作は単に直接呼び出すこともできますし、実行せずにその結果がどうなるか確認することもできます。そこで実際の細々とした仕事をするのは、操作とコンポーネント型によって特定化されたメソッド（のまとまり）です。操作は、システムとともに引数として<code>operate</code>に与えることで、呼び出すことができます。（→ <a href="#operate">operate</a>）
+<p>オペレーションは単に直接呼び出すこともできますし、実行せずにその結果がどうなるか確認することもできます。そこで実際の細々とした仕事をするのは、オペレーションとコンポーネント型によって特定化されたメソッド（のまとまり）です。オペレーションは、システムとともに引数として<code>operate</code>に与えることで、呼び出すことができます。（→ <a href="#operate">operate</a>）
 </p>
 <p>頻出の作業については<code>operation</code>の組み込みサブクラスがありますし、あまり使われない作業についても既にあることが多いでしょう。これに加えてASDFは、プログラマがASDF拡張を定義するためのビルドブロックとして使える「抽象的な」<code>operation</code>クラスも備えています。これについては以下に順を追って解説します。
 </p>
 
 
-<p>操作は、<code>operate</code>によってシステムに対して呼び出されます。
+<p>オペレーションは、<code>operate</code>によってシステムに対して呼び出されます。
 </p>
 <a name="operate"></a><dl>
 <dt><a name="index-operate-1"></a>総称関数: <strong>operate</strong> <em>operation component &amp;rest initargs &amp;key force force-not verbose &amp;allow-other-keys</em></dt>
 <dt><a name="index-oos-1"></a>総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
 <dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
 </p>
-<p><var>operation</var>は操作指示子(operation designator)です。操作指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
-<var>component</var>はコンポーネント指示子(component designator)です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF25" href="#FOOT25"><sup>25</sup></a>も使えます。
+<p><var>operation</var>はオペレーション指示子(operation designator)です。オペレーション指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
+<var>component</var>はコンポーネント指示子(component designator)です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
 </p>
-<p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、操作がシステムやそのコンポーネントに対して他の操作を呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
+<p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、オペレーションがシステムやその子コンポーネントに対して他のオペレーションを呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
 </p>
 <p><var>force</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムが、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が<code>t</code>の場合、ロードされるシステムに限り、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから未変更でも再コンパイルされます。<var>force-not</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムは、前回のコンパイルから変更されていても再コンパイルされません。<var>force-not</var>が<code>t</code>の場合、ロードされるシステム<em>以外</em>のシステムは、前回のコンパイルから変更されていても再コンパイルされません。（この仕様はASDF 3.1.2で変更されました。）<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから変更されていてもコンパイルされません。
 </p>
@@ -1452,7 +1452,7 @@ feature-expression := keyword
 <p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先する（べきな）のですが、この挙動は残念ながらASDF 3.1.2以降で初めて保証されました。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="#Miscellaneous-Functions">Miscellaneous Functions</a>）
 </p>
 <a name="index-traverse"></a>
-<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF26" href="#FOOT26"><sup>26</sup></a>
+<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF25" href="#FOOT25"><sup>25</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(asdf:traverse operation-class system-name)
 </pre></div>
@@ -1461,7 +1461,7 @@ feature-expression := keyword
 <dl>
 <dt><a name="index-make_002doperation"></a>関数: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
 <dd><a name="make_002doperation"></a>
-<p><var>initargs</var>は、操作オブジェクトを作る際に<code>make-instance</code>に渡されます。
+<p><var>initargs</var>は、オペレーションオブジェクトを作る際に<code>make-instance</code>に渡されます。
 </p>
 <p><strong>注意:</strong> <code>operation</code>の<var>initargs</var>は廃止予定であり、近い将来ASDFから削除されるでしょう。
 </p>
@@ -1470,53 +1470,53 @@ feature-expression := keyword
 
 
 <hr>
-<a name="g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c"></a>
-<a name="Zu-miIp-minoCao-Zuo-"></a>
-<h4 class="subsection">7.1.1 組み込みの操作</h4>
+<a name="g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
+<a name="Zu-miIp-minooperesiyon"></a>
+<h4 class="subsection">7.1.1 組み込みのオペレーション</h4>
 
-<p>このセクションで解説する操作(operation)はすべて<code>asdf</code>パッケージにあり、総称関数<code>operate</code>で呼び出すことができます。
+<p>このセクションで解説するオペレーションはすべて<code>asdf</code>パッケージにあり、総称関数<code>operate</code>で呼び出すことができます。
 </p>
 <div class="lisp">
-<pre class="lisp">(asdf:operate 'asdf:<var>操作名</var> :<var>システム名</var> {<var>操作のオプション ...</var>})
+<pre class="lisp">(asdf:operate 'asdf:<var>オペレーション名</var> :<var>システム名</var> {<var>オペレーションのオプション ...</var>})
 </pre></div>
 
 <dl>
-<dt><a name="index-compile_002dop"></a>操作: <strong>compile-op</strong></dt>
+<dt><a name="index-compile_002dop"></a>オペレーション: <strong>compile-op</strong></dt>
 <dd>
-<p>この操作は、指定されたコンポーネントをコンパイルします。つまり、<code>cl-source-file</code>は<code>compile-file</code>でコンパイルされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>compile-op</code>が適用されます。
+<p>このオペレーションは、指定されたコンポーネントをコンパイルします。つまり、<code>cl-source-file</code>は<code>compile-file</code>でコンパイルされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>compile-op</code>が適用されます。
 </p>
 <p><code>compile-op</code>は<code>prepare-op</code>に依存していて、<code>prepare-op</code>は依存するすべてのコンポーネントに対する<code>load-op</code>に依存しています。したがって、<code>operate</code>で<code>compile-op</code>を呼び出すと、それらのコンポーネント群は単にコンパイルされるだけでなくロードもされるでしょう、しかし、<code>compile-op</code>では、指定されたシステムそのもの（の一部）は、それに依存するシステムがないのでロードされずに残ることになります。システムをロードしたい場合には<code>load-op</code>を使ってください。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-load_002dop"></a>操作: <strong>load-op</strong></dt>
+<dt><a name="index-load_002dop"></a>オペレーション: <strong>load-op</strong></dt>
 <dd>
 
-<p>この操作は、指定されたコンポーネントのコンパイル済みコードをロードします。つまり、<code>cl-source-file</code>についてはそのfaslファイルがロードされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>load-op</code>が適用されます。なお<code>load-op</code>は<code>compile-op</code>に依存していて、faslファイルは<code>compile-op</code>の出力として得られます。
+<p>このオペレーションは、指定されたコンポーネントのコンパイル済みコードをロードします。つまり、<code>cl-source-file</code>についてはそのfaslファイルがロードされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>load-op</code>が適用されます。なお<code>load-op</code>は<code>compile-op</code>に依存していて、faslファイルは<code>compile-op</code>の出力として得られます。
 </p>
 <p><code>load-op</code>は<code>prepare-op</code>にも依存していて、<code>prepare-op</code>は依存するすべてのコンポーネントに対する<code>load-op</code>に依存しています。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-prepare_002dop"></a>操作: <strong>prepare-op</strong></dt>
+<dt><a name="index-prepare_002dop"></a>オペレーション: <strong>prepare-op</strong></dt>
 <dd>
-<p>この操作は、指定されたコンポーネントが依存する（再帰的な意味で）すべてのコンポーネントが（<code>load-op</code>で）ロードされることを保証します。この操作は、<code>compile-op</code>や<code>load-op</code>が実行される前に、必要な前提を満たすための操作です。
+<p>このオペレーションは、指定されたコンポーネントが依存する（再帰的な意味で）すべてのコンポーネントが（<code>load-op</code>で）ロードされることを保証します。<code>compile-op</code>や<code>load-op</code>が実行される前に、必要な前提を満たすためのオペレーションです。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-load_002dsource_002dop"></a>操作: <strong>load-source-op</strong></dt>
-<dt><a name="index-prepare_002dsource_002dop"></a>操作: <strong>prepare-source-op</strong></dt>
+<dt><a name="index-load_002dsource_002dop"></a>オペレーション: <strong>load-source-op</strong></dt>
+<dt><a name="index-prepare_002dsource_002dop"></a>オペレーション: <strong>prepare-source-op</strong></dt>
 <dd>
-<p><code>load-source-op</code>は<code>load-op</code>と似ていますが、モジュールに属する<code>cl-source-file</code>をfaslからではなくソースからロードします。<code>load-source-op</code>は（<code>prepare-op</code>に代えて）<code>prepare-source-op</code>に依存しています。<code>prepare-source-op</code>は<code>prepare-op</code>に類似の操作で、依存関係が<code>load-source-op</code>でロードされることを保証します。
+<p><code>load-source-op</code>は<code>load-op</code>と似ていますが、モジュールに属する<code>cl-source-file</code>をfaslからではなくソースからロードします。<code>load-source-op</code>は（<code>prepare-op</code>に代えて）<code>prepare-source-op</code>に依存しています。<code>prepare-source-op</code>は<code>prepare-op</code>に類似のオペレーションで、依存関係が<code>load-source-op</code>でロードされることを保証します。
 </p>
 </dd></dl>
 
 <a name="test_002dop"></a><dl>
-<dt><a name="index-test_002dop"></a>操作: <strong>test-op</strong></dt>
+<dt><a name="index-test_002dop"></a>オペレーション: <strong>test-op</strong></dt>
 <dd>
-<p>この操作はモジュールのテストを行うためにありますが、デフォルトのメソッドは何もしません。また、デフォルトではモジュールに対して先に<code>load-op</code>が実行されることを要求します。なお、デフォルトの<code>operation-done-p</code>メソッドは（訳注: たとえ、<code>test-op</code>が正常に実行された後であっても）常に<code>nil</code>を返すので、この操作は<em>決して</em>完了したことにはなりません。（→ <a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>） つまり、あなたが<code>test-op</code>を呼ぶと、既にそのシステムをテストしたことがあっても、もう一度テストしたいのだとみなされるわけです。
+<p>このオペレーションはモジュールのテストを行うためにありますが、デフォルトのメソッドは何もしません。また、デフォルトではモジュールに対して先に<code>load-op</code>が実行されることを要求します。なお、デフォルトの<code>operation-done-p</code>メソッドは（訳注: たとえ、<code>test-op</code>が正常に実行された後であっても）常に<code>nil</code>を返すので、このオペレーションは<em>決して</em>完了したことにはなりません。（→ <a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a>） つまり、あなたが<code>test-op</code>を呼ぶと、既にそのシステムをテストしたことがあっても、もう一度テストしたいのだとみなされるわけです。
 </p>
-<p>ASDFはこの操作の結果について何も定義していません。というのも、テスト結果をユーザーに伝える方法を、Lispコミュニティで使われる様々なテストのテクニックやライブラリすべてに対して互換性を持つように、統一的に定義するのは困難だとわかっているからです。さらに、ASDFの操作は成功・失敗を返り値とするわけではないという点も、この問題を難しくしています。テスト結果を返すようにしたいのであれば、何らかのコンディションを定義し、<code>test-op</code>が失敗した時にそのコンディションを通知することを勧めます。どのテストが失敗したか、という情報はコンディションに保持させると良いでしょう。
+<p>ASDFはこのオペレーションの結果について何も定義していません。というのも、テスト結果をユーザーに伝える方法を、Lispコミュニティで使われる様々なテストのテクニックやライブラリすべてに対して互換性を持つように、統一的に定義するのは困難だとわかっているからです。さらに、ASDFのオペレーションは成功・失敗を返り値とするわけではないという点も、この問題を難しくしています。テスト結果を返すようにしたいのであれば、何らかのコンディションを定義し、<code>test-op</code>が失敗した時にそのコンディションを通知することを勧めます。どのテストが失敗したか、という情報はコンディションに保持させると良いでしょう。
 </p>
 <p>一般的に、テストコードはテスト用の別の<em>システム</em>に記述されることが多いです。テスト用のシステムを分離すれば、メインのシステムの依存関係には不要なテストフレームワークを指定しなくてすみます。それでは、テストフレームワーク<a href="https://common-lisp.net/project/fiveam/">fiveam</a>を使った例を見てみましょう:
 </p><div class="lisp">
@@ -1568,22 +1568,22 @@ feature-expression := keyword
 
 
 <dl>
-<dt><a name="index-compile_002dbundle_002dop"></a>操作: <strong>compile-bundle-op</strong></dt>
-<dt><a name="index-monolithic_002dcompile_002dbundle_002dop"></a>操作: <strong>monolithic-compile-bundle-op</strong></dt>
-<dt><a name="index-load_002dbundle_002dop"></a>操作: <strong>load-bundle-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dbundle_002dop"></a>操作: <strong>monolithic-load-bundle-op</strong></dt>
-<dt><a name="index-deliver_002dasd_002dop"></a>操作: <strong>deliver-asd-op</strong></dt>
-<dt><a name="index-monolithic_002ddeliver_002dasd_002dop"></a>操作: <strong>monolithic-deliver-asd-op</strong></dt>
-<dt><a name="index-lib_002dop"></a>操作: <strong>lib-op</strong></dt>
-<dt><a name="index-monolithic_002dlib_002dop"></a>操作: <strong>monolithic-lib-op</strong></dt>
-<dt><a name="index-dll_002dop"></a>操作: <strong>dll-op</strong></dt>
-<dt><a name="index-monolithic_002ddll_002dop"></a>操作: <strong>monolithic-dll-op</strong></dt>
-<dt><a name="index-image_002dop"></a>操作: <strong>image-op</strong></dt>
-<dt><a name="index-program_002dop"></a>操作: <strong>program-op</strong></dt>
+<dt><a name="index-compile_002dbundle_002dop"></a>オペレーション: <strong>compile-bundle-op</strong></dt>
+<dt><a name="index-monolithic_002dcompile_002dbundle_002dop"></a>オペレーション: <strong>monolithic-compile-bundle-op</strong></dt>
+<dt><a name="index-load_002dbundle_002dop"></a>オペレーション: <strong>load-bundle-op</strong></dt>
+<dt><a name="index-monolithic_002dload_002dbundle_002dop"></a>オペレーション: <strong>monolithic-load-bundle-op</strong></dt>
+<dt><a name="index-deliver_002dasd_002dop"></a>オペレーション: <strong>deliver-asd-op</strong></dt>
+<dt><a name="index-monolithic_002ddeliver_002dasd_002dop"></a>オペレーション: <strong>monolithic-deliver-asd-op</strong></dt>
+<dt><a name="index-lib_002dop"></a>オペレーション: <strong>lib-op</strong></dt>
+<dt><a name="index-monolithic_002dlib_002dop"></a>オペレーション: <strong>monolithic-lib-op</strong></dt>
+<dt><a name="index-dll_002dop"></a>オペレーション: <strong>dll-op</strong></dt>
+<dt><a name="index-monolithic_002ddll_002dop"></a>オペレーション: <strong>monolithic-dll-op</strong></dt>
+<dt><a name="index-image_002dop"></a>オペレーション: <strong>image-op</strong></dt>
+<dt><a name="index-program_002dop"></a>オペレーション: <strong>program-op</strong></dt>
 <dd>
-<p>これらは「バンドル(bundle)」に関わる操作です。バンドルは、アプリケーション全体（もしくはアプリケーション中の各システム）を単一のファイルに束ねたものです。
+<p>これらは「バンドル(bundle)」に関わるオペレーションです。バンドルは、アプリケーション全体（もしくはアプリケーション中の各システム）を単一のファイルに束ねたものです。
 </p>
-<p><code>compile-bundle-op</code>はターゲットとなるシステムとそれが依存する各システムについて、それぞれ単一のfaslファイルを作ります。<code>monolithic-compile-bundle-op</code>はターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のfaslファイルを作ります。つまり、アプリケーション全体を１つのfaslファイルにすることができます。<code>load-bundle-op</code>は<code>compile-bundle-op</code>の出力をロードします。ただし、<code>compile-bundle-op</code>は（出力が最新でない場合）コンパイルの副作用として、中間生成物である各faslファイルをロードすることもあるという点に注意してください。バンドルに関する操作は特にECLにおいて重要です。というのもECLでは、ダイナミックリンクの際に、数十もの独立したfaslファイルをロードするのは１つのファイルをロードするのに比べてずっと重いからです。
+<p><code>compile-bundle-op</code>はターゲットとなるシステムとそれが依存する各システムについて、それぞれ単一のfaslファイルを作ります。<code>monolithic-compile-bundle-op</code>はターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のfaslファイルを作ります。つまり、アプリケーション全体を１つのfaslファイルにすることができます。<code>load-bundle-op</code>は<code>compile-bundle-op</code>の出力をロードします。ただし、<code>compile-bundle-op</code>は（出力が最新でない場合）コンパイルの副作用として、中間生成物である各faslファイルをロードすることもあるという点に注意してください。バンドルに関するオペレーションは特にECLにおいて重要です。というのもECLでは、ダイナミックリンクの際に、数十もの独立したfaslファイルをロードするのは１つのファイルをロードするのに比べてずっと重いからです。
 </p>
 <p>注意: <code>compile-bundle-op</code>、<code>monolithic-compile-bundle-op</code>、<code>load-bundle-op</code>、<code>monolithic-load-bundle-op</code>、<code>deliver-asd-op</code>、<code>monolithic-deliver-asd-op</code>は、ASDF 3.1以前はそれぞれ<code>fasl-op</code>、<code>monolithic-fasl-op</code>、<code>load-fasl-op</code>、<code>monolithic-load-fasl-op</code>、<code>binary-op</code>、<code>monolithic-binary-op</code>と呼ばれていました。後方互換性のために古い名称も残されていますが、それらは実際の機能を表していない不適切な名前ではあります。
 </p>
@@ -1595,47 +1595,47 @@ feature-expression := keyword
 </pre></div>
 <p>あるいは、<code>deliver-asd-op</code>や<code>monolithic-deliver-asd-op</code>を使えば、ASDFは<code>compile-bundle-op</code>の出力に加えてシステム定義も作ります。これによって、あなたのシステムやアプリケーションのコードを単一のファイルとして提供することができます。当然ながら、これらの結果をカレントイメージでテストしたい時は、新しくできた<samp>.asd</samp>ファイルを使おうとする<em>前</em>に<code>(asdf:clear-configuration)</code>（あるいは少なくとも<code>(asdf:clear-source-registry)</code>）を実行することを忘れないでください。ファイルシステムからソースレジストリを再設定するためです。
 </p>
-<p><code>program-op</code>は指定されたシステムとその依存関係から、実行可能ファイルを作り出します。その際、コアイメージをダンプ・復元する時のフックや、コマンドライン引数の処理が必要になるかもしれませんが、UIOPにはこの用途で便利なユーティリティがあります。実行時のエントリーポイントは<code>defsystem</code>の<code>:entry-point</code>オプションで指定できます。例えばエントリーポイントを<code>my-app:main</code>関数にする場合は、<code>:entry-point &quot;my-app:main&quot;</code>とします。処理系によっては、<code>(asdf:operate 'asdf:program-op :my-app)</code>を実行すると、操作の完了時に現在のLispイメージが終了するかもしれません。<code>program-op</code>の使用例は<samp>test/hello-world-example.asd</samp>、<samp>test/hello.lisp</samp>を参照してください。ビルド、テストは<samp>test/test-program.script</samp>、<samp>test/make-hello-world.lisp</samp>に書かれています。
+<p><code>program-op</code>は指定されたシステムとその依存関係から、実行可能ファイルを作り出します。その際、コアイメージをダンプ・復元する時のフックや、コマンドライン引数の処理が必要になるかもしれませんが、UIOPにはこの用途で便利なユーティリティがあります。実行時のエントリーポイントは<code>defsystem</code>の<code>:entry-point</code>オプションで指定できます。例えばエントリーポイントを<code>my-app:main</code>関数にする場合は、<code>:entry-point &quot;my-app:main&quot;</code>とします。処理系によっては、<code>(asdf:operate 'asdf:program-op :my-app)</code>を実行すると、オペレーションの完了時に現在のLispイメージが終了するかもしれません。<code>program-op</code>の使用例は<samp>test/hello-world-example.asd</samp>、<samp>test/hello.lisp</samp>を参照してください。ビルド、テストは<samp>test/test-program.script</samp>、<samp>test/make-hello-world.lisp</samp>に書かれています。
 </p>
 <p><code>image-op</code>はイメージをダンプしますが、スタンドアローンとは限らないし、システムのエントリーポイントが使われたりすることもありません。お使いのLisp処理系のコアイメージの扱いに従い、システムがプリロードされたイメージを出力することになるでしょう。これは中間的なビルド結果として使われたり、ラッパーとなるスクリプトとともに使われたりします。
 </p>
-<p><code>lib-op</code>はターゲットとなるシステムとそれが依存する各システムについて、リンク可能なオブジェクト（FFIファイル、あるいはECLであればLispファイルも）から<samp>.a</samp>ファイル（Windowsでは<samp>.lib</samp>）をそれぞれビルドするための操作であり、<code>monolithic-lib-op</code>はアプリケーション全体に対して１つの<samp>.a</samp>ファイルを作ります。<code>dll-op</code>、<code>monolithic-dll-op</code>も類似の操作ですが、ダイナミックリンクのための<samp>.so</samp>ファイル（Windowsでは<samp>.dll</samp>、MacOS Xでは<samp>.dynlib</samp>）を作ります。
+<p><code>lib-op</code>はターゲットとなるシステムとそれが依存する各システムについて、リンク可能なオブジェクト（FFIファイル、あるいはECLであればLispファイルも）から<samp>.a</samp>ファイル（Windowsでは<samp>.lib</samp>）をそれぞれビルドするためのオペレーションであり、<code>monolithic-lib-op</code>はアプリケーション全体に対して１つの<samp>.a</samp>ファイルを作ります。<code>dll-op</code>、<code>monolithic-dll-op</code>も類似のオペレーションですが、ダイナミックリンクのための<samp>.so</samp>ファイル（Windowsでは<samp>.dll</samp>、MacOS Xでは<samp>.dynlib</samp>）を作ります。
 </p>
-<p>これらの「バンドル」の操作は、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、メンテナンスされていない古い処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
+<p>これらの「バンドル」オペレーションは、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、メンテナンスされていない古い処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
 </p>
-<p>バンドル操作の出力先のパスは、他のオブジェクトファイルと同様に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定された操作に限っては異なります。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
+<p>「バンドル」オペレーションの出力先のパスは、他のオブジェクトファイルと同様に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定されたオペレーションに限っては異なります。<a name="DOCF26" href="#FOOT26"><sup>26</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-concatenate_002dsource_002dop"></a>操作: <strong>concatenate-source-op</strong></dt>
-<dt><a name="index-monolithic_002dconcatenate_002dsource_002dop"></a>操作: <strong>monolithic-concatenate-source-op</strong></dt>
-<dt><a name="index-load_002dconcatenated_002dsource_002dop"></a>操作: <strong>load-concatenated-source-op</strong></dt>
-<dt><a name="index-compile_002dconcatenated_002dsource_002dop"></a>操作: <strong>compile-concatenated-source-op</strong></dt>
-<dt><a name="index-load_002dcompiled_002dconcatenated_002dsource_002dop"></a>操作: <strong>load-compiled-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dconcatenated_002dsource_002dop"></a>操作: <strong>monolithic-load-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dcompile_002dconcatenated_002dsource_002dop"></a>操作: <strong>monolithic-compile-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop"></a>操作: <strong>monolithic-load-compiled-concatenated-source-op</strong></dt>
+<dt><a name="index-concatenate_002dsource_002dop"></a>オペレーション: <strong>concatenate-source-op</strong></dt>
+<dt><a name="index-monolithic_002dconcatenate_002dsource_002dop"></a>オペレーション: <strong>monolithic-concatenate-source-op</strong></dt>
+<dt><a name="index-load_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>load-concatenated-source-op</strong></dt>
+<dt><a name="index-compile_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>compile-concatenated-source-op</strong></dt>
+<dt><a name="index-load_002dcompiled_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>load-compiled-concatenated-source-op</strong></dt>
+<dt><a name="index-monolithic_002dload_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-load-concatenated-source-op</strong></dt>
+<dt><a name="index-monolithic_002dcompile_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-compile-concatenated-source-op</strong></dt>
+<dt><a name="index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-load-compiled-concatenated-source-op</strong></dt>
 <dd>
-<p><code>concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存する各システムについて、すべての<code>cl-source-file</code>を依存関係に沿った順序でそれぞれ１つのソースファイルに連結します。<code>monolithic-concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のソースファイルを出力します。上のリストには、さらに連結した出力ファイルをロードしたり、コンパイルしてからロードしたりといった操作が含まれています。
+<p><code>concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存する各システムについて、すべての<code>cl-source-file</code>を依存関係に沿った順序でそれぞれ１つのソースファイルに連結します。<code>monolithic-concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のソースファイルを出力します。上のリストには、さらに連結した出力ファイルをロードしたり、コンパイルしてからロードしたりといったオペレーションが含まれています。
 </p>
-<p>これらの操作は、システムやアプリケーションを単一のソースファイルとして配布するのに役立ちます。その際に、ロードやコンパイル後のロードが適切に行われるかテストするのにも使われるでしょう。
+<p>これらのオペレーションは、システムやアプリケーションを単一のソースファイルとして配布するのに役立ちます。その際に、ロードやコンパイル後のロードが適切に行われるかテストするのにも使われるでしょう。
 </p>
 <p>ASDF自身も、<code>monolithic-concatenate-source-op</code>を使って単一のソースファイル<samp>asdf.lisp</samp>として配布されており、<code>asdf/defsystem</code>システムそのものの前に前処理と<code>uiop</code>ライブラリが挿入されています。
 </p></dd></dl>
 
 
 <hr>
-<a name="g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b"></a>
-<a name="Xin-siiCao-Zuo-woDing-Yi-suru"></a>
-<h4 class="subsection">7.1.2 新しい操作を定義する</h4>
+<a name="g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b"></a>
+<a name="Xin-siioperesiyonwoDing-Yi-suru"></a>
+<h4 class="subsection">7.1.2 新しいオペレーションを定義する</h4>
 
 <p>ASDFは、オブジェクト指向の手法で拡張可能なようにデザインされています。プログラマは<code>operation</code>のサブクラスを作って必要な挙動を実装することで、ASDFに新しい機能を追加することができます。
 </p>
-<p>ASDFの組み込みの操作は、ユーザー定義の操作に対して「特権的」な地位にあるわけではありませんが、開発者の方には、独自の操作を追加するときに決して<code>asdf</code>パッケージを使わないようにお願いします。というのも、名前の衝突は避けるべきですし、かといって我々は「ASDFの操作名を管理するグローバルなレジストリ」をいちいち作りたくもないからです。
+<p>ASDFの組み込みのオペレーションは、ユーザー定義のオペレーションに対して「特権的」な地位にあるわけではありませんが、開発者の方には、独自のオペレーションを追加するときに決して<code>asdf</code>パッケージを使わないようにお願いします。というのも、名前の衝突は避けるべきですし、かといって我々は「ASDFのオペレーション名を管理するグローバルなレジストリ」をいちいち作りたくもないからです。
 </p>
 <p>[訳者補足]
 </p>
-<p>また、ASDFには操作・アクション間の依存関係を指定するためのサブクラスとして、<code>downward-operation</code>、<code>upward-operation</code>、<code>sideway-operation</code>、<code>selfward-operation</code>、<code>non-propagating-operation</code>の５つが備わっており、すべての操作はこの内の少なくとも１つを<em>継承するべき</em>です。操作の依存関係を指定する必要がないときも、<code>non-propagating-operation</code>を継承するようにしてください。<code>operation</code>のみを継承すると、その操作を呼んだ時に警告が通知されるでしょう。
+<p>また、ASDFにはオペレーション・アクション間の依存関係を指定するためのサブクラスとして、<code>downward-operation</code>、<code>upward-operation</code>、<code>sideway-operation</code>、<code>selfward-operation</code>、<code>non-propagating-operation</code>の５つが備わっており、すべてのオペレーションはこの内の少なくとも１つを<em>継承するべき</em>です。オペレーションの依存関係を指定する必要がないときも、<code>non-propagating-operation</code>を継承するようにしてください。<code>operation</code>のみを継承すると、そのオペレーションを呼んだ時に警告が通知されるでしょう。
 例として、組み込みの<code>load-op</code>を簡略化した<code>my-load-op</code>を定義してみましょう:
 </p>
 <div class="lisp">
@@ -1645,28 +1645,28 @@ feature-expression := keyword
    ))
 </pre></div>
 
-<p><code>non-propagating-operation</code>を除く４つのクラスはすべて、同名のスロットをクラス変数として備えています。<code>selfward-operation</code>は「同一コンポーネントに対する別の操作」に依存する操作です。上の例では、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>に<code>prepare-op</code>と<code>compile-op</code>が適用されます。次に、<code>downward-operation</code>は「子コンポーネントに対する操作」に依存する操作です。上の例では<code>downward-operation</code>スロットを省略していますが、デフォルトの<code>nil</code>は同じ操作<code>my-load-op</code>を意味します。つまり、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>のすべての子コンポーネントに対して<code>my-load-op</code>が適用されます。
+<p><code>non-propagating-operation</code>を除く４つのクラスはすべて、同名のスロットをクラス変数として備えています。<code>selfward-operation</code>は「同一コンポーネントに対する別のオペレーション」に依存するオペレーションです。上の例では、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>に<code>prepare-op</code>と<code>compile-op</code>が適用されます。次に、<code>downward-operation</code>は「子コンポーネントに対するオペレーション」に依存するオペレーションです。上の例では<code>downward-operation</code>スロットを省略していますが、デフォルトの<code>nil</code>は同じオペレーション<code>my-load-op</code>を意味します。つまり、コンポーネント<code>foo</code>に対して<code>my-load-op</code>が呼ばれた時、先だって<code>foo</code>のすべての子コンポーネントに対して<code>my-load-op</code>が適用されます。
 </p>
 <dl>
-<dt><a name="index-downward_002doperation"></a>操作: <strong>downward-operation</strong> <em><var>(downward-operation :type operation-designator :allocation :class)</var></em></dt>
-<dt><a name="index-upward_002doperation"></a>操作: <strong>upward-operation</strong> <em><var>(upward-operation :type operation-designator :allocation :class)</var></em></dt>
-<dt><a name="index-sideway_002doperation"></a>操作: <strong>sideway-operation</strong> <em><var>(sideway-operation :type operation-designator :allocation :class)</var></em></dt>
-<dt><a name="index-selfward_002doperation"></a>操作: <strong>selfward-operation</strong> <em><var>(selfward-operation :type (or operation-designator list) :allocation :class)</var></em></dt>
-<dt><a name="index-non_002dpropagating_002doperation"></a>操作: <strong>non-propagating-operation</strong></dt>
+<dt><a name="index-downward_002doperation"></a>オペレーション: <strong>downward-operation</strong> <em><var>(downward-operation :type operation-designator :allocation :class)</var></em></dt>
+<dt><a name="index-upward_002doperation"></a>オペレーション: <strong>upward-operation</strong> <em><var>(upward-operation :type operation-designator :allocation :class)</var></em></dt>
+<dt><a name="index-sideway_002doperation"></a>オペレーション: <strong>sideway-operation</strong> <em><var>(sideway-operation :type operation-designator :allocation :class)</var></em></dt>
+<dt><a name="index-selfward_002doperation"></a>オペレーション: <strong>selfward-operation</strong> <em><var>(selfward-operation :type (or operation-designator list) :allocation :class)</var></em></dt>
+<dt><a name="index-non_002dpropagating_002doperation"></a>オペレーション: <strong>non-propagating-operation</strong></dt>
 <dd>
-<p><code>asdf::operation-designator</code>型は、操作オブジェクト・シンボル・クラスのいずれかです。多くの場合、シンボルが使われるでしょう。その際、<code>nil</code>は「同じ操作」を意味します。
+<p><code>asdf::operation-designator</code>型は、オペレーションオブジェクト・シンボル・クラスのいずれかです。多くの場合、シンボルが使われるでしょう。その際、<code>nil</code>は「同じオペレーション」を意味します。
 </p>
-<p><code>downward-operation</code>は子コンポーネントについての依存関係を持つ操作です。<code>baz-op</code>が<code>foo-op</code>の<code>downward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>parent</code>に対するアクション<code>(foo-op . parent)</code>を実行する前に、まずは<code>parent</code>のすべての子コンポーネント<code>child</code>についてアクション<code>(baz-op . child)</code>を実行します。
+<p><code>downward-operation</code>は子コンポーネントについての依存関係を持つオペレーションです。<code>baz-op</code>が<code>foo-op</code>の<code>downward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>parent</code>に対するアクション<code>(foo-op . parent)</code>を実行する前に、まずは<code>parent</code>のすべての子コンポーネント<code>child</code>についてアクション<code>(baz-op . child)</code>を実行します。
 </p>
-<p><code>upward-operation</code>は親コンポーネントについての依存関係を持つ操作です。<code>baz-op</code>が<code>foo-op</code>の<code>upward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>child</code>に対するアクション<code>(foo-op . child)</code>を実行する前に、まずは<code>child</code>の親コンポーネントである<code>parent</code>についてアクション<code>(baz-op . parent)</code>を実行します。
+<p><code>upward-operation</code>は親コンポーネントについての依存関係を持つオペレーションです。<code>baz-op</code>が<code>foo-op</code>の<code>upward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>child</code>に対するアクション<code>(foo-op . child)</code>を実行する前に、まずは<code>child</code>の親コンポーネントである<code>parent</code>についてアクション<code>(baz-op . parent)</code>を実行します。
 </p>
-<p><code>sideway-operation</code>は依存コンポーネントについての依存関係を持つ操作です。<code>baz-op</code>が<code>foo-op</code>の<code>sideway-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>c</code>に対するアクション<code>(foo-op . c)</code>を実行する前に、まずは<code>c</code>が依存している（<code>:depends-on</code>）すべてのコンポーネント<code>d</code>についてアクション<code>(baz-op . d)</code>を実行します。
+<p><code>sideway-operation</code>は依存コンポーネントについての依存関係を持つオペレーションです。<code>baz-op</code>が<code>foo-op</code>の<code>sideway-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>c</code>に対するアクション<code>(foo-op . c)</code>を実行する前に、まずは<code>c</code>が依存している（<code>:depends-on</code>）すべてのコンポーネント<code>d</code>についてアクション<code>(baz-op . d)</code>を実行します。
 </p>
-<p><code>selfward-operation</code>は同一コンポーネントについての依存関係を持つ操作です。<code>baz-op</code>が<code>foo-op</code>の<code>selfward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>c</code>に対するアクション<code>(foo-op . c)</code>を実行する前に、まずはアクション<code>(baz-op . c)</code>を実行します。<code>selfward-operation</code>スロットには、複数の操作をリストとして指定することができます。
+<p><code>selfward-operation</code>は同一コンポーネントについての依存関係を持つオペレーションです。<code>baz-op</code>が<code>foo-op</code>の<code>selfward-operation</code>スロットに指定されているとき、ASDFはコンポーネント<code>c</code>に対するアクション<code>(foo-op . c)</code>を実行する前に、まずはアクション<code>(baz-op . c)</code>を実行します。<code>selfward-operation</code>スロットには、複数のオペレーションをリストとして指定することができます。
 </p>
-<p><code>non-propagating-operation</code>は依存関係を持たない、単独で実行される操作です。
+<p><code>non-propagating-operation</code>は依存関係を持たない、単独で実行されるオペレーションです。
 </p>
-<p>上で例示したように、これらの操作は多重継承することができます。（もっとも、<code>non-propagating-operation</code>は単一継承するべきでしょう。）また、依存関係が循環しないようにするのはプログラマの責任に委ねられています。
+<p>上で例示したように、これらのオペレーションは多重継承することができます。（もっとも、<code>non-propagating-operation</code>は単一継承するべきでしょう。）また、依存関係が循環しないようにするのはプログラマの責任に委ねられています。
 </p></dd></dl>
 
 
@@ -1674,12 +1674,12 @@ feature-expression := keyword
 </p>
 
 
-<p>新しく作られた操作には、多くの場合、次の総称関数の内の少なくとも１つについてメソッドを<em>定義しなければならない</em>でしょう。
+<p>新しく作られたオペレーションには、多くの場合、次の総称関数の内の少なくとも１つについてメソッドを<em>定義しなければならない</em>でしょう。
 </p>
 
 <dl>
 <dt><a name="index-perform"></a>総称関数: <strong>perform</strong> <em>operation component</em></dt>
-<dd><p><code>perform</code>は何らかの入力ファイルから出力ファイルを作り出すための総称関数です。<code>prepare-op</code>のように依存関係の伝搬だけするような操作は別にしても、たいていの操作については<code>perform</code>メソッドが最も重要でしょう。<code>perform</code>が呼ばれると、（すべての依存関係について<code>perform</code>が実行されたあと）ターゲットのコンポーネントに対して処理が実行されます。
+<dd><p><code>perform</code>は何らかの入力ファイルから出力ファイルを作り出すための総称関数です。<code>prepare-op</code>のように依存関係の伝搬だけするようなオペレーションは別にしても、たいていのオペレーションについては<code>perform</code>メソッドが最も重要でしょう。<code>perform</code>が呼ばれると、（すべての依存関係について<code>perform</code>が実行されたあと）ターゲットのコンポーネントに対して処理が実行されます。
 </p>
 <p><code>perform</code>メソッドは、その入力と出力のパスを決めるのに<code>input-files</code>と<code>output-files</code>（下述）を呼ばなければなりません。ユーザーが、このメソッドを上書きしたり、<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>を変更したりできるようにするためです。<code>output-files</code>は多値を返しますが、<code>perform</code>は最初の値――出力パス名のリスト――のみを使うべきです。出力ファイルがただ１つと決まっている場合は、代わりに関数<code>output-file</code>が使えます。<code>output-file</code>は出力パス名が１つだけであることを保証し、そのパス名を返します。
 </p></dd></dl>
@@ -1698,7 +1698,7 @@ feature-expression := keyword
 </p>
 <p>[訳者補足]
 </p>
-<p>上述の５つのサブクラスを継承して操作間の依存関係を指定すれば、<code>component-depends-on</code>メソッドは適切に構成されるので、通常は明示的にこのメソッドを定義する必要はありません。また、特定のコンポーネント、システムに対して依存関係を記述したい場合も、<code>:in-order-to</code>オプションを使えば事足りるでしょう。（→ <a href="#g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2">アクションの依存関係</a>） しかし、それらを超えるような複雑な依存関係を指定したい場合――例えば特定の<em>コンポーネント型</em>に対する操作に限って依存関係を追加したい場合など――は、メソッド定義が必要になるかもしれません。
+<p>上述の５つのサブクラスを継承してオペレーション間の依存関係を指定すれば、<code>component-depends-on</code>メソッドは適切に構成されるので、通常は明示的にこのメソッドを定義する必要はありません。また、特定のコンポーネント、システムに対して依存関係を記述したい場合も、<code>:in-order-to</code>オプションを使えば事足りるでしょう。（→ <a href="#g_t_30a2_30af_30b7_30e7_30f3_306e_4f9d_5b58_95a2_4fc2">アクションの依存関係</a>） しかし、それらを超えるような複雑な依存関係を指定したい場合――例えば特定の<em>コンポーネント型</em>に対するオペレーションに限って依存関係を追加したい場合など――は、メソッド定義が必要になるかもしれません。
 </p>
 <p>なお、名前の印象に反して、コンポーネント間の依存関係を返す関数ではないことに気を付けましょう。システムの<code>:depends-on</code>オプションに与えた依存コンポーネントを調べたい場合は、代わりに<code>system-depends-on</code>という総称関数があります。
 </p>
@@ -1710,7 +1710,7 @@ feature-expression := keyword
 </p>
 <p>それでは、返り値について説明します。<code>component-depends-on</code>が返すリストの各エントリもまたリストです。
 </p>
-<p>各エントリの最初の要素（<code>car</code>）は操作指示子、つまり操作オブジェクトそのものか操作クラスのシンボル（例えば<code>load-op</code>、<code>compile-op</code>、<code>prepare-op</code>など）であり、後者は<code>make-operation</code>でインスタンス化されるでしょう。
+<p>各エントリの最初の要素（<code>car</code>）はオペレーション指示子、つまりオペレーションオブジェクトそのものかオペレーションクラスのシンボル（例えば<code>load-op</code>、<code>compile-op</code>、<code>prepare-op</code>など）であり、後者は<code>make-operation</code>でインスタンス化されるでしょう。
 </p>
 <a name="index-coerce_002dname"></a>
 <a name="index-find_002dcomponent"></a>
@@ -1718,30 +1718,30 @@ feature-expression := keyword
 </p></dd></dl>
 
 
-<p>新しく作られた操作には、次の総称関数についてメソッドを<em>定義することができます</em>。
+<p>新しく作られたオペレーションには、次の総称関数についてメソッドを<em>定義することができます</em>。
 </p>
 
 <dl>
 <dt><a name="index-input_002dfiles"></a>総称関数: <strong>input-files</strong> <em>operation component</em></dt>
 <dd><p><code>input-files</code>は、<code>perform</code>に対する入力ファイルのパス名のリストを返します。
 </p>
-<p>デフォルトの<code>input-files</code>のメカニズムは賢くできているので、あなたが自らメソッドを定義する必要はないことのほうが多いでしょう。メソッド定義が必要なのは、最終的な入力ファイル（のまとまり）が複数通り考えられるケースのみです。ほとんどの操作は<code>selfward-operation</code>を継承していて、<code>selfward-operation</code>はソースファイルを含むように入力ファイルを適切に設定します。
+<p>デフォルトの<code>input-files</code>のメカニズムは賢くできているので、あなたが自らメソッドを定義する必要はないことのほうが多いでしょう。メソッド定義が必要なのは、最終的な入力ファイル（のまとまり）が複数通り考えられるケースのみです。ほとんどのオペレーションは<code>selfward-operation</code>を継承していて、<code>selfward-operation</code>はソースファイルを含むように入力ファイルを適切に設定します。
 </p>
 
 </dd></dl>
 
 <dl>
 <dt><a name="index-operation_002ddone_002dp"></a>総称関数: <strong>operation-done-p</strong> <em>operation component</em></dt>
-<dd><p>この総称関数は、アクション（操作とコンポーネントのペア）がもう一度<code>perform</code>されなければならない場合に<code>nil</code>を返します。デフォルトは常に<code>t</code>です。
+<dd><p>この総称関数は、アクション（オペレーションとコンポーネントの対）がもう一度<code>perform</code>されなければならない場合に<code>nil</code>を返します。デフォルトは常に<code>t</code>です。
 </p>
-<p><code>operation-done-p</code>にメソッドを定義する必要があるのは、ファイルシステム上のタイムスタンプが変わっていなくても前回の操作の実行を無効にしてやりなおすべき状況がある、という場合に限ります。そしてその場合、このメソッドは<code>nil</code>を返すべきでしょう。
+<p><code>operation-done-p</code>にメソッドを定義する必要があるのは、ファイルシステム上のタイムスタンプが変わっていなくても前回のオペレーションの実行を無効にしてやりなおすべき状況がある、という場合に限ります。そしてその場合、このメソッドは<code>nil</code>を返すべきでしょう。
 </p>
 
-<p>例えば、このメソッドは<code>test-op</code>については常に<code>nil</code>を返します。テストというのは決して完了する性質の操作ではないからです。もちろん、単にテストのリポートファイルから結果を読み出すだけの操作として<code>test-report-op</code>のようなものを定義し、システム定義の<code>:in-order-to</code>オプションで<code>test-op</code>をこの操作に委ねて、何度繰り返しても同じになるようにすることは可能です。その場合はこのメソッドが<code>t</code>を返すようにしても良いでしょう。
+<p>例えば、このメソッドは<code>test-op</code>については常に<code>nil</code>を返します。テストというのは決して完了する性質のオペレーションではないからです。もちろん、単にテストのリポートファイルから結果を読み出すだけのオペレーションとして<code>test-report-op</code>のようなものを定義し、システム定義の<code>:in-order-to</code>オプションで<code>test-op</code>をこのオペレーションに委ねて、何度繰り返しても同じになるようにすることは可能です。その場合はこのメソッドが<code>t</code>を返すようにしても良いでしょう。
 </p></dd></dl>
 
 
-<p>何らかのメッセージを表示する操作は、Lispのコンパイラやローダと同様に、出力先を標準の<code>*standard-output*</code>ストリームにするべきです。
+<p>何らかのメッセージを表示するオペレーションは、Lispのコンパイラやローダと同様に、出力先を標準の<code>*standard-output*</code>ストリームにするべきです。
 </p>
 <hr>
 <a name="g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8"></a>
@@ -1780,10 +1780,10 @@ feature-expression := keyword
 </li></ul>
 
 <a name="index-ASDF_002dUSER-package"></a>
-<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>
-<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF29" href="#FOOT29"><sup>29</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
+<p><samp>.asd</samp>ファイルからシステム定義がロードされる際の暗黙のカレントパッケージは<code>asdf-user</code>であり、<code>asdf-user</code>は<code>asdf</code>、<code>uiop</code>、<code>uiop/common-lisp</code>を<code>use</code>しています。<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>
+<samp>.asd</samp>ファイル内で新しい変数・関数・クラスを定義するなど、単純なシステム定義にとどまらないことをする場合は、<code>defpackage</code>と<code>in-package</code>で別のパッケージを作り、<code>asdf-user</code>とは干渉しないようにするべきです。ただ、フォームを追加する目的が、（開発・デバッグのために）<code>cl:load</code>で手動で<samp>.asd</samp>ファイルをロードできるようにすることなのであれば<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>、そうするよりも<code>asdf:load-asd</code>を使うことを推奨します。なお、SLIMEを使っている場合は、<code>slime-asdf</code>拡張をロードすれば、<samp>.asd</samp>ファイルの編集時に<code>asdf:load-asd</code>が適切に適用されるようになります。
 </p>
-<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF30" href="#FOOT30"><sup>30</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
+<p>デフォルトでは<code>*system-definition-search-functions*</code>は３つの関数からなるリストです。最初の関数は、<code>*central-registry*</code>の要素を評価して得られた各ディレクトリから、ファイル名がシステム名であり、拡張子が<samp>.asd</samp>であるファイルを探し、最初に見つかったパス名を返します。ただし、探索対象のシステムがそのファイル内で実際に定義されているかどうかはチェックしません。２つ目の関数は同様のことを<code>source-registry</code>で指定されたディレクトリに対して行いますが、実際にファイルシステムを探すのは１回のみであり、結果はキャッシュされます。<a name="DOCF29" href="#FOOT29"><sup>29</sup></a> ３つ目の関数は<code>package-inferred-system</code>拡張で使われます。詳細は<a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a>を参照してください。
 </p>
 <p>システムの探索関数の仕様からもわかるように、システム<code>foo</code>は<samp>foo.asd</samp>という名のファイルに定義するべきであり、また、ファイルはセントラルレジストリかソースレジストリに指定されたディレクトリに置くようにするべきです。
 </p>
@@ -1792,7 +1792,7 @@ feature-expression := keyword
 <a name="index-primary_002dsystem_002dname"></a>
 <a name="index-puraimarinemu"></a>
 <a name="index-puraimarisisutemu"></a>
-<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF31" href="#FOOT31"><sup>31</sup></a>
+<p>１つのファイル内で複数のシステムを定義するのが便利なケースも良くあるでしょうが、ASDFはシステム名に基づいてシステム定義ファイルを探すことしかできません。この理由により、ASDF 3からはシステム定義を探すアルゴリズムが拡張され、ファイル<samp>foo.asd</samp>には、システム<code>foo</code>に加えて<code>foo/bar</code>、<code>foo/baz</code>、<code>foo/quux</code>といった名のシステムも定義できるようになりました。<code>/</code>で区切られたシステム名の最初の部分をシステムの<em>プライマリネーム(primary name)</em>と呼び、対応するシステムを<em>プライマリシステム(primary system)</em>と呼びます。ASDF 3は、名前にスラッシュを含むシステムを探すように指示されると、関数<code>asdf:primary-system-name</code>によってプライマリネームを抽出し、まずはプライマリシステムを探してロードしようとします。そして、見つかった場合は、そのファイルにターゲットのシステムが定義されているかどうか、もしくは<code>package-inferred-system</code>が定義されているかどうか調べます。<a name="DOCF30" href="#FOOT30"><sup>30</sup></a>
 <samp>foo.asd</samp>に、この命名ルールに従わないシステム（例えば<code>foo-test</code>など）が定義されている場合、ASDFはシステム定義の場所を自動的に見つけることができないので、事前に<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、明示的にプライマリシステムの定義をロードしておかなければなりません。我々はそのような命名の慣習をやめることを強く推奨しますが、今のところ、後方互換性のためにサポートされてはいます。
 </p></dd></dl>
 
@@ -1885,7 +1885,7 @@ feature-expression := keyword
 </p><div class="lisp">
 <pre class="lisp">     #+sbcl       (:file &quot;cffi-sbcl&quot;)
 </pre></div>
-<p>しかしこの方法には、どの処理系もシステム全体を読み込むことができないという欠点があります。例えば、新しく<code>archive-op</code>という操作を作り、システムのすべてのソースファイルをまとめたアーカイブを作ろうとしたとしましょう。この時、上の例の<samp>cffi-sbcl.lisp</samp>はSBCL以外の処理系では不可視であり、<code>archive-op</code>を実行してもアーカイブに収集されないという問題が起きます。
+<p>しかしこの方法には、どの処理系もシステム全体を読み込むことができないという欠点があります。例えば、新しく<code>archive-op</code>というオペレーションを作り、システムのすべてのソースファイルをまとめたアーカイブを作ろうとしたとしましょう。この時、上の例の<samp>cffi-sbcl.lisp</samp>はSBCL以外の処理系では不可視であり、<code>archive-op</code>を実行してもアーカイブに収集されないという問題が起きます。
 </p>
 <p>この問題を解決するため、ASDF 3からコンポーネントに<code>:if-feature</code>オプションが導入されました。このオプションの値はフィーチャー表現であり、つまり、<code>#+</code>と同じ文法を使います。フィーチャー表現が満たされないとき、そのコンポーネントはコンパイル、ロード、リンクの際に無視されます。なお、「同じ文法」と述べましたが、このフィーチャー表現は標準のリーダーで読まれるので、シンボルを使う際には<code>:</code>を前置して明示的にキーワードにしなくてはなりません。<code>#+</code>に続くフィーチャー表現は暗黙にキーワードパッケージを使いますから、その点は異なることになります。
 </p>
@@ -1900,7 +1900,7 @@ feature-expression := keyword
 </p>
 
 
-<p>依存関係は操作とコンポーネントのペアについて指定します。例えば次のように記述したとしましょう:
+<p>依存関係はオペレーションとコンポーネントのペアについて指定します。例えば次のように記述したとしましょう:
 </p>
 <div class="lisp">
 <pre class="lisp">:in-order-to ((compile-op (load-op &quot;a&quot; &quot;b&quot;) (compile-op &quot;c&quot;))
@@ -1945,7 +1945,7 @@ simple-component-name := string
 </pre></div>
 
 <p>のような形式です。
-<code>component-depends-on</code>メソッドは、特定のコンポーネント・操作のクラスについて定義することも可能です。その際、（デフォルトの依存関係を完全に上書きしたいのでなければ）自分のメソッドの結果と<code>(call-next-method)</code>の返り値を<code>append</code>して返す必要があります。
+<code>component-depends-on</code>メソッドは、特定のコンポーネント・オペレーションのクラスについて定義することも可能です。その際、（デフォルトの依存関係を完全に上書きしたいのでなければ）自分のメソッドの結果と<code>(call-next-method)</code>の返り値を<code>append</code>して返す必要があります。
 </p>
 <p>この結合は、CLISPのことを考えなければ、メソッドコンビネーションの<code>list</code>を使って透過的に実現できるでしょうが、我々はCLISPもサポートする必要があるので、この仕様を使っていません。あなたにCLISPをハックする時間があれば、この部分の修正はきっと歓迎されることでしょう。
 </p>
@@ -2054,7 +2054,7 @@ simple-component-name := string
 
 </li></ul>
 
-<p>デフォルトの操作はモジュールをどのように走査すれば良いか知っているため、ほとんどの操作にはモジュールに特定化されたメソッドを定義する必要はないでしょう。
+<p>デフォルトのオペレーションはモジュールをどのように走査すれば良いか知っているため、ほとんどのオペレーションにはモジュールに特定化されたメソッドを定義する必要はないでしょう。
 </p>
 <p>他の言語のライブラリ群やアーカイブファイルを表すのに、<code>module</code>のサブクラスを定義することもできるでしょう。
 </p></dd></dl>
@@ -2114,11 +2114,11 @@ simple-component-name := string
 
 <p>ビルドを成功させるためには、アクションのグラフが循環的であってはなりません。あなたが（ASDFの純粋なユーザーであれ、拡張を実装しているのであれ）依存関係のグラフにループを含めてしまうと、ASDFは盛大なエラーを引き起こすでしょう。依存の向きを明確にするため、ASDF 3では、アクションが他のアクションに依存していることを<em>requiring</em>、<em>required</em>という言葉で表しています。つまり&ldquo;requiring action&rdquo;は、それ自身が<code>perform</code>される前に、そのすべての&ldquo;required action&rdquo;が完了することに依存（<code>depends-on</code>）しているわけです。
 </p>
-<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的な操作である<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対する操作を行う前に、まずはすべての子コンポーネントに対して同じ操作を行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のような操作は、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備する操作を行う前に、まずは親コンポーネントに対して同じ操作を行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまる操作であり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
+<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF31" href="#FOOT31"><sup>31</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的なオペレーションである<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対するオペレーションを行う前に、まずはすべての子コンポーネントに対して同じオペレーションを行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のようなオペレーションは、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備するオペレーションを行う前に、まずは親コンポーネントに対して同じオペレーションを行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまるオペレーションであり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
 </p>
 <p>[訳者補足]
 </p>
-<p>このセクションは操作の依存関係について述べたものですが、実践的には、<a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a>の補足に挙げた５つの操作について理解していれば事足りるでしょう。つまり、
+<p>このセクションはオペレーションの依存関係について述べたものですが、実践的には、<a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a>の補足に挙げた５つのオペレーションについて理解していれば事足りるでしょう。つまり、
 </p><ul>
 <li> <code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>は<code>downward-operation</code>（かつ<code>selfward-operation</code>）であり、
 </li><li> <code>prepare-op</code>、<code>prepare-source-op</code>は<code>upward-operation</code>（かつ<code>sideway-operation</code>）であり、
@@ -2143,7 +2143,7 @@ simple-component-name := string
 </p>
 <p>ASDF 3.0.1以前（ASDF 1、2を含む）では、<code>version-satisfies</code>は<var>version</var>と<var>version-spec</var>が同じメジャーバージョン番号（１番目の整数）であることも必要条件にしていました。メジャーバージョンが違う場合は<var>version-spec</var>を満たさないとみなされたのです。しかし、この挙動はドキュメントには書かれておらず、おそらく仕様として依拠することはできなかったし、一部のユーザーにとっては悩みの種でした。ASDF 3.0.1から、<code>version-satisfies</code>はメジャーバージョンを特別扱いしなくなり、単にバージョンが同じか新しければ<code>t</code>を返すようになりました。
 </p>
-<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
+<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
 </p></dd></dl>
 
 <hr>
@@ -2191,7 +2191,7 @@ simple-component-name := string
 
 </li><li> <samp>$XDG_DATA_DIRS/common-lisp/systems/</samp>と<samp>$XDG_DATA_DIRS/common-lisp/source/</samp>がソースレジストリに加わります。ただし、前者には再帰的探索がされないので、<samp>.asd</samp>ファイルへのリンクを置く目的で使います。Unixでは<code>XDG_DATA_DIRS</code>のデフォルトは<samp>/usr/local/share</samp>と<samp>/usr/share</samp>です。Windowsで<code>XDG_DATA_DIRS</code>が存在しない場合、代わりに<code>AppData</code>と<code>Common AppData</code>が使われるでしょう。
 
-</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF34" href="#FOOT34"><sup>34</sup></a>
+</li><li> ソースレジストリは、処理系提供の拡張モジュールに対応する処理系依存のディレクトリを含むことがあります。<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>
 
 </li></ol>
 
@@ -2276,7 +2276,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF35" href="#FOOT35">(35)</a>
+    ;; 最後に指定されます。<a name="DOCF34" href="#FOOT34">(34)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -2303,7 +2303,7 @@ DIRECTIVE :=
     ;; 別の設定ファイルの内容をパースして、この位置に挿入します。
     (:include REGULAR-FILE-PATHNAME-DESIGNATOR) |
 
-    ;; デフォルトのレジストリをこの位置に挿入します。<a name="DOCF36" href="#FOOT36">(36)</a>
+    ;; デフォルトのレジストリをこの位置に挿入します。<a name="DOCF35" href="#FOOT35">(35)</a>
     :default-registry
 
 REGULAR-FILE-PATHNAME-DESIGNATOR
@@ -2344,7 +2344,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; おいては（その後にRELATIVE-COMPONENT-DESIGNATORが続かない限り）
     ;; **/*.*.*のようなワイルドカードを含めたほうがよいでしょう。
     :HOME | ; user-homedir-pathname、つまり~/を指します
-    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a name="DOCF37" href="#FOOT37">(37)</a>
+    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a name="DOCF36" href="#FOOT36">(36)</a>
     :HERE |
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
@@ -2390,7 +2390,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <p>設定ディレクトリ内の<samp>.conf</samp>ファイルのDSLは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a>と少し<em>異なります</em>。まず、ディレクティブを<code>(:source-registry ...)</code>で囲む必要はありません。また、継承ディレクティブ<code>:inherit-configuration</code>、<code>:ignore-inherited-configuration</code>は使えず、ディレクティブのリストの<em>末尾</em>に暗黙に<code>:inherit-configuration</code>が加わります。これらに反した設定ファイルを読み込むと、ASDFは<code>uiop:invalid-configuration</code>エラーを通知するでしょう。なお、ディレクトリ中の設定ファイルは、そのネームストリングに従って<code>string&lt;</code>の順で読み込まれ、ディレクティブもこの順番で結合されます。
 </p>
-<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル（例えば<samp>10-foo.conf</samp>）を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>
+<p>Common Lispソフトウェアのディストリビューションは、自身の設定ファイル（例えば<samp>10-foo.conf</samp>）を設置する際、すべてのユーザーに対する設定は<samp>/etc/common-lisp/source-registry.conf.d/10-foo.conf</samp>を、ユーザー単位の設定は<samp>~/.config/common-lisp/source-registry.conf.d/10-foo.conf</samp>を使うことができます。そうすれば、インストールされるソフトウェアの設定情報を、容易かつモジュール化された形で登録できるでしょう。例えばDebianのパッケージや、将来のバージョンの<code>clbuild</code>がそうなることでしょう。<a name="DOCF37" href="#FOOT37"><sup>37</sup></a>
 </p>
 <p>設定ディレクトリ内の設定ファイル名は、上で挙げたように２つの数字から始めるのが慣習です。こうすることで、設定が読み込まれる順番を決めることができます。また、ファイル形式は<samp>.conf</samp>でなければなりません。この仕様のメリットは、単に実装が簡単であるだけでなく、設定ファイルを無効にするにはただファイル形式を変えればよい、という点にもあります。
 </p>
@@ -2400,7 +2400,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <pre class="lisp">	(:include &quot;/foo/bar/&quot;)
 </pre></div>
 
-<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>:
+<p>例として、前のセクションの<samp>~/.config/common-lisp/source-registry.conf</samp>と同じ設定を、設定ディレクトリで行ってみましょう。ファイル<samp>~/.config/common-lisp/source-registry.conf.d/33-home-fare-cl.conf</samp>を次の内容で作ります<a name="DOCF38" href="#FOOT38"><sup>38</sup></a>:
 </p><div class="lisp">
 <pre class="lisp">(:tree &quot;/home/fare/cl/&quot;)
 </pre></div>
@@ -2456,7 +2456,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 </li><li> エントリの末尾が<code>//</code>の場合は、再帰的探索の対象になります。<code>:tree</code>ディレクティブと同等です。
 
-</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>
+</li><li> 空のエントリ（２回以上現れても問題ありません）は継承した設定がその部分に挿入されることを示します。<a name="DOCF39" href="#FOOT39"><sup>39</sup></a>
 </li></ul>
 
 <hr>
@@ -2469,7 +2469,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <p>ディレクトリ（<code>:directory</code>）を探索する場合、システムが見つかれば探索は成功であり、見つからなければ次の探索に進みます。
 </p>
-<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
+<p>ツリー（<code>:tree</code>）を探索する場合、システムがただ１つ見つかれば探索は成功です。複数のシステムが見つかった時の動作はバージョンによって異なりますが、ASDF 3.2.1以降では、パス名の（ノーマライズされた）ディレクトリコンポーネント<a name="DOCF40" href="#FOOT40"><sup>40</sup></a>の長さを比較し、短いほうが探索結果として採用されるようになりました。長さが同じ場合は、パス名の<code>unix-namestring</code>を<code>string&lt;</code>で比較して小さいほうが採用されます。それ以前のASDFでは最初に見つかったシステムを返していましたが、どのシステムが返るかは処理系によって異なり、上の仕様のように<code>string&lt;</code>に関して小さいパス名が返るかどうかも不確定でした。また、XCVB<a name="DOCF41" href="#FOOT41"><sup>41</sup></a>ではエラーが通知されていました。システムが見つからなかった場合は次の探索に進みます。
 </p>
 
 <p><code>:exclude</code>、<code>:also-exclude</code>ディレクティブには、ツリーを探索するときに除外するサブディレクトリ名を指定します。一般的には、バージョン管理システムのデータベースディレクトリ（<samp>.git</samp>、<samp>_darcs</samp>など）は除外されるでしょう。なお、除外の指定は継承された設定には<em>伝搬しません</em>。すべての設定は、デフォルトでは<code>asdf::*default-source-registry-exclusions*</code>に登録されている除外パターンを採用します。
@@ -2485,12 +2485,12 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <a name="sosurezisutorinokiyatusiyu"></a>
 <h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
 
-<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
 いっぽう、古いスタイルである<code>*central-registry*</code>のメカニズムは、ファイルシステムに毎回問い合わせるというものでした。
 </p>
 <p>ファイルシステムを変更したあと、キャッシュを明示的にクリアする方法については<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>を参照してください。例えば<code>asdf:clear-source-registry</code>を呼ぶなどの方法があります。
 </p>
-<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を保持する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>
+<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を保持する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
 </p>
 <p>このキャッシュファイルを新たに作りたい場合、あるいはソースリポジトリのインストール・アップデート・削除などを行ったあとにキャッシュファイルをアップデートしたい場合、ASDFに含まれるスクリプトが使えます: <code>tools/cl-source-registry-cache.lisp <var>/path/to/directory</var></code>。また、キャッシュを無効にしたい場合は単に<samp>.cl-source-registry.cache</samp>を削除すればよいでしょう。いずれの場合も、起動中のLispプロセスにこの変更を反映するためには<code>(asdf:clear-source-registry)</code>などで（メモリ上の）キャッシュをクリアする必要があります。
 </p>
@@ -2644,7 +2644,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <a name="index-ASDF_005fOUTPUT_005fTRANSLATIONS"></a>
 <a name="index-autopututotoransuresiyon"></a>
 
-<p>fasl<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
+<p>fasl<a name="DOCF44" href="#FOOT44"><sup>44</sup></a>、つまりコンパイルされたファイルのフォーマットは、処理系によって異なります。faslを扱うにあたっては、厄介な問題がいくつか存在します。まず、複数の処理系（あるいは１つの処理系の複数のバージョン）を使っている場合に、ソースディレクトリが様々な形式のfaslファイル（<samp>fasl</samp>、<samp>dfsl</samp>、<samp>cfsl</samp>など）で散らかってしまいます。その上、異なる処理系が同じ拡張子を使っていることがあり、また、同じ処理系でもバージョン間、プラットフォーム間でfaslの互換性がないのに同じ拡張子を維持していたりします。このため、別の処理系に切り替えたときに、膨大なエラーと混乱が引き起こされるかもしれません。さらに、faslをソースファイルと同じディレクトリに保持するスタイルは、ソースディレクトリへの書き込みを必要とするので、複数のユーザーが同じソースディレクトリを共有するのを困難にします。
 </p>
 <p>この問題を軽減するため、ASDF 2以降には<code>asdf-output-translations</code>機能が備わっています。
 </p>
@@ -2684,7 +2684,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </li><li> 設定ファイル<samp>/etc/common-lisp/asdf-output-translations.conf</samp>が存在する場合、アウトプットトランスレーションがこのファイルによって設定されます。Unixのみの処理です。 
 
 </li><li> 設定ディレクトリ<samp>/etc/common-lisp/asdf-output-translations.conf.d/</samp>が存在する場合、ソースレジストリがこのディレクトリ内の設定ファイルによって設定されます。Unixのみの処理です。
-<a name="DOCF46" href="#FOOT46"><sup>46</sup></a>
+<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>
 
 </li></ol>
 
@@ -2692,8 +2692,8 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <p>また、上に挙げた各設定は、必ずしもすべてが「結合」して使われるわけではありません。各設定が、継承する設定を明示的にあるいは暗黙にインクルードしない限り、以降の設定は無視されることになります。 
 </p>
-<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュディレクトリが使われます。<a name="DOCF47" href="#FOOT47"><sup>47</sup></a>
-この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF48" href="#FOOT48"><sup>48</sup></a>
+<p>なお、アウトプットトランスレーションのデフォルトの設定では、出力ファイルにはユーザーごとに分離されたキャッシュディレクトリが使われます。<a name="DOCF46" href="#FOOT46"><sup>46</sup></a>
+この仕様によって、インストールされたソフトウェアを複数のユーザー間でシームレスに使うことができますし、開発者がソースコードを閲覧する際に出力ファイルが邪魔にならないようにできます。もっとも、開発者が出力ファイルを掃除したくなった場合にアウトプットトランスレーションについて学習する必要がある、という代償もありますが。<a name="DOCF47" href="#FOOT47"><sup>47</sup></a>
 </p>
 
 
@@ -2738,7 +2738,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF49" href="#FOOT49">(49)</a>
+    ;; 最後に指定されます。<a name="DOCF48" href="#FOOT48">(48)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -2804,7 +2804,7 @@ TRANSLATION-FUNCTION :=
    `((:root ,wild-subdir ,wild-file)
      (:root ,wild-subdir :implementation ,wild-file)))
 </pre></div>
-<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
+<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF49" href="#FOOT49"><sup>49</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(:root (:root :**/ :implementation :*.*.*))
 </pre></div>
@@ -2823,7 +2823,7 @@ TRANSLATION-FUNCTION :=
 </p><ul>
 <li> <code>:enable-user-cache</code>は <code>(t :user-cache)</code>と同等です。
 </li><li> <code>:disable-cache</code>は<code>(t t)</code>と同等です。
-</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
+</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
 </li></ul>
 
 
@@ -3036,7 +3036,7 @@ But so are good design ideas and elegant implementation tricks.
 
 <p>ASDFが不正なシステム定義を検出すると、<code>system-definition-error</code>を通知します。
 </p>
-<p>いっぽう、操作が失敗した場合（例えばソースファイルがエラーを含んでいた場合）は、<code>operation-error</code>が通知されます。
+<p>いっぽう、オペレーションが失敗した場合（例えばソースファイルがエラーを含んでいた場合）は、<code>operation-error</code>が通知されます。
 </p>
 <a name="konpairuShi-noeraJing-Gao-noChu-Li-"></a>
 <h3 class="section">10.2 コンパイル時のエラー・警告の処理</h3>
@@ -3313,7 +3313,7 @@ The <var>system-designator</var> may be a string, symbol, or ASDF system object.
 For these cases, <code>(asdf:clear-system :foo)</code>
 will remove the system from the table of currently loaded systems:
 the next time the system <code>foo</code> or one that depends on it is re-loaded,
-<code>foo</code> will be loaded again.<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>
+<code>foo</code> will be loaded again.<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
 </p>
 <p>Note that this does not and cannot undo
 the previous loading of the system.
@@ -4135,7 +4135,7 @@ Since it isn&rsquo;t possible to automatically detect what extensions
 need to be invalidated and what systems use them,
 ASDF will invalidate <em>all</em> previously loaded systems
 when it is loaded on top of a forward-incompatible ASDF version.
-<a name="DOCF53" href="#FOOT53"><sup>53</sup></a>
+<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>
 
 </li><li> To write a portable build script, you need to rely on a recent version of UIOP,
 but until you have ensured a recent ASDF is loaded,
@@ -4443,7 +4443,7 @@ and only do this from your personal configuration or build scripts.
 <h4 class="subsection">13.6.1 &ldquo;How can I cater for unit-testing in my system?&rdquo;</h4>
 
 <p>ASDF provides a predefined test operation, <code>test-op</code>.
-See <a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">test-op</a>.
+See <a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">test-op</a>.
 The test operation, however, is largely left to the system definer to specify.
 <code>test-op</code> has been
 a topic of considerable discussion on the
@@ -4608,7 +4608,7 @@ you might skip package complications:
 <p>There is no provision in ASDF for ensuring that
 some components are always loaded as source, while others are always
 compiled.
-There is <code>load-source-op</code> (see <a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">load-source-op</a>),
+There is <code>load-source-op</code> (see <a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">load-source-op</a>),
 but that is an operation to be applied to a
 system as a whole, not to one or another specific source files.
 While this idea often comes up in discussions,
@@ -4907,6 +4907,8 @@ interested, too.
  &nbsp; 
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-エ"><b>エ</b></a>
  &nbsp; 
+<a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-オ"><b>オ</b></a>
+ &nbsp; 
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-コ"><b>コ</b></a>
  &nbsp; 
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-シ"><b>シ</b></a>
@@ -4985,7 +4987,7 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-I">I</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ignore_002dinvalid_002dentries-source-config-directive">ignore-invalid-entries source config directive</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-immutable-systems">immutable systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-immutable-systems">immutable systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-immutable-systems-1">immutable systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-include-source-config-directive">include source config directive</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-inherit_002dconfiguration-source-config-directive">inherit-configuration source config directive</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL">ソースレジストリを設定するDSL</a></td></tr>
@@ -4999,7 +5001,7 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-O">O</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-One-package-per-file-systems">One package per file systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-operation">operation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-operation">operation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-P">P</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Package-inferred-systems">Package inferred systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a></td></tr>
@@ -5033,6 +5035,9 @@ interested, too.
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-エ">エ</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-entoripointo">エントリーポイント</a>:</td><td>&nbsp;</td><td valign="top"><a href="#defsystem_306e_6587_6cd5">defsystemの文法</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-オ">オ</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-operesiyon">オペレーション</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-コ">コ</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-konponento">コンポーネント</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-konponentosizisi_0028konponentoZhi-ShiZi-_0029">コンポーネントシジシ（コンポーネント指示子）</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
@@ -5042,7 +5047,6 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-sisutemusizisi_0028sisutemuZhi-ShiZi-_0029">システムシジシ（システム指示子）</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-ソ">ソ</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sousa_0028Cao-Zuo-_0029">ソウサ（操作）</a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-sosurezisutori">ソースレジストリ</a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-バ">バ</a></th><td></td><td></td></tr>
@@ -5097,6 +5101,8 @@ interested, too.
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-ア"><b>ア</b></a>
  &nbsp; 
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-エ"><b>エ</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-オ"><b>オ</b></a>
  &nbsp; 
 <a class="summary-letter" href="#g_t_7d22_5f15_ff08_7528_8a9e_ff09_cp_letter-コ"><b>コ</b></a>
  &nbsp; 
@@ -5164,12 +5170,12 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-clear_002doutput_002dtranslations-1"><code>clear-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-clear_002dsource_002dregistry"><code>clear-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-clear_002dsystem"><code>clear-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-coerce_002dname"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-coerce_002dname"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-coerce_002dname-1"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-coerce_002dname-2"><code>coerce-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027">コンポーネントの共通の属性</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-compile_002dfile_002a"><code>compile-file*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Controlling-file-compilation">Controlling file compilation</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-compile_002dsystem"><code>compile-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-component_002ddepends_002don"><code>component-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-component_002ddepends_002don"><code>component-depends-on</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-component_002dpathname"><code>component-pathname</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027">コンポーネントの共通の属性</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-D">D</a></th><td></td><td></td></tr>
@@ -5186,14 +5192,14 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-file_002dtype"><code>file-type</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Pitfalls-of-the-transition-to-ASDF-2">Pitfalls of the transition to ASDF 2</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-find_002dcomponent"><code>find-component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-find_002dcomponent"><code>find-component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-find_002dcomponent-1"><code>find-component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-find_002dsystem"><code>find-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-I">I</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-initialize_002doutput_002dtranslations"><code>initialize-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-initialize_002dsource_002dregistry"><code>initialize-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-input_002dfiles"><code>input-files</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-input_002dfiles"><code>input-files</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-L">L</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-load_002dasd"><code>load-asd</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_5358_7d14_306a_4f8b">単純な例</a></td></tr>
@@ -5202,26 +5208,26 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-M">M</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-make"><code>make</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-make_002doperation"><code>make-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002doperation"><code>make-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-merge_002dpathnames_002a"><code>merge-pathnames*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-O">O</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-oos"><code>oos</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-oos-1"><code>oos</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-oos-1"><code>oos</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-operate"><code>operate</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-operate-1"><code>operate</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-operation_002ddone_002dp"><code>operation-done-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-output_002dfiles"><code>output-files</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-operate-1"><code>operate</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-operation_002ddone_002dp"><code>operation-done-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-output_002dfiles"><code>output-files</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-P">P</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-package_002dinferred_002dsystem"><code>package-inferred-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-parse_002dunix_002dnamestring"><code>parse-unix-namestring</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-perform"><code>perform</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-perform"><code>perform</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-primary_002dsystem_002dname"><code>primary-system-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-primary_002dsystem_002dname-1"><code>primary-system-name</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-R">R</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-register_002dimmutable_002dsystem"><code>register-immutable-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-register_002dimmutable_002dsystem"><code>register-immutable-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-register_002dimmutable_002dsystem-1"><code>register-immutable-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-register_002dpreloaded_002dsystem"><code>register-preloaded-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Miscellaneous-Functions">Miscellaneous Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-register_002dsystem_002dpackages"><code>register-system-packages</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a></td></tr>
@@ -5243,7 +5249,7 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-T">T</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-test_002dsystem"><code>test-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-traverse"><code>traverse</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_64cd_4f5c">操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-traverse"><code>traverse</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3">オペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-U">U</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-uiop_003adefine_002dpackage"><code>uiop:define-package</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#package_002dinferred_002dsystem_62e1_5f35">package-inferred-system拡張</a></td></tr>
@@ -5371,19 +5377,19 @@ interested, too.
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-C">C</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-c_002dsource_002dfile"><code>c-source-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-cl_002dsource_002dfile"><code>cl-source-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-compile_002dbundle_002dop"><code>compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-compile_002dbundle_002dop"><code>compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-compile_002dbundle_002dop-1"><code>compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-compile_002dconcatenated_002dsource_002dop"><code>compile-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-compile_002dop"><code>compile-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-compile_002dconcatenated_002dsource_002dop"><code>compile-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-compile_002dop"><code>compile-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-component-1"><code>component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-concatenate_002dsource_002dop"><code>concatenate-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-concatenate_002dsource_002dop"><code>concatenate-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-D">D</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-deliver_002dasd_002dop"><code>deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-deliver_002dasd_002dop"><code>deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-deliver_002dasd_002dop-1"><code>deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-dll_002dop"><code>dll-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dll_002dop"><code>dll-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-doc_002dfile"><code>doc-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-downward_002doperation"><code>downward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-downward_002doperation"><code>downward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fasl_002dop-_0028obsolete_0029"><code>fasl-op (obsolete)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
@@ -5392,64 +5398,64 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-html_002dfile"><code>html-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-I">I</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-image_002dop"><code>image-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-image_002dop"><code>image-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-J">J</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-java_002dsource_002dfile"><code>java-source-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-L">L</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-lib_002dop"><code>lib-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-load_002dbundle_002dop"><code>load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-lib_002dop"><code>lib-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-load_002dbundle_002dop"><code>load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-load_002dbundle_002dop-1"><code>load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-load_002dcompiled_002dconcatenated_002dsource_002dop"><code>load-compiled-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-load_002dconcatenated_002dsource_002dop"><code>load-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-load_002dcompiled_002dconcatenated_002dsource_002dop"><code>load-compiled-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-load_002dconcatenated_002dsource_002dop"><code>load-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-load_002dfasl_002dop-_0028obsolete_0029"><code>load-fasl-op (obsolete)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-load_002dop"><code>load-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-load_002dsource_002dop"><code>load-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-load_002dop"><code>load-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-load_002dsource_002dop"><code>load-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-M">M</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-module"><code>module</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002dbinary_002dop-_0028obsolete_0029"><code>monolithic-binary-op (obsolete)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dcompile_002dbundle_002dop"><code>monolithic-compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dcompile_002dbundle_002dop"><code>monolithic-compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002dcompile_002dbundle_002dop-1"><code>monolithic-compile-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dcompile_002dconcatenated_002dsource_002dop"><code>monolithic-compile-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dconcatenate_002dsource_002dop"><code>monolithic-concatenate-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002ddeliver_002dasd_002dop"><code>monolithic-deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dcompile_002dconcatenated_002dsource_002dop"><code>monolithic-compile-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dconcatenate_002dsource_002dop"><code>monolithic-concatenate-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002ddeliver_002dasd_002dop"><code>monolithic-deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002ddeliver_002dasd_002dop-1"><code>monolithic-deliver-asd-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002ddll_002dop"><code>monolithic-dll-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002ddll_002dop"><code>monolithic-dll-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002dfasl_002dop-_0028obsolete_0029"><code>monolithic-fasl-op (obsolete)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dlib_002dop"><code>monolithic-lib-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dbundle_002dop"><code>monolithic-load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dlib_002dop"><code>monolithic-lib-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dbundle_002dop"><code>monolithic-load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dbundle_002dop-1"><code>monolithic-load-bundle-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop"><code>monolithic-load-compiled-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dconcatenated_002dsource_002dop"><code>monolithic-load-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop"><code>monolithic-load-compiled-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dconcatenated_002dsource_002dop"><code>monolithic-load-concatenated-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-monolithic_002dload_002dfasl_002dop-_0028obsolete_0029"><code>monolithic-load-fasl-op (obsolete)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#What-happened-to-the-bundle-operations">What happened to the bundle operations</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-N">N</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-non_002dpropagating_002doperation"><code>non-propagating-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-non_002dpropagating_002doperation"><code>non-propagating-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-O">O</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-operation-1"><code>operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-operation_002derror"><code>operation-error</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-P">P</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-prepare_002dop"><code>prepare-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-prepare_002dsource_002dop"><code>prepare-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-program_002dop"><code>program-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-prepare_002dop"><code>prepare-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-prepare_002dsource_002dop"><code>prepare-source-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-program_002dop"><code>program-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-S">S</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-selfward_002doperation"><code>selfward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sideway_002doperation"><code>sideway-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-selfward_002doperation"><code>selfward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sideway_002doperation"><code>sideway-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-source_002dfile"><code>source-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-static_002dfile"><code>static-file</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system-1"><code>system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_7d44_307f_8fbc_307f_306e_30b5_30d6_30af_30e9_30b9">コンポーネントの組み込みのサブクラス</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system_002ddefinition_002derror"><code>system-definition-error</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-T">T</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-test_002dop"><code>test-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_64cd_4f5c">組み込みの操作</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-test_002dop"><code>test-op</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-U">U</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-upward_002doperation"><code>upward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_64cd_4f5c_3092_5b9a_7fa9_3059_308b">新しい操作を定義する</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-upward_002doperation"><code>upward-operation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 </table>
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#g_t_7d22_5f15_ff08_30af_30e9_30b9_3068_578b_ff09_tp_letter-B"><b>B</b></a>
@@ -5547,65 +5553,63 @@ interested, too.
 <h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
 <p><em>アクション(action)</em>という用語は、Kent Pitmanの論文 &ldquo;The Description of Large Systems&rdquo;（→ <a href="#g_t_53c2_8003_6587_732e">参考文献</a>）で使われていて、これはUnixの<code>make</code>に端を発するのではないかと我々は考えています。この用語がASDFハッカーたちに使われるようになったのはASDF 2からですが、それ以前も単に明示されてはいなかっただけで、概念としてはASDF 1の当初からありました。</p>
 <h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
-<p>[訳注] &ldquo;operation&rdquo;はこのマニュアルでは一貫して「操作」と訳します。動詞化(operate)した時にそれとわかるようにするのが容易になるためです。</p>
-<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
 <p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
+<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<p>[訳注] <code>traverse</code>はオペレーション指示子とコンポーネント指示子を引数に取り、実行されるアクション（オペレーションとコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
 <h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
-<p>[訳注] <code>traverse</code>は操作指示子とコンポーネント指示子を引数に取り、実行されるアクション（操作とコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
-<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>[訳注] この場合、<code>:build-pathname</code>の指定があれば出力先はそのパス名になります。指定がない場合は<code>component-pathname</code>の返すディレクトリが使われるようですが、公式の仕様かどうかは明示されていません。</p>
-<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>バージョン2.27～3.0.3では、<code>uiop</code>の代わりに<code>uiop/package</code>のみが<code>use</code>されていました。バージョン3.1.2以前に対応したコードを書くためには、<code>uiop</code>を<code>use</code>したパッケージを自ら定義するか、あるいは<code>uiop:</code>というパッケージ接頭辞をいちいち付ける必要があります。</p>
-<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
+<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
 <p>[訳注] 例えば冒頭に<code>(cl:in-package :asdf-user)</code>を追加する、など。</p>
-<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
+<h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>[訳注] <code>clear-source-registry</code>でキャッシュのリセットができます。</p>
-<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
+<h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
 <p>ASDF 2.26以前はプライマリネームの機能をサポートしていませんでした。従って、それらのバージョンでは、システム<code>foo/bar</code>が<samp>foo.asd</samp>に定義されている場合は、<code>(asdf:find-system &quot;foo&quot;)</code>を実行するなどして、事前にそのファイルを明示的にロードしなければなりません。我々はASDF 2をサポートしていませんので、ASDF 3にアップグレードすることを推奨します。</p>
-<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
+<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
 <p>[訳注] ASDFでは、<code>:depends-on</code>でつながっているコンポーネントをsibling（兄弟姉妹）と呼びます。</p>
-<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
+<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
 <p>[訳注] <code>defsystem</code>の<code>:depends-on</code>オプションで使われる構文です。（→ <a href="#defsystem_306e_6587_6cd5">defsystemの文法</a>）</p>
-<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
+<h3><a name="FOOT33" href="#DOCF33">(33)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf:*default-source-registries*</code>中の７つの関数に順に対応しています。リストの最後の項目の意図は判然としませんが、処理系などが独自にこの変数を編集していると、処理が加わったり（あるいは減ったり）するでしょう。Mezzanoなどにその例があります。</p>
-<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
+<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
-<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
+<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
 <p>[訳注] <code>asdf::default-user-source-registry</code>と<code>asdf::default-system-source-registry</code>による設定が挿入されます。<a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>のリスト中の６番目と９番目の処理に相当します。</p>
-<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
+<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>を参照。</p>
-<h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
+<h3><a name="FOOT37" href="#DOCF37">(37)</a></h3>
 <p>[訳注] clbuildは2018年現在、メンテナンスされていません。</p>
-<h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
+<h3><a name="FOOT38" href="#DOCF38">(38)</a></h3>
 <p>[訳注] こちらの例ではユーザー名が明示されていますが、もちろん<code>(:tree (:home &quot;cl&quot;))</code>という記述も有効です。</p>
-<h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
+<h3><a name="FOOT39" href="#DOCF39">(39)</a></h3>
 <p>[訳注] 文字列の末尾を<code>:</code>（または<code>;</code>）にすると、最後に空のエントリを追加したことになります。</p>
-<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
+<h3><a name="FOOT40" href="#DOCF40">(40)</a></h3>
 <p>[訳注] 具体的には<code>(uiop:normalize-pathname-directory-component (pathname-directory <var>パス名</var>))</code>です。<code>uiop:normalize-pathname-directory-component</code>は、処理系によって異なるディレクトリコンポーネントのフォーマットをCLHS標準のリストに直す関数です。</p>
-<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
+<h3><a name="FOOT41" href="#DOCF41">(41)</a></h3>
 <p>[訳注] ASDFの競合だったビルドシステムです。今は使われていません。</p>
-<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
+<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
 <p>[訳注] 現在の実装もそうなっています。</p>
-<h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
+<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
 <p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
-<h3><a name="FOOT45" href="#DOCF45">(45)</a></h3>
+<h3><a name="FOOT44" href="#DOCF44">(44)</a></h3>
 <p>&ldquo;FASL&rdquo;は&ldquo;FASt Loading&rdquo;の略です。</p>
-<h3><a name="FOOT46" href="#DOCF46">(46)</a></h3>
+<h3><a name="FOOT45" href="#DOCF45">(45)</a></h3>
 <p>[訳注] このリストの３番目以降の処理は、<code>asdf/output-translations::*default-output-translations*</code>中の５つの関数に順に対応しています。ソースレジストリの場合と違ってこのシンボルはエクスポートされていないため、処理系などが独自にこの変数を編集する可能性は考えられていないのでしょう。</p>
-<h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
+<h3><a name="FOOT46" href="#DOCF46">(46)</a></h3>
 <p>[訳注] 順序としては、このディレクトリの設定は上のリストの１番目の処理で追加されます。無効にする方法については<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>を参照してください。</p>
-<h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
+<h3><a name="FOOT47" href="#DOCF47">(47)</a></h3>
 <p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
-<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
+<h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
-<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
+<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
 <p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
-<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
-<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
+<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
 <p>Alternatively, you could touch <code>foo.asd</code> or
 remove the corresponding fasls from the output file cache.</p>
-<h3><a name="FOOT53" href="#DOCF53">(53)</a></h3>
+<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
 <a name="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></a>
 <p>Forward incompatibility can be determined using the variable
 <code>asdf/upgrade::*oldest-forward-compatible-asdf-version*</code>,
