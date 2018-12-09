@@ -53,7 +53,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" rel="up" title="ASDFがコンパイルされたファイルを保持する場所を設定する">
-<link href="Output-Configuration-Directories.html#Output-Configuration-Directories" rel="next" title="Output Configuration Directories">
+<link href="She-Ding-deirekutori_0028autopututotoransuresiyon_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" rel="next" title="設定ディレクトリ（アウトプットトランスレーション）">
 <link href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" rel="prev" title="後方互換性のための機能（アウトプットトランスレーション）">
 <style type="text/css">
 <!--
@@ -91,7 +91,7 @@ ul.no-bullet {list-style: none}
 <a name="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL"></a>
 <div class="header">
 <p>
-Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Next: <a href="She-Ding-deirekutori_0028autopututotoransuresiyon_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="n" rel="next">設定ディレクトリ（アウトプットトランスレーション）</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="autopututotoransuresiyonwoShe-Ding-suruDSL"></a>
@@ -149,7 +149,8 @@ DIRECTORY-DESIGNATOR :=
 TRANSLATION-FUNCTION :=
     ;; 入力パスを出力パスに変換する関数です。この関数は２つの引数を取
     ;; り、１つ目は変換するべきパス名であり、２つ目は入力に指定した
-    ;; DIRECTORY-DESIGNATORです。
+    ;; DIRECTORY-DESIGNATOR（から導出されたワイルドカードを含むパス名）
+    ;; です。
     SYMBOL |
     LAMBDA
 
@@ -184,32 +185,18 @@ TRANSLATION-FUNCTION :=
 <p>また、ASDF-Binary-Locationsを使いたい方は、<code>enable-asdf-binary-locations-compatibility</code>を<code>:centralize-lisp-binaries nil</code>オプションで呼び出しても内部では同じ動作をすることになります。（→ <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">後方互換性のための機能（アウトプットトランスレーション）</a>
 </p>
 
-<p><code>:include</code> statements cause the search to recurse with the path specifications
-from the file specified.
+<p><code>:include</code>ディレクティブでインクルードされる設定ファイル、設定ディレクトリについては再帰的に処理が適用されることになります。
 </p>
-<p>If the <code>translate-pathname</code> mechanism cannot achieve a desired
-translation, the user may provide a function which provides the
-required algorithm.  Such a translation function is specified by
-supplying a list as the second <code>directory-designator</code>
-the first element of which is the keyword <code>:function</code>,
-and the second element of which is
-either a symbol which designates a function or a lambda expression.
-The function designated by the second argument must take two arguments,
-the first being the pathname of the source file,
-the second being the wildcard that was matched.
-When invoked, the function should return the translated pathname.
+<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指定子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指定子（から導出されたワイルドカードを含む絶対パス名）です。
 </p>
-<p>An <code>:inherit-configuration</code> statement causes the search to recurse with the path
-specifications from the next configuration in the bulleted list.
-See <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">Configurations</a>, above.
+<p><code>:inherit-configuration</code>は次の設定について再帰的に処理を適用します。次の設定とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの設定</a>のリストにおいて下で処理される設定のことです。
 </p>
-<a name="index-asdf_003a_003a_002auser_002dcache_002a"></a>
-<ul>
-<li> <code>:enable-user-cache</code> is the same as <code>(t :user-cache)</code>.
-</li><li> <code>:disable-cache</code> is the same as <code>(t t)</code>.
-</li><li> <code>:user-cache</code> uses the contents of variable <code>asdf::*user-cache*</code>
-which by default is the same as using
-<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>.
+<p>ユーザーキャッシュに関するディレクティブは以下の通りです:
+<a name="index-asdf_003a_002auser_002dcache_002a"></a>
+</p><ul>
+<li> <code>:enable-user-cache</code>は <code>(t :user-cache)</code>と同等です。
+</li><li> <code>:disable-cache</code>は<code>(t t)</code>と同等です。
+</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
 </li></ul>
 
 
@@ -218,14 +205,11 @@ which by default is the same as using
 <h4 class="footnotes-heading">Footnotes</h4>
 
 <h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
-<p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
+<p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
 <h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
-<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>に変換されます。</p>
-</div>
-<hr>
-<div class="header">
-<p>
-Next: <a href="Output-Configuration-Directories.html#Output-Configuration-Directories" accesskey="n" rel="next">Output Configuration Directories</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
+<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
 </div>
 
 

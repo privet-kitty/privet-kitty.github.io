@@ -264,7 +264,7 @@ a:visited { color: #6D38A0 }
     <li><a name="toc-autopututotoransuresiyonnoShe-Ding-" href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">9.1 アウトプットトランスレーションの設定</a></li>
     <li><a name="toc-Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng--1" href="#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">9.2 後方互換性のための機能</a></li>
     <li><a name="toc-autopututotoransuresiyonwoShe-Ding-suruDSL" href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">9.3 アウトプットトランスレーションを設定するDSL</a></li>
-    <li><a name="toc-Configuration-Directories" href="#Output-Configuration-Directories">9.4 Configuration Directories</a></li>
+    <li><a name="toc-She-Ding-deirekutori-1" href="#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">9.4 設定ディレクトリ</a></li>
     <li><a name="toc-Shell_002dfriendly-syntax-for-configuration" href="#Output-Shell_002dfriendly-syntax-for-configuration">9.5 Shell-friendly syntax for configuration</a></li>
     <li><a name="toc-Semantics-of-Output-Translations-1" href="#Semantics-of-Output-Translations">9.6 Semantics of Output Translations</a></li>
     <li><a name="toc-Caching-Results" href="#Output-Caching-Results">9.7 Caching Results</a></li>
@@ -2661,7 +2661,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 
 <p>[訳者補足]
 </p>
-<p>アウトプットトランスレーション（や前章で解説したソースレジストリ）の設定を記述したファイルは、<em>システム設定ファイル(system configuration file)</em>または単に<em>設定ファイル(configuration file)</em>と呼ばれます。ファイル形式は<samp>.conf</samp>です。システム定義ファイル（<samp>.asd</samp>ファイル）と混同しないようにしましょう。さらに、<em>設定ディレクトリ(configuration directory)</em>という概念もあります。設定ディレクトリは設定ファイルを含むディレクトリですが、設定ディレクトリ中の設定ファイルはその文法が微妙に異なるので注意が必要です。詳しくは<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>と<a href="#Output-Configuration-Directories">Output Configuration Directories</a>を参照してください。
+<p>アウトプットトランスレーション（や前章で解説したソースレジストリ）の設定を記述したファイルは、<em>システム設定ファイル(system configuration file)</em>または単に<em>設定ファイル(configuration file)</em>と呼ばれます。ファイル形式は<samp>.conf</samp>です。システム定義ファイル（<samp>.asd</samp>ファイル）と混同しないようにしましょう。さらに、<em>設定ディレクトリ(configuration directory)</em>という概念もあります。設定ディレクトリは設定ファイルを含むディレクトリですが、設定ディレクトリ中の設定ファイルはその文法が微妙に異なるので注意が必要です。詳しくは<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>と<a href="#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">設定ディレクトリ（アウトプットトランスレーション）</a>を参照してください。
 </p>
 <p>また、以下の記述は、OSや処理系、環境変数によって異なる複雑なロジックを漏れなく解説したものではありませんが、これを補完するのは訳者の手に余ります。正確な挙動を把握する必要がある場合は<samp>output-translations.lisp</samp>と<samp>uiop/configuration.lisp</samp>を参照してください。
 </p>
@@ -2776,7 +2776,8 @@ DIRECTORY-DESIGNATOR :=
 TRANSLATION-FUNCTION :=
     ;; 入力パスを出力パスに変換する関数です。この関数は２つの引数を取
     ;; り、１つ目は変換するべきパス名であり、２つ目は入力に指定した
-    ;; DIRECTORY-DESIGNATORです。
+    ;; DIRECTORY-DESIGNATOR（から導出されたワイルドカードを含むパス名）
+    ;; です。
     SYMBOL |
     LAMBDA
 
@@ -2811,39 +2812,25 @@ TRANSLATION-FUNCTION :=
 <p>また、ASDF-Binary-Locationsを使いたい方は、<code>enable-asdf-binary-locations-compatibility</code>を<code>:centralize-lisp-binaries nil</code>オプションで呼び出しても内部では同じ動作をすることになります。（→ <a href="#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09">後方互換性のための機能（アウトプットトランスレーション）</a>
 </p>
 
-<p><code>:include</code> statements cause the search to recurse with the path specifications
-from the file specified.
+<p><code>:include</code>ディレクティブでインクルードされる設定ファイル、設定ディレクトリについては再帰的に処理が適用されることになります。
 </p>
-<p>If the <code>translate-pathname</code> mechanism cannot achieve a desired
-translation, the user may provide a function which provides the
-required algorithm.  Such a translation function is specified by
-supplying a list as the second <code>directory-designator</code>
-the first element of which is the keyword <code>:function</code>,
-and the second element of which is
-either a symbol which designates a function or a lambda expression.
-The function designated by the second argument must take two arguments,
-the first being the pathname of the source file,
-the second being the wildcard that was matched.
-When invoked, the function should return the translated pathname.
+<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指定子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指定子（から導出されたワイルドカードを含む絶対パス名）です。
 </p>
-<p>An <code>:inherit-configuration</code> statement causes the search to recurse with the path
-specifications from the next configuration in the bulleted list.
-See <a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">Configurations</a>, above.
+<p><code>:inherit-configuration</code>は次の設定について再帰的に処理を適用します。次の設定とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの設定</a>のリストにおいて下で処理される設定のことです。
 </p>
-<a name="index-asdf_003a_003a_002auser_002dcache_002a"></a>
-<ul>
-<li> <code>:enable-user-cache</code> is the same as <code>(t :user-cache)</code>.
-</li><li> <code>:disable-cache</code> is the same as <code>(t t)</code>.
-</li><li> <code>:user-cache</code> uses the contents of variable <code>asdf::*user-cache*</code>
-which by default is the same as using
-<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>.
+<p>ユーザーキャッシュに関するディレクティブは以下の通りです:
+<a name="index-asdf_003a_002auser_002dcache_002a"></a>
+</p><ul>
+<li> <code>:enable-user-cache</code>は <code>(t :user-cache)</code>と同等です。
+</li><li> <code>:disable-cache</code>は<code>(t t)</code>と同等です。
+</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
 </li></ul>
 
 
 <hr>
-<a name="Output-Configuration-Directories"></a>
-<a name="Configuration-Directories"></a>
-<h3 class="section">9.4 Configuration Directories</h3>
+<a name="g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09"></a>
+<a name="She-Ding-deirekutori-1"></a>
+<h3 class="section">9.4 設定ディレクトリ</h3>
 
 <p>Configuration directories consist of files, each of which contains
 a list of directives without any enclosing
@@ -3326,7 +3313,7 @@ The <var>system-designator</var> may be a string, symbol, or ASDF system object.
 For these cases, <code>(asdf:clear-system :foo)</code>
 will remove the system from the table of currently loaded systems:
 the next time the system <code>foo</code> or one that depends on it is re-loaded,
-<code>foo</code> will be loaded again.<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>
+<code>foo</code> will be loaded again.<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>
 </p>
 <p>Note that this does not and cannot undo
 the previous loading of the system.
@@ -4148,7 +4135,7 @@ Since it isn&rsquo;t possible to automatically detect what extensions
 need to be invalidated and what systems use them,
 ASDF will invalidate <em>all</em> previously loaded systems
 when it is loaded on top of a forward-incompatible ASDF version.
-<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>
+<a name="DOCF53" href="#FOOT53"><sup>53</sup></a>
 
 </li><li> To write a portable build script, you need to rely on a recent version of UIOP,
 but until you have ensured a recent ASDF is loaded,
@@ -5328,7 +5315,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-_002asystem_002ddefinition_002dsearch_002dfunctions_002a"><code>*system-definition-search-functions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="g_t_7d22_5f15_ff08_5909_6570_ff09_vr_letter-A">A</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-asdf_003a_003a_002auser_002dcache_002a"><code>asdf::*user-cache*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-asdf_003a_002auser_002dcache_002a"><code>asdf:*user-cache*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ASDF_005fOUTPUT_005fTRANSLATIONS"><code>ASDF_OUTPUT_TRANSLATIONS</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがコンパイルされたファイルを保持する場所を設定する</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 </table>
@@ -5610,13 +5597,15 @@ interested, too.
 <h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>部分的には、<code>clean-op</code>がこの解決策になるかもしれません。</p>
 <h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
-<p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
+<p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
 <h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
-<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>に変換されます。</p>
+<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
 <h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
+<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
 <p>Alternatively, you could touch <code>foo.asd</code> or
 remove the corresponding fasls from the output file cache.</p>
-<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
+<h3><a name="FOOT53" href="#DOCF53">(53)</a></h3>
 <a name="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></a>
 <p>Forward incompatibility can be determined using the variable
 <code>asdf/upgrade::*oldest-forward-compatible-asdf-version*</code>,
