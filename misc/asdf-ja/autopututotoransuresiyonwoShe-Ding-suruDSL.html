@@ -133,7 +133,7 @@ DIRECTIVE :=
     ;; ます。
     :disable-cache |
 
-    ;; １つのマッピングを(入力指定子　出力指定子)として追加します。
+    ;; １つのマッピングを(入力指示子　出力指示子)として追加します。
     (DIRECTORY-DESIGNATOR DIRECTORY-DESIGNATOR)
 
     ;; １つのマッピングを追加します。入力パスの変換は関数で行われます。
@@ -164,11 +164,11 @@ TRANSLATION-FUNCTION :=
 </p>
 
 
-<p>入力指定子が<code>t</code>である場合、すべてのパスにマッチします。入力指定子が<code>:root</code>から始まる場合、すべてのホストとデバイスにマッチします。いずれの場合も（出力の指定子が<code>t</code>でなく<code>:root</code>から始まるのでもなければ）<code>apply-output-translations</code>で入力パスが変換される際に、出力指定子のホストとデバイスが入力パスにマージされることになります。
+<p>入力指示子が<code>t</code>である場合、すべてのパスにマッチします。入力指示子が<code>:root</code>から始まる場合、すべてのホストとデバイスにマッチします。いずれの場合も（出力指示子が<code>t</code>でなく<code>:root</code>から始まるのでもなければ）<code>apply-output-translations</code>で入力パスが変換される際に、出力指示子のホストとデバイスが入力パスにマージされることになります。
 </p>
-<p>出力指定子が<code>t</code>（または<code>nil</code>）である場合、マッピングは恒等写像であり、入力パスがそのまま出力パスになります。
+<p>出力指示子が<code>t</code>（または<code>nil</code>）である場合、マッピングは恒等写像であり、入力パスがそのまま出力パスになります。
 </p>
-<p>出力指定子が<code>:root</code>から始まる場合、マッピングは入力パスのホストとデバイスを保持します。ファイルが存在するディレクトリのサブディクレトリにマッピングしたい場合にはこの機能を使って実現できますが、旧来の構文は次のようにやや複雑なものでした。
+<p>出力指示子が<code>:root</code>から始まる場合、マッピングは入力パスのホストとデバイスを保持します。ファイルが存在するディレクトリのサブディクレトリにマッピングしたい場合にはこの機能を使って実現できますが、旧来の構文は次のようにやや複雑なものでした。
 </p><div class="lisp">
 <pre class="lisp">#.(let ((wild-subdir
           (make-pathname :directory '(:relative :wild-inferiors)))
@@ -187,7 +187,7 @@ TRANSLATION-FUNCTION :=
 
 <p><code>:include</code>ディレクティブでインクルードされる設定ファイル、設定ディレクトリについては再帰的に処理が適用されることになります。
 </p>
-<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指定子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指定子（から導出されたワイルドカードを含むパス名）です。
+<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指示子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指示子（から導出されたワイルドカードを含むパス名）です。
 </p>
 <p><code>:inherit-configuration</code>は次の設定について再帰的に処理を適用します。次の設定とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの設定</a>のリストにおいて下で処理される設定のことです。
 </p>
@@ -207,7 +207,7 @@ TRANSLATION-FUNCTION :=
 <h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
 <h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
-<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
+<p>[訳注] 入力指示子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
 <h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
 </div>

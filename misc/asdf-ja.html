@@ -2349,8 +2349,8 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
     :ROOT
-    ;; アウトプットトランスレーションでのみ使われます。入力指定子では
-    ;; すべてのホストとデバイスにマッチし、出力指定子では入力パスのホ
+    ;; アウトプットトランスレーションでのみ使われます。入力指示子では
+    ;; すべてのホストとデバイスにマッチし、出力指示子では入力パスのホ
     ;; ストとデバイス（のルート）を表します。
 
 キーワード:SYSTEM-CACHEはASDF 3.1以降では受け付けません。セキュリティ
@@ -2712,7 +2712,7 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 </p>
 <dl>
 <dt><a name="index-enable_002dasdf_002dbinary_002dlocations_002dcompatibility"></a>関数: <strong>enable-asdf-binary-locations-compatibility</strong> <em>&amp;key centralize-lisp-binaries default-toplevel-directory include-per-user-information map-all-source-files source-to-target-mappings</em></dt>
-<dd><p>この機能は<code>asdf-output-translations</code>の初期化を<code>ASDF-Binary-Locations</code>と似た仕組みで行います。<code>ASDF-Binary-Locations</code>はいくつかのグローバル変数（<code>*centralize-lisp-binaries*</code>、<code>*default-toplevel-directory*</code>、<code>*include-per-user-information*</code>、<code>*map-all-source-files*</code>、<var>*source-to-target-mappings*</var>）で設定を行っていましたが、この関数では同名のキーワード引数に値を渡すことで、設定が可能になります。なお、留意点として、<code>:source-to-target-mappings</code>引数の値は、単に文字列とパス名だけではなく<code>asdf-output-translations</code>で使える有効なパス名指定子であればなんでもよい、ということを述べておきます。
+<dd><p>この機能は<code>asdf-output-translations</code>の初期化を<code>ASDF-Binary-Locations</code>と似た仕組みで行います。<code>ASDF-Binary-Locations</code>はいくつかのグローバル変数（<code>*centralize-lisp-binaries*</code>、<code>*default-toplevel-directory*</code>、<code>*include-per-user-information*</code>、<code>*map-all-source-files*</code>、<var>*source-to-target-mappings*</var>）で設定を行っていましたが、この関数では同名のキーワード引数に値を渡すことで、設定が可能になります。なお、留意点として、<code>:source-to-target-mappings</code>引数の値は、単に文字列とパス名だけではなく<code>asdf-output-translations</code>で使える有効なパス名指示子であればなんでもよい、ということを述べておきます。
 </p></dd></dl>
 
 
@@ -2760,7 +2760,7 @@ DIRECTIVE :=
     ;; ます。
     :disable-cache |
 
-    ;; １つのマッピングを(入力指定子　出力指定子)として追加します。
+    ;; １つのマッピングを(入力指示子　出力指示子)として追加します。
     (DIRECTORY-DESIGNATOR DIRECTORY-DESIGNATOR)
 
     ;; １つのマッピングを追加します。入力パスの変換は関数で行われます。
@@ -2791,11 +2791,11 @@ TRANSLATION-FUNCTION :=
 </p>
 
 
-<p>入力指定子が<code>t</code>である場合、すべてのパスにマッチします。入力指定子が<code>:root</code>から始まる場合、すべてのホストとデバイスにマッチします。いずれの場合も（出力の指定子が<code>t</code>でなく<code>:root</code>から始まるのでもなければ）<code>apply-output-translations</code>で入力パスが変換される際に、出力指定子のホストとデバイスが入力パスにマージされることになります。
+<p>入力指示子が<code>t</code>である場合、すべてのパスにマッチします。入力指示子が<code>:root</code>から始まる場合、すべてのホストとデバイスにマッチします。いずれの場合も（出力指示子が<code>t</code>でなく<code>:root</code>から始まるのでもなければ）<code>apply-output-translations</code>で入力パスが変換される際に、出力指示子のホストとデバイスが入力パスにマージされることになります。
 </p>
-<p>出力指定子が<code>t</code>（または<code>nil</code>）である場合、マッピングは恒等写像であり、入力パスがそのまま出力パスになります。
+<p>出力指示子が<code>t</code>（または<code>nil</code>）である場合、マッピングは恒等写像であり、入力パスがそのまま出力パスになります。
 </p>
-<p>出力指定子が<code>:root</code>から始まる場合、マッピングは入力パスのホストとデバイスを保持します。ファイルが存在するディレクトリのサブディクレトリにマッピングしたい場合にはこの機能を使って実現できますが、旧来の構文は次のようにやや複雑なものでした。
+<p>出力指示子が<code>:root</code>から始まる場合、マッピングは入力パスのホストとデバイスを保持します。ファイルが存在するディレクトリのサブディクレトリにマッピングしたい場合にはこの機能を使って実現できますが、旧来の構文は次のようにやや複雑なものでした。
 </p><div class="lisp">
 <pre class="lisp">#.(let ((wild-subdir
           (make-pathname :directory '(:relative :wild-inferiors)))
@@ -2814,7 +2814,7 @@ TRANSLATION-FUNCTION :=
 
 <p><code>:include</code>ディレクティブでインクルードされる設定ファイル、設定ディレクトリについては再帰的に処理が適用されることになります。
 </p>
-<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指定子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指定子（から導出されたワイルドカードを含むパス名）です。
+<p>入力パスから出力パスへの変換は<code>cl:translate-pathname</code>（をポータブルにラップした<code>uiop:translate-pathname*</code>）で行われますが、望む変換ができない場合は、ユーザーは自ら変換アルゴリズムを書いて関数として指定することも出来ます。このような関数は出力指示子で<code>:function</code>キーワードの後に指定します。関数を指すシンボルでも、ラムダ式でもかまいません。この関数は２つの引数を取り、変換されたパス名を返さなければなりません。１つ目の引数は入力ファイルのパス名であり、２つ目は入力指示子（から導出されたワイルドカードを含むパス名）です。
 </p>
 <p><code>:inherit-configuration</code>は次の設定について再帰的に処理を適用します。次の設定とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの設定</a>のリストにおいて下で処理される設定のことです。
 </p>
@@ -2856,7 +2856,7 @@ TRANSLATION-FUNCTION :=
 
 <p>ディレクトリのリストは、正確に言えばディレクトリのペアのリストであり、１つのペアがマッピングのディレクティブを表します。各エントリの区切りは、UNIX（Cygwin含む）では<code>:</code>であり、それ以外（主にWindows）では<code>;</code>です。
 </p>
-<p>空のエントリがペアの１つ目のエントリ（つまり入力指定子）の位置に現れた場合、その部分に継承された設定が挿入されます。この場合、２つ目のエントリはないものとして扱われ、次のエントリは新しいペアとみなされます。空のエントリがペアの２つ目のエントリ（つまり出力指定子）の位置に現れた場合、１つ目のエントリと同じディレクトリを指します。（つまり、ディレクトリを繰り返し書いたのと同等です。）
+<p>空のエントリがペアの１つ目のエントリ（つまり入力指示子）の位置に現れた場合、その部分に継承された設定が挿入されます。この場合、２つ目のエントリはないものとして扱われ、次のエントリは新しいペアとみなされます。空のエントリがペアの２つ目のエントリ（つまり出力指示子）の位置に現れた場合、１つ目のエントリと同じディレクトリを指します。（つまり、ディレクトリを繰り返し書いたのと同等です。）
 </p>
 <p>例として<code>&quot;/foo:/bar::/baz:&quot;</code>という設定を見てみましょう。この設定の最初のペアは<code>/foo:/bar</code>ですから、<samp>/foo/</samp>以下のパスは<samp>/bar/</samp>以下に変換されることになります。その次は空のエントリなので、継承された設定がこの部分に挿入されます。最後のペアは<code>/baz:</code>であり、これは<code>/baz:/baz</code>と同等ですから、<samp>/baz/</samp>以下のパスは変換されないことになります。
 </p>
@@ -5567,7 +5567,7 @@ interested, too.
 <h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
 <h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
-<p>[訳注] 入力指定子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
+<p>[訳注] 入力指示子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
 <h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
 <h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
