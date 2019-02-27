@@ -40,21 +40,16 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- This file redirects to the location of a node or anchor -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>システムをロードする (ASDF マニュアル)</title>
+<title>複合的なコンポーネント名 (ASDF マニュアル)</title>
 
-<meta name="description" content="システムをロードする (ASDF マニュアル)">
-<meta name="keywords" content="システムをロードする (ASDF マニュアル)">
+<meta name="description" content="複合的なコンポーネント名 (ASDF マニュアル)">
+<meta name="keywords" content="複合的なコンポーネント名 (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
-<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046" rel="up" title="ASDFを使う">
-<link href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570" rel="next" title="便利な関数">
-<link href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046" rel="prev" title="ASDFを使う">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -84,43 +79,11 @@ ul.no-bullet {list-style: none}
 </style>
 <link rel="stylesheet" type="text/css" href="../manual-ja.css">
 
+<meta http-equiv="Refresh" content="0; url=defsystemnoWenFa-.html#g_t_8907_5408_7684_306a_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d">
 
 </head>
 
 <body lang="ja">
-<a name="g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b"></a>
-<div class="header">
-<p>
-Next: <a href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570" accesskey="n" rel="next">便利な関数</a>, Previous: <a href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046" accesskey="p" rel="prev">ASDFを使う</a>, Up: <a href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046" accesskey="u" rel="up">ASDFを使う</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
-</div>
-<hr>
-<a name="sisutemuworodosuru"></a>
-<h3 class="section">5.1 システムをロードする</h3>
 
-<p><var>foo</var>という名のシステムは、次のフォームを実行することでロード（必要ならコンパイルも）されます。
-</p>
-<div class="lisp">
-<pre class="lisp">(asdf:load-system :<var>foo</var>)
-</pre></div>
-
-<p>処理系によっては、<code>cl:require</code>にASDFがフックされているので、単に
-</p>
-<div class="lisp">
-<pre class="lisp">(require :<var>foo</var>)
-</pre></div>
-
-<p>でロードできます。（→ <a href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570">便利な関数</a>）
-</p>
-
-<p>標準のシステム名は文字列であり、すべて<em>小文字</em>です。システム名を指定する時にはシンボル（キーワード含む）も使えます。シンボルは<code>symbol-name</code>で文字列に変換され、さらに小文字に変換されます。また、システム名の文字列は<code>make-pathname</code>の<code>:name</code>引数として（システムがスキャンされるファイルシステム上で）有効でなければなりません。
-</p>
-
-<p>小文字を標準とする仕様はCLの慣習と違っていますが、検討の末このような仕様になりました。我々がサポートするシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるからです。
-</p>
-
-
-
-
-
+<p>The node you are looking for is at <a href="defsystemnoWenFa-.html#g_t_8907_5408_7684_306a_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d">複合的なコンポーネント名</a>.</p>
 </body>
-</html>

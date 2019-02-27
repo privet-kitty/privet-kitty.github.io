@@ -119,9 +119,19 @@ Next: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a4_30
 
 
 
+
+
+
 <div class="example">
 <pre class="example">system-definition := ( defsystem system-designator system-option* )
-                     # → <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">システム指示子</a>
+                     # → <a href="#g_t_30b7_30b9_30c6_30e0_6307_793a_5b50">システム指示子</a>
+
+system-designator := simple-component-name | complex-component-name
+
+simple-component-name := lower-case string  | symbol
+# アンダースコアは許容されていません。→ <a href="#g_t_5358_72ec_306e_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d">単独のコンポーネント名</a>
+
+complex-component-name := string | symbol # → <a href="#g_t_8907_5408_7684_306a_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d">複合的なコンポーネント名</a>
 
 system-option := :defsystem-depends-on dependency-def
                  | :weakly-depends-on system-list
@@ -188,8 +198,8 @@ dependent-op := operation-name
 required-op := operation-name
 # [訳注] 現状では required-component := dependency-def と考えて良さそうです。
 
-simple-component-name := string | symbol # → <a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d">コンポーネント名</a>
-
+# パス名はすべて小文字であるべきです。アンダースコアを含むべきではありませんが、
+# ハイフンは許容されます。
 pathname-specifier := pathname | string | symbol
 
 version-specifier := string
@@ -208,20 +218,52 @@ feature-expression := keyword
                       | (:not feature-expression)     
 </pre></div>
 
-<a name="konponentoMing-"></a>
-<h4 class="subsection">6.3.1 コンポーネント名</h4>
-<a name="g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d"></a>
-<p>コンポーネント名は文字列またはシンボルです。
+<a name="sisutemuZhi-ShiZi-"></a>
+<h4 class="subsection">6.3.1 システム指示子</h4>
+<a name="g_t_30b7_30b9_30c6_30e0_6307_793a_5b50"></a>
+
+<p>システム指示子は単独のコンポーネント名（例: <code>&quot;foo&quot;</code>）か、またはスラッシュで区切られた複合的なコンポーネント名（例: <code>&quot;foo/bar/baz&quot;</code>）です。
+</p>
+<a name="Dan-Du-nokonponentoMing-_0028simple_002dcomponent_002dname_0029"></a>
+<h4 class="subsection">6.3.2 単独のコンポーネント名（<code>simple-component-name</code>）</h4>
+<a name="g_t_5358_72ec_306e_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d"></a>
+
+<p>単独のコンポーネント名は文字列またはシンボルで指定することができます。
+</p>
+
+<p>文字列を使う場合は、小文字のみを使ってください。
+</p>
+
+<p>シンボルは<code>symbol-name</code>で文字列に変換され、さらに小文字に変換されます。言い換えれば、シンボルは<em>指示子</em>として有効ですが、コンポーネント名そのものは文字列だということです。
+</p>
+
+
+
+<p>文字列であれシンボルであれ、コンポーネント名にアンダースコアを含めてはいけません。
+</p>
+<p>また、単独のコンポーネント名にスラッシュ<code>/</code>を使ってはいけません。スラッシュは複合的なコンポーネント名を表すのに使われます。この点については次のサブセクションを参照してください。スラッシュが不適切に使われている場合、ASDFは警告を発するでしょう。
+</p>
+<p>これらの制限を犯した場合、つまり、大文字と小文字を混ぜたり、アンダースコアを使ったりした場合、ASDFがシステムやコンポーネントを見つけるのが不可能になる可能性があります。というのも、コンポーネント名はファイル名として解釈されるからです。特に、論理パス名を使うようにASDFを設定したユーザーは、<em>確実に</em>このような問題に直面するでしょう。
+</p>
+<a name="Fu-He-De-nakonponentoMing-"></a>
+<h4 class="subsection">6.3.3 複合的なコンポーネント名</h4>
+<a name="g_t_8907_5408_7684_306a_30b3_30f3_30dd_30fc_30cd_30f3_30c8_540d"></a>
+
+<p>複合的なコンポーネント名は、いくつかの名前を階層に従ってスラッシュ区切りで並べたものです。この仕組みは、１つの<samp>.asd</samp>ファイルに複数のシステム定義を置いた場合に、ASDFがそれらを見つけられるようにするためにあります。
+</p>
+
+
+<p>この際、最上位の名前(master name)は<samp>.asd</samp>ファイルの名前と一致していなければなりません。例えば、<samp>foo.asd</samp>ファイルにはシステム<code>foo</code>が定義されているでしょうが、それに加えて<code>foo/test</code>や<code>foo/docs</code>などのシステムも定義することが可能です。ASDFは、システム<code>foo/test</code>をロードするように要求されたとき、<samp>foo.asd</samp>ファイルを探せばよいことを知っているというわけです。
 </p>
 <a name="konponentoXing-"></a>
-<h4 class="subsection">6.3.2 コンポーネント型</h4>
+<h4 class="subsection">6.3.4 コンポーネント型</h4>
 <a name="g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_578b"></a>
 <p>コンポーネント型の名前は、（仮にキーワードで指定されたとしても）まずカレントパッケージのシンボルから検索されます。カレントパッケージに見つからなければ<code>asdf</code>パッケージから検索されます。つまり、カレントパッケージ<code>my-system-asd</code>に属するコンポーネント型<code>my-component-type</code>は、<code>:my-component-type</code>または<code>my-component-type</code>で指定することができます。
 </p>
 <p><code>system</code>とそのサブクラスは、システムの子コンポーネントのコンポーネント型として使うことはできません。
 </p>
 <a name="sisutemukurasuMing-"></a>
-<h4 class="subsection">6.3.3 システムクラス名</h4>
+<h4 class="subsection">6.3.5 システムクラス名</h4>
 <a name="g_t_30b7_30b9_30c6_30e0_30af_30e9_30b9_540d"></a>
 
 
@@ -234,13 +276,13 @@ feature-expression := keyword
 <p>のようにキーワードを使うことを推奨します。キーワードではなく<code>MY-NEW-SYSTEM-SUBCLASS</code>で指定した場合、この名前のシンボルがカレントパッケージに読み込まれたあと、（ASDF拡張が<code>:defsystem-depends-on</code>によってロードされて、そのパッケージから）同名のシンボルがエクスポートされる、という順序で処理が行われるため、名前の衝突が起きてしまいます。<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>
 </p>
 <a name="defsystemnoYi-Cun-_0028_003adefsystem_002ddepends_002don_0029"></a>
-<h4 class="subsection">6.3.4 defsystemの依存（<code>:defsystem-depends-on</code>）</h4>
+<h4 class="subsection">6.3.6 defsystemの依存（<code>:defsystem-depends-on</code>）</h4>
 <a name="index-_003adefsystem_002ddepends_002don"></a>
 
 <p><code>:defsystem-depends-on</code>オプションを使うと、システム定義が処理される<em>前</em>に、ASDFで定義された別のシステム（またはシステムのまとまり）をロードすることができます。このオプションは典型的には、システム定義の中でASDFの拡張をロードするために使われます。
 </p>
 <a name="birudooperesiyon_0028_003abuild_002doperation_0029"></a>
-<h4 class="subsection">6.3.5 ビルドオペレーション（<code>:build-operation</code>）</h4>
+<h4 class="subsection">6.3.7 ビルドオペレーション（<code>:build-operation</code>）</h4>
 <a name="index-_003abuild_002doperation"></a>
 <a name="g_t_30d3_30eb_30c9_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
 <p><code>:build-operation</code>オプションには、システムに対して<code>make</code>（→ <a href="Bian-Li-naGuan-Shu-.html#g_t_4fbf_5229_306a_95a2_6570">make</a>）を実行したときに、どのオペレーションを適用するか指定することができます。デフォルトでは<code>load-op</code>が使われます。このオプションの値はオペレーションの名前でなければなりません。（例えば<code>:build-operation doc-op</code>など）
@@ -248,7 +290,7 @@ feature-expression := keyword
 <p>この機能は実験的でテストが不十分です。自己責任で使ってください。
 </p>
 <a name="Ruo-iYi-Cun-Guan-Xi-_0028_003aweakly_002ddepends_002don_0029"></a>
-<h4 class="subsection">6.3.6 弱い依存関係（<code>:weakly-depends-on</code>）</h4>
+<h4 class="subsection">6.3.8 弱い依存関係（<code>:weakly-depends-on</code>）</h4>
 <a name="g_t_5f31_3044_4f9d_5b58_95a2_4fc2"></a><a name="index-_003aweakly_002ddepends_002don"></a>
 
 <p>この機能を使うことは<em>推奨しません</em>。システム<code>bar</code>に弱依存しているシステム<code>foo</code>を作りたい場合は、パラメトリックに<code>foo</code>を定義して、スペシャル変数やフックで動作を変えられるようにすると良いでしょう。そして、システム<code>foo+bar</code>を定義してまとめてフックできるようにしましょう。
@@ -260,7 +302,7 @@ feature-expression := keyword
 
 
 <a name="pasuMing-Zhi-Ding-Zi-"></a>
-<h4 class="subsection">6.3.7 パス名指定子</h4>
+<h4 class="subsection">6.3.9 パス名指定子</h4>
 <a name="index-pathname-specifiers"></a>
 <a name="index-pasumeisiteisi_0028pasuMing-Zhi-Ding-Zi-_0029"></a>
 <a name="g_t_30d1_30b9_540d_6307_5b9a_5b50"></a>
@@ -276,14 +318,17 @@ feature-expression := keyword
 <p><code>&quot;..&quot;</code>はパス名のディレクトリコンポーネント中の<code>:back</code>と解釈されます。<a name="DOCF17" href="#FOOT17"><sup>17</sup></a>
 つまり、文字列中の<code>&quot;..&quot;</code>は１つ上の階層のディレクトリを意味します。
 </p>
-<p>シンボルが与えられた場合、小文字の文字列に変換されます。小文字に変換するのは慣習と異なっていますが、検討の末このような仕様になりました。我々がサポートしたいシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるので、単に<code>make-pathname</code>を<code>:case :common</code>として使う方式（うまく動かない処理系もある）よりも適切と思われます。
+<p>シンボルが与えられた場合、小文字の文字列に変換されます。小文字に変換するのは慣習と異なっていますが、検討の末このような仕様になりました。我々がサポートするファイルシステムには、小文字を使うのが通例のもの（Unix、Mac、Windows）と、小文字を暗黙に大文字に変換するもの（ANSI CLの論理パス名）があるので、単に<code>make-pathname</code>を<code>:case :common</code>として使う方式（うまく動かない処理系もある）よりも適切と思われます。
 </p>
+<p>システム名やコンポーネント（モジュール、ファイル）名にアンダースコアを使うのは避けてください。論理パス名がアンダースコアに対応していないためです。（→ <a href="#g_t_8ad6_7406_30d1_30b9_540d_3092_4f7f_3046">論理パス名を使う</a>）
+</p>
+
 <p>パス名オブジェクトを与える場合、一般的には<code>#p</code>や<code>#.(make-pathname ...)</code>のようなリーダーマクロが使われるでしょう。しかし、<code>#p...</code>は<code>#.(parse-namestring '...)</code>と同等であり、<code>parse-namestring</code>は論理パス名を使わない限りまったくポータブルではないし、論理パス名もまた別のポータブルでない挙動を含んでいるという問題があります。（→ <a href="#g_t_8ad6_7406_30d1_30b9_540d_3092_4f7f_3046">論理パス名を使う</a>） また、たいていは、パス名を<code>#.(make-pathname ...)</code>で作るより、上述の文字列を使う方式のほうが簡単です。本当にパス名オブジェクトを使う必要があるのは、コンポーネントのデフォルトのファイル形式（拡張子）を上書きする必要がある場合のみです。従って、パス名オブジェクトはめったに使われないでしょう。残念ながらASDF 1には、コンポーネント名そのものをディレクトリを指す文字列としてパースして適切に扱う仕組みが無かったので、<code>#.(make-pathname ...)</code>という面倒な書き方をしなければなりませんでした。リード時評価<code>#.</code>の代わりに<code>(eval `(defsystem ... ,pathname ...))</code>で代用することも可能です。
 </p>
 <p>文字列が与えられた場合にコンポーネント型が考慮されてパス名が解釈されるのと異なり、パス名オブジェクトが与えられた場合はそのまま使われるということに注意してください。つまり、パス名オブジェクトを使うなら、コンポーネント型の制約を満たすように（例えばディレクトリや特定のファイル形式が指定されるように）あなた自身が気を配って書かなければなりません。他方では、ファイル形式の制約をあえて無視するために使うこともできます。
 </p>
 <a name="baziyonZhi-Ding-Zi-"></a>
-<h4 class="subsection">6.3.8 バージョン指定子</h4>
+<h4 class="subsection">6.3.10 バージョン指定子</h4>
 <a name="index-version-specifiers"></a>
 <a name="index-baziyonsiteisi_0028baziyonZhi-Ding-Zi-_0029"></a>
 <a name="index-_003aversion-1"></a>
@@ -297,7 +342,7 @@ feature-expression := keyword
 <p>→ <a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027">コンポーネントの共通の属性</a>
 </p>
 <a name="g_t_003arequire-1"></a>
-<h4 class="subsection">6.3.9 <code>:require</code></h4>
+<h4 class="subsection">6.3.11 <code>:require</code></h4>
 <a name="index-_003arequire-dependencies"></a>
 <a name="g_t_003arequire"></a>
 <p>依存モジュールをロードするのに（ASDFの<code>load-op</code>ではなく）処理系の<code>require</code>関数を使う場合には、<code>(:require <var>モジュール名</var>)</code>という指定をします。
@@ -306,7 +351,7 @@ feature-expression := keyword
 </p>
 
 <a name="huitiyaniYing-zitaYi-Cun-Guan-Xi-_0028_003afeature_0029"></a>
-<h4 class="subsection">6.3.10 フィーチャーに応じた依存関係（<code>:feature</code>）</h4>
+<h4 class="subsection">6.3.12 フィーチャーに応じた依存関係（<code>:feature</code>）</h4>
 <a name="g_t_30d5_30a3_30fc_30c1_30e3_30fc_306b_5fdc_3058_305f_4f9d_5b58_95a2_4fc2"></a><a name="index-_003afeature-dependencies"></a>
 
 <p>フィーチャーに応じた依存関係は<code>(:feature <var>feature-expression</var> <var>dependency</var>)</code>というフォームで指定します。システム定義がパースされる時に<var>feature-expression</var>が満たされれば（訳注: 例えば、<code>*features*</code>に<var>feature-expression</var>が含まれれば）依存関係が使われ、満たされない場合は無視されます。
@@ -316,7 +361,7 @@ feature-expression := keyword
 <p>なお、フィーチャーに応じた依存関係を、<code>if-feature</code>や廃れた機能である<a href="#feature-requirement_ff08_5ec3_6b62_ff09">feature requirement（廃止）</a>と混同しないようにしましょう。
 </p>
 <a name="Lun-Li-pasuMing-woShi-u"></a>
-<h4 class="subsection">6.3.11 論理パス名を使う</h4>
+<h4 class="subsection">6.3.13 論理パス名を使う</h4>
 <a name="g_t_8ad6_7406_30d1_30b9_540d_3092_4f7f_3046"></a><a name="index-logical-pathnames"></a>
 <a name="index-ronripasumei_0028Lun-Li-pasuMing-_0029"></a>
 
@@ -335,7 +380,7 @@ feature-expression := keyword
 </p>
 
 <a name="Lian-Sok-De-naYi-Cun-Guan-Xi-_0028_003aserial_0029"></a>
-<h4 class="subsection">6.3.12 連続的な依存関係（<code>:serial</code>）</h4>
+<h4 class="subsection">6.3.14 連続的な依存関係（<code>:serial</code>）</h4>
 <a name="index-serial-dependencies"></a>
 
 <p>モジュールの定義で<code>:serial t</code>オプションを指定すると、そのモジュールの子コンポーネントは常に前の子コンポーネントに依存しているとみなされます。これは<code>:depends-on</code>でいちいち依存関係を指定するのと同じことになります。つまり、
@@ -355,7 +400,7 @@ feature-expression := keyword
 
 
 <a name="sosunoChang-Suo-_0028_003apathname_0029"></a>
-<h4 class="subsection">6.3.13 ソースの場所（<code>:pathname</code>）</h4>
+<h4 class="subsection">6.3.15 ソースの場所（<code>:pathname</code>）</h4>
 
 <p><code>defsystem</code>でシステムを定義する際、<code>:pathname</code>オプションを任意で指定できますが、通常は必要ありません。単純なプロジェクトでは、ソースファイルはシステムと同じディレクトリにあるでしょうし、モジュールを使う場合はモジュールと同じ名前のサブディレクトリにあるでしょうから。
 </p>
@@ -389,7 +434,7 @@ feature-expression := keyword
 </li></ul>
 
 <a name="huitiyaniYing-zitakonponento_0028_003aif_002dfeature_0029"></a>
-<h4 class="subsection">6.3.14 フィーチャーに応じたコンポーネント（<code>:if-feature</code>）</h4>
+<h4 class="subsection">6.3.16 フィーチャーに応じたコンポーネント（<code>:if-feature</code>）</h4>
 <a name="index-_003aif_002dfeature-component-option"></a>
 <a name="if_002dfeature_30aa_30d7_30b7_30e7_30f3"></a>
 <p>このオプションは、特定のコンポーネントをビルドに含めるかどうかを（<code>#+</code>のように）フィーチャーに応じた条件で指定することができます。フィーチャーが満たされない場合、そのコンポーネントは無視され、また、他のコンポーネントがそのコンポーネントに依存するという記述も無視されます。リード時に評価される<code>#+</code>と異なり、このオプションを使うと、コンポーネントの階層にオブジェクトを追加し、そのオブジェクトをプロジェクトをビルドする際に利用したり、システム構造について推論したい外部のコードからアクセスしたりといったことができます。
@@ -400,7 +445,7 @@ feature-expression := keyword
 <p>このオプションはASDF 3で追加されました。詳細な情報については、<a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_5fc5_8981_306a_30d5_30a3_30fc_30c1_30e3_30fc">必要なフィーチャー</a>を参照してください。
 </p>
 <a name="entoripointo_0028_003aentry_002dpoint_0029"></a>
-<h4 class="subsection">6.3.15 エントリーポイント（<code>:entry-point</code>）</h4>
+<h4 class="subsection">6.3.17 エントリーポイント（<code>:entry-point</code>）</h4>
 <a name="index-_003aentry_002dpoint"></a>
 <a name="index-entoripointo"></a>
 <a name="g_t_30a8_30f3_30c8_30ea_30fc_30dd_30a4_30f3_30c8"></a><p><code>:entry-point</code>オプションには、<code>program-op</code>で実行可能ファイルを作る際のエントリーポイントを指定することが出来ます。
@@ -408,7 +453,7 @@ feature-expression := keyword
 <p><code>program-op</code>が呼ばれた時、このオプションに与えられたフォームは<code>uiop:ensure-function</code>で関数に変換され、<code>uiop:*image-entry-point*</code>に束縛されます。<code>uiop:ensure-function</code>は任意のオブジェクトを引数に取れますが、このオプションでは一般に<code>&quot;foo:main&quot;</code>のような文字列が使われ、その場合、実行可能ファイルは<code>foo:main</code>関数から開始することになります。なお、シンボル<code>foo:main</code>を使うとうまく動かない可能性があることに注意してください。なぜなら、ASDFが<code>defsystem</code>フォームをリードする時に<code>foo</code>パッケージが既に存在しているとは限らないからです。<code>program-op</code>に関する詳細は<a href="Zu-miIp-minooperesiyon.html#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3">組み込みのオペレーション</a>を参照してください。
 </p>
 <a name="feature-requirement_0028Fei-Zhi-_0029"></a>
-<h4 class="subsection">6.3.16 feature requirement（廃止）</h4>
+<h4 class="subsection">6.3.18 feature requirement（廃止）</h4>
 <a name="feature-requirement_ff08_5ec3_6b62_ff09"></a><p>この機能はASDF 3.1で廃止されたので、使わないでください。ほとんどの場合は<code>:if-feature</code>(→ <a href="#if_002dfeature_30aa_30d7_30b7_30e7_30f3">if-featureオプション</a>)で代替できるでしょう。
 </p>
 <p>この機能は、特定のフィーチャーが欠けているときに、コンポーネントの依存関係の連鎖が断たれるようにするためのものでした。<code>:if-component-dep-fails</code>と併せて使うと、条件つきのコンパイルを（遠回りではありますが）記述することができたのです。
