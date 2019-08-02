@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>組み込みのオペレーション (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
-<div class="header">
+<span id="g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3"></span><div class="header">
 <p>
 Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b" accesskey="n" rel="next">新しいオペレーションを定義する</a>, Previous: <a href="operesiyon.html#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3" accesskey="p" rel="prev">オペレーション</a>, Up: <a href="operesiyon.html#g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3" accesskey="u" rel="up">オペレーション</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Zu-miIp-minooperesiyon"></a>
-<h4 class="subsection">7.1.1 組み込みのオペレーション</h4>
+<span id="Zu-miIp-minooperesiyon"></span><h4 class="subsection">7.1.1 組み込みのオペレーション</h4>
 
 <p>このセクションで解説するオペレーションはすべて<code>asdf</code>パッケージにあり、総称関数<code>operate</code>で呼び出すことができます。
 </p>
@@ -104,7 +93,7 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 </pre></div>
 
 <dl>
-<dt><a name="index-compile_002dop"></a>オペレーション: <strong>compile-op</strong></dt>
+<dt id="index-compile_002dop">オペレーション: <strong>compile-op</strong></dt>
 <dd>
 <p>このオペレーションは、指定されたコンポーネントをコンパイルします。つまり、<code>cl-source-file</code>は<code>compile-file</code>でコンパイルされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>compile-op</code>が適用されます。
 </p>
@@ -112,7 +101,7 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-load_002dop"></a>オペレーション: <strong>load-op</strong></dt>
+<dt id="index-load_002dop">オペレーション: <strong>load-op</strong></dt>
 <dd>
 
 <p>このオペレーションは、指定されたコンポーネントのコンパイル済みコードをロードします。つまり、<code>cl-source-file</code>についてはそのfaslファイルがロードされ、依存する、あるいは子コンポーネントであるシステム、モジュールには再帰的に<code>load-op</code>が適用されます。なお<code>load-op</code>は<code>compile-op</code>に依存していて、faslファイルは<code>compile-op</code>の出力として得られます。
@@ -121,21 +110,21 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-prepare_002dop"></a>オペレーション: <strong>prepare-op</strong></dt>
+<dt id="index-prepare_002dop">オペレーション: <strong>prepare-op</strong></dt>
 <dd>
 <p>このオペレーションは、指定されたコンポーネントが依存する（再帰的な意味で）すべてのコンポーネントが（<code>load-op</code>で）ロードされることを保証します。<code>compile-op</code>や<code>load-op</code>が実行される前に、必要な前提を満たすためのオペレーションです。
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-load_002dsource_002dop"></a>オペレーション: <strong>load-source-op</strong></dt>
-<dt><a name="index-prepare_002dsource_002dop"></a>オペレーション: <strong>prepare-source-op</strong></dt>
+<dt id="index-load_002dsource_002dop">オペレーション: <strong>load-source-op</strong></dt>
+<dt id="index-prepare_002dsource_002dop">オペレーション: <strong>prepare-source-op</strong></dt>
 <dd>
 <p><code>load-source-op</code>は<code>load-op</code>と似ていますが、モジュールに属する<code>cl-source-file</code>をfaslからではなくソースからロードします。<code>load-source-op</code>は（<code>prepare-op</code>に代えて）<code>prepare-source-op</code>に依存しています。<code>prepare-source-op</code>は<code>prepare-op</code>に類似のオペレーションで、依存関係が<code>load-source-op</code>でロードされることを保証します。
 </p>
 </dd></dl>
 
-<a name="test_002dop"></a><dl>
-<dt><a name="index-test_002dop"></a>オペレーション: <strong>test-op</strong></dt>
+<span id="test_002dop"></span><dl>
+<dt id="index-test_002dop">オペレーション: <strong>test-op</strong></dt>
 <dd>
 <p>このオペレーションはモジュールのテストを行うためにありますが、デフォルトのメソッドは何もしません。また、デフォルトではモジュールに対して先に<code>load-op</code>が実行されることを要求します。なお、デフォルトの<code>operation-done-p</code>メソッドは（訳注: たとえ、<code>test-op</code>が正常に実行された後であっても）常に<code>nil</code>を返すので、このオペレーションは<em>決して</em>完了したことにはなりません。（→ <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a>） つまり、あなたが<code>test-op</code>を呼ぶと、既にそのシステムをテストしたことがあっても、もう一度テストしたいのだとみなされるわけです。
 </p>
@@ -191,18 +180,18 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 
 
 <dl>
-<dt><a name="index-compile_002dbundle_002dop"></a>オペレーション: <strong>compile-bundle-op</strong></dt>
-<dt><a name="index-monolithic_002dcompile_002dbundle_002dop"></a>オペレーション: <strong>monolithic-compile-bundle-op</strong></dt>
-<dt><a name="index-load_002dbundle_002dop"></a>オペレーション: <strong>load-bundle-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dbundle_002dop"></a>オペレーション: <strong>monolithic-load-bundle-op</strong></dt>
-<dt><a name="index-deliver_002dasd_002dop"></a>オペレーション: <strong>deliver-asd-op</strong></dt>
-<dt><a name="index-monolithic_002ddeliver_002dasd_002dop"></a>オペレーション: <strong>monolithic-deliver-asd-op</strong></dt>
-<dt><a name="index-lib_002dop"></a>オペレーション: <strong>lib-op</strong></dt>
-<dt><a name="index-monolithic_002dlib_002dop"></a>オペレーション: <strong>monolithic-lib-op</strong></dt>
-<dt><a name="index-dll_002dop"></a>オペレーション: <strong>dll-op</strong></dt>
-<dt><a name="index-monolithic_002ddll_002dop"></a>オペレーション: <strong>monolithic-dll-op</strong></dt>
-<dt><a name="index-image_002dop"></a>オペレーション: <strong>image-op</strong></dt>
-<dt><a name="index-program_002dop"></a>オペレーション: <strong>program-op</strong></dt>
+<dt id="index-compile_002dbundle_002dop">オペレーション: <strong>compile-bundle-op</strong></dt>
+<dt id="index-monolithic_002dcompile_002dbundle_002dop">オペレーション: <strong>monolithic-compile-bundle-op</strong></dt>
+<dt id="index-load_002dbundle_002dop">オペレーション: <strong>load-bundle-op</strong></dt>
+<dt id="index-monolithic_002dload_002dbundle_002dop">オペレーション: <strong>monolithic-load-bundle-op</strong></dt>
+<dt id="index-deliver_002dasd_002dop">オペレーション: <strong>deliver-asd-op</strong></dt>
+<dt id="index-monolithic_002ddeliver_002dasd_002dop">オペレーション: <strong>monolithic-deliver-asd-op</strong></dt>
+<dt id="index-lib_002dop">オペレーション: <strong>lib-op</strong></dt>
+<dt id="index-monolithic_002dlib_002dop">オペレーション: <strong>monolithic-lib-op</strong></dt>
+<dt id="index-dll_002dop">オペレーション: <strong>dll-op</strong></dt>
+<dt id="index-monolithic_002ddll_002dop">オペレーション: <strong>monolithic-dll-op</strong></dt>
+<dt id="index-image_002dop">オペレーション: <strong>image-op</strong></dt>
+<dt id="index-program_002dop">オペレーション: <strong>program-op</strong></dt>
 <dd>
 <p>これらは「バンドル(bundle)」に関わるオペレーションです。バンドルは、アプリケーション全体（もしくはアプリケーション中の各システム）を単一のファイルに束ねたものです。
 </p>
@@ -226,18 +215,18 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 </p>
 <p>これらの「バンドル」オペレーションは、ASDF 3以降で、アクティブにメンテナンスされているLisp処理系であれば常に利用可能ですが、メンテナンスされていない古い処理系では使えない可能性があります。この機能は、以前は特定の処理系のために<code>asdf-bundle</code>というシステムに分離されて実装されていて、さらに遡ればECL限定の機能であった<code>asdf-ecl</code>が元になっています。
 </p>
-<p>「バンドル」オペレーションの出力先のパスは、他のオブジェクトファイルと同様に<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定されたオペレーションに限っては異なります。<a name="DOCF26" href="#FOOT26"><sup>26</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
+<p>「バンドル」オペレーションの出力先のパスは、他のオブジェクトファイルと同様に<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>の設定に従いますが、<code>defsystem</code>の<code>:build-operation</code>オプションに設定されたオペレーションに限っては異なります。<a id="DOCF26" href="#FOOT26"><sup>26</sup></a> この仕様は満足のいくものとは言いがたいので、将来的には変わる可能性があります。より良い仕様についてあなたの提案はありますか？
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-concatenate_002dsource_002dop"></a>オペレーション: <strong>concatenate-source-op</strong></dt>
-<dt><a name="index-monolithic_002dconcatenate_002dsource_002dop"></a>オペレーション: <strong>monolithic-concatenate-source-op</strong></dt>
-<dt><a name="index-load_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>load-concatenated-source-op</strong></dt>
-<dt><a name="index-compile_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>compile-concatenated-source-op</strong></dt>
-<dt><a name="index-load_002dcompiled_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>load-compiled-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-load-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dcompile_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-compile-concatenated-source-op</strong></dt>
-<dt><a name="index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop"></a>オペレーション: <strong>monolithic-load-compiled-concatenated-source-op</strong></dt>
+<dt id="index-concatenate_002dsource_002dop">オペレーション: <strong>concatenate-source-op</strong></dt>
+<dt id="index-monolithic_002dconcatenate_002dsource_002dop">オペレーション: <strong>monolithic-concatenate-source-op</strong></dt>
+<dt id="index-load_002dconcatenated_002dsource_002dop">オペレーション: <strong>load-concatenated-source-op</strong></dt>
+<dt id="index-compile_002dconcatenated_002dsource_002dop">オペレーション: <strong>compile-concatenated-source-op</strong></dt>
+<dt id="index-load_002dcompiled_002dconcatenated_002dsource_002dop">オペレーション: <strong>load-compiled-concatenated-source-op</strong></dt>
+<dt id="index-monolithic_002dload_002dconcatenated_002dsource_002dop">オペレーション: <strong>monolithic-load-concatenated-source-op</strong></dt>
+<dt id="index-monolithic_002dcompile_002dconcatenated_002dsource_002dop">オペレーション: <strong>monolithic-compile-concatenated-source-op</strong></dt>
+<dt id="index-monolithic_002dload_002dcompiled_002dconcatenated_002dsource_002dop">オペレーション: <strong>monolithic-load-compiled-concatenated-source-op</strong></dt>
 <dd>
 <p><code>concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存する各システムについて、すべての<code>cl-source-file</code>を依存関係に沿った順序でそれぞれ１つのソースファイルに連結します。<code>monolithic-concatenate-source-op</code>は、ターゲットとなるシステムとそれが依存するシステムをすべて束ねて、単一のソースファイルを出力します。上のリストには、さらに連結した出力ファイルをロードしたり、コンパイルしてからロードしたりといったオペレーションが含まれています。
 </p>
@@ -251,7 +240,7 @@ Next: <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
+<h3><a id="FOOT26" href="#DOCF26">(26)</a></h3>
 <p>[訳注] この場合、<code>:build-pathname</code>の指定があれば出力先はそのパス名になります。指定がない場合は<code>component-pathname</code>の返すディレクトリが使われるようですが、公式の仕様かどうかは明示されていません。</p>
 </div>
 

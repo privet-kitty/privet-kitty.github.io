@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Some Utility Functions (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="Some-Utility-Functions"></a>
-<div class="header">
+<span id="Some-Utility-Functions"></span><div class="header">
 <p>
 Previous: <a href="Miscellaneous-Functions.html#Miscellaneous-Functions" accesskey="p" rel="prev">Miscellaneous Functions</a>, Up: <a href="Miscellaneous-additional-functionality.html#Miscellaneous-additional-functionality" accesskey="u" rel="up">Miscellaneous additional functionality</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Some-Utility-Functions-1"></a>
-<h3 class="section">11.4 Some Utility Functions</h3>
+<span id="Some-Utility-Functions-1"></span><h3 class="section">11.4 Some Utility Functions</h3>
 
 <p>The below functions are not exported by ASDF itself, but by UIOP, available since ASDF 3.
 Some of them have precursors in ASDF 2, but we recommend that for active developments,
@@ -105,7 +94,7 @@ you read its <samp>README.md</samp> and sources for more information.
 </p>
 
 <dl>
-<dt><a name="index-parse_002dunix_002dnamestring"></a>Function: <strong>parse-unix-namestring</strong> <em>name &amp;key type defaults dot-dot ensure-directory &amp;allow-other-keys</em></dt>
+<dt id="index-parse_002dunix_002dnamestring">Function: <strong>parse-unix-namestring</strong> <em>name &amp;key type defaults dot-dot ensure-directory &amp;allow-other-keys</em></dt>
 <dd><p>Coerce <var>name</var> into a <var>pathname</var> using standard Unix syntax.
 </p>
 <p>Unix syntax is used whether or not the underlying system is Unix;
@@ -133,7 +122,7 @@ When given a <code>string</code>, portably decompose it into a pathname as below
 Any directory named <code>..</code> is read as <var>dot-dot</var>,
 which must be one of <code>:back</code> or <code>:up</code> and defaults to <code>:back</code>.
 </p>
-<a name="index-_002anil_002dpathname_002a"></a>
+<span id="index-_002anil_002dpathname_002a"></span>
 <p><code>host</code>, <code>device</code> and <code>version</code> components are taken from <var>defaults</var>,
 which itself defaults to <code>*nil-pathname*</code>.
 <code>*nil-pathname*</code> is also used if <var>defaults</var> is <code>nil</code>.
@@ -152,7 +141,7 @@ so that <code>parse-unix-namestring</code> will throw an error if the pathname i
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-merge_002dpathnames_002a"></a>Function: <strong>merge-pathnames*</strong> <em>specified &amp;optional defaults</em></dt>
+<dt id="index-merge_002dpathnames_002a">Function: <strong>merge-pathnames*</strong> <em>specified &amp;optional defaults</em></dt>
 <dd>
 <p>This function is a replacement for <code>merge-pathnames</code> that uses the host and device
 from the <var>defaults</var> rather than the <var>specified</var> pathname when the latter
@@ -163,7 +152,7 @@ of the absolute pathnames they are relative to.
 </dd></dl>
 
 <dl>
-<dt><a name="index-subpathname"></a>Function: <strong>subpathname</strong> <em>pathname subpath &amp;key type</em></dt>
+<dt id="index-subpathname">Function: <strong>subpathname</strong> <em>pathname subpath &amp;key type</em></dt>
 <dd>
 <p>This function takes a <var>pathname</var> and a <var>subpath</var> and a <var>type</var>.
 If <var>subpath</var> is already a <code>pathname</code> object (not namestring),
@@ -178,14 +167,14 @@ for portably resolving relative pathnames in your code base.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-subpathname_002a"></a>Function: <strong>subpathname*</strong> <em>pathname subpath &amp;key type</em></dt>
+<dt id="index-subpathname_002a">Function: <strong>subpathname*</strong> <em>pathname subpath &amp;key type</em></dt>
 <dd>
 <p>This function returns <code>nil</code> if the base <var>pathname</var> is <code>nil</code>,
 otherwise acts like <code>subpathname</code>.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-run_002dprogram"></a>Function: <strong>run-program</strong> <em>command &amp;key ignore-error-status force-shell input output error-output if-input-does-not-exist if-output-exists if-error-output-exists element-type external-format &amp;allow-other-keys</em></dt>
+<dt id="index-run_002dprogram">Function: <strong>run-program</strong> <em>command &amp;key ignore-error-status force-shell input output error-output if-input-does-not-exist if-output-exists if-error-output-exists element-type external-format &amp;allow-other-keys</em></dt>
 <dd>
 <p><code>run-program</code> takes a <var>command</var> argument that is either
 a list of a program name or path and its arguments,
@@ -265,7 +254,7 @@ See the source code for more documentation.
 </dd></dl>
 
 <dl>
-<dt><a name="index-slurp_002dinput_002dstream"></a>Function: <strong>slurp-input-stream</strong> <em>processor input-stream &amp;key</em></dt>
+<dt id="index-slurp_002dinput_002dstream">Function: <strong>slurp-input-stream</strong> <em>processor input-stream &amp;key</em></dt>
 <dd>
 <p><code>slurp-input-stream</code> is a generic function of two arguments, a target object and an input stream,
 and accepting keyword arguments.

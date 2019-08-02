@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>複雑な例 (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,15 +79,13 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_8907_96d1_306a_4f8b"></a>
-<div class="header">
+<span id="g_t_8907_96d1_306a_4f8b"></span><div class="header">
 <p>
 Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" rel="next">defsystemの文法</a>, Previous: <a href="Dan-Chun-naLi.html#g_t_5358_7d14_306a_4f8b" accesskey="p" rel="prev">単純な例</a>, Up: <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b" accesskey="u" rel="up">defsystemでシステムを定義する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Fu-Za-naLi"></a>
-<h3 class="section">6.2 複雑な例</h3>
-<a name="index-defsystem-1"></a>
+<span id="Fu-Za-naLi"></span><h3 class="section">6.2 複雑な例</h3>
+<span id="index-defsystem-1"></span>
 
 <p><code>defsystem</code>のより複雑な使い方を説明するために、いくぶん込み入った例を挙げてみましょう。
 </p>
@@ -185,7 +174,7 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 
 </li><li> より一般的な話をすれば、<code>.asd</code>ファイルの中では<code>asdf</code>、<code>common-lisp</code>、<code>uiop</code>パッケージのシンボルを常に使うことができます。中でもいちばん重要なのは<code>defsystem</code>ですが、パッケージの接頭辞を使って<code>asdf:defsystem</code>と書くのは冗長で悪いやり方です。単に<code>(defsystem ...)</code>と書きましょう。パッケージの接頭辞を付けるのは、（<code>asdf</code>パッケージを<code>use</code>していないパッケージから）動的にシステム定義を生成するような場合のみにしてください。
 
-</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a name="DOCF14" href="#FOOT14"><sup>14</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
+</li><li> <code>asdf-user</code>は実はASDF 3から使えるようになったパッケージです。ASDF 1と2には<samp>.asd</samp>内のパッケージに関しておかしな仕様がありましたが<a id="DOCF14" href="#FOOT14"><sup>14</sup></a>、ASDF 3では廃止されました。そして、今やすべての処理系がASDF 3を備えていますから、ASDF 2との互換性について気にするべきではありません。我々はもはやASDF 2をサポートしていないし、あなたも無視することを勧めます。
 
 </li><li> <code>asdf-user</code>が<code>uiop</code>を<code>use</code>しているのはASDF 3.1からであり、それ以前のASDF 3では<code>uiop/package</code>のみが使えました。したがって、UIOPの関数を使う場合には、いちいち<code>uiop:</code>という接頭辞を付けるか、システムの依存関係を<code>(defsystem foo :depends-on ((:version &quot;asdf&quot; &quot;3.1.2&quot;))</code>で明示するか、あるいは<code>#-asdf3.1 (error &quot;MY-SYSTEM requires ASDF 3.1.2&quot;)</code>という行を加えるかすることを勧めます。
 
@@ -197,7 +186,7 @@ Next: <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5" accesskey="n" re
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT14" href="#DOCF14">(14)</a></h3>
+<h3><a id="FOOT14" href="#DOCF14">(14)</a></h3>
 <p>ASDF 1、2（バージョン2.26まで）は、各<samp>.asd</samp>ファイルに対して<code>asdf<em>N</em></code>という一時的なパッケージを作っては削除していました。これは名前の衝突を減らすための仕様でしたが、目的にかなってもいなかったし、ものごとを複雑にしただけでした。ASDF 3は単に共通のパッケージである<code>asdf-user</code>を使い、シンボル衝突の回避はCommon Lispの慣習に委ねます。<code>asdf-user</code>パッケージの特筆すべき点は、<code>uiop/common-lisp</code>を<code>use</code>していることです。このパッケージは<code>common-lisp</code>パッケージのすべてのシンボルを再エクスポートしていて、いくつかのCommon Lisp処理系のANSI CL違反の挙動が修正されています。しかし、Corman Lisp、GCL、Genera、MCLを使っているのでなければ、この点を気にするべきではありません。</p>
 </div>
 

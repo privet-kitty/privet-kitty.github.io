@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>関連する関数 (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,31 +79,29 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_95a2_9023_3059_308b_95a2_6570"></a>
-<div class="header">
+<span id="g_t_95a2_9023_3059_308b_95a2_6570"></span><div class="header">
 <p>
 Previous: <a href="Yi-Cun-Guan-Xi-nituite.html#g_t_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066" accesskey="p" rel="prev">依存関係について</a>, Up: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="u" rel="up">ASDFのオブジェクトモデル</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Guan-Lian-suruGuan-Shu-"></a>
-<h3 class="section">7.4 関連する関数</h3>
+<span id="Guan-Lian-suruGuan-Shu-"></span><h3 class="section">7.4 関連する関数</h3>
 
 <dl>
-<dt><a name="index-version_002dsatisfies-1"></a>総称関数: <strong>version-satisfies</strong> <em><var>version</var> <var>version-spec</var></em></dt>
+<dt id="index-version_002dsatisfies-1">総称関数: <strong>version-satisfies</strong> <em><var>version</var> <var>version-spec</var></em></dt>
 <dd><p><var>version</var>が<var>version-spec</var>を満たすか判定する総称関数です。組み込みのメソッドとしては、<var>version</var>が<code>component</code>のものと文字列のものが用意されており、<code>component</code>の場合はそのバージョン文字列が使われます。いっぽう、<var>version-spec</var>は文字列であるべきです。
 </p>
 <p><var>version</var>が<var>version-spec</var>を満たしているとは、<var>version-spec</var>と同じか新しいバージョンであることです。したがって、<code>&quot;1.9.1&quot;</code>、<code>&quot;1.9.2&quot;</code>、<code>&quot;1.10&quot;</code>はすべて<code>&quot;1.9.1&quot;</code>を満たしますが、<code>&quot;1.8.4&quot;</code>や<code>&quot;1.9&quot;</code>は満たしません。<code>version-satisfies</code>がバージョンの文字列をどのようにパースし、解釈するかについては、<a href="defsystemnoWenFa-.html#g_t_30d0_30fc_30b8_30e7_30f3_6307_5b9a_5b50">バージョン指定子</a>と<a href="konponentonoGong-Tong-noShu-Xing-.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8_306e_5171_901a_306e_5c5e_6027">コンポーネントの共通の属性</a>を参照してください。
 </p>
 <p>ASDF 3.0.1以前（ASDF 1、2を含む）では、<code>version-satisfies</code>は<var>version</var>と<var>version-spec</var>が同じメジャーバージョン番号（１番目の整数）であることも必要条件にしていました。メジャーバージョンが違う場合は<var>version-spec</var>を満たさないとみなされたのです。しかし、この挙動はドキュメントには書かれておらず、おそらく仕様として依拠することはできなかったし、一部のユーザーにとっては悩みの種でした。ASDF 3.0.1から、<code>version-satisfies</code>はメジャーバージョンを特別扱いしなくなり、単にバージョンが同じか新しければ<code>t</code>を返すようになりました。
 </p>
-<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
+<p>なお、バージョン指定付きの依存関係を表す<code>(:version ...)</code>構文<a id="DOCF32" href="#FOOT32"><sup>32</sup></a>は現在は特定のバージョン「以上」という指定しかできませんが、将来的には「未満」も指定できるようになるかもしれません。
 </p></dd></dl>
 
 <div class="footnote">
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
+<h3><a id="FOOT32" href="#DOCF32">(32)</a></h3>
 <p>[訳注] <code>defsystem</code>の<code>:depends-on</code>オプションで使われる構文です。（→ <a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>）</p>
 </div>
 

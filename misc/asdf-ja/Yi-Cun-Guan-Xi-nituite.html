@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>依存関係について (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,18 +79,16 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066"></a>
-<div class="header">
+<span id="g_t_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066"></span><div class="header">
 <p>
 Next: <a href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570" accesskey="n" rel="next">関連する関数</a>, Previous: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="p" rel="prev">コンポーネント</a>, Up: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="u" rel="up">ASDFのオブジェクトモデル</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Yi-Cun-Guan-Xi-nituite"></a>
-<h3 class="section">7.3 依存関係について</h3>
+<span id="Yi-Cun-Guan-Xi-nituite"></span><h3 class="section">7.3 依存関係について</h3>
 
 <p>ビルドを成功させるためには、アクションのグラフが循環的であってはなりません。あなたが（ASDFの純粋なユーザーであれ、拡張を実装しているのであれ）依存関係のグラフにループを含めてしまうと、ASDFは盛大なエラーを引き起こすでしょう。依存の向きを明確にするため、ASDF 3では、アクションが他のアクションに依存していることを<em>requiring</em>、<em>required</em>という言葉で表しています。つまり&ldquo;requiring action&rdquo;は、それ自身が<code>perform</code>される前に、そのすべての&ldquo;required action&rdquo;が完了することに依存（<code>depends-on</code>）しているわけです。
 </p>
-<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a name="DOCF31" href="#FOOT31"><sup>31</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的なオペレーションである<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対するオペレーションを行う前に、まずはすべての子コンポーネントに対して同じオペレーションを行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のようなオペレーションは、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備するオペレーションを行う前に、まずは親コンポーネントに対して同じオペレーションを行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまるオペレーションであり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
+<p><code>defsystem</code>の文法を使うと、ユーザーはオブジェクトの階層グラフに沿った直接の依存関係（コンポーネントとその親コンポーネント、子コンポーネント、兄弟コンポーネント<a id="DOCF31" href="#FOOT31"><sup>31</sup></a>）を簡単に書くことができますし、CLOSメソッドをカスタマイズすることでさらに複雑な依存関係を表現することも可能です。もっとも一般的なオペレーションである<code>load-op</code>、<code>compile-op</code>、<code>load-source-op</code>などはコンポーネントの階層を「下向き」に伝搬し、「共変的」に振る舞います。つまり、親コンポーネントに対するオペレーションを行う前に、まずはすべての子コンポーネントに対して同じオペレーションを行わなくてはならないわけです。いっぽう、<code>prepare-op</code>や（ASDF 3で導入された）<code>prepare-souce-op</code>のようなオペレーションは、コンポーネントの階層を「上向き」に伝搬し、「反変的」に振る舞います。つまり、子コンポーネントに対するコンパイルを準備するオペレーションを行う前に、まずは親コンポーネントに対して同じオペレーションを行わなくてはならず、そのような挙動によって、子コンポーネントがコンパイル・ロードされる前に、親コンポーネントの依存関係がすべて（コンパイル、）ロードされることが保証されるわけです。最後に、<code>test-op</code>や<code>load-bundle-op</code>はターゲットのシステムのレベルにとどまるオペレーションであり、階層を伝搬していくことはありません。これらはシステムに対してグローバルな処理を行うのです。
 </p>
 <p>[訳者補足]
 </p>
@@ -119,7 +108,7 @@ Next: <a href="Guan-Lian-suruGuan-Shu-.html#g_t_95a2_9023_3059_308b_95a2_6570" a
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
+<h3><a id="FOOT31" href="#DOCF31">(31)</a></h3>
 <p>[訳注] ASDFでは、<code>:depends-on</code>でつながっているコンポーネントをsibling（兄弟姉妹）と呼びます。</p>
 </div>
 

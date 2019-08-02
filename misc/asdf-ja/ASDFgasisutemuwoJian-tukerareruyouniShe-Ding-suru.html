@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ASDFがシステムを見つけられるように設定する (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b"></a>
-<div class="header">
+<span id="ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b"></span><div class="header">
 <p>
 Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09" accesskey="n" rel="next">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>, Previous: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="p" rel="prev">ASDFを設定する</a>, Up: <a href="ASDFwoShe-Ding-suru.html#ASDF_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFを設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru"></a>
-<h3 class="section">4.1 ASDFがシステムを見つけられるように設定する</h3>
+<span id="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru"></span><h3 class="section">4.1 ASDFがシステムを見つけられるように設定する</h3>
 
 
 <p>システムをコンパイル、ロードするためには、システム定義の書かれた<samp>.asd</samp>ファイルをASDFが見つけられるように設定しなければなりません。これには簡単なものから複雑なものまで、多数のやり方があります:
@@ -106,7 +95,7 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu
 <li> <samp>~/common-lisp/</samp> または
 </li><li> <samp>~/.local/share/common-lisp/source/</samp>
 </li></ul>
-<p>のことです。これらの場所にソフトウェアをインストールするなら特に追加設定は必要ないので、<a name="DOCF4" href="#FOOT4"><sup>4</sup></a>
+<p>のことです。これらの場所にソフトウェアをインストールするなら特に追加設定は必要ないので、<a id="DOCF4" href="#FOOT4"><sup>4</sup></a>
 次のセクションに進んでかまいません。（→ <a href="sisutemuworodosuru.html#g_t_30b7_30b9_30c6_30e0_3092_30ed_30fc_30c9_3059_308b">システムをロードする</a>）
 </p>
 </li><li> Quicklispのようなパッケージインストーラを使っている場合、既にそれらがASDFの設定を済ませているでしょう。
@@ -115,9 +104,9 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu
 
 
 <p>まず初めに<samp>~/.config/common-lisp/source-registry.conf.d/</samp>ディレクトリ
-<a name="DOCF5" href="#FOOT5"><sup>5</sup></a>
+<a id="DOCF5" href="#FOOT5"><sup>5</sup></a>
 を作り、このディレクトリに拡張子が<samp>.conf</samp>
-<a name="DOCF6" href="#FOOT6"><sup>6</sup></a>
+<a id="DOCF6" href="#FOOT6"><sup>6</sup></a>
 のファイルを作ります。例えば<samp>50-luser-lisp.conf</samp>という名前のファイルを作ったとしましょう。このファイルに
 <code>(:tree &quot;/home/luser/lisp/&quot;)</code>
 という記述を加えると、ASDFは<samp>/home/luser/lisp/</samp>以下のディレクトリを再帰的にスキャンして、すべての<samp>.asd</samp>ファイルを見つけるようになります。
@@ -148,13 +137,13 @@ Next: <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT4" href="#DOCF4">(4)</a></h3>
+<h3><a id="FOOT4" href="#DOCF4">(4)</a></h3>
 <p><samp>~/common-lisp/</samp>がデフォルトのパスに含まれるのはASDF 3.1.2以降です。それ以前のASDFを使っている場合は、後述のように、このパスを使うことを明示的に設定する必要があるかもしれません。
 </p>
 <p>[訳注] また、Windowsの場合、後者は<samp>%LOCALAPPDATA%/common-lisp/source/</samp>または<samp>%APPDATA%/Local/common-lisp/source/</samp>に相当することが多いでしょう。詳細については<a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a>を参照するべきですが、特に必要でなければ<samp>~/common-lisp/</samp>を使うことを推奨します。</p>
-<h3><a name="FOOT5" href="#DOCF5">(5)</a></h3>
+<h3><a id="FOOT5" href="#DOCF5">(5)</a></h3>
 <p>Windowsの場合、ASDF 3.1.5以降では、<samp>%LOCALAPPDATA%</samp>以下に<samp>config/common-lisp/source-registry.conf.d/</samp>ディレクトリを作りましょう。<samp>%LOCALAPPDATA%</samp>は通常なら<samp>~/AppData/Local/</samp>を指していますが、実際の値は<code>CMD.EXE</code>上で<code>echo %LOCALAPPDATA%</code>を実行することで確かめることができます。</p>
-<h3><a name="FOOT6" href="#DOCF6">(6)</a></h3>
+<h3><a id="FOOT6" href="#DOCF6">(6)</a></h3>
 <p>拡張子が<samp>.conf</samp>でないファイルは無視されるので、これを利用して特定の設定ファイルを無効にすることができます。例えば、エディタのバックアップなどのファイルは同じディレクトリにあっても読み込まれないでしょう。
 </p>
 <p>また、ASDFは<samp>.</samp>で始まるファイル名も無視します。

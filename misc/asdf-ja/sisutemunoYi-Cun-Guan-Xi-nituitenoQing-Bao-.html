@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>システムの依存関係についての情報 (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,27 +79,25 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831"></a>
-<div class="header">
+<span id="g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831"></span><div class="header">
 <p>
 Previous: <a href="_002asource_002dregistry_002dparameter_002aBian-Shu-.html#g_t_002asource_002dregistry_002dparameter_002a_5909_6570" accesskey="p" rel="prev"><code>*source-registry-parameter*</code>変数</a>, Up: <a href="intorosupekusiyon.html#g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3" accesskey="u" rel="up">イントロスぺクション</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-"></a>
-<h4 class="subsection">8.11.2 システムの依存関係についての情報</h4>
+<span id="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-"></span><h4 class="subsection">8.11.2 システムの依存関係についての情報</h4>
 
 <p>システム間の依存関係について知りたい時には、次の３つの関数が使えます。これらは依存関係の解析を行いたいプログラマのために用意されています。
 </p>
 <dl>
-<dt><a name="index-system_002ddefsystem_002ddepends_002don"></a>関数: <strong>system-defsystem-depends-on</strong> <em>system</em></dt>
+<dt id="index-system_002ddefsystem_002ddepends_002don">関数: <strong>system-defsystem-depends-on</strong> <em>system</em></dt>
 </dl>
 
 <dl>
-<dt><a name="index-system_002ddepends_002don"></a>関数: <strong>system-depends-on</strong> <em>system</em></dt>
+<dt id="index-system_002ddepends_002don">関数: <strong>system-depends-on</strong> <em>system</em></dt>
 </dl>
 
 <dl>
-<dt><a name="index-system_002dweakly_002ddepends_002don"></a>関数: <strong>system-weakly-depends-on</strong> <em>system</em></dt>
+<dt id="index-system_002dweakly_002ddepends_002don">関数: <strong>system-weakly-depends-on</strong> <em>system</em></dt>
 <dd><p><var>system</var>が弱依存しているシステムの名前のリストを返します。弱依存は<em>廃止予定</em>の機能であり、使うことは推奨されていません。<code>defsystem</code>フォームの<code>:weakly-depends-on</code>オプションに指定されたシステムについては、ASDFはそれらのシステムを探しますが、仮に見つからなくてもエラーを通知<em>しません</em>。（→ <a href="defsystemnoWenFa-.html#g_t_5f31_3044_4f9d_5b58_95a2_4fc2">弱い依存関係</a>）
 </p>
 </dd></dl>

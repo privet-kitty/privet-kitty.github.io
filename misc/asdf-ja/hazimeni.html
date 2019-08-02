@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>はじめに (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,28 +79,26 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_306f_3058_3081_306b"></a>
-<div class="header">
+<span id="g_t_306f_3058_3081_306b"></span><div class="header">
 <p>
 Next: <a href="kuitukusutatogaido.html#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9" accesskey="n" rel="next">クイックスタートガイド</a>, Previous: <a href="index.html#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="hazimeni"></a>
-<h2 class="chapter">1 はじめに</h2>
-<a name="index-ASDF_002drelated-features"></a>
-<a name="index-_002afeatures_002a-1"></a>
-<a name="index-Testing-for-ASDF"></a>
-<a name="index-ASDF-versions"></a>
-<a name="index-_003aasdf"></a>
-<a name="index-_003aasdf2"></a>
-<a name="index-_003aasdf3"></a>
+<span id="hazimeni"></span><h2 class="chapter">1 はじめに</h2>
+<span id="index-ASDF_002drelated-features"></span>
+<span id="index-_002afeatures_002a-1"></span>
+<span id="index-Testing-for-ASDF"></span>
+<span id="index-ASDF-versions"></span>
+<span id="index-_003aasdf"></span>
+<span id="index-_003aasdf2"></span>
+<span id="index-_003aasdf3"></span>
 
 <p>ASDF (Another System Definition Facility) は<em>ビルドシステム</em>です。ASDFは、システムがどのようなコンポーネント（＝サブシステムとファイル）を含んでいるか、それらにどの順序でどういう操作をすれば良いか記述するためのツールであり、Common Lispソフトウェアのコンパイル・ロード・テストなどを支援します。ASDFを使ったことがない方は、<a href="kuitukusutatogaido.html#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30c8_30ac_30a4_30c9">クイックスタートガイド</a>を読むと良いでしょう。
 </p>
 <p>このマニュアルは３つのケースを想定して書かれています: １つ目は、ユーザーとして他人のコードを使いたい場合であり、２つ目は、開発者としてシステムをビルドする手順を記述したい場合です。そして３つ目は、（ASDFのような）Common Lisp拡張の実装者として、ビルドシステムそのものに関わりたい場合です。より具体的には、<a href="ASDFwoShi-u.html#ASDF_3092_4f7f_3046">ASDFを使う</a>にシステムをロードする方法が、<a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b">defsystemでシステムを定義する</a>にシステムを定義する方法が、<a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb">ASDFのオブジェクトモデル</a>にASDFの内部仕様と拡張方法が書かれています。
 </p>
 <p>ASDFはライブラリやシステムを<em>インストールするためのツールではありません</em>。ASDFの役割は言うなれば<code>make</code>や<code>ant</code>のようなものであり、パッケージマネージャとしての機能は持ちません。特に、QuicklispやASDF-InstallのようにASDFシステムを探してダウンロードするツールと、ASDFそのものとを混同しないようにしましょう。ASDF-Installは、その名に反してASDFの一部ではなく独立したソフトウェアであり、また、ずっと前からメンテナンスされておらず、使われてもいません。我々は代わりに<a href="http://www.quicklisp.org/">Quicklisp</a>を推奨します。Quicklispは優秀なパッケージマネージャであり、現在もメンテナンスが続いています。もしあなたが、自分でコードを修正できるように、tarアーカイブではなくバージョン管理システムのリポジトリからソフトウェアを手に入れたい場合は、<a href="http://common-lisp.net/project/clbuild/">clbuild</a>を使うと良いでしょう。
-ソフトウェアをインストールする場所としては<samp>~/common-lisp/</samp>を推奨します。ASDF 3.1.2 (2014)からは、このディレクトリは<a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ソースレジストリ</a>の既定のパスに含まれています。<a name="DOCF1" href="#FOOT1"><sup>1</sup></a>
+ソフトウェアをインストールする場所としては<samp>~/common-lisp/</samp>を推奨します。ASDF 3.1.2 (2014)からは、このディレクトリは<a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ソースレジストリ</a>の既定のパスに含まれています。<a id="DOCF1" href="#FOOT1"><sup>1</sup></a>
 </p>
 <p>なお、このマニュアルは未完成です。基本事項はすべて網羅されていますが、多くの発展的な話題についてはわずかに触れているのみですし、例もあまり多くはありません。最終的な情報源はソースコードであり、使用例についてはQuicklispに登録されているフリーソフトウェアを参照するのがベストでしょう。また、助言を得る場所としては、<a href="meringurisuto.html#g_t_30e1_30fc_30ea_30f3_30b0_30ea_30b9_30c8">メーリングリスト</a>が良いでしょう。
 </p>
@@ -118,7 +107,7 @@ Next: <a href="kuitukusutatogaido.html#g_t_30af_30a4_30c3_30af_30b9_30bf_30fc_30
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<h3><a id="FOOT1" href="#DOCF1">(1)</a></h3>
 <p>[訳注] Quicklispがインストールされている場合、手動でソフトウェアを置く場所としては<code>ql:*local-project-directories*</code>(<samp>~/quicklisp/local-projects/</samp>など)も使えます。同名のシステムがある場合、ローカルプロジェクトのものがQuicklisp配布のバージョンに優先します。Quicklispはこれらのパスを（少なくとも、<code>(ql:register-local-projects)</code>を実行すれば）ASDFからも使えるように自動設定しているはずです。
 </p>
 <p>また、すべてを<a href="https://github.com/roswell/roswell">Roswell</a>で管理するという方法もあるでしょう。Roswellは、処理系マネージャとしての機能を中心にした高機能なコマンドラインツールです。Roswellから処理系を起動している場合は<samp>~/.roswell/local-projects/</samp>が同じように使えます。

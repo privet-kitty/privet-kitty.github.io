@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>How do I create a system definition where all the source files have a .cl extension? (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f"></a>
-<div class="header">
+<span id="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f"></span><div class="header">
 <p>
 Next: <a href="How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f.html#How-do-I-mark-a-source-file-to-be-loaded-only-and-not-compiled_003f" accesskey="n" rel="next">How do I mark a source file to be loaded only and not compiled?</a>, Previous: <a href="I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f.html#I-want-to-put-my-module_0027s-files-at-the-top-level_002e-How-do-I-do-this_003f" accesskey="p" rel="prev">I want to put my module's files at the top level.  How do I do this?</a>, Up: <a href="Issues-with-using-and-extending-ASDF-to-define-systems.html#Issues-with-using-and-extending-ASDF-to-define-systems" accesskey="u" rel="up">Issues with using and extending ASDF to define systems</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f-1"></a>
-<h4 class="subsection">13.6.5 How do I create a system definition where all the source files have a .cl extension?</h4>
+<span id="How-do-I-create-a-system-definition-where-all-the-source-files-have-a-_002ecl-extension_003f-1"></span><h4 class="subsection">13.6.5 How do I create a system definition where all the source files have a .cl extension?</h4>
 
 <p>Starting with ASDF 2.014.14, you may just pass
 the builtin class <code>cl-source-file.cl</code> as

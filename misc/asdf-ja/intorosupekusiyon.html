@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>イントロスぺクション (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,19 +79,17 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3"></a>
-<div class="header">
+<span id="g_t_30a4_30f3_30c8_30ed_30b9_307a_30af_30b7_30e7_30f3"></span><div class="header">
 <p>
 Next: <a href="Xian-Zhuang-.html#g_t_73fe_72b6" accesskey="n" rel="next">現状</a>, Previous: <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI" accesskey="p" rel="prev">ソースレジストリのAPI</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="intorosupekusiyon"></a>
-<h3 class="section">8.11 イントロスぺクション</h3>
+<span id="intorosupekusiyon"></span><h3 class="section">8.11 イントロスぺクション</h3>
 
 <table class="menu" border="0" cellspacing="0">
-<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="_002asource_002dregistry_002dparameter_002aBian-Shu-.html#g_t_002asource_002dregistry_002dparameter_002a_5909_6570" accesskey="1"><code>*source-registry-parameter*</code>変数</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="_002asource_002dregistry_002dparameter_002aBian-Shu-.html#g_t_002asource_002dregistry_002dparameter_002a_5909_6570" accesskey="1"><code>*source-registry-parameter*</code>変数</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-.html#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831" accesskey="2">システムの依存関係についての情報</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="sisutemunoYi-Cun-Guan-Xi-nituitenoQing-Bao-.html#g_t_30b7_30b9_30c6_30e0_306e_4f9d_5b58_95a2_4fc2_306b_3064_3044_3066_306e_60c5_5831" accesskey="2">システムの依存関係についての情報</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 

@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>アウトプットトランスレーションを設定するDSL (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL"></a>
-<div class="header">
+<span id="g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL"></span><div class="header">
 <p>
 Next: <a href="She-Ding-deirekutori_0028autopututotoransuresiyon_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="n" rel="next">設定ディレクトリ（アウトプットトランスレーション）</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028autopututotoransuresiyon_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_ff09" accesskey="p" rel="prev">後方互換性のための機能（アウトプットトランスレーション）</a>, Up: <a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがコンパイルされたファイルを保持する場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="autopututotoransuresiyonwoShe-Ding-suruDSL"></a>
-<h3 class="section">9.3 アウトプットトランスレーションを設定するDSL</h3>
+<span id="autopututotoransuresiyonwoShe-Ding-suruDSL"></span><h3 class="section">9.3 アウトプットトランスレーションを設定するDSL</h3>
 
 <p>アウトプットトランスレーションの設定は、S式によるDSLで行います。以下はその文法です:
 </p>
@@ -111,7 +100,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF48" href="#FOOT48">(48)</a>
+    ;; 最後に指定されます。<a id="DOCF48" href="#FOOT48">(48)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -177,7 +166,7 @@ TRANSLATION-FUNCTION :=
    `((:root ,wild-subdir ,wild-file)
      (:root ,wild-subdir :implementation ,wild-file)))
 </pre></div>
-<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a name="DOCF49" href="#FOOT49"><sup>49</sup></a>
+<p>しかし、ASDF 2.011.4からは次のように簡単に書けるようになりました。<a id="DOCF49" href="#FOOT49"><sup>49</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(:root (:root :**/ :implementation :*.*.*))
 </pre></div>
@@ -192,11 +181,11 @@ TRANSLATION-FUNCTION :=
 <p><code>:inherit-configuration</code>は次の設定について再帰的に処理を適用します。次の設定とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの設定</a>のリストにおいて下で処理される設定のことです。
 </p>
 <p>ユーザーキャッシュに関するディレクティブは以下の通りです:
-<a name="index-asdf_003a_002auser_002dcache_002a"></a>
+<span id="index-asdf_003a_002auser_002dcache_002a"></span>
 </p><ul>
 <li> <code>:enable-user-cache</code>は <code>(t :user-cache)</code>と同等です。
 </li><li> <code>:disable-cache</code>は<code>(t t)</code>と同等です。
-</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a name="DOCF50" href="#FOOT50"><sup>50</sup></a>
+</li><li> <code>:user-cache</code>は<code>asdf:*user-cache*</code>の値に対応します。unixならデフォルトでは<code>(:home &quot;.cache&quot; &quot;common-lisp&quot; :implementation)</code>と同等です。<a id="DOCF50" href="#FOOT50"><sup>50</sup></a>
 </li></ul>
 
 
@@ -204,11 +193,11 @@ TRANSLATION-FUNCTION :=
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
+<h3><a id="FOOT48" href="#DOCF48">(48)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="autopututotoransuresiyonnoShe-Ding-.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_306e_8a2d_5b9a">アウトプットトランスレーションの一連の設定</a>において、<strong>後</strong>で処理される設定を指します。<code>:ignore-inherited-configuration</code>の指定があると、アウトプットトランスレーションの設定がそこで終わることになります。</p>
-<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
+<h3><a id="FOOT49" href="#DOCF49">(49)</a></h3>
 <p>[訳注] 入力指示子の<code>:root</code>は<code>(:root :**/ :*.*.*)</code>の略であり、すべてのホスト、デバイスのすべてのファイルにマッチします。このマッピングが適用されると、例えば<samp>#P&quot;C:/Users/foo/common-lisp/bar.lisp&quot;</samp>は<samp>#P&quot;C:/Users/foo/common-lisp/sbcl-1.4.2-win-x64/bar.lisp&quot;</samp>などに変換されます。</p>
-<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
+<h3><a id="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>はデフォルトでは<code>(uiop:xdg-cache-home &quot;common-lisp&quot; :implementation)</code>にセットされます。（→ <a href="XDGbesudeirekutori.html#XDG_30d9_30fc_30b9_30c7_30a3_30ec_30af_30c8_30ea">XDGベースディレクトリ</a>）</p>
 </div>
 

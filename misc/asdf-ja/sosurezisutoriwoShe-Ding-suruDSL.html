@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ソースレジストリを設定するDSL (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,30 +79,28 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL"></a>
-<div class="header">
+<span id="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_3092_8a2d_5b9a_3059_308bDSL"></span><div class="header">
 <p>
 Next: <a href="She-Ding-deirekutori_0028sosurezisutori_0029.html#g_t_8a2d_5b9a_30c7_30a3_30ec_30af_30c8_30ea_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="n" rel="next">設定ディレクトリ（ソースレジストリ）</a>, Previous: <a href="Hou-Fang-Hu-Huan-Xing-notamenoJi-Neng-_0028sosurezisutori_0029.html#g_t_5f8c_65b9_4e92_63db_6027_306e_305f_3081_306e_6a5f_80fd_ff08_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_ff09" accesskey="p" rel="prev">後方互換性のための機能（ソースレジストリ）</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="sosurezisutoriwoShe-Ding-suruDSL"></a>
-<h3 class="section">8.5 ソースレジストリを設定するDSL</h3>
-<a name="index-_003ainherit_002dconfiguration-source-config-directive"></a>
-<a name="index-inherit_002dconfiguration-source-config-directive"></a>
-<a name="index-_003aignore_002dinvalid_002dentries-source-config-directive"></a>
-<a name="index-ignore_002dinvalid_002dentries-source-config-directive"></a>
-<a name="index-_003adirectory-source-config-directive"></a>
-<a name="index-directory-source-config-directive"></a>
-<a name="index-_003atree-source-config-directive"></a>
-<a name="index-tree-source-config-directive"></a>
-<a name="index-_003aexclude-source-config-directive"></a>
-<a name="index-exclude-source-config-directive"></a>
-<a name="index-_003aalso_002dexclude-source-config-directive"></a>
-<a name="index-also_002dexclude-source-config-directive"></a>
-<a name="index-_003ainclude-source-config-directive"></a>
-<a name="index-include-source-config-directive"></a>
-<a name="index-_003adefault_002dregistry-source-config-directive"></a>
-<a name="index-default_002dregistry-source-config-directive"></a>
+<span id="sosurezisutoriwoShe-Ding-suruDSL"></span><h3 class="section">8.5 ソースレジストリを設定するDSL</h3>
+<span id="index-_003ainherit_002dconfiguration-source-config-directive"></span>
+<span id="index-inherit_002dconfiguration-source-config-directive"></span>
+<span id="index-_003aignore_002dinvalid_002dentries-source-config-directive"></span>
+<span id="index-ignore_002dinvalid_002dentries-source-config-directive"></span>
+<span id="index-_003adirectory-source-config-directive"></span>
+<span id="index-directory-source-config-directive"></span>
+<span id="index-_003atree-source-config-directive"></span>
+<span id="index-tree-source-config-directive"></span>
+<span id="index-_003aexclude-source-config-directive"></span>
+<span id="index-exclude-source-config-directive"></span>
+<span id="index-_003aalso_002dexclude-source-config-directive"></span>
+<span id="index-also_002dexclude-source-config-directive"></span>
+<span id="index-_003ainclude-source-config-directive"></span>
+<span id="index-include-source-config-directive"></span>
+<span id="index-_003adefault_002dregistry-source-config-directive"></span>
+<span id="index-default_002dregistry-source-config-directive"></span>
 
 <p>ソースレジストリの設定は、S式によるDSLで行います。以下はその文法です:
 </p>
@@ -128,7 +117,7 @@ DIRECTIVE :=
     ;; なければなりません。
     :inherit-configuration |
     ;; 継承した設定をその位置に挿入するディレクティブで、多くの場合、
-    ;; 最後に指定されます。<a name="DOCF34" href="#FOOT34">(34)</a>
+    ;; 最後に指定されます。<a id="DOCF34" href="#FOOT34">(34)</a>
     :ignore-inherited-configuration |
     ;; 継承した設定を除外します。どこに指定してもかまいません。
 
@@ -155,7 +144,7 @@ DIRECTIVE :=
     ;; 別の設定ファイルの内容をパースして、この位置に挿入します。
     (:include REGULAR-FILE-PATHNAME-DESIGNATOR) |
 
-    ;; デフォルトのレジストリをこの位置に挿入します。<a name="DOCF35" href="#FOOT35">(35)</a>
+    ;; デフォルトのレジストリをこの位置に挿入します。<a id="DOCF35" href="#FOOT35">(35)</a>
     :default-registry
 
 REGULAR-FILE-PATHNAME-DESIGNATOR
@@ -196,7 +185,7 @@ EXCLUSION-PATTERN := ワイルドカードを含まない文字列です。あ�
     ;; おいては（その後にRELATIVE-COMPONENT-DESIGNATORが続かない限り）
     ;; **/*.*.*のようなワイルドカードを含めたほうがよいでしょう。
     :HOME | ; user-homedir-pathname、つまり~/を指します
-    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a name="DOCF36" href="#FOOT36">(36)</a>
+    :USER-CACHE | ; ユーザーキャッシュの既定の場所を探します<a id="DOCF36" href="#FOOT36">(36)</a>
     :HERE |
     ;; 設定ファイルのあるディレクトリを指します。（対話的に呼び出され
     ;; た場合は*default-pathname-defaults*です。）
@@ -239,11 +228,11 @@ RELATIVE-COMPONENT-DESIGNATOR :=
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT34" href="#DOCF34">(34)</a></h3>
+<h3><a id="FOOT34" href="#DOCF34">(34)</a></h3>
 <p>[訳注] 継承した設定(inherited configuration)とは、<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリ</a>の一連の設定において、<strong>後</strong>で処理される設定を指します。つまり、大ざっぱに言えば、箇条書きの下の処理に相当します。「継承」の語感から逆に考える方もいるかもしれないので、注意しておきます。<code>(append 新しい設定 (次の処理))</code>のように再帰のイメージを持つと間違えにくいかもしれません。<code>:ignore-inherited-configuration</code>の指定があると、ソースレジストリの設定がそこで終わることになります。</p>
-<h3><a name="FOOT35" href="#DOCF35">(35)</a></h3>
+<h3><a id="FOOT35" href="#DOCF35">(35)</a></h3>
 <p>[訳注] <code>asdf::default-user-source-registry</code>と<code>asdf::default-system-source-registry</code>による設定が挿入されます。<a href="sosurezisutorinoShe-Ding-.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_8a2d_5b9a">ソースレジストリの設定</a>のリスト中の６番目と９番目の処理に相当します。</p>
-<h3><a name="FOOT36" href="#DOCF36">(36)</a></h3>
+<h3><a id="FOOT36" href="#DOCF36">(36)</a></h3>
 <p>[訳注] <code>asdf:*user-cache*</code>のパス名が使われます。主に<a href="ASDFgakonpairusaretahuairuwoBao-Chi-suruChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b3_30f3_30d1_30a4_30eb_3055_308c_305f_30d5_30a1_30a4_30eb_3092_4fdd_6301_3059_308b_5834_6240_3092_8a2d_5b9a_3059_308b">アウトプットトランスレーション</a>に関係します。<a href="autopututotoransuresiyonwoShe-Ding-suruDSL.html#g_t_30a2_30a6_30c8_30d7_30c3_30c8_30c8_30e9_30f3_30b9_30ec_30fc_30b7_30e7_30f3_3092_8a2d_5b9a_3059_308bDSL">アウトプットトランスレーションを設定するDSL</a>を参照。</p>
 </div>
 

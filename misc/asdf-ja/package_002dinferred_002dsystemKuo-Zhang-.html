@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>package-inferred-system拡張 (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,18 +79,16 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="package_002dinferred_002dsystem_62e1_5f35"></a>
-<div class="header">
+<span id="package_002dinferred_002dsystem_62e1_5f35"></span><div class="header">
 <p>
 Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a4_30eb_4e2d_306e_4ed6_306e_30b3_30fc_30c9" accesskey="p" rel="prev">.asdファイル中の他のコード</a>, Up: <a href="defsystemdesisutemuwoDing-Yi-suru.html#defsystem_3067_30b7_30b9_30c6_30e0_3092_5b9a_7fa9_3059_308b" accesskey="u" rel="up">defsystemでシステムを定義する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="package_002dinferred_002dsystemKuo-Zhang-"></a>
-<h3 class="section">6.5 package-inferred-system拡張</h3>
-<a name="index-Package-inferred-systems"></a>
-<a name="index-Packages_002c-inferring-dependencies-from"></a>
-<a name="index-package_002dinferred_002dsystem"></a>
-<a name="index-One-package-per-file-systems"></a>
+<span id="package_002dinferred_002dsystemKuo-Zhang-"></span><h3 class="section">6.5 package-inferred-system拡張</h3>
+<span id="index-Package-inferred-systems"></span>
+<span id="index-Packages_002c-inferring-dependencies-from"></span>
+<span id="index-package_002dinferred_002dsystem"></span>
+<span id="index-One-package-per-file-systems"></span>
 
 <p>バージョン3.1.2から、ASDFは１ファイル１パッケージのスタイルをサポートしています。このスタイルは、１つのソースファイルに１つのシステムが対応し、システム同士の依存関係は（訳注: おそらく各ファイルの冒頭に書かれるであろう）<code>defpackage</code>または<code>uiop:define-package</code>から推測されるという仕組みです。
 </p>
@@ -137,11 +126,11 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
 
 <p><code>package-inferred-system</code>を扱えるのはASDF 3.1以降なので、最初のフォームはそのチェックをしています。もっとも、主要なLisp処理系でこれ以前のバージョンを含んでいるものはありませんから、おそらくもはや必要のない記述でしょう。
 </p>
-<a name="index-register_002dsystem_002dpackages"></a>
+<span id="index-register_002dsystem_002dpackages"></span>
 <p>このスタイルでは、システムやコンポーネントによって<code>use</code>される、あるいは提供されるパッケージは、パッケージ名（の小文字化）とシステム名が一致していない場合は<code>register-system-packages</code>で登録されなければなりません。
 </p>
-<a name="index-define_002dpackage"></a>
-<a name="index-uiop_003adefine_002dpackage"></a>
+<span id="index-define_002dpackage"></span>
+<span id="index-uiop_003adefine_002dpackage"></span>
 <p>次に、<code>my-lib</code>を構成する各ソースファイルは、<code>defpackage</code>か<code>uiop:define-package</code>によるパッケージ定義から始まるでしょう。それらの間の依存関係は<code>:use</code>や<code>:mix</code>などのオプションから推論されます。例えば、<samp>interface/order.lisp</samp>というファイルが次のパッケージ定義で始まるとします:
 </p>
 <div class="lisp">
@@ -182,7 +171,7 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
   (:export ...))
 </pre></div>
 
-<p>ASDF 3.1.5.6から、ASDFはソースファイルの場所を（<code>:pathname</code>オプションで指定できる）<code>component-pathname</code>を基点に探すようになりました。それ以前のバージョンでは<code>system-source-directory</code>を使っていたので、明示的に<code>:pathname</code>を指定していても、<samp>.asd</samp>ファイルのあるディレクトリを基点にしていました。<a name="DOCF21" href="#FOOT21"><sup>21</sup></a>
+<p>ASDF 3.1.5.6から、ASDFはソースファイルの場所を（<code>:pathname</code>オプションで指定できる）<code>component-pathname</code>を基点に探すようになりました。それ以前のバージョンでは<code>system-source-directory</code>を使っていたので、明示的に<code>:pathname</code>を指定していても、<samp>.asd</samp>ファイルのあるディレクトリを基点にしていました。<a id="DOCF21" href="#FOOT21"><sup>21</sup></a>
 </p>
 
 
@@ -190,7 +179,7 @@ Previous: <a href="_002easdhuairuZhongnoTa-nokodo.html#g_t_002easd_30d5_30a1_30a
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT21" href="#DOCF21">(21)</a></h3>
+<h3><a id="FOOT21" href="#DOCF21">(21)</a></h3>
 <p>[訳注] システム<code>foo</code>のディレクトリ構成として、システム定義ファイルを<samp>foo/foo.asd</samp>に置き、ソースファイルをすべて<samp>foo/src/</samp>以下に置く方式を選んだとしましょう。この時、<samp>foo/src/baz.lisp</samp>に対応するシステムはデフォルトでは<code>foo/src/baz</code>ですが、<code>:pathname &quot;src&quot;</code>でトップレベルのパスを<samp>foo/src/</samp>に変えると<code>foo/baz</code>にできます。<code>:pathname</code>オプションについては<a href="defsystemnoWenFa-.html#defsystem_306e_6587_6cd5">defsystemの文法</a>を参照してください。</p>
 </div>
 

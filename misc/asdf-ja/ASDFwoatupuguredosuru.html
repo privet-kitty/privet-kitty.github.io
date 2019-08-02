@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ASDFをアップグレードする (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,17 +79,15 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="ASDF_3092_30a2_30c3_30d7_30b0_30ec_30fc_30c9_3059_308b"></a>
-<div class="header">
+<span id="ASDF_3092_30a2_30c3_30d7_30b0_30ec_30fc_30c9_3059_308b"></span><div class="header">
 <p>
 Next: <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4ed8_5c5e_306eASDF_3092_7f6e_304d_63db_3048_308b" accesskey="n" rel="next">処理系付属のASDFを置き換える</a>, Previous: <a href="ASDFgarodosareteirukaDiao-beru.html#ASDF_304c_30ed_30fc_30c9_3055_308c_3066_3044_308b_304b_8abf_3079_308b" accesskey="p" rel="prev">ASDFがロードされているか調べる</a>, Up: <a href="ASDFworodosuru.html#ASDF_3092_30ed_30fc_30c9_3059_308b" accesskey="u" rel="up">ASDFをロードする</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="ASDFwoatupuguredosuru"></a>
-<h3 class="section">3.3 ASDFをアップグレードする</h3>
+<span id="ASDFwoatupuguredosuru"></span><h3 class="section">3.3 ASDFをアップグレードする</h3>
 
 <p>お使いの処理系にすでにASDF 3以降が付属している場合（そのはずです）、さらに新しいバージョンを使いたければ、ほかのシステムと同様に、設定で決まっているパスにただ新しいASDFをインストールすれば良いです。
-具体的には、公式のtarボールかgitリポジトリを<samp>~/common-lisp/asdf/</samp>に展開することを勧めます。<a name="DOCF3" href="#FOOT3"><sup>3</sup></a>（→ <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b">ASDFがシステムを見つけられるように設定する</a>）
+具体的には、公式のtarボールかgitリポジトリを<samp>~/common-lisp/asdf/</samp>に展開することを勧めます。<a id="DOCF3" href="#FOOT3"><sup>3</sup></a>（→ <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b">ASDFがシステムを見つけられるように設定する</a>）
 </p>
 <p>ASDFのソースコードがいったん正しい場所に置かれれば、これまで通り<code>(require &quot;asdf&quot;)</code>を実行するだけで新しいASDFがロードされます。ASDF 3は、他のシステムのコンパイルを行う前に、自身の新しいバージョンが所定のパスに存在するかどうかを自動的に判断し、存在する場合には新しいバージョンを使います。
 </p>
@@ -109,7 +98,7 @@ Next: <a href="Chu-Li-Xi-Fu-Shu-noASDFwoZhi-kiHuan-eru.html#g_t_51e6_7406_7cfb_4
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT3" href="#DOCF3">(3)</a></h3>
+<h3><a id="FOOT3" href="#DOCF3">(3)</a></h3>
 <p>[訳注] <samp>~/common-lisp/</samp>などのディレクトリに移動して<code>git clone https://gitlab.common-lisp.net/asdf/asdf.git</code>を実行します。</p>
 </div>
 

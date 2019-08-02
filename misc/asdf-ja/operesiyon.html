@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>オペレーション (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,16 +79,14 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3"></a>
-<div class="header">
+<span id="g_t_30aa_30da_30ec_30fc_30b7_30e7_30f3"></span><div class="header">
 <p>
 Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey="n" rel="next">コンポーネント</a>, Previous: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="p" rel="prev">ASDFのオブジェクトモデル</a>, Up: <a href="ASDFnoobuziekutomoderu.html#ASDF_306e_30aa_30d6_30b8_30a7_30af_30c8_30e2_30c7_30eb" accesskey="u" rel="up">ASDFのオブジェクトモデル</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="operesiyon"></a>
-<h3 class="section">7.1 オペレーション</h3>
-<a name="index-operation"></a>
-<a name="index-operesiyon"></a>
+<span id="operesiyon"></span><h3 class="section">7.1 オペレーション</h3>
+<span id="index-operation"></span>
+<span id="index-operesiyon"></span>
 
 <p>ユーザーがシステムに対して何らかの処理を要求したときは、必ず適切な<em>オペレーション</em>オブジェクトが生成されます。例えば次のような処理が考えられるでしょう:
 </p>
@@ -113,40 +102,40 @@ Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey
 </p>
 
 <table class="menu" border="0" cellspacing="0">
-<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="Zu-miIp-minooperesiyon.html#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3" accesskey="1">組み込みのオペレーション</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><th colspan="3" align="left" valign="top"></th></tr><tr><td align="left" valign="top">&bull; <a href="Zu-miIp-minooperesiyon.html#g_t_7d44_307f_8fbc_307f_306e_30aa_30da_30ec_30fc_30b7_30e7_30f3" accesskey="1">組み込みのオペレーション</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b" accesskey="2">新しいオペレーションを定義する</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Xin-siioperesiyonwoDing-Yi-suru.html#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b" accesskey="2">新しいオペレーションを定義する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <p>オペレーションは、<code>operate</code>によってシステムに対して呼び出されます。
 </p>
-<a name="operate"></a><dl>
-<dt><a name="index-operate-1"></a>総称関数: <strong>operate</strong> <em>operation component &amp;rest initargs &amp;key force force-not verbose &amp;allow-other-keys</em></dt>
-<dt><a name="index-oos-1"></a>総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
+<span id="operate"></span><dl>
+<dt id="index-operate-1">総称関数: <strong>operate</strong> <em>operation component &amp;rest initargs &amp;key force force-not verbose &amp;allow-other-keys</em></dt>
+<dt id="index-oos-1">総称関数: <strong>oos</strong> <em>operation component &amp;rest initargs &amp;key &amp;allow-other-keys</em></dt>
 <dd><p><code>operate</code>は<var>component</var>に対して<var>operation</var>を呼び出します。<code>oos</code>（operate-on-systemの略）は<code>operate</code>のエイリアスです。
 </p>
 <p><var>operation</var>はオペレーション指示子(operation designator)です。オペレーション指示子は<code>operation</code>オブジェクトそのものでもよいですが、通常はシンボルが使われるでしょう。シンボルは<code>make-operation</code>に渡され、（そこで<code>make-instance</code>が呼ばれて）<code>operation</code>オブジェクトが作られます。
-<var>component</var>はコンポーネント指示子(component designator)です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a name="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
+<var>component</var>はコンポーネント指示子(component designator)です。コンポーネント指示子は同様に、<code>component</code>オブジェクトそのものや、コンポーネント（たいていはシステム）の名前を表す文字列・シンボル（<code>string-downcase</code>で小文字化される）ですが、システムの子コンポーネントを指したい場合は文字列・シンボルの<em>リスト</em> <a id="DOCF24" href="#FOOT24"><sup>24</sup></a>も使えます。
 </p>
 <p><var>initargs</var>が<code>make-operation</code>に渡される仕様は廃止予定であり、削除されるでしょう。詳しくは<a href="#make_002doperation">make-operation</a>を参照してください。依存関係によって、オペレーションがシステムやその子コンポーネントに対して他のオペレーションを呼び出すことがありますが、この際、元の<var>initargs</var>が渡されるかどうかは（今のところ）不確定です。
 </p>
 <p><var>force</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムが、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が<code>t</code>の場合、ロードされるシステムに限り、前回のコンパイルから未変更でも再コンパイルされます。<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから未変更でも再コンパイルされます。<var>force-not</var>が<code>:all</code>の場合、（依存関係に含まれる）すべてのシステムは、前回のコンパイルから変更されていても再コンパイルされません。<var>force-not</var>が<code>t</code>の場合、ロードされるシステム<em>以外</em>のシステムは、前回のコンパイルから変更されていても再コンパイルされません。（この仕様はASDF 3.1.2で変更されました。）<var>force</var>が（システム指示子の）リストの場合、リストに含まれるシステムは前回のコンパイルから変更されていてもコンパイルされません。
 </p>
-<a name="index-register_002dimmutable_002dsystem"></a>
-<a name="index-immutable-systems"></a>
+<span id="index-register_002dimmutable_002dsystem"></span>
+<span id="index-immutable-systems"></span>
 <p><var>force</var>と<var>force-not</var>に影響されるのは、依存関係に含まれていて、既にコンパイルされているシステムです。<var>force-not</var>は当然<var>force</var>に優先する（べきな）のですが、この挙動は残念ながらASDF 3.1.2以降で初めて保証されました。また、関数<code>register-immutable-system</code>（ASDF 3.1.5以降）によってイミュータブルと登録されたシステムは、（たとえ<samp>.asd</samp>ファイルがファイルシステムによって更新されていなくても）常に<var>force-not</var>であるとみなされます。（→ <a href="Miscellaneous-Functions.html#Miscellaneous-Functions">Miscellaneous Functions</a>）
 </p>
-<a name="index-traverse"></a>
-<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a name="DOCF25" href="#FOOT25"><sup>25</sup></a>
+<span id="index-traverse"></span>
+<p>次のフォームを実行すると、<code>operate</code>が実際に何をどのような順序で実行するのか確かめることができます。<a id="DOCF25" href="#FOOT25"><sup>25</sup></a>
 </p><div class="lisp">
 <pre class="lisp">(asdf:traverse operation-class system-name)
 </pre></div>
 </dd></dl>
 
 <dl>
-<dt><a name="index-make_002doperation"></a>関数: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
-<dd><a name="make_002doperation"></a>
+<dt id="index-make_002doperation">関数: <strong>make-operation</strong> <em>operation-class &amp;rest initargs</em></dt>
+<dd><span id="make_002doperation"></span>
 <p><var>initargs</var>は、オペレーションオブジェクトを作る際に<code>make-instance</code>に渡されます。
 </p>
 <p><strong>注意:</strong> <code>operation</code>の<var>initargs</var>は廃止予定であり、近い将来ASDFから削除されるでしょう。
@@ -159,9 +148,9 @@ Next: <a href="konponento.html#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8" accesskey
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
+<h3><a id="FOOT24" href="#DOCF24">(24)</a></h3>
 <p>[訳注] 降順。例えば<code>(defsystem &quot;foo&quot; :components ((:module &quot;src&quot; ...)))</code>の<code>src</code>モジュールはリスト<code>(&quot;foo&quot; &quot;src&quot;)</code>で指定できます。</p>
-<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<h3><a id="FOOT25" href="#DOCF25">(25)</a></h3>
 <p>[訳注] <code>traverse</code>はオペレーション指示子とコンポーネント指示子を引数に取り、実行されるアクション（オペレーションとコンポーネントの対）のリストを順序付きで返します。ただし、<em>廃止予定</em>。</p>
 </div>
 

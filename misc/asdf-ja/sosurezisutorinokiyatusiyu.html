@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ソースレジストリのキャッシュ (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,21 +79,19 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5"></a>
-<div class="header">
+<span id="g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5"></span><div class="header">
 <p>
 Next: <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI" accesskey="n" rel="next">ソースレジストリのAPI</a>, Previous: <a href="Tan-Suo-arugorizumu.html#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0" accesskey="p" rel="prev">探索アルゴリズム</a>, Up: <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b" accesskey="u" rel="up">ASDFがシステムを探す場所を設定する</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="sosurezisutorinokiyatusiyu"></a>
-<h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
+<span id="sosurezisutorinokiyatusiyu"></span><h3 class="section">8.9 ソースレジストリのキャッシュ</h3>
 
-<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a name="DOCF42" href="#FOOT42"><sup>42</sup></a>
+<p>ソースレジストリがどのタイミングで構成されるかは、実装に任されています。つまり、ソースレジストリの実装は、設定とファイルシステムからソースレジストリを先行して(eagerly)構成してもかまわないし、あるいは情報が必要になるたびに(lazily)再構成してもかまいません。また、一部をキャッシュすることも許されています。実践的には、推奨される実装とは、ソースレジストリを先行して構成してキャッシュし、設定やファイルシステムの変更を反映したい場合はユーザーが明示的にキャッシュをクリアしなくてはならないというものです。<a id="DOCF42" href="#FOOT42"><sup>42</sup></a>
 いっぽう、古いスタイルである<code>*central-registry*</code>のメカニズムは、ファイルシステムに毎回問い合わせるというものでした。
 </p>
 <p>ファイルシステムを変更したあと、キャッシュを明示的にクリアする方法については<a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306eAPI">ソースレジストリのAPI</a>を参照してください。例えば<code>asdf:clear-source-registry</code>を呼ぶなどの方法があります。
 </p>
-<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を保持する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>
+<p>ASDF 3.1.4以降では、ツリー内にある<samp>.asd</samp>ファイルの場所を保持する、永続的なキャッシュファイルを作れるようになりました。仕様を説明すると、<code>:tree</code>ディレクティブで指定されたディレクトリ以下を再帰的に探索している途中で<samp>.cl-source-registry.cache</samp>ファイルを発見した場合、そのファイルに指定された<samp>.asd</samp>ファイルの場所だけを登録し、再帰を打ち切るようになりました。<samp>.cl-source-registry.cache</samp>は<code>:source-registry-cache</code>から始まる１つのフォームで構成され、<code>(:source-registry-cache <var>&quot;foo/bar.asd&quot;</var> <var>&quot;path/to/more.asd&quot;</var> ...)</code>のように、ツリーに含まれる<samp>.asd</samp>ファイルが<code>unix-namestring</code>で指定されます。なお、<code>(:source-registry-cache)</code>のような空の指定も許されており、その場合は単にその再帰を打ち切るだけになります。<a id="DOCF43" href="#FOOT43"><sup>43</sup></a>
 </p>
 <p>このキャッシュファイルを新たに作りたい場合、あるいはソースリポジトリのインストール・アップデート・削除などを行ったあとにキャッシュファイルをアップデートしたい場合、ASDFに含まれるスクリプトが使えます: <code>tools/cl-source-registry-cache.lisp <var>/path/to/directory</var></code>。また、キャッシュを無効にしたい場合は単に<samp>.cl-source-registry.cache</samp>を削除すればよいでしょう。いずれの場合も、起動中のLispプロセスにこの変更を反映するためには<code>(asdf:clear-source-registry)</code>などで（メモリ上の）キャッシュをクリアする必要があります。
 </p>
@@ -115,9 +104,9 @@ Next: <a href="sosurezisutorinoAPI.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_3
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT42" href="#DOCF42">(42)</a></h3>
+<h3><a id="FOOT42" href="#DOCF42">(42)</a></h3>
 <p>[訳注] 現在の実装もそうなっています。</p>
-<h3><a name="FOOT43" href="#DOCF43">(43)</a></h3>
+<h3><a id="FOOT43" href="#DOCF43">(43)</a></h3>
 <p>[訳注] <samp>.cl-source-registry.cache</samp>の読み込みは<code>ignore-errors</code>で行われるため、キャッシュファイルが正しい構文で書かれていない場合、単に無視されるだけでエラーは通知されないことに注意してください。</p>
 </div>
 

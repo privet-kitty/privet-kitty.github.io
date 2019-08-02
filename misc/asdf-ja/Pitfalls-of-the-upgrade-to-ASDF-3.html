@@ -12,13 +12,13 @@ https://common-lisp.net/project/asdf/asdf.html
 [訳者補足終わり]
 
 
-ASDF Copyright (C) 2001-2018 Daniel Barlow and contributors.
+ASDF Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual Copyright (C) 2001-2018 Daniel Barlow and contributors.
+This manual Copyright (C) 2001-2019 Daniel Barlow and contributors.
 
-This manual revised (C) 2009-2018 Robert P. Goldman and Francois-Rene Rideau.
+This manual revised (C) 2009-2019 Robert P. Goldman and Francois-Rene Rideau.
 
-This manual translated into Japanese (C) 2018 Hugo Ishimaru.
+This manual translated into Japanese (C) 2018-2019 Hugo Ishimaru.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Pitfalls of the upgrade to ASDF 3 (ASDF マニュアル)</title>
@@ -59,23 +59,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -88,14 +79,12 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<a name="Pitfalls-of-the-upgrade-to-ASDF-3"></a>
-<div class="header">
+<span id="Pitfalls-of-the-upgrade-to-ASDF-3"></span><div class="header">
 <p>
 Next: <a href="What-happened-to-the-bundle-operations.html#What-happened-to-the-bundle-operations" accesskey="n" rel="next">What happened to the bundle operations</a>, Previous: <a href="Pitfalls-of-the-transition-to-ASDF-2.html#Pitfalls-of-the-transition-to-ASDF-2" accesskey="p" rel="prev">Pitfalls of the transition to ASDF 2</a>, Up: <a href="What-has-changed-between-ASDF-1-ASDF-2-and-ASDF-3_003f.html#What-has-changed-between-ASDF-1-ASDF-2-and-ASDF-3_003f" accesskey="u" rel="up">What has changed between ASDF 1 ASDF 2 and ASDF 3?</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Pitfalls-of-the-upgrade-to-ASDF-3-1"></a>
-<h4 class="subsection">13.3.12 Pitfalls of the upgrade to ASDF 3</h4>
+<span id="Pitfalls-of-the-upgrade-to-ASDF-3-1"></span><h4 class="subsection">13.3.12 Pitfalls of the upgrade to ASDF 3</h4>
 
 <p>While ASDF 3 is largely compatible with ASDF 2,
 there are a few pitfalls when upgrading from ASDF 2,
@@ -132,7 +121,7 @@ Since it isn&rsquo;t possible to automatically detect what extensions
 need to be invalidated and what systems use them,
 ASDF will invalidate <em>all</em> previously loaded systems
 when it is loaded on top of a forward-incompatible ASDF version.
-<a name="DOCF53" href="#FOOT53"><sup>53</sup></a>
+<a id="DOCF53" href="#FOOT53"><sup>53</sup></a>
 
 </li><li> To write a portable build script, you need to rely on a recent version of UIOP,
 but until you have ensured a recent ASDF is loaded,
@@ -166,7 +155,7 @@ make heroic attempts to load it the hard way if at first they don&rsquo;t succee
 see <samp>tools/load-asdf.lisp</samp> distributed with the ASDF source repository,
 or the code of <a href="https://cliki.net/cl-launch"><code>cl-launch</code></a>.
 
-</li><li> <a name="reinitializeASDFAfterUpgrade"></a>Note that in addition to the pitfalls and constraints above,
+</li><li> <span id="reinitializeASDFAfterUpgrade"></span>Note that in addition to the pitfalls and constraints above,
 these heroic scripts (should you wish to write or modify one),
 must take care to configure ASDF <em>twice</em>.
 A first time, right after you load the old ASDF 2 (or 1!)
@@ -189,8 +178,8 @@ so ASDF 3 doesn&rsquo;t try (anymore) and loses any configuration from ASDF 2.
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h3><a name="FOOT53" href="#DOCF53">(53)</a></h3>
-<a name="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></a>
+<h3><a id="FOOT53" href="#DOCF53">(53)</a></h3>
+<span id="index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"></span>
 <p>Forward incompatibility can be determined using the variable
 <code>asdf/upgrade::*oldest-forward-compatible-asdf-version*</code>,
 which is 2.33 at the time of this writing.</p>
