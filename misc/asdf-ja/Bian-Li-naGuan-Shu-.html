@@ -102,8 +102,6 @@ Next: <a href="konoXian-heJin-mu.html#g_t_3053_306e_5148_3078_9032_3080" accessk
 </p>
 
 
-<span id="index-already_002dloaded_002dsystems"></span>
-
 <dl>
 <dt id="index-load_002dsystem">関数: <strong>load-system</strong> <em>system &amp;rest keys &amp;key force force-not verbose version &amp;allow-other-keys</em></dt>
 <dd><p><code>load-op</code>、<var>system</var>、キーワード引数に<code>operate</code>を適用します。システムを現在のイメージにロードしたい場合は、<code>load-system</code>を呼び出すのがもっとも標準的で推奨されるやり方です。
@@ -136,6 +134,11 @@ Next: <a href="konoXian-heJin-mu.html#g_t_3053_306e_5148_3078_9032_3080" accessk
 <p><code>cl:require</code>や<code>require-system</code>は、現在のセッションでは修正されていないコードをロードするのに向いています。この２つの違いを説明すると、<code>cl:require</code>は処理系の提供する拡張モジュールをロードするのに使われますが、<code>require-system</code>は普通はその用途では使えません。（ただし、SBCLやMKCLのように、処理系の拡張モジュールがそもそもシステムとして定義されている場合は<code>require-system</code>でもロードできます。）また、あなたが開発もデバッグもしていないシステムで、インストール済みのバージョンを使えば問題ないと考えられる場合にも<code>require-system</code>（あるいは、上に挙げた処理系では<code>cl:require</code>）でロードするとよいかもしれません。
 </p>
 <p>しかし、あなたが開発、デバッグしていたり、あるいは何にせよ変更を行ったシステムに対しては<code>load-system</code>を使うべきです。<code>load-system</code>は変更されたファイルとその依存関係に基づいて適切に再ビルドを行います。（指定されたシステムとそれが依存しているシステムです、それ以外のビルドは行いません。）<a id="DOCF13" href="#FOOT13"><sup>13</sup></a>
+</p></dd></dl>
+
+<dl>
+<dt id="index-already_002dloaded_002dsystems">関数: <strong>already-loaded-systems</strong></dt>
+<dd><p>これまでにロードされたシステムの名前のリストを返します。
 </p></dd></dl>
 
 
