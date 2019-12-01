@@ -307,6 +307,7 @@ a:visited { color: #6D38A0 }
     <ul class="no-bullet">
       <li><a id="toc-_0060_0060How-can-I-customize-where-fasl-files-are-stored_003f_0027_0027" href="#How-can-I-customize-where-fasl-files-are-stored_003f">13.5.1 &ldquo;How can I customize where fasl files are stored?&rdquo;</a></li>
       <li><a id="toc-_0060_0060How-can-I-wholly-disable-the-compiler-output-cache_003f_0027_0027" href="#How-can-I-wholly-disable-the-compiler-output-cache_003f">13.5.2 &ldquo;How can I wholly disable the compiler output cache?&rdquo;</a></li>
+      <li><a id="toc-How-can-I-debug-problems-finding-ASDF-systems_003f" href="#How-can-I-debug-problems-finding-ASDF-systems">13.5.3 How can I debug problems finding ASDF systems?</a></li>
     </ul></li>
     <li><a id="toc-Issues-with-using-and-extending-ASDF-to-define-systems-1" href="#Issues-with-using-and-extending-ASDF-to-define-systems">13.6 Issues with using and extending ASDF to define systems</a>
     <ul class="no-bullet">
@@ -4228,6 +4229,46 @@ Please do not tamper with ASDF configuration from a <samp>.asd</samp> file,
 and only do this from your personal configuration or build scripts.
 </p>
 <hr>
+<span id="How-can-I-debug-problems-finding-ASDF-systems"></span><span id="How-can-I-debug-problems-finding-ASDF-systems_003f"></span><h4 class="subsection">13.5.3 How can I debug problems finding ASDF systems?</h4>
+
+<p>Sometimes ASDF will be unable to find and load your systems, although
+you believe that it should be able to.  There are a number of things you
+can do to debug such issues.
+</p>
+<span id="index-_002acentral_002dregistry_002a-1"></span>
+<p>If you are using <code>asdf:*central-registry*</code> (see <a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>),
+you can
+simply look at the pathnames and namestrings in this variable, and use
+conventional tools such as <code>cl:probe-file</code> and <code>cl:directory</code>
+to poke around and see why your systems are not being found.
+</p>
+<p>If you are using one of the newer methods for configuring ASDF&rsquo;s system
+finding (see <a href="#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a>), you can try:
+</p>
+<span id="index-_002asource_002dregistry_002a"></span>
+<div class="example">
+<pre class="example">(alexandria:hash-table-alist asdf/source-registry::*source-registry*)
+</pre></div>
+
+<p>(alphabetizing the results here may be helpful). Or for a higher-level
+view:
+</p>
+<span id="index-flatten_002dsource_002dregistry"></span>
+<div class="example">
+<pre class="example">(asdf/source-registry:flatten-source-registry)
+</pre></div>
+
+<p>Finally, if you use the source registry cache (see <a href="#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5">ソースレジストリのキャッシュ</a>), you can:
+</p><div class="example">
+<pre class="example">find ~/common-lisp -name .cl-source-registry.cache
+</pre></div>
+<p>at the shell.
+</p>
+<p>It is still, unfortunately, an open question how to monitor ASDF&rsquo;s
+interpretation of its source configuration as it happens.
+</p>
+
+<hr>
 <span id="Issues-with-using-and-extending-ASDF-to-define-systems"></span><span id="Issues-with-using-and-extending-ASDF-to-define-systems-1"></span><h3 class="section">13.6 Issues with using and extending ASDF to define systems</h3>
 
 
@@ -4558,9 +4599,10 @@ interested, too.
 
 <ul>
 <li> Andrey Mokhov, Neil Mitchell and Simon Peyton Jones:
-&ldquo;Build Systems à la Carte&rdquo;, 2018.
+  &ldquo;Build Systems à la Carte&rdquo;,
+  International Conference on Functional Programming, 2018.
   <a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems-final.pdf">https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems-final.pdf</a>
-  This article provides axes along which to describe build systems in general;
+  This influential article provides axes along which to describe build systems in general;
   ASDF, in addition to being in-image (an axis not considered by these authors),
   has the following characteristics:
   ASDF&rsquo;s persistent build information is file modification times
@@ -4576,12 +4618,20 @@ interested, too.
   in &ldquo;dynamic&rdquo; dependencies with a &ldquo;suspending&rdquo; scheduler.
   The rebuilder essentially uses a &ldquo;dirty bit&rdquo;, except that the in-image model
   and the multiple phase support mean that&rsquo;s actually more than a bit:
-  instead three bits, the timestamp and a phase depth level.
+  instead it&rsquo;s three bits plus the timestamp plus a phase depth level.
   The build is guaranteed &ldquo;minimal&rdquo; in number of steps computed.
-  It is local; it assumes but does not enforce determinism;
-  it does not assume early cutoff of the build when rebuild dependencies didn&rsquo;t change.
+    It is local. It assumes but does not enforce determinism.
+  It does not assume early cutoff of the build when rebuild dependencies didn&rsquo;t change.
+</li><li> Robert Goldman, Elias Pipping, and François-René Rideau:
+  &ldquo;Delivering Common Lisp Applications with ASDF 3.3&rdquo;,
+  European Lisp Symposium, 2017.
+  <a href="https://github.com/fare/asdf2017">https://github.com/fare/asdf2017</a>
+  This short article gives an overview of the changes in ASDF 3.2 and 3.3, including
+  improved application delivery, asynchronous subprocess management,
+  correct support for multi-phase builds, and enhanced source location configuration.
 </li><li> Francois-Rene Rideau:
-  &ldquo;ASDF 3, or Why Lisp is Now an Acceptable Scripting Language&rdquo;, 2014.
+  &ldquo;ASDF 3, or Why Lisp is Now an Acceptable Scripting Language&rdquo;,
+  European Lisp Symposium, 2014.
         この記事はASDF 3、3.1での革新について解説し、以前のバージョンの歴史的情報についても触れています。
   <a href="https://github.com/fare/asdf3-2013">https://github.com/fare/asdf3-2013</a>
 </li><li> Alastair Bridgewater:
@@ -4594,12 +4644,14 @@ interested, too.
   <a href="http://lispblog.xach.com/">http://lispblog.xach.com/</a> （新ブログ）
   <a href="http://xach.livejournal.com/">http://xach.livejournal.com/</a> （旧ブログ）
 </li><li> Francois-Rene Rideau and Robert Goldman:
-  &ldquo;Evolving ASDF: More Cooperation, Less Coordination&rdquo;, 2010.
+  &ldquo;Evolving ASDF: More Cooperation, Less Coordination&rdquo;,
+  International Lisp Conference, 2010.
           この記事はASDF 2で解決された問題について解説し、そのデザインの原則についても書かれています。
   <a href="https://common-lisp.net/project/asdf/ilc2010draft.pdf">https://common-lisp.net/project/asdf/ilc2010draft.pdf</a>
   <a href="http://rpgoldman.goldman-tribe.org/papers/ilc2010-asdf.pdf">http://rpgoldman.goldman-tribe.org/papers/ilc2010-asdf.pdf</a>
 </li><li> Francois-Rene Rideau and Spencer Brody:
-  &ldquo;XCVB: an eXtensible Component Verifier and Builder for Common Lisp&rdquo;, 2009.
+  &ldquo;XCVB: an eXtensible Component Verifier and Builder for Common Lisp&rdquo;,
+  International Lisp Conference, 2009.
         この記事はXCVBについて解説しています。XCVBはASDFの競合となるシステムで、そのアイデアの多くはASDF 2と3に取り込まれていますが、いまだに取り込まれていないものも多々あります。
   <a href="https://common-lisp.net/project/xcvb/">https://common-lisp.net/project/xcvb/</a>
 </li><li> Peter von Etter:
@@ -4608,14 +4660,15 @@ interested, too.
   <a href="https://code.google.com/p/faslpath/">https://code.google.com/p/faslpath/</a>
 </li><li> Drew McDermott:
         &ldquo;A Framework for Maintaining the Coherence of a Running Lisp,&rdquo;
-  International Lisp Conference, 2005. プレプリントがこちらにあります: 
+  International Lisp Conference, 2005.
   <a href="http://www.cs.yale.edu/homes/dvm/papers/lisp05.pdf">http://www.cs.yale.edu/homes/dvm/papers/lisp05.pdf</a>
 </li><li> Dan Barlow: &ldquo;ASDF Manual&rdquo;, 2004.
           ASDF 1の頃のマニュアルで、Dan Barlowによるアイデアや、古いdefsystem（<code>mk-defsystem</code>）とdefsystem（<code>defsystem-4</code>、下記のKent M. Pitmanのメモを参照）の比較などを含んでいます。
 </li><li> Marco Antoniotti and Peter Van Eynde:
  &ldquo;<code>DEFSYSTEM</code>: A <code>make</code> for Common Lisp, A Thoughtful Re-Implementation of an Old Idea&rdquo;, 2002.
     CLOCCのリポジトリには<code>defsystem-4</code>の提案が含まれています。
-</li><li> Mark Kantrovitz: &ldquo;Defsystem: A Portable Make Facility for Common Lisp&rdquo;, 1990.
+</li><li> Mark Kantrovitz:
+  &ldquo;Defsystem: A Portable Make Facility for Common Lisp&rdquo;, 1990.
       旧来の<code>mk-defsystem</code>の変種である<code>defsystem-3.x</code>がCLOCCリポジトリにあります。
 </li><li> Richard Elliot Robbins:
   &ldquo;BUILD: A Tool for Maintaining Consistency in Modular Systems&rdquo;, MIT AI TR 874, 1985.
@@ -4957,6 +5010,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-find_002dcomponent"><code>find-component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_65b0_3057_3044_30aa_30da_30ec_30fc_30b7_30e7_30f3_3092_5b9a_7fa9_3059_308b">新しいオペレーションを定義する</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-find_002dcomponent-1"><code>find-component</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-find_002dsystem"><code>find-system</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-flatten_002dsource_002dregistry"><code>flatten-source-registry</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-debug-problems-finding-ASDF-systems">How can I debug problems finding ASDF systems</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th id="g_t_7d22_5f15_ff08_95a2_6570_3068_30de_30af_30ed_ff09_fn_letter-I">I</th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-initialize_002doutput_002dtranslations"><code>initialize-output-translations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-location-API">Output location API</a></td></tr>
@@ -5067,6 +5121,7 @@ interested, too.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th id="g_t_7d22_5f15_ff08_5909_6570_ff09_vr_symbol-1">*</th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002acentral_002dregistry_002a"><code>*central-registry*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#After-upgrading-ASDF">After upgrading ASDF</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002acentral_002dregistry_002a-1"><code>*central-registry*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-debug-problems-finding-ASDF-systems">How can I debug problems finding ASDF systems</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002acompile_002dfile_002dfailure_002dbehaviour_002a"><code>*compile-file-failure-behaviour*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002acompile_002dfile_002dwarnings_002dbehaviour_002a"><code>*compile-file-warnings-behaviour*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30a8_30e9_30fc_51e6_7406">エラー処理</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002adefault_002dsource_002dregistry_002dexclusions_002a"><code>*default-source-registry-exclusions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_63a2_7d22_30a2_30eb_30b4_30ea_30ba_30e0">探索アルゴリズム</a></td></tr>
@@ -5076,6 +5131,7 @@ interested, too.
 <tr><td></td><td valign="top"><a href="#index-_002aLOAD_002dTRUENAME_002a"><code>*LOAD-TRUENAME*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#LOAD_002dPATHNAME-has-a-weird-value">LOAD-PATHNAME has a weird value</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002anil_002dpathname_002a"><code>*nil-pathname*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Some-Utility-Functions">Some Utility Functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002aoldest_002dforward_002dcompatible_002dasdf_002dversion_002a"><code>*oldest-forward-compatible-asdf-version*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Pitfalls-of-the-upgrade-to-ASDF-3">Pitfalls of the upgrade to ASDF 3</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002asource_002dregistry_002a"><code>*source-registry*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-debug-problems-finding-ASDF-systems">How can I debug problems finding ASDF systems</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002asource_002dregistry_002dparameter_002a"><code>*source-registry-parameter*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_002asource_002dregistry_002dparameter_002a_5909_6570"><code>*source-registry-parameter*</code>変数</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002astandard_002doutput_002a"><code>*standard-output*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#How-can-I-capture-ASDF_0027s-output_003f">How can I capture ASDF's output?</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002asystem_002ddefinition_002dsearch_002dfunctions_002a"><code>*system-definition-search-functions*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_30b3_30f3_30dd_30fc_30cd_30f3_30c8">コンポーネント</a></td></tr>

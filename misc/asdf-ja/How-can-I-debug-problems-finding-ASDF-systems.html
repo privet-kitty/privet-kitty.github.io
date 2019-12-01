@@ -42,10 +42,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>How can I wholly disable the compiler output cache? (ASDF マニュアル)</title>
+<title>How can I debug problems finding ASDF systems (ASDF マニュアル)</title>
 
-<meta name="description" content="How can I wholly disable the compiler output cache? (ASDF マニュアル)">
-<meta name="keywords" content="How can I wholly disable the compiler output cache? (ASDF マニュアル)">
+<meta name="description" content="How can I debug problems finding ASDF systems (ASDF マニュアル)">
+<meta name="keywords" content="How can I debug problems finding ASDF systems (ASDF マニュアル)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -53,8 +53,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" rel="index" title="索引（用語）">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Issues-with-configuring-ASDF.html#Issues-with-configuring-ASDF" rel="up" title="Issues with configuring ASDF">
-<link href="How-can-I-debug-problems-finding-ASDF-systems.html#How-can-I-debug-problems-finding-ASDF-systems" rel="next" title="How can I debug problems finding ASDF systems">
-<link href="How-can-I-customize-where-fasl-files-are-stored_003f.html#How-can-I-customize-where-fasl-files-are-stored_003f" rel="prev" title="How can I customize where fasl files are stored?">
+<link href="Issues-with-using-and-extending-ASDF-to-define-systems.html#Issues-with-using-and-extending-ASDF-to-define-systems" rel="next" title="Issues with using and extending ASDF to define systems">
+<link href="How-can-I-wholly-disable-the-compiler-output-cache_003f.html#How-can-I-wholly-disable-the-compiler-output-cache_003f" rel="prev" title="How can I wholly disable the compiler output cache?">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -79,47 +79,50 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="ja">
-<span id="How-can-I-wholly-disable-the-compiler-output-cache_003f"></span><div class="header">
+<span id="How-can-I-debug-problems-finding-ASDF-systems"></span><div class="header">
 <p>
-Next: <a href="How-can-I-debug-problems-finding-ASDF-systems.html#How-can-I-debug-problems-finding-ASDF-systems" accesskey="n" rel="next">How can I debug problems finding ASDF systems</a>, Previous: <a href="How-can-I-customize-where-fasl-files-are-stored_003f.html#How-can-I-customize-where-fasl-files-are-stored_003f" accesskey="p" rel="prev">How can I customize where fasl files are stored?</a>, Up: <a href="Issues-with-configuring-ASDF.html#Issues-with-configuring-ASDF" accesskey="u" rel="up">Issues with configuring ASDF</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="How-can-I-wholly-disable-the-compiler-output-cache_003f.html#How-can-I-wholly-disable-the-compiler-output-cache_003f" accesskey="p" rel="prev">How can I wholly disable the compiler output cache?</a>, Up: <a href="Issues-with-configuring-ASDF.html#Issues-with-configuring-ASDF" accesskey="u" rel="up">Issues with configuring ASDF</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Suo-Yin-_0028Yong-Yu-_0029.html#g_t_7d22_5f15_ff08_7528_8a9e_ff09" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="g_t_0060_0060How-can-I-wholly-disable-the-compiler-output-cache_003f_0027_0027"></span><h4 class="subsection">13.5.2 &ldquo;How can I wholly disable the compiler output cache?&rdquo;</h4>
+<span id="How-can-I-debug-problems-finding-ASDF-systems_003f"></span><h4 class="subsection">13.5.3 How can I debug problems finding ASDF systems?</h4>
 
-<p>To permanently disable the compiler output cache
-for all future runs of ASDF, you can:
+<p>Sometimes ASDF will be unable to find and load your systems, although
+you believe that it should be able to.  There are a number of things you
+can do to debug such issues.
 </p>
+<span id="index-_002acentral_002dregistry_002a-1"></span>
+<p>If you are using <code>asdf:*central-registry*</code> (see <a href="ASDFgasisutemuwoJian-tukerareruyouniShe-Ding-suru_0028Gu-isutairu_0029.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_898b_3064_3051_3089_308c_308b_3088_3046_306b_8a2d_5b9a_3059_308b_ff08_53e4_3044_30b9_30bf_30a4_30eb_ff09">ASDFがシステムを見つけられるように設定する（古いスタイル）</a>),
+you can
+simply look at the pathnames and namestrings in this variable, and use
+conventional tools such as <code>cl:probe-file</code> and <code>cl:directory</code>
+to poke around and see why your systems are not being found.
+</p>
+<p>If you are using one of the newer methods for configuring ASDF&rsquo;s system
+finding (see <a href="ASDFgasisutemuwoTan-suChang-Suo-woShe-Ding-suru.html#ASDF_304c_30b7_30b9_30c6_30e0_3092_63a2_3059_5834_6240_3092_8a2d_5b9a_3059_308b">ASDFがシステムを探す場所を設定する</a>), you can try:
+</p>
+<span id="index-_002asource_002dregistry_002a"></span>
 <div class="example">
-<pre class="example">mkdir -p ~/.config/common-lisp/asdf-output-translations.conf.d/
-echo ':disable-cache' &gt; \
-~/.config/common-lisp/asdf-output-translations.conf.d/99-disable-cache.conf
+<pre class="example">(alexandria:hash-table-alist asdf/source-registry::*source-registry*)
 </pre></div>
 
-<p>This assumes that you didn&rsquo;t otherwise configure the ASDF files
-(if you did, edit them again),
-and don&rsquo;t somehow override the configuration at runtime
-with a shell variable (see below) or some other runtime command
-(e.g. some call to <code>asdf:initialize-output-translations</code>).
+<p>(alphabetizing the results here may be helpful). Or for a higher-level
+view:
 </p>
-<p>To disable the compiler output cache in Lisp processes
-run by your current shell, try (assuming <code>bash</code> or <code>zsh</code>)
-(on Unix and cygwin only):
-</p>
+<span id="index-flatten_002dsource_002dregistry"></span>
 <div class="example">
-<pre class="example">export ASDF_OUTPUT_TRANSLATIONS=/:
+<pre class="example">(asdf/source-registry:flatten-source-registry)
 </pre></div>
 
-<p>To disable the compiler output cache just in the current Lisp process,
-use (after loading ASDF but before using it):
-</p>
-<div class="example">
-<pre class="example">(asdf:disable-output-translations)
+<p>Finally, if you use the source registry cache (see <a href="sosurezisutorinokiyatusiyu.html#g_t_30bd_30fc_30b9_30ec_30b8_30b9_30c8_30ea_306e_30ad_30e3_30c3_30b7_30e5">ソースレジストリのキャッシュ</a>), you can:
+</p><div class="example">
+<pre class="example">find ~/common-lisp -name .cl-source-registry.cache
 </pre></div>
-
-<p>Note that this does <em>NOT</em> belong in a <samp>.asd</samp> file.
-Please do not tamper with ASDF configuration from a <samp>.asd</samp> file,
-and only do this from your personal configuration or build scripts.
+<p>at the shell.
 </p>
+<p>It is still, unfortunately, an open question how to monitor ASDF&rsquo;s
+interpretation of its source configuration as it happens.
+</p>
+
 
 
 
