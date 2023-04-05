@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>CodeOrigins - Lisp</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link href="static/flags.css" rel="stylesheet">
+
+</head>
+<body>
+    <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter46062456 = new Ya.Metrika({ id:46062456, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/46062456" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">CodeOrigins</a>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid small">
+        <div class="container">
+            <h1>Lisp</h1>
+            <p class="lead">programming language</p>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-5">
+        <div class="row mt-2">
+            
+
+    <div class="col-2">
+
+        <h5 class="text-right"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Users</h5>
+
+        <table class="table table-hover table-sm small">
+            <thead class="text-muted">
+                <tr>
+                    <th class="text-center" width="1%">#</th>
+                    <th>Name</th>
+                    <th width="1%"></th>
+                    <th width="1%"></th>
+                    <th class="text-center" width="1%">★</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">1</td>
+                    <td><a class="card-popover" data-card="fukamachi" href="http://github.com/fukamachi">fukamachi</a></td>
+                    <td><img alt="@fukamachi" src="https://avatars.githubusercontent.com/u/90570?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">6719</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="fr">
+                    <td class="idx text-right text-muted small">2</td>
+                    <td><a class="card-popover" data-card="dimitri" href="http://github.com/dimitri">dimitri</a></td>
+                    <td><img alt="@dimitri" src="https://avatars.githubusercontent.com/u/102900?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">4910</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ua">
+                    <td class="idx text-right text-muted small">3</td>
+                    <td><a class="card-popover" data-card="vseloved" href="http://github.com/vseloved">vseloved</a></td>
+                    <td><img alt="@vseloved" src="https://avatars.githubusercontent.com/u/126027?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">880</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">4</td>
+                    <td><a class="card-popover" data-card="Clozure" href="http://github.com/Clozure">Clozure</a></td>
+                    <td><img alt="@Clozure" src="https://avatars.githubusercontent.com/u/618168?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">783</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">5</td>
+                    <td><a class="card-popover" data-card="marcoheisig" href="http://github.com/marcoheisig">marcoheisig</a></td>
+                    <td><img alt="@marcoheisig" src="https://avatars.githubusercontent.com/u/6522938?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">678</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ru">
+                    <td class="idx text-right text-muted small">6</td>
+                    <td><a class="card-popover" data-card="archimag" href="http://github.com/archimag">archimag</a></td>
+                    <td><img alt="@archimag" src="https://avatars.githubusercontent.com/u/84920?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">484</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">7</td>
+                    <td><a class="card-popover" data-card="takagi" href="http://github.com/takagi">takagi</a></td>
+                    <td><img alt="@takagi" src="https://avatars.githubusercontent.com/u/1224375?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">436</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">8</td>
+                    <td><a class="card-popover" data-card="cxxxr" href="http://github.com/cxxxr">cxxxr</a></td>
+                    <td><img alt="@cxxxr" src="https://avatars.githubusercontent.com/u/13656378?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">417</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">9</td>
+                    <td><a class="card-popover" data-card="metawilm" href="http://github.com/metawilm">metawilm</a></td>
+                    <td><img alt="@metawilm" src="https://avatars.githubusercontent.com/u/84825?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">372</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ar">
+                    <td class="idx text-right text-muted small">10</td>
+                    <td><a class="card-popover" data-card="mmontone" href="http://github.com/mmontone">mmontone</a></td>
+                    <td><img alt="@mmontone" src="https://avatars.githubusercontent.com/u/436110?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">322</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ca">
+                    <td class="idx text-right text-muted small">11</td>
+                    <td><a class="card-popover" data-card="thephoeron" href="http://github.com/thephoeron">thephoeron</a></td>
+                    <td><img alt="@thephoeron" src="https://avatars.githubusercontent.com/u/1094198?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">290</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">12</td>
+                    <td><a class="card-popover" data-card="BradWBeer" href="http://github.com/BradWBeer">BradWBeer</a></td>
+                    <td><img alt="@BradWBeer" src="https://avatars.githubusercontent.com/u/308625?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">266</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ca">
+                    <td class="idx text-right text-muted small">13</td>
+                    <td><a class="card-popover" data-card="inaimathi" href="http://github.com/inaimathi">inaimathi</a></td>
+                    <td><img alt="@inaimathi" src="https://avatars.githubusercontent.com/u/218377?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">204</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">14</td>
+                    <td><a class="card-popover" data-card="privet-kitty" href="http://github.com/privet-kitty">privet-kitty</a></td>
+                    <td><img alt="@privet-kitty" src="https://avatars.githubusercontent.com/u/10072062?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">191</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">15</td>
+                    <td><a class="card-popover" data-card="masatoi" href="http://github.com/masatoi">masatoi</a></td>
+                    <td><img alt="@masatoi" src="https://avatars.githubusercontent.com/u/148939?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">172</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">16</td>
+                    <td><a class="card-popover" data-card="mbattyani" href="http://github.com/mbattyani">mbattyani</a></td>
+                    <td><img alt="@mbattyani" src="https://avatars.githubusercontent.com/u/3339919?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">167</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">17</td>
+                    <td><a class="card-popover" data-card="y2q-actionman" href="http://github.com/y2q-actionman">y2q-actionman</a></td>
+                    <td><img alt="@y2q-actionman" src="https://avatars.githubusercontent.com/u/555561?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">152</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">18</td>
+                    <td><a class="card-popover" data-card="mathematical-systems" href="http://github.com/mathematical-systems">mathematical-systems</a></td>
+                    <td><img alt="@mathematical-systems" src="https://avatars.githubusercontent.com/u/1134769?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">150</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ru">
+                    <td class="idx text-right text-muted small">19</td>
+                    <td><a class="card-popover" data-card="HiTECNOLOGYs" href="http://github.com/HiTECNOLOGYs">HiTECNOLOGYs</a></td>
+                    <td><img alt="@HiTECNOLOGYs" src="https://avatars.githubusercontent.com/u/306536?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">134</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ru">
+                    <td class="idx text-right text-muted small">20</td>
+                    <td><a class="card-popover" data-card="honix" href="http://github.com/honix">honix</a></td>
+                    <td><img alt="@honix" src="https://avatars.githubusercontent.com/u/11596541?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">117</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">21</td>
+                    <td><a class="card-popover" data-card="thezerobit" href="http://github.com/thezerobit">thezerobit</a></td>
+                    <td><img alt="@thezerobit" src="https://avatars.githubusercontent.com/u/150292?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">114</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="gb">
+                    <td class="idx text-right text-muted small">22</td>
+                    <td><a class="card-popover" data-card="keithj" href="http://github.com/keithj">keithj</a></td>
+                    <td><img alt="@keithj" src="https://avatars.githubusercontent.com/u/102847?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">108</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">23</td>
+                    <td><a class="card-popover" data-card="dlowe-net" href="http://github.com/dlowe-net">dlowe-net</a></td>
+                    <td><img alt="@dlowe-net" src="https://avatars.githubusercontent.com/u/188363?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">108</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">24</td>
+                    <td><a class="card-popover" data-card="ndantam" href="http://github.com/ndantam">ndantam</a></td>
+                    <td><img alt="@ndantam" src="https://avatars.githubusercontent.com/u/527876?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">107</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ca">
+                    <td class="idx text-right text-muted small">25</td>
+                    <td><a class="card-popover" data-card="BnMcGn" href="http://github.com/BnMcGn">BnMcGn</a></td>
+                    <td><img alt="@BnMcGn" src="https://avatars.githubusercontent.com/u/7906702?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">101</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="in">
+                    <td class="idx text-right text-muted small">26</td>
+                    <td><a class="card-popover" data-card="chaitanyagupta" href="http://github.com/chaitanyagupta">chaitanyagupta</a></td>
+                    <td><img alt="@chaitanyagupta" src="https://avatars.githubusercontent.com/u/35972?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">99</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">27</td>
+                    <td><a class="card-popover" data-card="k-stz" href="http://github.com/k-stz">k-stz</a></td>
+                    <td><img alt="@k-stz" src="https://avatars.githubusercontent.com/u/6854750?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">91</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="gb">
+                    <td class="idx text-right text-muted small">28</td>
+                    <td><a class="card-popover" data-card="fjames86" href="http://github.com/fjames86">fjames86</a></td>
+                    <td><img alt="@fjames86" src="https://avatars.githubusercontent.com/u/3998135?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">86</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">29</td>
+                    <td><a class="card-popover" data-card="kanru" href="http://github.com/kanru">kanru</a></td>
+                    <td><img alt="@kanru" src="https://avatars.githubusercontent.com/u/17571?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">80</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">30</td>
+                    <td><a class="card-popover" data-card="deadtrickster" href="http://github.com/deadtrickster">deadtrickster</a></td>
+                    <td><img alt="@deadtrickster" src="https://avatars.githubusercontent.com/u/172311?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">77</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="cn">
+                    <td class="idx text-right text-muted small">31</td>
+                    <td><a class="card-popover" data-card="Liutos" href="http://github.com/Liutos">Liutos</a></td>
+                    <td><img alt="@Liutos" src="https://avatars.githubusercontent.com/u/1254083?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">71</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="cn">
+                    <td class="idx text-right text-muted small">32</td>
+                    <td><a class="card-popover" data-card="jingtaozf" href="http://github.com/jingtaozf">jingtaozf</a></td>
+                    <td><img alt="@jingtaozf" src="https://avatars.githubusercontent.com/u/132706?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">67</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">33</td>
+                    <td><a class="card-popover" data-card="t-sin" href="http://github.com/t-sin">t-sin</a></td>
+                    <td><img alt="@t-sin" src="https://avatars.githubusercontent.com/u/4403863?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">66</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">34</td>
+                    <td><a class="card-popover" data-card="dbmcclain" href="http://github.com/dbmcclain">dbmcclain</a></td>
+                    <td><img alt="@dbmcclain" src="https://avatars.githubusercontent.com/u/3160577?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">61</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="au">
+                    <td class="idx text-right text-muted small">35</td>
+                    <td><a class="card-popover" data-card="no-defun-allowed" href="http://github.com/no-defun-allowed">no-defun-allowed</a></td>
+                    <td><img alt="@no-defun-allowed" src="https://avatars.githubusercontent.com/u/43771738?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-au" title="Australia"></span></td>
+                    <td class="text-right text-muted small">59</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="us">
+                    <td class="idx text-right text-muted small">36</td>
+                    <td><a class="card-popover" data-card="wmannis" href="http://github.com/wmannis">wmannis</a></td>
+                    <td><img alt="@wmannis" src="https://avatars.githubusercontent.com/u/11655511?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">53</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">37</td>
+                    <td><a class="card-popover" data-card="lispm" href="http://github.com/lispm">lispm</a></td>
+                    <td><img alt="@lispm" src="https://avatars.githubusercontent.com/u/1356397?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">52</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">38</td>
+                    <td><a class="card-popover" data-card="mdedwards" href="http://github.com/mdedwards">mdedwards</a></td>
+                    <td><img alt="@mdedwards" src="https://avatars.githubusercontent.com/u/11962146?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">52</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ca">
+                    <td class="idx text-right text-muted small">39</td>
+                    <td><a class="card-popover" data-card="burtonsamograd" href="http://github.com/burtonsamograd">burtonsamograd</a></td>
+                    <td><img alt="@burtonsamograd" src="https://avatars.githubusercontent.com/u/10542632?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">46</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">40</td>
+                    <td><a class="card-popover" data-card="gos-k" href="http://github.com/gos-k">gos-k</a></td>
+                    <td><img alt="@gos-k" src="https://avatars.githubusercontent.com/u/12409270?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">43</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="br">
+                    <td class="idx text-right text-muted small">41</td>
+                    <td><a class="card-popover" data-card="domus123" href="http://github.com/domus123">domus123</a></td>
+                    <td><img alt="@domus123" src="https://avatars.githubusercontent.com/u/14361997?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-br" title="Brazil"></span></td>
+                    <td class="text-right text-muted small">42</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">42</td>
+                    <td><a class="card-popover" data-card="hikettei" href="http://github.com/hikettei">hikettei</a></td>
+                    <td><img alt="@hikettei" src="https://avatars.githubusercontent.com/u/88639579?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">35</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="by">
+                    <td class="idx text-right text-muted small">43</td>
+                    <td><a class="card-popover" data-card="avodonosov" href="http://github.com/avodonosov">avodonosov</a></td>
+                    <td><img alt="@avodonosov" src="https://avatars.githubusercontent.com/u/2444?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-by" title="Belarus"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">44</td>
+                    <td><a class="card-popover" data-card="tamamu" href="http://github.com/tamamu">tamamu</a></td>
+                    <td><img alt="@tamamu" src="https://avatars.githubusercontent.com/u/9401982?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">45</td>
+                    <td><a class="card-popover" data-card="hyotang666" href="http://github.com/hyotang666">hyotang666</a></td>
+                    <td><img alt="@hyotang666" src="https://avatars.githubusercontent.com/u/8468496?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="au">
+                    <td class="idx text-right text-muted small">46</td>
+                    <td><a class="card-popover" data-card="chriskmanx" href="http://github.com/chriskmanx">chriskmanx</a></td>
+                    <td><img alt="@chriskmanx" src="https://avatars.githubusercontent.com/u/1509599?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-au" title="Australia"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="de">
+                    <td class="idx text-right text-muted small">47</td>
+                    <td><a class="card-popover" data-card="jorgetavares" href="http://github.com/jorgetavares">jorgetavares</a></td>
+                    <td><img alt="@jorgetavares" src="https://avatars.githubusercontent.com/u/41369?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="ru">
+                    <td class="idx text-right text-muted small">48</td>
+                    <td><a class="card-popover" data-card="Dimercel" href="http://github.com/Dimercel">Dimercel</a></td>
+                    <td><img alt="@Dimercel" src="https://avatars.githubusercontent.com/u/2398192?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="jp">
+                    <td class="idx text-right text-muted small">49</td>
+                    <td><a class="card-popover" data-card="tani" href="http://github.com/tani">tani</a></td>
+                    <td><img alt="@tani" src="https://avatars.githubusercontent.com/u/5019902?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-user"  data-country="gb">
+                    <td class="idx text-right text-muted small">50</td>
+                    <td><a class="card-popover" data-card="willijar" href="http://github.com/willijar">willijar</a></td>
+                    <td><img alt="@willijar" src="https://avatars.githubusercontent.com/u/261856?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">25</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">51</td>
+                    <td><a class="card-popover" data-card="rudolfochrist" href="http://github.com/rudolfochrist">rudolfochrist</a></td>
+                    <td><img alt="@rudolfochrist" src="https://avatars.githubusercontent.com/u/70550?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">52</td>
+                    <td><a class="card-popover" data-card="informatimago" href="http://github.com/informatimago">informatimago</a></td>
+                    <td><img alt="@informatimago" src="https://avatars.githubusercontent.com/u/791692?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">53</td>
+                    <td><a class="card-popover" data-card="quasi" href="http://github.com/quasi">quasi</a></td>
+                    <td><img alt="@quasi" src="https://avatars.githubusercontent.com/u/67810?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">54</td>
+                    <td><a class="card-popover" data-card="ioannad" href="http://github.com/ioannad">ioannad</a></td>
+                    <td><img alt="@ioannad" src="https://avatars.githubusercontent.com/u/9728696?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">55</td>
+                    <td><a class="card-popover" data-card="bhaskara" href="http://github.com/bhaskara">bhaskara</a></td>
+                    <td><img alt="@bhaskara" src="https://avatars.githubusercontent.com/u/135833?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="br">
+                    <td class="idx text-right text-muted small">56</td>
+                    <td><a class="card-popover" data-card="jessymilare" href="http://github.com/jessymilare">jessymilare</a></td>
+                    <td><img alt="@jessymilare" src="https://avatars.githubusercontent.com/u/48736?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-br" title="Brazil"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">57</td>
+                    <td><a class="card-popover" data-card="anwyn" href="http://github.com/anwyn">anwyn</a></td>
+                    <td><img alt="@anwyn" src="https://avatars.githubusercontent.com/u/45184?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">58</td>
+                    <td><a class="card-popover" data-card="Frechmatz" href="http://github.com/Frechmatz">Frechmatz</a></td>
+                    <td><img alt="@Frechmatz" src="https://avatars.githubusercontent.com/u/2312848?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">59</td>
+                    <td><a class="card-popover" data-card="samebchase" href="http://github.com/samebchase">samebchase</a></td>
+                    <td><img alt="@samebchase" src="https://avatars.githubusercontent.com/u/166555?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-user" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">60</td>
+                    <td><a class="card-popover" data-card="Unspeakable" href="http://github.com/Unspeakable">Unspeakable</a></td>
+                    <td><img alt="@Unspeakable" src="https://avatars.githubusercontent.com/u/194504?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col">
+        <h5 class="text-right"><i class="fa fa-code-fork" aria-hidden="true"></i>&nbsp;Repositories</h5>
+
+        <table class="table table-hover table-sm">
+            <thead class="text-muted">
+                <tr>
+                    <th class="text-center" width="1%">#</th>
+                    <th width="25%">Title</th>
+                    <th>Description</th>
+                    <th width="1%"></th>
+                    <th class="text-center" width="1%">★</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="row-repo"  data-country="fr">
+                    <td class="idx text-right text-muted small">1</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/pgloader" href="https://github.com/dimitri/pgloader">pgloader</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">Migrate to PostgreSQL in a single command!</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">4439</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">2</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/woo" href="https://github.com/fukamachi/woo">woo</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A fast non-blocking HTTP server on top of libev</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">1167</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">3</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/clack" href="https://github.com/fukamachi/clack">clack</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Web server abstraction layer for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">968</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">4</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/caveman" href="https://github.com/fukamachi/caveman">caveman</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Lightweight web application framework for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">736</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">5</td>
+                    <td>
+                        <a class="card-popover" data-card="Clozure/ccl" href="https://github.com/Clozure/ccl">ccl</a>
+                        <span class="text-muted small">Clozure</span>
+                    </td>
+                    <td class="small">Clozure Common Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">729</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="fr">
+                    <td class="idx text-right text-muted small">6</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/pgcharts" href="https://github.com/dimitri/pgcharts">pgcharts</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">Turn your PostgreSQL queries into Charts</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">378</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">7</td>
+                    <td>
+                        <a class="card-popover" data-card="metawilm/cl-python" href="https://github.com/metawilm/cl-python">cl-python</a>
+                        <span class="text-muted small">metawilm</span>
+                    </td>
+                    <td class="small">An implementation of Python in Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">345</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">8</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/fast-http" href="https://github.com/fukamachi/fast-http">fast-http</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A fast HTTP request/response parser for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">330</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">9</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/dexador" href="https://github.com/fukamachi/dexador">dexador</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A fast HTTP client for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">313</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">10</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/sxql" href="https://github.com/fukamachi/sxql">sxql</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">An SQL generator for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">308</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">11</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/qlot" href="https://github.com/fukamachi/qlot">qlot</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A project-local library installer for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">304</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">12</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/Petalisp" href="https://github.com/marcoheisig/Petalisp">Petalisp</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">Elegant High Performance Computing</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">284</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">13</td>
+                    <td>
+                        <a class="card-popover" data-card="BradWBeer/clinch" href="https://github.com/BradWBeer/clinch">clinch</a>
+                        <span class="text-muted small">BradWBeer</span>
+                    </td>
+                    <td class="small">Common Lisp 3D/2D Graphics Engine for OpenGL</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">266</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">14</td>
+                    <td>
+                        <a class="card-popover" data-card="takagi/cl-cuda" href="https://github.com/takagi/cl-cuda">cl-cuda</a>
+                        <span class="text-muted small">takagi</span>
+                    </td>
+                    <td class="small">Cl-cuda is a library to use NVIDIA CUDA in Common Lisp programs.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">262</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ru">
+                    <td class="idx text-right text-muted small">15</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/restas" href="https://github.com/archimag/restas">restas</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Common Lisp web framework</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">247</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">16</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/ningle" href="https://github.com/fukamachi/ningle">ningle</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Super micro framework for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">245</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">17</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/mito" href="https://github.com/fukamachi/mito">mito</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">An ORM for Common Lisp with migrations, relationships and PostgreSQL support</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">237</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">18</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/rutils" href="https://github.com/vseloved/rutils">rutils</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Radical Utilities for Common Lisp</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">227</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">19</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/prove" href="https://github.com/fukamachi/prove">prove</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Yet another unit testing framework for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">220</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">20</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/cl-nlp" href="https://github.com/vseloved/cl-nlp">cl-nlp</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Common Lisp NLP toolset</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">205</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">21</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/cl-project" href="https://github.com/fukamachi/cl-project">cl-project</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Generate modern project skeletons</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">204</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">22</td>
+                    <td>
+                        <a class="card-popover" data-card="cxxxr/valtan" href="https://github.com/cxxxr/valtan">valtan</a>
+                        <span class="text-muted small">cxxxr</span>
+                    </td>
+                    <td class="small">Common Lisp to JavaScript compiler</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">204</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">23</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/cl-dbi" href="https://github.com/fukamachi/cl-dbi">cl-dbi</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Database independent interface for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">181</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">24</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/cl-redis" href="https://github.com/vseloved/cl-redis">cl-redis</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Redis client for Common Lisp</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">176</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">25</td>
+                    <td>
+                        <a class="card-popover" data-card="privet-kitty/cl-competitive" href="https://github.com/privet-kitty/cl-competitive">cl-competitive</a>
+                        <span class="text-muted small">privet-kitty</span>
+                    </td>
+                    <td class="small">Common Lisp implementation of algorithms</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">150</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">26</td>
+                    <td>
+                        <a class="card-popover" data-card="mathematical-systems/clml" href="https://github.com/mathematical-systems/clml">clml</a>
+                        <span class="text-muted small">mathematical-systems</span>
+                    </td>
+                    <td class="small">Common Lisp Machine Learning Library</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">134</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ru">
+                    <td class="idx text-right text-muted small">27</td>
+                    <td>
+                        <a class="card-popover" data-card="HiTECNOLOGYs/cl-charms" href="https://github.com/HiTECNOLOGYs/cl-charms">cl-charms</a>
+                        <span class="text-muted small">HiTECNOLOGYs</span>
+                    </td>
+                    <td class="small">More up-to-date version of cl-charms. Forked it because it was, apparently, abandoned by author a...</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">134</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">28</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/rove" href="https://github.com/fukamachi/rove">rove</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">#1=(yet another . #1#) common lisp testing library</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">122</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">29</td>
+                    <td>
+                        <a class="card-popover" data-card="y2q-actionman/with-c-syntax" href="https://github.com/y2q-actionman/with-c-syntax">with-c-syntax</a>
+                        <span class="text-muted small">y2q-actionman</span>
+                    </td>
+                    <td class="small">C language syntax in Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">120</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">30</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/lack" href="https://github.com/fukamachi/lack">lack</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Lack, the core of Clack</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">114</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">31</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/let-over-lambda" href="https://github.com/thephoeron/let-over-lambda">let-over-lambda</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">Doug Hoyte's "Production" version of macros from Let Over Lambda, ready for ASDF and Quicklisp.</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">113</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">32</td>
+                    <td>
+                        <a class="card-popover" data-card="cxxxr/sblint" href="https://github.com/cxxxr/sblint">sblint</a>
+                        <span class="text-muted small">cxxxr</span>
+                    </td>
+                    <td class="small">A linter for Common Lisp source code using SBCL</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">110</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">33</td>
+                    <td>
+                        <a class="card-popover" data-card="ndantam/sycamore" href="https://github.com/ndantam/sycamore">sycamore</a>
+                        <span class="text-muted small">ndantam</span>
+                    </td>
+                    <td class="small">A fast, purely functional data structure library in Common Lisp.</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">107</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">34</td>
+                    <td>
+                        <a class="card-popover" data-card="mbattyani/cl-pdf" href="https://github.com/mbattyani/cl-pdf">cl-pdf</a>
+                        <span class="text-muted small">mbattyani</span>
+                    </td>
+                    <td class="small">CL-PDF is a cross-platform Common Lisp library for generating PDF files.</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">102</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">35</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/quri" href="https://github.com/fukamachi/quri">quri</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Yet another URI library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">98</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">36</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/utopian" href="https://github.com/fukamachi/utopian">utopian</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A web framework for Common Lisp never finished.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">94</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">37</td>
+                    <td>
+                        <a class="card-popover" data-card="dlowe-net/local-time" href="https://github.com/dlowe-net/local-time">local-time</a>
+                        <span class="text-muted small">dlowe-net</span>
+                    </td>
+                    <td class="small">Time manipulation library for Common Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">93</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">38</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/datafly" href="https://github.com/fukamachi/datafly">datafly</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A lightweight database library for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">91</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">39</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/websocket-driver" href="https://github.com/fukamachi/websocket-driver">websocket-driver</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">WebSocket server/client implementation for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">90</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">40</td>
+                    <td>
+                        <a class="card-popover" data-card="thezerobit/green-threads" href="https://github.com/thezerobit/green-threads">green-threads</a>
+                        <span class="text-muted small">thezerobit</span>
+                    </td>
+                    <td class="small">A lightweight thread / cooperative multitasking library for Common Lisp.</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">85</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">41</td>
+                    <td>
+                        <a class="card-popover" data-card="inaimathi/cl-notebook" href="https://github.com/inaimathi/cl-notebook">cl-notebook</a>
+                        <span class="text-muted small">inaimathi</span>
+                    </td>
+                    <td class="small">A notebook-style editor for Common Lisp</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">83</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">42</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/fast-generic-functions" href="https://github.com/marcoheisig/fast-generic-functions">fast-generic-functions</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">Seal your generic functions for an extra boost in performance.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">83</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">43</td>
+                    <td>
+                        <a class="card-popover" data-card="takagi/lake" href="https://github.com/takagi/lake">lake</a>
+                        <span class="text-muted small">takagi</span>
+                    </td>
+                    <td class="small">Lake is a GNU make like build utility in Common Lisp. </td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">82</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ru">
+                    <td class="idx text-right text-muted small">44</td>
+                    <td>
+                        <a class="card-popover" data-card="honix/Lire" href="https://github.com/honix/Lire">Lire</a>
+                        <span class="text-muted small">honix</span>
+                    </td>
+                    <td class="small">Visual programming tool based on Common Lisp</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">78</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">45</td>
+                    <td>
+                        <a class="card-popover" data-card="deadtrickster/prometheus.cl" href="https://github.com/deadtrickster/prometheus.cl">prometheus.cl</a>
+                        <span class="text-muted small">deadtrickster</span>
+                    </td>
+                    <td class="small">Prometheus.io Common Lisp client</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">77</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">46</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/lsx" href="https://github.com/fukamachi/lsx">lsx</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Embeddable HTML templating engine for Common Lisp with JSX-like syntax</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">74</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">47</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/sb-simd" href="https://github.com/marcoheisig/sb-simd">sb-simd</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">A convenient SIMD interface for SBCL.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">71</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ru">
+                    <td class="idx text-right text-muted small">48</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/cl-closure-template" href="https://github.com/archimag/cl-closure-template">cl-closure-template</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Common Lisp implementation of Google's Closure Templates.</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">71</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">49</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/kpi-spos" href="https://github.com/vseloved/kpi-spos">kpi-spos</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Учебный курс "Операционные системы"</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">71</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="gb">
+                    <td class="idx text-right text-muted small">50</td>
+                    <td>
+                        <a class="card-popover" data-card="keithj/alexandria" href="https://github.com/keithj/alexandria">alexandria</a>
+                        <span class="text-muted small">keithj</span>
+                    </td>
+                    <td class="small">Mirror of the Alexandria Common Lisp utility library.</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">70</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">51</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/shelly" href="https://github.com/fukamachi/shelly">shelly</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">[OBSOLETE] Use Roswell instead.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">65</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">52</td>
+                    <td>
+                        <a class="card-popover" data-card="mbattyani/cl-typesetting" href="https://github.com/mbattyani/cl-typesetting">cl-typesetting</a>
+                        <span class="text-muted small">mbattyani</span>
+                    </td>
+                    <td class="small"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">65</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="in">
+                    <td class="idx text-right text-muted small">53</td>
+                    <td>
+                        <a class="card-popover" data-card="chaitanyagupta/chronicity" href="https://github.com/chaitanyagupta/chronicity">chronicity</a>
+                        <span class="text-muted small">chaitanyagupta</span>
+                    </td>
+                    <td class="small">A natural language date and time parser for Common Lisp</td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">63</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">54</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/black-stone" href="https://github.com/thephoeron/black-stone">black-stone</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">Specification and Implementation of Quantum Common Lisp, for gate-model quantum computers</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">62</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">55</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/cl-mpi" href="https://github.com/marcoheisig/cl-mpi">cl-mpi</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">MPI bindings for Common Lisp with many useful extras</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">61</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ar">
+                    <td class="idx text-right text-muted small">56</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/cl-rest-server" href="https://github.com/mmontone/cl-rest-server">cl-rest-server</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Serve REST APIs from Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">60</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">57</td>
+                    <td>
+                        <a class="card-popover" data-card="cxxxr/jsonrpc" href="https://github.com/cxxxr/jsonrpc">jsonrpc</a>
+                        <span class="text-muted small">cxxxr</span>
+                    </td>
+                    <td class="small">JSON-RPC 2.0 server/client for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">60</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="au">
+                    <td class="idx text-right text-muted small">58</td>
+                    <td>
+                        <a class="card-popover" data-card="no-defun-allowed/wasm2ps" href="https://github.com/no-defun-allowed/wasm2ps">wasm2ps</a>
+                        <span class="text-muted small">no-defun-allowed</span>
+                    </td>
+                    <td class="small">ruin the sanctity of your printer with ONE WEIRD TRICK</td>
+                    <td><span class="flag flag-au" title="Australia"></span></td>
+                    <td class="text-right text-muted small">59</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">59</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/the-cost-of-nothing" href="https://github.com/marcoheisig/the-cost-of-nothing">the-cost-of-nothing</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">Determine the cost of things in Common Lisp.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">59</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ar">
+                    <td class="idx text-right text-muted small">60</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/erudite" href="https://github.com/mmontone/erudite">erudite</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">:green_book: Literate Programming System for Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">58</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">61</td>
+                    <td>
+                        <a class="card-popover" data-card="masatoi/cl-random-forest" href="https://github.com/masatoi/cl-random-forest">cl-random-forest</a>
+                        <span class="text-muted small">masatoi</span>
+                    </td>
+                    <td class="small">Random forest in Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">57</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">62</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/integral" href="https://github.com/fukamachi/integral">integral</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">[OBSOLETE] Use Mito instead.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">55</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">63</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/envy" href="https://github.com/fukamachi/envy">envy</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Configuration switcher by an environment variable inspired by Config::ENV.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">54</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">64</td>
+                    <td>
+                        <a class="card-popover" data-card="mdedwards/slippery-chicken" href="https://github.com/mdedwards/slippery-chicken">slippery-chicken</a>
+                        <span class="text-muted small">mdedwards</span>
+                    </td>
+                    <td class="small">slippery chicken: algorithmic composition software in common lisp and clos</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">52</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="gb">
+                    <td class="idx text-right text-muted small">65</td>
+                    <td>
+                        <a class="card-popover" data-card="fjames86/ftw" href="https://github.com/fjames86/ftw">ftw</a>
+                        <span class="text-muted small">fjames86</span>
+                    </td>
+                    <td class="small">Common Lisp Win32 GUI library </td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">52</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">66</td>
+                    <td>
+                        <a class="card-popover" data-card="k-stz/cl-ptrace" href="https://github.com/k-stz/cl-ptrace">cl-ptrace</a>
+                        <span class="text-muted small">k-stz</span>
+                    </td>
+                    <td class="small">live process hacking - lisp bindings to ptrace()</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">51</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">67</td>
+                    <td>
+                        <a class="card-popover" data-card="takagi/avm" href="https://github.com/takagi/avm">avm</a>
+                        <span class="text-muted small">takagi</span>
+                    </td>
+                    <td class="small">Efficient and expressive arrayed vector math library with multi-threading and CUDA support in Com...</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">51</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="cn">
+                    <td class="idx text-right text-muted small">68</td>
+                    <td>
+                        <a class="card-popover" data-card="jingtaozf/literate-lisp" href="https://github.com/jingtaozf/literate-lisp">literate-lisp</a>
+                        <span class="text-muted small">jingtaozf</span>
+                    </td>
+                    <td class="small">Load Common Lisp code blocks from Org files</td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">48</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">69</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/bit-smasher" href="https://github.com/thephoeron/bit-smasher">bit-smasher</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">Common Lisp library for handling bit vectors, bit vector arithmetic, and type conversions.</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">47</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">70</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/psychiq" href="https://github.com/fukamachi/psychiq">psychiq</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Background job processing for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">47</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">71</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/progalgs-code" href="https://github.com/vseloved/progalgs-code">progalgs-code</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Code for the book "Programming Algorithms"</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">47</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">72</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/getac" href="https://github.com/fukamachi/getac">getac</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Quick unit testing tool for competitive programming</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">46</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">73</td>
+                    <td>
+                        <a class="card-popover" data-card="kanru/cl-mustache" href="https://github.com/kanru/cl-mustache">cl-mustache</a>
+                        <span class="text-muted small">kanru</span>
+                    </td>
+                    <td class="small">Common Lisp Mustache Template Renderer</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">46</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">74</td>
+                    <td>
+                        <a class="card-popover" data-card="masatoi/cl-online-learning" href="https://github.com/masatoi/cl-online-learning">cl-online-learning</a>
+                        <span class="text-muted small">masatoi</span>
+                    </td>
+                    <td class="small">A collection of machine learning algorithms for online linear classification written in Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">46</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="cn">
+                    <td class="idx text-right text-muted small">75</td>
+                    <td>
+                        <a class="card-popover" data-card="Liutos/cl-github-page" href="https://github.com/Liutos/cl-github-page">cl-github-page</a>
+                        <span class="text-muted small">Liutos</span>
+                    </td>
+                    <td class="small">Static Blog Generator——静态博客生成器</td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">45</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">76</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/mondo" href="https://github.com/fukamachi/mondo">mondo</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Simple Common Lisp REPL</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">45</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">77</td>
+                    <td>
+                        <a class="card-popover" data-card="BnMcGn/snakes" href="https://github.com/BnMcGn/snakes">snakes</a>
+                        <span class="text-muted small">BnMcGn</span>
+                    </td>
+                    <td class="small">Python-like generators for Common Lisp</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">44</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">78</td>
+                    <td>
+                        <a class="card-popover" data-card="inaimathi/clj" href="https://github.com/inaimathi/clj">clj</a>
+                        <span class="text-muted small">inaimathi</span>
+                    </td>
+                    <td class="small">Basic Clojure affordances for Common Lisp</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">43</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">79</td>
+                    <td>
+                        <a class="card-popover" data-card="gos-k/oclcl" href="https://github.com/gos-k/oclcl">oclcl</a>
+                        <span class="text-muted small">gos-k</span>
+                    </td>
+                    <td class="small">S-expression to OpenCL C</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">43</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="br">
+                    <td class="idx text-right text-muted small">80</td>
+                    <td>
+                        <a class="card-popover" data-card="domus123/vhdlisp" href="https://github.com/domus123/vhdlisp">vhdlisp</a>
+                        <span class="text-muted small">domus123</span>
+                    </td>
+                    <td class="small">When Lisp and Vhdl have a son.</td>
+                    <td><span class="flag flag-br" title="Brazil"></span></td>
+                    <td class="text-right text-muted small">42</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">81</td>
+                    <td>
+                        <a class="card-popover" data-card="takagi/pic" href="https://github.com/takagi/pic">pic</a>
+                        <span class="text-muted small">takagi</span>
+                    </td>
+                    <td class="small">A native compiler for 8-bit PIC micro controllers written in Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">41</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">82</td>
+                    <td>
+                        <a class="card-popover" data-card="privet-kitty/dufy" href="https://github.com/privet-kitty/dufy">dufy</a>
+                        <span class="text-muted small">privet-kitty</span>
+                    </td>
+                    <td class="small">Colorimetry library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">41</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ua">
+                    <td class="idx text-right text-muted small">83</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/should-test" href="https://github.com/vseloved/should-test">should-test</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">A minimal yet feature-rich Common Lisp test framework</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">41</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ar">
+                    <td class="idx text-right text-muted small">84</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/easy-routes" href="https://github.com/mmontone/easy-routes">easy-routes</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Yet another routes handling utility on top of Hunchentoot</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">40</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">85</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/Loopus" href="https://github.com/marcoheisig/Loopus">Loopus</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">A portable loop optimization framework for Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">40</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">86</td>
+                    <td>
+                        <a class="card-popover" data-card="k-stz/arcsynthesis" href="https://github.com/k-stz/arcsynthesis">arcsynthesis</a>
+                        <span class="text-muted small">k-stz</span>
+                    </td>
+                    <td class="small">Common Lisp port of code from Jason L. McKesson's Book: "Learning Modern 3D Graphics Programming"</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">40</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ar">
+                    <td class="idx text-right text-muted small">87</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/cl-forms" href="https://github.com/mmontone/cl-forms">cl-forms</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Web forms handling library for Common lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">38</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">88</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/proc-parse" href="https://github.com/fukamachi/proc-parse">proc-parse</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Procedural vector parser</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">38</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">89</td>
+                    <td>
+                        <a class="card-popover" data-card="BnMcGn/clath" href="https://github.com/BnMcGn/clath">clath</a>
+                        <span class="text-muted small">BnMcGn</span>
+                    </td>
+                    <td class="small">Clath is single sign-on middleware for Clack. Login with OAuth1.0a, OAuth2 or OpenID Connect.</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">36</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ru">
+                    <td class="idx text-right text-muted small">90</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/mongo-cl-driver" href="https://github.com/archimag/mongo-cl-driver">mongo-cl-driver</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Common Lisp driver for MongoDB</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">36</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">91</td>
+                    <td>
+                        <a class="card-popover" data-card="hikettei/cl-waffe" href="https://github.com/hikettei/cl-waffe">cl-waffe</a>
+                        <span class="text-muted small">hikettei</span>
+                    </td>
+                    <td class="small">[Still Experimental] Deep Learning Framework for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">35</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="us">
+                    <td class="idx text-right text-muted small">92</td>
+                    <td>
+                        <a class="card-popover" data-card="wmannis/cl-svg" href="https://github.com/wmannis/cl-svg">cl-svg</a>
+                        <span class="text-muted small">wmannis</span>
+                    </td>
+                    <td class="small">Produce Scalable Vector Graphics files with Common Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">35</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">93</td>
+                    <td>
+                        <a class="card-popover" data-card="kanru/cl-isolated" href="https://github.com/kanru/cl-isolated">cl-isolated</a>
+                        <span class="text-muted small">kanru</span>
+                    </td>
+                    <td class="small">A restricted environment for Common Lisp code evaluation</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">34</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">94</td>
+                    <td>
+                        <a class="card-popover" data-card="inaimathi/house" href="https://github.com/inaimathi/house">house</a>
+                        <span class="text-muted small">inaimathi</span>
+                    </td>
+                    <td class="small">Minimal asynchronous CL web server</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">33</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">95</td>
+                    <td>
+                        <a class="card-popover" data-card="t-sin/inquisitor" href="https://github.com/t-sin/inquisitor">inquisitor</a>
+                        <span class="text-muted small">t-sin</span>
+                    </td>
+                    <td class="small">Encoding/end-of-line detection and external-format abstraction for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">33</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="de">
+                    <td class="idx text-right text-muted small">96</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/sealable-metaobjects" href="https://github.com/marcoheisig/sealable-metaobjects">sealable-metaobjects</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">A CLOSsy way to trade genericity for performance.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">97</td>
+                    <td>
+                        <a class="card-popover" data-card="tamamu/glisph" href="https://github.com/tamamu/glisph">glisph</a>
+                        <span class="text-muted small">tamamu</span>
+                    </td>
+                    <td class="small">Glyph rendering engine using OpenGL shading language for Common Lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">98</td>
+                    <td>
+                        <a class="card-popover" data-card="y2q-actionman/cl-aws-custom-runtime-test" href="https://github.com/y2q-actionman/cl-aws-custom-runtime-test">cl-aws-custom-runtime-test</a>
+                        <span class="text-muted small">y2q-actionman</span>
+                    </td>
+                    <td class="small">An example of using Common Lisp (SBCL) as a custom runtime on AWS lambda</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="jp">
+                    <td class="idx text-right text-muted small">99</td>
+                    <td>
+                        <a class="card-popover" data-card="hyotang666/trivial-formatter" href="https://github.com/hyotang666/trivial-formatter">trivial-formatter</a>
+                        <span class="text-muted small">hyotang666</span>
+                    </td>
+                    <td class="small">Code formatter for common lisp.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">32</td>
+                </tr>
+                
+                <tr class="row-repo"  data-country="ca">
+                    <td class="idx text-right text-muted small">100</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/qgame" href="https://github.com/thephoeron/qgame">qgame</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">QGAME: Quantum Gate and Measurement Emulator, a quantum computer simulator</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">31</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">101</td>
+                    <td>
+                        <a class="card-popover" data-card="lispm/CommonLispCode" href="https://github.com/lispm/CommonLispCode">CommonLispCode</a>
+                        <span class="text-muted small">lispm</span>
+                    </td>
+                    <td class="small"></td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">31</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">102</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/rulisp" href="https://github.com/archimag/rulisp">rulisp</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Russian Common Lisp community site</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">31</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">103</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/nba" href="https://github.com/dimitri/nba">nba</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">Aggregating NBA data</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">30</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">104</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/cl-xul" href="https://github.com/mmontone/cl-xul">cl-xul</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Mozilla XUL bindings for Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">29</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">105</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/ten" href="https://github.com/mmontone/ten">ten</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">The completeness of Djula meets the usability of Eco.</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">29</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">106</td>
+                    <td>
+                        <a class="card-popover" data-card="thezerobit/slow-jam" href="https://github.com/thezerobit/slow-jam">slow-jam</a>
+                        <span class="text-muted small">thezerobit</span>
+                    </td>
+                    <td class="small">Common Lisp lazy sequence library</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">29</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">107</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/jose" href="https://github.com/fukamachi/jose">jose</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">A JOSE implementation</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">108</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/legion" href="https://github.com/fukamachi/legion">legion</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Simple multithreading worker mechanism.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">109</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/cl-coveralls" href="https://github.com/fukamachi/cl-coveralls">cl-coveralls</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small"></td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">110</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/cl-routes" href="https://github.com/archimag/cl-routes">cl-routes</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Common Lisp implementation of the routes system for mapping URL's</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ua">
+                    <td class="idx text-right text-muted small">111</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/wiki-lang-detect" href="https://github.com/vseloved/wiki-lang-detect">wiki-lang-detect</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Text language identification using Wikipedia data</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">112</td>
+                    <td>
+                        <a class="card-popover" data-card="Clozure/ccldoc" href="https://github.com/Clozure/ccldoc">ccldoc</a>
+                        <span class="text-muted small">Clozure</span>
+                    </td>
+                    <td class="small">CCLDoc documentation system used by Clozure CL</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">28</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="au">
+                    <td class="idx text-right text-muted small">113</td>
+                    <td>
+                        <a class="card-popover" data-card="chriskmanx/abacus" href="https://github.com/chriskmanx/abacus">abacus</a>
+                        <span class="text-muted small">chriskmanx</span>
+                    </td>
+                    <td class="small">Abacus – Unified Syntax for Pattern Matching over Algebraic Types in Common Lisp</td>
+                    <td><span class="flag flag-au" title="Australia"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">114</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/Typo" href="https://github.com/marcoheisig/Typo">Typo</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">A portable type inference library for Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">115</td>
+                    <td>
+                        <a class="card-popover" data-card="jorgetavares/zsort" href="https://github.com/jorgetavares/zsort">zsort</a>
+                        <span class="text-muted small">jorgetavares</span>
+                    </td>
+                    <td class="small">zsort is a collection of portable sorting algorithms in Common Lisp.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">116</td>
+                    <td>
+                        <a class="card-popover" data-card="metawilm/cl-custom-hash-table" href="https://github.com/metawilm/cl-custom-hash-table">cl-custom-hash-table</a>
+                        <span class="text-muted small">metawilm</span>
+                    </td>
+                    <td class="small">Custom hash tables for Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">117</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/cl-abnf" href="https://github.com/dimitri/cl-abnf">cl-abnf</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">ABNF Parser Generator, per RFC2234</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">118</td>
+                    <td>
+                        <a class="card-popover" data-card="cxxxr/apispec" href="https://github.com/cxxxr/apispec">apispec</a>
+                        <span class="text-muted small">cxxxr</span>
+                    </td>
+                    <td class="small">A Common Lisp library for handling Web API requests and responses.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">119</td>
+                    <td>
+                        <a class="card-popover" data-card="Dimercel/listopia" href="https://github.com/Dimercel/listopia">listopia</a>
+                        <span class="text-muted small">Dimercel</span>
+                    </td>
+                    <td class="small">List manipulation library inspired by Haskell package Data.List</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">27</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">120</td>
+                    <td>
+                        <a class="card-popover" data-card="burtonsamograd/sigil" href="https://github.com/burtonsamograd/sigil">sigil</a>
+                        <span class="text-muted small">burtonsamograd</span>
+                    </td>
+                    <td class="small">A Parenscript to Javascript command line compiler and interpreter.</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="cn">
+                    <td class="idx text-right text-muted small">121</td>
+                    <td>
+                        <a class="card-popover" data-card="Liutos/Project-Euler" href="https://github.com/Liutos/Project-Euler">Project-Euler</a>
+                        <span class="text-muted small">Liutos</span>
+                    </td>
+                    <td class="small">The solutions written in Common Lisp for problems on Project Euler</td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">122</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/docker-cl-example" href="https://github.com/fukamachi/docker-cl-example">docker-cl-example</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Example projects to run/develop Common Lisp web application on Docker container</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">123</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/assoc-utils" href="https://github.com/fukamachi/assoc-utils">assoc-utils</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Utilities for manipulating association lists.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">124</td>
+                    <td>
+                        <a class="card-popover" data-card="tani/papyrus" href="https://github.com/tani/papyrus">papyrus</a>
+                        <span class="text-muted small">tani</span>
+                    </td>
+                    <td class="small">A Literate Programming Tool</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">125</td>
+                    <td>
+                        <a class="card-popover" data-card="Clozure/dpf" href="https://github.com/Clozure/dpf">dpf</a>
+                        <span class="text-muted small">Clozure</span>
+                    </td>
+                    <td class="small">Picture Window, a standalone OS X application written in Clozure CL</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">26</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="gb">
+                    <td class="idx text-right text-muted small">126</td>
+                    <td>
+                        <a class="card-popover" data-card="willijar/cl-docutils" href="https://github.com/willijar/cl-docutils">cl-docutils</a>
+                        <span class="text-muted small">willijar</span>
+                    </td>
+                    <td class="small">a Common Lisp implementation of the Docutils text processing system for processing plaintext into...</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">25</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">127</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/supertrace" href="https://github.com/fukamachi/supertrace">supertrace</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Superior Common Lisp `trace` functionality for debugging/profiling real world applications.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">25</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">128</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/clozure-cl" href="https://github.com/fukamachi/clozure-cl">clozure-cl</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Unofficial mirror of Clozure CL</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">25</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">129</td>
+                    <td>
+                        <a class="card-popover" data-card="masatoi/clgplot" href="https://github.com/masatoi/clgplot">clgplot</a>
+                        <span class="text-muted small">masatoi</span>
+                    </td>
+                    <td class="small">A Gnuplot front-end for Common lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">25</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">130</td>
+                    <td>
+                        <a class="card-popover" data-card="inaimathi/formlets" href="https://github.com/inaimathi/formlets">formlets</a>
+                        <span class="text-muted small">inaimathi</span>
+                    </td>
+                    <td class="small">Automatically validating formlets for Hunchentoot + cl-who</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">131</td>
+                    <td>
+                        <a class="card-popover" data-card="rudolfochrist/cl-change-case" href="https://github.com/rudolfochrist/cl-change-case">cl-change-case</a>
+                        <span class="text-muted small">rudolfochrist</span>
+                    </td>
+                    <td class="small">Convert strings between camelCase, param-case, snake_case and more</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">132</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/event-emitter" href="https://github.com/fukamachi/event-emitter">event-emitter</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Event mechanism for Common Lisp objects.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">133</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/cliki2" href="https://github.com/archimag/cliki2">cliki2</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small"></td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">134</td>
+                    <td>
+                        <a class="card-popover" data-card="honix/Artilico" href="https://github.com/honix/Artilico">Artilico</a>
+                        <span class="text-muted small">honix</span>
+                    </td>
+                    <td class="small">Artistic live-coding in Common Lisp</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ua">
+                    <td class="idx text-right text-muted small">135</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/crawlik" href="https://github.com/vseloved/crawlik">crawlik</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Lisp web crawler and scrapper</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ua">
+                    <td class="idx text-right text-muted small">136</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/cl-agraph" href="https://github.com/vseloved/cl-agraph">cl-agraph</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">CL-AGRAPH — A minimal portable Lisp client for AllegroGraph</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">137</td>
+                    <td>
+                        <a class="card-popover" data-card="dbmcclain/LispPlotter" href="https://github.com/dbmcclain/LispPlotter">LispPlotter</a>
+                        <span class="text-muted small">dbmcclain</span>
+                    </td>
+                    <td class="small">2-D Data Plotting in Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">24</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">138</td>
+                    <td>
+                        <a class="card-popover" data-card="masatoi/cl-zerodl" href="https://github.com/masatoi/cl-zerodl">cl-zerodl</a>
+                        <span class="text-muted small">masatoi</span>
+                    </td>
+                    <td class="small">Common Lisp implementation of "deep-learning-from-scratch"</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">23</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">139</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/uncl" href="https://github.com/fukamachi/uncl">uncl</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Un-Common Lisp on Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">22</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">140</td>
+                    <td>
+                        <a class="card-popover" data-card="inaimathi/fact-base" href="https://github.com/inaimathi/fact-base">fact-base</a>
+                        <span class="text-muted small">inaimathi</span>
+                    </td>
+                    <td class="small">Implementation of fact bases for Common Lisp</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">141</td>
+                    <td>
+                        <a class="card-popover" data-card="BnMcGn/paren6" href="https://github.com/BnMcGn/paren6">paren6</a>
+                        <span class="text-muted small">BnMcGn</span>
+                    </td>
+                    <td class="small">ES6 macros for Parenscript</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">142</td>
+                    <td>
+                        <a class="card-popover" data-card="marcoheisig/bitfield" href="https://github.com/marcoheisig/bitfield">bitfield</a>
+                        <span class="text-muted small">marcoheisig</span>
+                    </td>
+                    <td class="small">Efficiently represent several finite sets or small integers as a single non-negative integer.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">143</td>
+                    <td>
+                        <a class="card-popover" data-card="lispm/measures" href="https://github.com/lispm/measures">measures</a>
+                        <span class="text-muted small">lispm</span>
+                    </td>
+                    <td class="small">Units and dimensions for Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="gb">
+                    <td class="idx text-right text-muted small">144</td>
+                    <td>
+                        <a class="card-popover" data-card="keithj/cl-sam" href="https://github.com/keithj/cl-sam">cl-sam</a>
+                        <span class="text-muted small">keithj</span>
+                    </td>
+                    <td class="small">A DNA Sequence Alignment/Map (SAM) library for Common Lisp.</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">145</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/.lem" href="https://github.com/fukamachi/.lem">.lem</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Lem configuration files</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">146</td>
+                    <td>
+                        <a class="card-popover" data-card="masatoi/cl-debug-print" href="https://github.com/masatoi/cl-debug-print">cl-debug-print</a>
+                        <span class="text-muted small">masatoi</span>
+                    </td>
+                    <td class="small">A reader-macro for debug print</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ua">
+                    <td class="idx text-right text-muted small">147</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/cl-parsec" href="https://github.com/vseloved/cl-parsec">cl-parsec</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Parser combinators in Common Lisp</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">21</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">148</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/cl-isaac" href="https://github.com/thephoeron/cl-isaac">cl-isaac</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">Optimized Common Lisp version of Bob Jenkins' ISAAC-32 and ISAAC-64 algorithms, fast cryptographi...</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">149</td>
+                    <td>
+                        <a class="card-popover" data-card="burtonsamograd/rsa" href="https://github.com/burtonsamograd/rsa">rsa</a>
+                        <span class="text-muted small">burtonsamograd</span>
+                    </td>
+                    <td class="small">The RSA Encryption Algorithm written in Common Lisp</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">150</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/ql-to-deb" href="https://github.com/dimitri/ql-to-deb">ql-to-deb</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">Update cl-* debian packages from Quicklisp releases.</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">151</td>
+                    <td>
+                        <a class="card-popover" data-card="informatimago/lisp" href="https://github.com/informatimago/lisp">lisp</a>
+                        <span class="text-muted small">informatimago</span>
+                    </td>
+                    <td class="small">Clone of https://gitlab.com/com-informatimago/com-informatimago   Informatimago Common Lisp Libra...</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">152</td>
+                    <td>
+                        <a class="card-popover" data-card="quasi/cl-memcached" href="https://github.com/quasi/cl-memcached">cl-memcached</a>
+                        <span class="text-muted small">quasi</span>
+                    </td>
+                    <td class="small">Fast, thread-safe interface to the Memcached object caching system.</td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">153</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/myway" href="https://github.com/fukamachi/myway">myway</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Sinatra-compatible URL routing library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">154</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/cl-locale" href="https://github.com/fukamachi/cl-locale">cl-locale</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Simple i18n library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">155</td>
+                    <td>
+                        <a class="card-popover" data-card="dbmcclain/data-objects" href="https://github.com/dbmcclain/data-objects">data-objects</a>
+                        <span class="text-muted small">dbmcclain</span>
+                    </td>
+                    <td class="small">Collection of useful higher-level data objects -- BTrees, Queues, etc.</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">20</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">156</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/cl-sentry-client" href="https://github.com/mmontone/cl-sentry-client">cl-sentry-client</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Sentry client for Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="cn">
+                    <td class="idx text-right text-muted small">157</td>
+                    <td>
+                        <a class="card-popover" data-card="jingtaozf/s-graphviz" href="https://github.com/jingtaozf/s-graphviz">s-graphviz</a>
+                        <span class="text-muted small">jingtaozf</span>
+                    </td>
+                    <td class="small"> An s-expression representation of  GraphViz DOT Language</td>
+                    <td><span class="flag flag-cn" title="China"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">158</td>
+                    <td>
+                        <a class="card-popover" data-card="ioannad/jeffrey" href="https://github.com/ioannad/jeffrey">jeffrey</a>
+                        <span class="text-muted small">ioannad</span>
+                    </td>
+                    <td class="small">Choiceless grapher: a common-lisp diagram maker for consequences of the Axiom of Choice.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="gb">
+                    <td class="idx text-right text-muted small">159</td>
+                    <td>
+                        <a class="card-popover" data-card="fjames86/fsocket" href="https://github.com/fjames86/fsocket">fsocket</a>
+                        <span class="text-muted small">fjames86</span>
+                    </td>
+                    <td class="small">Yet another socket FFI</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">160</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/fast-websocket" href="https://github.com/fukamachi/fast-websocket">fast-websocket</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Optimized low-level WebSocket protocol parser written in Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">161</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/safety-params" href="https://github.com/fukamachi/safety-params">safety-params</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Check params</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">162</td>
+                    <td>
+                        <a class="card-popover" data-card="bhaskara/programmable-reinforcement-learning" href="https://github.com/bhaskara/programmable-reinforcement-learning">programmable-reinforcement-learning</a>
+                        <span class="text-muted small">bhaskara</span>
+                    </td>
+                    <td class="small">Reinforcement learning algorithms constrained by a partial program</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">19</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">163</td>
+                    <td>
+                        <a class="card-popover" data-card="chaitanyagupta/qbase64" href="https://github.com/chaitanyagupta/qbase64">qbase64</a>
+                        <span class="text-muted small">chaitanyagupta</span>
+                    </td>
+                    <td class="small">Fast and flexible base64 encoder/decoder in Lisp</td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">18</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">164</td>
+                    <td>
+                        <a class="card-popover" data-card="chaitanyagupta/zorm" href="https://github.com/chaitanyagupta/zorm">zorm</a>
+                        <span class="text-muted small">chaitanyagupta</span>
+                    </td>
+                    <td class="small">Common Lisp ORM for PostgreSQL</td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">18</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">165</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/mito-auth" href="https://github.com/fukamachi/mito-auth">mito-auth</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">User authorization for Mito classes.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">18</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">166</td>
+                    <td>
+                        <a class="card-popover" data-card="wmannis/cl-gambol" href="https://github.com/wmannis/cl-gambol">cl-gambol</a>
+                        <span class="text-muted small">wmannis</span>
+                    </td>
+                    <td class="small">Basic Prolog functionality for Common Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">18</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">167</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/descriptions" href="https://github.com/mmontone/descriptions">descriptions</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Meta level descriptions library for Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="by">
+                    <td class="idx text-right text-muted small">168</td>
+                    <td>
+                        <a class="card-popover" data-card="avodonosov/secure-random" href="https://github.com/avodonosov/secure-random">secure-random</a>
+                        <span class="text-muted small">avodonosov</span>
+                    </td>
+                    <td class="small">secure-random provides a cryptographically secure pseudo-random  number generator for Common Lisp.</td>
+                    <td><span class="flag flag-by" title="Belarus"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ca">
+                    <td class="idx text-right text-muted small">169</td>
+                    <td>
+                        <a class="card-popover" data-card="thephoeron/wolfcoin" href="https://github.com/thephoeron/wolfcoin">wolfcoin</a>
+                        <span class="text-muted small">thephoeron</span>
+                    </td>
+                    <td class="small">Common Lisp cryptocurrency client, protocol, and wallet</td>
+                    <td><span class="flag flag-ca" title="Canada"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="gb">
+                    <td class="idx text-right text-muted small">170</td>
+                    <td>
+                        <a class="card-popover" data-card="keithj/cl-genomic" href="https://github.com/keithj/cl-genomic">cl-genomic</a>
+                        <span class="text-muted small">keithj</span>
+                    </td>
+                    <td class="small">A Common Lisp library for processing genomic sequence data.</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">171</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/anypool" href="https://github.com/fukamachi/anypool">anypool</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">General-purpose connection pooling library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">172</td>
+                    <td>
+                        <a class="card-popover" data-card="t-sin/one" href="https://github.com/t-sin/one">one</a>
+                        <span class="text-muted small">t-sin</span>
+                    </td>
+                    <td class="small">A framework for processing input like streams, pathnames and sequences</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">173</td>
+                    <td>
+                        <a class="card-popover" data-card="dbmcclain/useful-macros" href="https://github.com/dbmcclain/useful-macros">useful-macros</a>
+                        <span class="text-muted small">dbmcclain</span>
+                    </td>
+                    <td class="small"></td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">17</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">174</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/garnet" href="https://github.com/mmontone/garnet">garnet</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">Garnet - a graphical toolkit for Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ar">
+                    <td class="idx text-right text-muted small">175</td>
+                    <td>
+                        <a class="card-popover" data-card="mmontone/clavier" href="https://github.com/mmontone/clavier">clavier</a>
+                        <span class="text-muted small">mmontone</span>
+                    </td>
+                    <td class="small">:heavy_check_mark: General purpose validation library for Common Lisp</td>
+                    <td><span class="flag flag-ar" title="Argentina"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="fr">
+                    <td class="idx text-right text-muted small">176</td>
+                    <td>
+                        <a class="card-popover" data-card="dimitri/kids" href="https://github.com/dimitri/kids">kids</a>
+                        <span class="text-muted small">dimitri</span>
+                    </td>
+                    <td class="small">Helping kids discover computing</td>
+                    <td><span class="flag flag-fr" title="France"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">177</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/smart-buffer" href="https://github.com/fukamachi/smart-buffer">smart-buffer</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Smart octets buffer.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">178</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/ragno" href="https://github.com/fukamachi/ragno">ragno</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Common Lisp Web crawling library based on Psychiq.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">179</td>
+                    <td>
+                        <a class="card-popover" data-card="cxxxr/lisp-preprocessor" href="https://github.com/cxxxr/lisp-preprocessor">lisp-preprocessor</a>
+                        <span class="text-muted small">cxxxr</span>
+                    </td>
+                    <td class="small">Common lisp embedded template engine</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">180</td>
+                    <td>
+                        <a class="card-popover" data-card="t-sin/ros-tap" href="https://github.com/t-sin/ros-tap">ros-tap</a>
+                        <span class="text-muted small">t-sin</span>
+                    </td>
+                    <td class="small">Manage local projects initially loaded</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">181</td>
+                    <td>
+                        <a class="card-popover" data-card="mathematical-systems/future" href="https://github.com/mathematical-systems/future">future</a>
+                        <span class="text-muted small">mathematical-systems</span>
+                    </td>
+                    <td class="small">Task-parallelism library for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">182</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/cl-pdf" href="https://github.com/archimag/cl-pdf">cl-pdf</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">My fork for origin cl-pdf (http://www.fractalconcept.com/asp/html/cl-pdf.html) library</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">183</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/arblog" href="https://github.com/archimag/arblog">arblog</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">Blog engine</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ua">
+                    <td class="idx text-right text-muted small">184</td>
+                    <td>
+                        <a class="card-popover" data-card="vseloved/lisp-crash-ru" href="https://github.com/vseloved/lisp-crash-ru">lisp-crash-ru</a>
+                        <span class="text-muted small">vseloved</span>
+                    </td>
+                    <td class="small">Креш-курс по Lisp</td>
+                    <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                    <td class="text-right text-muted small">16</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="br">
+                    <td class="idx text-right text-muted small">185</td>
+                    <td>
+                        <a class="card-popover" data-card="jessymilare/storable-functions" href="https://github.com/jessymilare/storable-functions">storable-functions</a>
+                        <span class="text-muted small">jessymilare</span>
+                    </td>
+                    <td class="small">Provides a simple, portable way to serialize functions to Common Lisp.</td>
+                    <td><span class="flag flag-br" title="Brazil"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="by">
+                    <td class="idx text-right text-muted small">186</td>
+                    <td>
+                        <a class="card-popover" data-card="avodonosov/local-package-aliases" href="https://github.com/avodonosov/local-package-aliases">local-package-aliases</a>
+                        <span class="text-muted small">avodonosov</span>
+                    </td>
+                    <td class="small">package aliases for Common Lisp</td>
+                    <td><span class="flag flag-by" title="Belarus"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">187</td>
+                    <td>
+                        <a class="card-popover" data-card="anwyn/cl-horde3d" href="https://github.com/anwyn/cl-horde3d">cl-horde3d</a>
+                        <span class="text-muted small">anwyn</span>
+                    </td>
+                    <td class="small">Common Lisp CFFI bindings to the Horde3D graphics library.</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="de">
+                    <td class="idx text-right text-muted small">188</td>
+                    <td>
+                        <a class="card-popover" data-card="Frechmatz/cl-threadpool" href="https://github.com/Frechmatz/cl-threadpool">cl-threadpool</a>
+                        <span class="text-muted small">Frechmatz</span>
+                    </td>
+                    <td class="small">A thread pool written in Common Lisp</td>
+                    <td><span class="flag flag-de" title="Germany"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="gb">
+                    <td class="idx text-right text-muted small">189</td>
+                    <td>
+                        <a class="card-popover" data-card="fjames86/winhttp" href="https://github.com/fjames86/winhttp">winhttp</a>
+                        <span class="text-muted small">fjames86</span>
+                    </td>
+                    <td class="small">CFFI bindings to WinHttp</td>
+                    <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="in">
+                    <td class="idx text-right text-muted small">190</td>
+                    <td>
+                        <a class="card-popover" data-card="samebchase/hash-set" href="https://github.com/samebchase/hash-set">hash-set</a>
+                        <span class="text-muted small">samebchase</span>
+                    </td>
+                    <td class="small">An implementation of a hash-set.</td>
+                    <td><span class="flag flag-in" title="India"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">191</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/re21" href="https://github.com/fukamachi/re21">re21</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">CL21's spin-off project that provides neat APIs for regular expressions.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">192</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/http-body" href="https://github.com/fukamachi/http-body">http-body</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">HTTP POST data parser.</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">193</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/cl-cookie" href="https://github.com/fukamachi/cl-cookie">cl-cookie</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">HTTP cookie manager</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">194</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/xsubseq" href="https://github.com/fukamachi/xsubseq">xsubseq</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">Efficient way to use "subseq"s in Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">195</td>
+                    <td>
+                        <a class="card-popover" data-card="fukamachi/lev" href="https://github.com/fukamachi/lev">lev</a>
+                        <span class="text-muted small">fukamachi</span>
+                    </td>
+                    <td class="small">libev bindings for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="jp">
+                    <td class="idx text-right text-muted small">196</td>
+                    <td>
+                        <a class="card-popover" data-card="Unspeakable/cl-haml" href="https://github.com/Unspeakable/cl-haml">cl-haml</a>
+                        <span class="text-muted small">Unspeakable</span>
+                    </td>
+                    <td class="small">Haml for Common Lisp</td>
+                    <td><span class="flag flag-jp" title="Japan"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">197</td>
+                    <td>
+                        <a class="card-popover" data-card="archimag/cl-libxml2" href="https://github.com/archimag/cl-libxml2">cl-libxml2</a>
+                        <span class="text-muted small">archimag</span>
+                    </td>
+                    <td class="small">High-level wrapper around libxml2 and libxslt libraries</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="ru">
+                    <td class="idx text-right text-muted small">198</td>
+                    <td>
+                        <a class="card-popover" data-card="honix/Lisp-games" href="https://github.com/honix/Lisp-games">Lisp-games</a>
+                        <span class="text-muted small">honix</span>
+                    </td>
+                    <td class="small">My little polygon for common lisp adventures (games and experiments)</td>
+                    <td><span class="flag flag-ru" title="Russia"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+                <tr class="row-repo" style="display:none" data-country="us">
+                    <td class="idx text-right text-muted small">199</td>
+                    <td>
+                        <a class="card-popover" data-card="dlowe-net/orcabot" href="https://github.com/dlowe-net/orcabot">orcabot</a>
+                        <span class="text-muted small">dlowe-net</span>
+                    </td>
+                    <td class="small">A full-featured IRC bot in Common Lisp</td>
+                    <td><span class="flag flag-us" title="USA"></span></td>
+                    <td class="text-right text-muted small">15</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-2">
+        <div>
+<h5 class="text-right"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;Countries</h5>
+
+<table class="table table-hover table-sm small">
+    <thead class="text-muted">
+        <tr>
+            <th class="text-center" width="1%"></th>
+            <th class="text-center" width="1%">#</th>
+            <th width="25%">Name</th>
+            <th width="1%"></th>
+            <th class="text-center" width="1%">★</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="jp" checked />
+                
+            </td>
+            <td class="text-right text-muted small">1</td>
+            <td>Japan</td>
+            <td><span class="flag flag-jp" title="Japan"></span></td>
+            <td class="text-right text-muted small">8566</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="fr" checked />
+                
+            </td>
+            <td class="text-right text-muted small">2</td>
+            <td>France</td>
+            <td><span class="flag flag-fr" title="France"></span></td>
+            <td class="text-right text-muted small">4930</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="us" checked />
+                
+            </td>
+            <td class="text-right text-muted small">3</td>
+            <td>USA</td>
+            <td><span class="flag flag-us" title="USA"></span></td>
+            <td class="text-right text-muted small">1678</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="de" checked />
+                
+            </td>
+            <td class="text-right text-muted small">4</td>
+            <td>Germany</td>
+            <td><span class="flag flag-de" title="Germany"></span></td>
+            <td class="text-right text-muted small">1422</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="ua" checked />
+                
+            </td>
+            <td class="text-right text-muted small">5</td>
+            <td>Ukraine</td>
+            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+            <td class="text-right text-muted small">880</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="ru" checked />
+                
+            </td>
+            <td class="text-right text-muted small">6</td>
+            <td>Russia</td>
+            <td><span class="flag flag-ru" title="Russia"></span></td>
+            <td class="text-right text-muted small">762</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="ca" checked />
+                
+            </td>
+            <td class="text-right text-muted small">7</td>
+            <td>Canada</td>
+            <td><span class="flag flag-ca" title="Canada"></span></td>
+            <td class="text-right text-muted small">641</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="ar" checked />
+                
+            </td>
+            <td class="text-right text-muted small">8</td>
+            <td>Argentina</td>
+            <td><span class="flag flag-ar" title="Argentina"></span></td>
+            <td class="text-right text-muted small">322</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="gb" checked />
+                
+            </td>
+            <td class="text-right text-muted small">9</td>
+            <td>United Kingdom</td>
+            <td><span class="flag flag-gb" title="United Kingdom"></span></td>
+            <td class="text-right text-muted small">219</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="cn" checked />
+                
+            </td>
+            <td class="text-right text-muted small">10</td>
+            <td>China</td>
+            <td><span class="flag flag-cn" title="China"></span></td>
+            <td class="text-right text-muted small">138</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="in" checked />
+                
+            </td>
+            <td class="text-right text-muted small">11</td>
+            <td>India</td>
+            <td><span class="flag flag-in" title="India"></span></td>
+            <td class="text-right text-muted small">134</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="au" checked />
+                
+            </td>
+            <td class="text-right text-muted small">12</td>
+            <td>Australia</td>
+            <td><span class="flag flag-au" title="Australia"></span></td>
+            <td class="text-right text-muted small">86</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="br" checked />
+                
+            </td>
+            <td class="text-right text-muted small">13</td>
+            <td>Brazil</td>
+            <td><span class="flag flag-br" title="Brazil"></span></td>
+            <td class="text-right text-muted small">57</td>
+        </tr>
+        
+        <tr>
+            <td class="text-center">
+                
+                <input class="cb-country" type="checkbox" data-name="by" checked />
+                
+            </td>
+            <td class="text-right text-muted small">14</td>
+            <td>Belarus</td>
+            <td><span class="flag flag-by" title="Belarus"></span></td>
+            <td class="text-right text-muted small">32</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+        <div>
+    <h5 class="text-right"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Meta</h5>
+
+    <table class="table table-hover table-sm small">
+        <tr>
+            <td class="small">Stars minimum</td>
+            <td class="text-right text-muted small">15</td>
+        </tr>
+        <tr>
+            <td class="small">Followers minimum</td>
+            <td class="text-right text-muted small">10</td>
+        </tr>
+        <tr>
+            <td class="small">Gathered at</td>
+            <td class="text-right text-muted small">2023-04-05 09:15</td>
+        </tr>
+    </table>
+</div>
+    </div>
+
+
+        </div>
+    </div>
+
+    <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-light fixed-bottom">
+
+        <span class="small navbar-text mr-auto text-dark">
+            <i class="fa fa-github" aria-hidden="true"></i>&nbsp;
+            <a href="https://github.com/idlesign/codeorigins" title="CodeOrigins on GitHub">CodeOrigins</a>
+        </span>
+
+        <span class="mr-4 badge badge-info" title="HTML compilation datetime UTC">2023-04-05 09:16</span>
+
+        <div class="mr-4 ya-share2" data-services="twitter,digg,reddit,vkontakte,facebook,gplus" data-lang="en"></div>
+
+        <span class="mr-1">
+            <a href="https://metrika.yandex.ru/stat/?id=46062456&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/46062456/3_0_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" class="ym-advanced-informer" data-cid="46062456" data-lang="en" /></a>
+        </span>
+
+    </nav>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+<script src="https://yastatic.net/share2/share.js" async="async"></script>
+
+<script src="static/co.js" async="async"></script>
+
+<script>
+    window.githubCard = {};  // Object for render function.
+</script>
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
+
+</body>
+</html>
